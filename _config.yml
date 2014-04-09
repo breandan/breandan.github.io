@@ -6,19 +6,19 @@ pygments:         true
 permalink:        pretty
 
 # Setup
-title:            Poole
-tagline:          The Jekyll Butler
-description:      Base theme for Jekyll themes by @mdo.
-url:              http://getpoole.com
+title:            Breandan's Blog 
+tagline:          
+description:       
+url:              breandan.net
 
 author:
-  name:           Mark Otto
-  url:            https://twitter.com/mdo
+  name:           Breandan Considine
+  url:            https://twitter.com/breandan
 
 paginate:         1
 
 # Custom vars
-version:          1.0.0
+version:          0.0.1
 
 github:
-  repo:           https://github.com/poole/poole
+  repo:           https://github.com/breandan/breandan.github.io
