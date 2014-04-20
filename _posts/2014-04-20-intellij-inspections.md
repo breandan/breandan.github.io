@@ -29,7 +29,7 @@ If you think about it, this is a Non. Trivial. Inspection. Writing good inspecti
 
 {% endhighlight %}
 
-It looks like they’re constructing a data structure to detect set membership or something. Let’s go a little further. There are three areas of suspicion: at the assignment, call site, and [return statement](http://devnet.jetbrains.com/message/5228648#5228648) (nice). We’ll focus on the call site, since that’s the most general case.
+It looks like they’re building a data structure to detect set membership or something. Let’s go a little further. There are three areas of suspicion: at the assignment, call site, and [return statement](http://devnet.jetbrains.com/message/5228648#5228648) (nice). We’ll focus on the call site, since that’s the most general case.
 
 {% highlight java %}
 
