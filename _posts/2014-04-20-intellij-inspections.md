@@ -97,10 +97,12 @@ Now if the parameter’s name group ```findNameGroup(name)``` doesn’t match th
 
 Tokenize and scan the name for salient keywords, with a [sentinel value](http://en.wikipedia.org/wiki/Sentinel_value): an inconsistent group. Here's the catch. Not immediately obvious here, but it’s a precaution against false positives! Someone was worried about ambiguous names like ```bottomRight``` being flagged for suspicion. If and only if ```name``` belongs to exactly one name group then return that group, otherwise return ```null```.
 
-All things considered, it is a very modest heuristic, accomplishing just what it sets out to do. If it were any more ambitious it might attempt to solve a longest common substring against neighboring parameter name groups, and it might also fail twice as often. The truth is difficult to escape: there is no sure substitute for writing clean code. IntelliJ will catch a limited subset of specific name substitutions, but will not prevent a misplaced argument in an arbitrary function with consecutive, order-dependent, shared-type parameters. Until telepathic connectivity is fully supported, best favor monadic functions, use the [builder pattern](http://en.wikipedia.org/wiki/Builder_pattern), and name variables intelligibly.
+All things considered, this is a very modest heuristic, accomplishing just what it sets out to do. If it were any more ambitious it might attempt to solve a longest common substring against neighboring parameter name groups, and it might also fail twice as often. The truth is difficult to escape: there is no sure substitute for writing clean code. IntelliJ will catch a limited subset of specific name substitutions, but will not prevent a misplaced argument in an arbitrary function with consecutive, order-dependent, shared-type parameters. Until telepathic connectivity is fully supported, best favor monadic functions, use the [builder pattern](http://en.wikipedia.org/wiki/Builder_pattern), and name variables intelligibly.
 
 Further Reading
 
 * Martin, Robert C. (2009) "[Clean Code, A Handbook of Agile Software Craftsmanship](http://www.amazon.com/Clean-Code-Handbook-Software-Craftsmanship/dp/0132350882)." Chapter 3, pp. 40-43. Function Arguments.
 
 * [IntelliJ IDEA Architectural Overview - PSI Elements](http://confluence.jetbrains.com/display/IDEADEV/IntelliJ+IDEA+Architectural+Overview#IntelliJIDEAArchitecturalOverview-PsiElements)
+
+* [Intension vs. Intention](http://www.cse.buffalo.edu/~rapaport/intensional.html), or, "What you must know in order to determine the reference of an expression," [Wordnet](http://wordnetweb.princeton.edu/perl/webwn?s=intension)
