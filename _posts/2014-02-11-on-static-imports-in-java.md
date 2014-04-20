@@ -9,7 +9,9 @@ Prior to JUnit4, test classes would inherit the static members of ```junit.frame
 
 Enter static imports. There is a [selective use case](http://docs.oracle.com/javase/1.5.0/docs/guide/language/static-import.html) here. We must be careful not to pollute the namespace with ambiguous member functions, yet would still like to have some measure of brevity for DSLs and commonly used functions. We would prefer composition over inheritance and allowing the user the flexibility to write standalone test cases. Static imports are appealing for number of reasons: tests use assertions, but assertions 'belong' no more to test cases than exceptions belong to a handler. Assertions are frequently used, but seldom all at once (test cases should be short and concise), thereby encouraging users to think carefully about what types of assertions are being used. And ```assertEquals(...)``` is simple and recognizable, reducing boilerplate. 
 
-You might be curious how to start writing your own tests in IntelliJ with just a few keystrokes. You can simply press [CTRL+SHIFT+T] within the class you would like to cover, select JUnit4 within the wizard (import the library if prompted), and immeadiately begin writing your unit test (don't forget to annotate with @Test). Once you are ready to assert a result, type assert[CTRL+ALT+SPACE] and navigate to the desired assertion, then press [ALT+ENTER] and statically import the assertion method for maximum typing efficiency. [Screenshot](/images/staticImport.gif).
+You might be curious how to start writing your own tests in IntelliJ with just a few keystrokes. You can simply press [CTRL+SHIFT+T] within the class you would like to cover, select JUnit4 within the wizard (import the library if prompted), and immeadiately begin writing your unit test (don't forget to annotate with @Test). Once you are ready to assert a result, type assert[CTRL+ALT+SPACE] and navigate to the desired assertion, then press [ALT+ENTER] and statically import the assertion method for maximum typing efficiency. 
+
+![Screenshot](/images/staticImport.gif)
 
 Further Reading
 
