@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Inspections, Instructions & Intentions 
+title: Inspections, Instructions & Intensions
 ---
 
 IntelliJ IDEA offers a formidable [array of inspections](http://www.jetbrains.com/idea/documentation/inspections.jsp) (632 and counting), each thoughtfully crafted to help you deliver clean, bug-free code. One which recently caught my attention, [Suspicious Name Combination](http://www.jetbrains.com/idea/documentation/inspections/SuspiciousNameCombination.html), is an inspection that detects “suspicious” argument-parameter assignments by analyzing lexical tokens in the method signature. This frequently occurs in dyads such as ```setSize(width, height)```, or triads like ```assertEquals(message, actual, expected)``` where the order of shared-type parameters can be easily confused and will often slip through static type-checks unnoticed. For example, IntelliJ will alert you when passing a variable named ```btnHeight``` into a parameter named ```width```.
