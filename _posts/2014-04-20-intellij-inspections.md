@@ -7,7 +7,7 @@ IntelliJ IDEA offers a formidable [array of inspections](http://www.jetbrains.co
 
 ![Wow. How smart. Such insight.](/images/suspiciousNameCombination.jpg)
 
-If we think about it, this is one Non. Trivial. Inspection. Writing good inspections is a fairly delicate process to begin with due to the tradeoff between [sensitivity and specificity](http://en.wikipedia.org/wiki/Sensitivity_and_specificity). If an inspection is too specific, it will lack adequate coverage - if it is too general, you’ll end up supporting a bunch of [exceptions](http://youtrack.jetbrains.com/issue/IDEA-117814) to handle the [edge cases](http://youtrack.jetbrains.com/issue/IDEA-72145). In many ways, this is the same dilemma faced by diagnostic tests for cancer and other medical conditions. Taking the analogy a bit further, if software is the patient, bugs are the cancer and inspections are the diagnostics. So how exactly does IntelliJ Suspicion work? It’s either very ad-hoc or very clever. Let’s go to the [source](http://git.jetbrains.org/?p=idea/community.git;a=blob_plain;f=java/java-analysis-impl/src/com/intellij/codeInspection/suspiciousNameCombination/SuspiciousNameCombinationInspectionBase.java;h=e12f10cdbc53198f6e6c44da096aae78dcbe89c8;hb=15777aa6ca7cbe239dec62d255b9735a44ef25a3) for a closer look. The first thing we notice is that identifiers are grouped by similarity into so-called name groups.
+If you think about it, this is a Non. Trivial. Inspection. Writing good inspections is a fairly delicate process to begin with due to the tradeoff between [sensitivity and specificity](http://en.wikipedia.org/wiki/Sensitivity_and_specificity). If an inspection is too specific, it will lack adequate coverage - if it is too general, then you’ll end up supporting a bunch of [exceptions](http://youtrack.jetbrains.com/issue/IDEA-117814) to handle the [edge cases](http://youtrack.jetbrains.com/issue/IDEA-72145). In many ways, this is the same dilemma faced by diagnostic tests for cancer and other medical conditions. Taking the analogy a bit further, if software is the patient, bugs are the cancer and inspections are the diagnostics. So how exactly does IntelliJ Suspicion work? It’s either very ad-hoc or very clever. Let’s go to the [source](http://git.jetbrains.org/?p=idea/community.git;a=blob_plain;f=java/java-analysis-impl/src/com/intellij/codeInspection/suspiciousNameCombination/SuspiciousNameCombinationInspectionBase.java;h=e12f10cdbc53198f6e6c44da096aae78dcbe89c8;hb=15777aa6ca7cbe239dec62d255b9735a44ef25a3) for a closer look. The first thing we notice is that identifiers are grouped by similarity into so-called name groups.
 
 {% highlight java %}
 
@@ -69,7 +69,7 @@ private void checkCombination(final PsiElement location,
     }
 {% endhighlight %}
 
-Now if the parameter’s name group ```findNameGroup(name)``` doesn’t match the argument’s name group ```findNameGroup(referenceName)``` then we have a problem. So the heart of the algorithm lies in ```findNameGroup(String name)```. Let’s take a look.
+Now if the parameter’s name group ```findNameGroup(name)``` doesn’t match the argument’s name group ```findNameGroup(referenceName)``` then we have a problem. There is a semantic contradiction. So far we're just peeling back the implementation layers. The heart of our algorithm lies in ```findNameGroup(String name)```. Let’s take a look.
 
 {% highlight java %}
 
@@ -95,6 +95,12 @@ Now if the parameter’s name group ```findNameGroup(name)``` doesn’t match th
     }
 {% endhighlight %}
 
-Tokenize and scan, with a sentinel value: an inconsistent group. Not immediately obvious here, but it’s a precaution against false positives! Someone was worried about ambiguous names like ```bottomRight``` being flagged for suspicion. If and only if ```name``` belongs to one name group then return that group, otherwise return ```null```.
+Tokenize and scan the name for salient keywords, with a [sentinel value](http://en.wikipedia.org/wiki/Sentinel_value): an inconsistent group. Here's the catch. Not immediately obvious here, but it’s a precaution against false positives! Someone was worried about ambiguous names like ```bottomRight``` being flagged for suspicion. If and only if ```name``` belongs to exactly one name group then return that group, otherwise return ```null```.
 
-All things considered, it is a very modest heuristic, accomplishing what it sets out to do. If it were any more ambitious it might attempt to solve a longest common substring against neighboring parameter name groups, and it might also fail twice as often. The truth is difficult to escape: there is no sure substitute to writing clean code. IntelliJ will catch a limited subset of specific naming mixups, but will not prevent a misplaced argument in an arbitrary function with consecutive, order-dependent, shared-type parameters. Until telepathic connectivity is fully supported, best favor monadic functions, use the builder pattern, and name variables intelligibly.
+All things considered, it is a very modest heuristic, accomplishing just what it sets out to do. If it were any more ambitious it might attempt to solve a longest common substring against neighboring parameter name groups, and it might also fail twice as often. The truth is difficult to escape: there is no sure substitute for writing clean code. IntelliJ will catch a limited subset of specific name substitutions, but will not prevent a misplaced argument in an arbitrary function with consecutive, order-dependent, shared-type parameters. Until telepathic connectivity is fully supported, best favor monadic functions, use the builder pattern, and name variables intelligibly.
+
+Further Reading
+
+Martin, Robert C. (2009) "Clean Code, A Handbook of Agile Software Craftsmanship." Chapter 3, pp. 40-43. Function Arguments.
+
+[IntelliJ IDEA Architectural Overview - PSI Elements](http://confluence.jetbrains.com/display/IDEADEV/IntelliJ+IDEA+Architectural+Overview#IntelliJIDEAArchitecturalOverview-PsiElements)
