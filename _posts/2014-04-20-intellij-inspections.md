@@ -101,6 +101,6 @@ All things considered, it is a very modest heuristic, accomplishing just what it
 
 Further Reading
 
-Martin, Robert C. (2009) "[Clean Code, A Handbook of Agile Software Craftsmanship](http://www.amazon.com/Clean-Code-Handbook-Software-Craftsmanship/dp/0132350882)." Chapter 3, pp. 40-43. Function Arguments.
+* Martin, Robert C. (2009) "[Clean Code, A Handbook of Agile Software Craftsmanship](http://www.amazon.com/Clean-Code-Handbook-Software-Craftsmanship/dp/0132350882)." Chapter 3, pp. 40-43. Function Arguments.
 
-[IntelliJ IDEA Architectural Overview - PSI Elements](http://confluence.jetbrains.com/display/IDEADEV/IntelliJ+IDEA+Architectural+Overview#IntelliJIDEAArchitecturalOverview-PsiElements)
+* [IntelliJ IDEA Architectural Overview - PSI Elements](http://confluence.jetbrains.com/display/IDEADEV/IntelliJ+IDEA+Architectural+Overview#IntelliJIDEAArchitecturalOverview-PsiElements)
