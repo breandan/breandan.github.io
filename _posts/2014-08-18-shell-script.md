@@ -13,7 +13,10 @@ But, "write once, run anywhere," can sometimes be unrealistic. As a Linux user, 
 echo "Installing IntelliJ IDEA..."
 
 # We need root to install
-[ "$(whoami)" != "root" ] && exec sudo -- "$0" "$@"
+if [ $(id -u) != "0" ]; then
+    sudo "$0" "$@" 
+    exit $?
+fi
 
 # Attempt to install a JDK
 # apt-get install openjdk-7-jdk
