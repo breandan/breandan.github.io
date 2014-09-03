@@ -2,7 +2,7 @@ BEGIN:VCARD
 VERSION:3.0
 PRODID:-//Apple Inc.//iOS 7.0.4//EN
 N:Considine;Breandan;;;
-FN:Considine Breandan
+FN:Breandan Considine
 ORG:JetBrains\, Inc.;
 TITLE:Developer Advocate
 EMAIL;type=INTERNET;type=WORK;type=pref:breandan.considine@jetbrains.com
@@ -10,7 +10,7 @@ item1.URL;type=pref:https://twitter.com/breandan
 item1.X-ABLabel:Twitter
 item2.URL:https://breandan.net
 item2.X-ABLabel:Blog
-URL;type=WORK:https://jetbrains.com/idea/
+URL;type=WORK:https://www.jetbrains.com/idea/
 PHOTO;ENCODING=b;TYPE=JPEG:/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAICAgICAQICAgIC
  AgIDAwYEAwMDAwcFBQQGCAcICAgHCAgJCg0LCQkMCggICw8LDA0ODg4OCQsQEQ8OEQ0ODg7/2w
  BDAQICAgMDAwYEBAYOCQgJDg4ODg4ODg4ODg4ODg4ODg4ODg4ODg4ODg4ODg4ODg4ODg4ODg4O
