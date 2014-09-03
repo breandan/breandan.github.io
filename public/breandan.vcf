@@ -1,0 +1,10 @@
+BEGIN:VCARD
+VERSION:3.0
+FN:Breandan Considine
+N:Considine;Breandan;;;
+EMAIL;TYPE=INTERNET;TYPE=WORK:breandan.considine@jetbrains.com
+ORG:JetBrains\, Inc.
+TITLE:Developer Advocate
+item1.URL:https\://twitter.com/breandan
+item1.X-ABLabel:PROFILE
+END:VCARD
