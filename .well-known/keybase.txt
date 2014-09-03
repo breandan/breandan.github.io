@@ -1,0 +1,65 @@
+==================================================================
+https://keybase.io/breandan
+--------------------------------------------------------------------
+
+I hereby claim:
+
+  * I am an admin of http://breandan.net
+  * I am breandan (https://keybase.io/breandan) on keybase.
+  * I have a public key with fingerprint 3F52 EC36 CA67 C09B 35E7  C42A 3705 CA81 5221 1D14
+
+To claim this, I am signing this object:
+
+{
+    "body": {
+        "key": {
+            "fingerprint": "3f52ec36ca67c09b35e7c42a3705ca8152211d14",
+            "host": "keybase.io",
+            "key_id": "3705ca8152211d14",
+            "uid": "2da2b2e0bcbc2f7fc6d5634147f24900",
+            "username": "breandan"
+        },
+        "service": {
+            "hostname": "breandan.net",
+            "protocol": "http:"
+        },
+        "type": "web_service_binding",
+        "version": 1
+    },
+    "ctime": 1409764294,
+    "expire_in": 157680000,
+    "prev": "7b2b8d5096bc9b43a533ae85dc9a6cb8dcf9a93757c5f5aa1380f8fb602dff62",
+    "seqno": 8,
+    "tag": "signature"
+}
+
+with the aforementioned key, yielding the PGP signature:
+
+-----BEGIN PGP MESSAGE-----
+Version: Keybase OpenPGP v1.0.2
+Comment: https://keybase.io/crypto
+
+yMHjAnicZZFdSBRRFMfX1ZI2NHVfxKRyMMzcbObO186GYOQXiD5YiZmx3LlzZ52s
+mW121o/M0AoiFLKwIuhDtiST6kHIpARNJSTzJaKnCkJcrbaFTSRRkmakXuq+HO45
+v///nMOZTIq3OeLOF9WsZpW+EeOmx2JB26HE8lethKhJLYSnlWjA60FWVB/W/bqi
+GoSHoGUWYERzCHI8IgWRZjGPGABpnmQRdFMsABQlUQzhIuq1gKUwbUQYwPmKZubM
+j1eRLJ//+eB6AUgQiACTIhIRkHkZcRLL0QzF8DJgBJK0wADWVXgSm7SoY6hKUCXa
+XISZbVQQtma2Wv9D5KvYMLV+XTM0pJ0wK/WG4fdYQqPFb5FNWPT+8fCKiiqZe5uC
+RqwHFE0lPJRJIkOxTCmGFHiOAQLjInCzX9GxV7EIlufcpPmsNrjRtORFILollhQ4
+EQkiQ0OWpiF2sxISIIfMEpIFKNA8yyNWZiGkaDcpu2WRI4EkyxwgrK1OqRrhcZtj
+Qp9pGVB8KjSCOibaxsfqEmxxDtvGDXbrcjbHppS/97y0lPhr26janhFJ+Gk/uzb3
+aceX3Gffhu4kp7dvHhav5JZV9aVWjWQkrh2pXMx69/lu7+Gmm/uWjmYOnMt5OvRy
+Nhrq3eKsvX/7R3TGObEY2hUL7Y9wHSORUicoau8hHVd9H9FCr3/54UzsRlhIlfLr
+nqihguye5jPh0+RlMFtdwiTvokqiDfa++PfzSYWV0dc7i7snukLVzntSZeaelNGh
+9Nr5a3kP9vZ2d7YWr6Z9vRAsbJhaCC924lr7o8jyc3Xr4MH+cH/sWK5n9/H4vopb
+3zsmr2dLK4MXO7YvfNDKp+emCtLfhoezy1YqwiHvgRdty9zjtPEcwTWh59V0gYFy
+8BtHMBRY
+=K4if
+-----END PGP MESSAGE-----
+
+And finally, I am proving ownership of this host by posting or
+appending to this document.
+
+View my publicly-auditable identity here: https://keybase.io/breandan
+
+==================================================================
