@@ -16,11 +16,72 @@
   <!-- CSS -->
   <link rel="stylesheet" href="/public/css/poole.css">
   <link rel="stylesheet" href="/public/css/syntax.css">
+  <link rel="stylesheet" href="/public/css/pullquote.css">
+  <style type="text/css">
+	p {
+	    text-align: justify;
+	}
+    .quote {
+        text-align:right;
+    }
+
+    .span{float:right;}
+
+    .leftquote {
+        /* Reset metrics. */
+        padding: 0;
+        border: none;
+
+        /* Pull out to the right, modular scale based margins. */
+        float: left;
+        width: 50%;
+        margin: 1em 1.5em 1em 0;
+
+        /* Baseline correction */
+        position: relative;
+        top: 6px;
+    }
+
+    .mathquote {
+        /* Reset metrics. */
+        padding: 0;
+        border: none;
+
+        /* Pull out to the right, modular scale based margins. */
+        float: right;
+        margin: 0 0 1em 1.5em;
+
+        /* Baseline correction */
+        position: relative;
+        top: 6px;
+    }
+
+    blockquote {
+        padding:20px 30px;
+        border-left:3px solid #ccc;
+        display:inline-block;
+        color:#666;
+        background:#eee;
+        text-align:left;
+    }
+	{% if page.style %}
+	     {{ page.style }}
+	{% endif %}
+  </style>
+
+	{% if site.posts.first.style %}
+	  <link rel="stylesheet" href="/css/{{ site.posts.first.style }}">
+	{% elsif page.style %}
+	  <link rel="stylesheet" href="/css/{{ page.style }}">
+	{% endif %}
+
+	{% if site.posts.first.googlewebfonts %}
+	  <link href='http://fonts.googleapis.com/css?family={{ site.posts.first.googlewebfonts }}'>
+	{% elsif page.googlewebfonts %}
+	  <link href='http://fonts.googleapis.com/css?family={{ page.googlewebfonts }}'>
+	{% endif %}
 
   <!-- Icons -->
   <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/public/apple-touch-icon-144-precomposed.png">
                                  <link rel="shortcut icon" href="/public/favicon.gif">
-
-  <!-- RSS -->
-  <link rel="alternate" type="application/rss+xml" title="RSS" href="/atom.xml">
 </head>

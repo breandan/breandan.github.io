@@ -1,6 +1,6 @@
 # Dependencies
-markdown:         redcarpet
-pygments:         true
+markdown:	  kramdown
+pygments:	  rouge
 
 # Permalinks
 permalink:        pretty
@@ -22,3 +22,4 @@ version:          0.0.1
 
 github:
   repo:           https://github.com/breandan/breandan.github.io
+
