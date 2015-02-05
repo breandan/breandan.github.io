@@ -1,0 +1,23 @@
+.has-pullquote:before {
+  /* Reset metrics. */
+  padding: 0;
+  border: none;
+ 
+  /* Content */
+  content: attr(data-pullquote);
+ 
+  /* Pull out to the right, modular scale based margins. */
+  float: right;
+  width: 45%;
+  margin: 1em 0 1em 1.5em;
+ 
+  /* Baseline correction */
+  position: relative;
+  top: 6px;
+  font-size: 1.4em;
+  font-style: italic;
+  font-family: "Times New Roman", Times, serif;
+
+  line-height: 1.45em;
+}
+
