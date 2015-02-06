@@ -175,7 +175,7 @@ With this in mind, we should think of programming as an exercise in good notatio
 
 [^6]: Wesch, M. (2007, January 31). Web 2.0. The machine is us/ing us [Video file]. Retrieved from [https://www.youtube.com/watch?v=NLlGopyXT_g](https://www.youtube.com/watch?v=NLlGopyXT_g).
 
-[^7]: Goetz, B. (2007, January 31). Stweardship: The sobering parts [Video file]. Retrieved from [https://www.youtube.com/watch?v=2y5Pv4yN0b0](https://www.youtube.com/watch?v=2y5Pv4yN0b0).
+[^7]: Goetz, B. (2007, January 31). Stewardship: The sobering parts [Video file]. Retrieved from [https://www.youtube.com/watch?v=2y5Pv4yN0b0](https://www.youtube.com/watch?v=2y5Pv4yN0b0).
 
 [^8]: Java annotation (History). (2015, January 20). Wikipedia, The Free Encyclopedia. [http://en.wikipedia.org/wiki/Java_annotation#History](http://en.wikipedia.org/wiki/Java_annotation#History).
 
