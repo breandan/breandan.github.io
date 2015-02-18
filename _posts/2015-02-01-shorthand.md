@@ -34,7 +34,7 @@ With the advent of terabyte HDDs and modern CPUs, one might imagine the structur
 \end{align*}
 $$</span>
 
-Notation can also change how we think. Alonzo Church’s λ-calculus is one example of notation that changed not only just nomenclature, but usage as well. In the 1930s, Church developed a notation for describing computable functions called a *lambda expression*. Today we think of λ-expressions as a kind of shorthand for defining [anonymous functions](http://en.wikipedia.org/wiki/Anonymous_function). More importantly, λ-calculus treats functions and data as one in the same and provides an alternative model of computation through *substitution*. While equivalent to the procedural model, it can lead to vastly different (and often far simpler) solutions to the same problem.
+Notation can also change how we think. Alonzo Church’s λ-calculus is one example of notation that changed not only just nomenclature, but usage as well. In the 1930s, Church developed a notation for describing computable functions called a *lambda expression*. Today we think of λ-expressions as a kind of shorthand for defining [anonymous functions](http://en.wikipedia.org/wiki/Anonymous_function). More importantly, λ-calculus treats functions and data as the same and provides an alternative model of computation through *substitution*. While equivalent to the procedural model, it can lead to vastly different (and often far simpler) solutions to the same problem.
 
 <figure>
 <img src="/public/folding_lambda.gif"/>
@@ -44,7 +44,7 @@ Notation can also change how we think. Alonzo Church’s λ-calculus is one exam
 Today there are many writing systems which share a number of interesting similarities with traditional stenography. For example, [Emmet](http://docs.emmet.io/) is a shorthand for typing HTML. IntelliJ IDEA has a similar system of [macros](https://www.jetbrains.com/idea/help/live-templates.html) and [keyboard shortcuts](https://www.jetbrains.com/idea/docs/IntelliJIDEA_ReferenceCard.pdf) for automating repetitive programming tasks. Some television subtitles are now generated with a supervised speech recognizer[^5]. And many handheld
 <span class="leftquote"><img src="/public/ime.png"/><small><a href="http://en.wikipedia.org/wiki/Character_amnesia">Character amnesia</a> is a growing problem in Asia.</small></span>devices have predictive keyboards, which use [Markov chains](http://setosa.io/blog/2014/07/26/markov-chains/index.html) to suggest the next letter or word in a sentence. All of these are modern examples of stenography, yet they are radically different in form and function.
 
-This *uncoupling* between the creation and representation of text raises a number of intriguing questions. With the sudden ease of which we can create new abstractions and programming shorthands through macros, polymorphism and reflection, what is the appropriate level of notation required for a particular task? With the availability of code generation tools that write code, type systems for verification, and powerful IDEs to understand how it fits together, how do we differentiate between *source* and *target*? And who, or what, is the audience? These are not new questions[^6], but their significance today has only become more apparent.
+This uncoupling between the creation and representation of text raises a number of intriguing questions. With the sudden ease of which we can create new abstractions and programming shorthands through macros, polymorphism and reflection, what is the appropriate level of notation required for a particular task? With the availability of code generation tools that write code, type systems for verification, and powerful IDEs to understand how it fits together, how do we differentiate between *source* and *target*? And who, or what, is the audience? These are not new questions[^6], but their significance today has only become more apparent.
 
 <figure>
 <img src="/public/mps.png"/>
@@ -157,12 +157,13 @@ In [automatic programming](http://en.wikipedia.org/wiki/Automatic_programming), 
 
 The key, it seems, to make automatic programming work is readability. In a perfect world, we might never have to write a single line of code twice. But perhaps what we should really be working towards, is not necessarily the conservation of keystrokes, but rather the conservation of ideas through effective notation. For all the time we spend writing code, albeit plenty, is dwarfed by the amount of time others spend trying to understand it (and failing to do so, spin off their own version with the same reckless abandon we poured into the first).
 
-> Did you know? Frank Liang spent five years[^12] studying a better hyphenation algorithm for $$\TeX$$[^13]. Assuming Liang's Algorithm has saved two minutes per year for each of a million readers (in academic journals, textbooks and CVs), Liang has singlehandedly saved over a century.
+> *Did you know?* Frank Liang spent five years[^12] studying a better hyphenation algorithm for $$\TeX$$[^13]. Assuming Liang's Algorithm has saved two minutes per year for each of a million readers (in academic journals, textbooks and CVs), Liang has singlehandedly saved over a century.
 
 While the process of rapidly writing code is well-attended, the limiting factor in developer productivity is not the bandwidth of our fingertips on keys, but rather the attention span it takes to process their collective output. This is evident on a large scale in commercial code reviews, but also on an individual level, in the time it takes to effectively learn a new language or framework. It is not unreasonable to imagine how an upfront investment in readability could result in a hundredfold savings in time spread over a large userbase.
 
 With this in mind, we should think of programming as an exercise in good notation. Notation matters - but not because it is easier for us to write. It is often convenient to choose a notation that our team most familiar with, or with the most votes votes on HN. But if we succeed, we will not be the only ones maintaining it in ten years. So experiment. And when you have a good idea, spare no effort to make it plain.
 
+<p test-align="left">
 [^1]: Oracle bone script. (2015, January 17). Wikipedia, The Free Encyclopedia. [http://en.wikipedia.org/w/index.php?title=Oracle_bone_script](http://en.wikipedia.org/w/index.php?title=Oracle_bone_script&oldid=642840965).
 
 [^2]: Gould, R. Gordon (1959). "The LASER, Light Amplification by Stimulated Emission of Radiation". In Franken, P.A. and Sands, R.H. (Eds.). The Ann Arbor Conference on Optical Pumping, the University of Michigan, 15 June through 18 June 1959. p. 128.
@@ -188,4 +189,4 @@ With this in mind, we should think of programming as an exercise in good notatio
 [^12]: Liang, F. M. (2010). Interview. [http://tug.org/interviews/liang.pdf](http://tug.org/interviews/liang.pdf).
 
 [^13]: Liang, F. M. (1983). Word Hy-phen-a-tion by Com-put-er (Doctoral dissertation, Stanford University).
-
+</p>
