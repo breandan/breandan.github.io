@@ -161,7 +161,7 @@ The key, it seems, to make automatic programming work is readability. In a perfe
 
 While the process of rapidly writing code is well-attended, the limiting factor in developer productivity is not the bandwidth of our fingertips on keys, but rather the attention span it takes to process their collective output. This is evident on a large scale in commercial code reviews, but also on an individual level, in the time it takes to effectively learn a new language or framework. It is not unreasonable to imagine how an upfront investment in readability could result in a hundredfold savings in time spread over a large userbase.
 
-With this in mind, we should think of programming as an exercise in good notation. Notation matters - but not because it is easier for us to write. It is often convenient to choose a notation that our team most familiar with, or with the most votes votes on HN. But if we succeed, we will not be the only ones maintaining it in ten years. So experiment. And when you have a good idea, spare no effort to make it plain.
+With this in mind, we should think of programming as an exercise in good notation. Notation matters - but not because it is easier for us to write. It is often convenient to choose a notation that our team is most familiar with, or with the most votes votes on HN. But if we succeed, we will not be the only ones maintaining it in ten years. So experiment. And when you have a good idea, spare no effort to make it plain.
 
 [^1]: Oracle bone script. (2015, January 17). Wikipedia, The Free Encyclopedia. [http://en.wikipedia.org/w/index.php?title=Oracle_bone_script](http://en.wikipedia.org/w/index.php?title=Oracle_bone_script&oldid=642840965).
 
