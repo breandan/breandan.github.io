@@ -1,0 +1,21 @@
+---
+layout: post
+title: Democratizing Education in China
+
+---
+
+In former president Hu Jintao’s address to the 17th Party Congress in 2007, he urges delegates to, “enhance our nation’s cultural soft power,”[^1]  citing China’s, “5,000 Years of Culture”, an immense source of national pride for billions of Chinese people around the world. In recent comments, current Party Secretary Wang Qishan appeals to this legacy stating, “The Party’s legitimacy lies in history, its popular support and the mandate of the people.”[^2]  But the strength of a great civilization is not in numbers, or how far its borders reach, but according to Ghandi, in how it treats the weakest members of society.
+
+During President Xi Jinping’s 2015 visit to the United States, he called attention to this demographic, acknowledging, “over 70 million Chinese citizens living on guaranteed minimum income, and over 85 million people with disabilities.”[^3]  The Chinese Dream, a recurring theme of Xi’s presidency, emphasizes economic prosperity and military strength, but despite these promises, services for the disabled are severely lacking throughout mainland China.[^4][^5]  According to some statistics, 28% of disabled children lack access to basic education and over 40% of China’s disabled are illiterate.[^4]
+
+These figures are not merely provisional lapses of welfare in a developing economy, but signs of an endemic problem in mainland China. Not only are disabled citizens overlooked by government services, but many are actively discriminated by primary schools, barred from receiving higher education through mandatory physical examinations, and disqualified from certain vocations based on physical “defects”.[^4] Where special education is available, students are segregated from their peers and often forced to travel long distances for equal access.[^4] These are insurmountable obstacles for millions of rural citizens.
+
+Even if these obstacles were lifted overnight, China faces steep social and economic barriers to equal rights. But there is real hope for technological innovation in paving the road to equal opportunity. With the emergence of new digital platforms like massive online open courses (MOOCs) and the widespread accessibility of assistive technologies for digital communication, we can disrupt the crippling economic disincentive that traps millions of disabled citizens in poverty and give them tools to become contributing and valued members of society. And with the growth of telepresence software and flexible work environments, as China transitions into a service economy, mobilizing these individuals in a technology-enabled workforce will become more practical than ever before.
+
+The key to making rapid progress in disability services is by investing in technology, not politics. Today, we can give sight to the blind, subtitles to the deaf, voices to the language-impaired, and adaptive input systems to the physically handicapped, all with software that can run on a wristwatch. We can transform early childhood education through interactive speech recognition, and radically improve higher education through online learning initiatives. By investing in usability, democratizing access to a basic education, and driving down the barriers economic prosperity, we can help make the dream of a stronger, healthier China a real possibility for individuals from all walks of life.
+
+[^1]: “...必须提高国家文化软实力...” Full text of Hu Jintao's report at 17th Party Congress. (2007). http://np.chineseembassy.org/eng/ChinaABC/t377776.htm
+[^2]: “中国共产党的合法性源自于历史, 是人心向背决定的, 是人民的选择.” The Party and the World Dialogue. (2015). http://news.sina.com.cn/c/2015-09-10/232332296609.shtml
+[^3]: “中国城乡有7000多万低保人口, 还有8500多万残疾人.” From a speech on China-U.S. relations. (2015). http://news.xinhuanet.com/english/2015-09/24/c_134653326.htm
+[^4]:  “Barriers to Education for Persons with Disabilities in China.” Human Rights Watch. (2013). http://www.hrw.org/report/2013/07/15/long-they-let-us-stay-class/barriers-education-persons-disabilities-china
+[^5]: “Paper commissioned for the EFA Global Monitoring Report 2006, Literacy for Life.” Ross. (2006). http://unesdoc.unesco.org/images/0014/001461/146108e.pdf
