@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Democratizing learning technology
+title: Democratizing Learning Technology
 ---
 
 Growing up in rural New Hampshire, the world is a small place. Our nearest neighbors lived miles away, and you could drive for hours before seeing anything like a city. My grandparents moved out of New York in the 1960s, and raised me in a single-family home thirty years later. They would stoke the fire at night and tell me stories of places where buildings rose a hundred stories tall and trains ran underground. We would read newspapers by candlelight, and day by day, the world grew a bit larger.
