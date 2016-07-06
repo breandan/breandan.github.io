@@ -181,7 +181,7 @@ With this in mind, we should think of programming as an exercise in good notatio
 
 [^9]: Java language keywords. Oracle Corporation. [http://docs.oracle.com/javase/tutorial/java/nutsandbolts/_keywords.html](http://docs.oracle.com/javase/tutorial/java/nutsandbolts/_keywords.html)
 
-[^10]: Author and computer scientist at Stanford University, more famously known for writing *[The Art of Compuer Programming](http://www-cs-faculty.stanford.edu/~uno/taocp.html)*.
+[^10]: Author and computer scientist at Stanford University, more famously known for writing *[The Art of Computer Programming](http://www-cs-faculty.stanford.edu/~uno/taocp.html)*.
 
 [^11]: Knuth, D. E. (1986). Definitions (also called Macros). The TeXbook. [http://web.mit.edu/jgross/www/LaTeX/texbook.pdf](http://web.mit.edu/jgross/www/LaTeX/texbook.pdf).
 
