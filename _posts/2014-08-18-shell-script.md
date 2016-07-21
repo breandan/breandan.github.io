@@ -63,7 +63,7 @@ fi
 BIN="$DIR/bin"
 
 # Add permissions to install directory
-chmod -R +rwx ${DIR} --silent
+chmod -R +rwx ${DIR}
 
 # Set desktop shortcut path
 DESK=/usr/share/applications/IDEA.desktop
