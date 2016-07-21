@@ -40,12 +40,12 @@ echo $URL
 FILE=$(basename ${URL})
 
 # Set download directory
-DEST="~/Downloads/"
+DEST=~/Downloads/$FILE
 
 echo "Downloading idea-I$ed-$VERSION to $DEST..."
 
 # Download binary
-wget -cO ~/Downloads/${FILE} ${URL} --read-timeout=5 --tries=0
+wget -cO ${DEST} ${URL} --read-timeout=5 --tries=0
 
 echo "Download complete!"
 
@@ -56,7 +56,7 @@ echo "Installing to $DIR"
 
 # Untar file
 if mkdir ${DIR}; then
-    tar -xzf ~/Downloads/${FILE} -C ${DIR} --strip-components=1
+    tar -xzf ${DEST} -C ${DIR} --strip-components=1
 fi
 
 # Grab executable folder
