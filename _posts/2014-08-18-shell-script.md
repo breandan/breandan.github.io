@@ -16,8 +16,8 @@ echo "Installing IntelliJ IDEA..."
 [ $(id -u) != "0" ] && exec sudo "$0" "$@"
 
 # Attempt to install a JDK
-# apt-get install openjdk-7-jdk
-add-apt-repository ppa:webupd8team/java && apt-get update && apt-get install oracle-java7-installer
+# apt-get install openjdk-8-jdk
+# add-apt-repository ppa:webupd8team/java && apt-get update && apt-get install oracle-java8-installer
 
 # Prompt for edition
 while true; do
@@ -28,28 +28,42 @@ while true; do
     esac
 done
 
-# Fetch the most recent community edition URL
-URL=$(wget "http://www.jetbrains.com/idea/download/download_thanks.jsp?edition=I${ed}&os=linux" -qO- | grep -o -m 1 "http://download.jetbrains.com/idea/.*gz")
+# Fetch the most recent version
+VERSION=$(wget "https://www.jetbrains.com/intellij-repository/releases" -qO- | grep -P -o -m 1 "(?<=https://www.jetbrains.com/intellij-repository/releases/com/jetbrains/intellij/idea/BUILD/)[^/]+(?=/)")
+
+# Prepend base URL for download
+URL="https://download.jetbrains.com/idea/ideaI$ed-$VERSION.tar.gz"
+
+echo $URL
 
 # Truncate filename
 FILE=$(basename ${URL})
 
+# Set download directory
+DEST="~/Downloads/"
+
+echo "Downloading idea-I$ed-$VERSION to $DEST..."
+
 # Download binary
 wget -cO ~/Downloads/${FILE} ${URL} --read-timeout=5 --tries=0
 
+echo "Download complete!"
+
 # Set directory name
-DIR="${FILE%\.tar\.gz}"
+DIR="/opt/idea-I$ed-$VERSION"
+
+echo "Installing to $DIR"
 
 # Untar file
-if mkdir /opt/${DIR}; then
-    tar -xvzf ~/Downloads/${FILE} -C /opt/${DIR} --strip-components=1
+if mkdir ${DIR}; then
+    tar -xzf ~/Downloads/${FILE} -C ${DIR} --strip-components=1
 fi
 
 # Grab executable folder
-BIN="/opt/$DIR/bin"
+BIN="$DIR/bin"
 
 # Add permissions to install directory
-chmod 755 ${BIN}/idea.sh
+chmod -R +rwx ${DIR} --silent
 
 # Set desktop shortcut path
 DESK=/usr/share/applications/IDEA.desktop
