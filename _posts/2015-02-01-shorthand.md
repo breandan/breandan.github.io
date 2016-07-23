@@ -163,6 +163,10 @@ While the process of rapidly writing code is well-attended, the limiting factor 
 
 With this in mind, we should think of programming as an exercise in good notation. Notation matters - but not because it is easier for us to write. It is often convenient to choose a notation that our team is most familiar with, or with the most votes votes on HN. But if we succeed, we will not be the only ones maintaining it in ten years. So experiment. And when you have a good idea, spare no effort to make it plain.
 
+### Further Reading
+
+* Ye, Katherine. (2016, July 22). [Notes on notation and thought](https://github.com/hypotext/notation)
+
 [^1]: Oracle bone script. (2015, January 17). Wikipedia, The Free Encyclopedia. [http://en.wikipedia.org/w/index.php?title=Oracle_bone_script](http://en.wikipedia.org/w/index.php?title=Oracle_bone_script&oldid=642840965).
 
 [^2]: Gould, R. Gordon (1959). "The LASER, Light Amplification by Stimulated Emission of Radiation". In Franken, P.A. and Sands, R.H. (Eds.). The Ann Arbor Conference on Optical Pumping, the University of Michigan, 15 June through 18 June 1959. p. 128.
