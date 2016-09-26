@@ -72,7 +72,7 @@ DESK=/usr/share/applications/IDEA.desktop
 echo "[Desktop Entry]\nEncoding=UTF-8\nName=IntelliJ IDEA\nComment=IntelliJ IDEA\nExec=${BIN}/idea.sh\nIcon=${BIN}/idea.png\nTerminal=false\nStartupNotify=true\nType=Application" -e > ${DESK}
 
 # Create symlink entry
-ln -s ${BIN}/idea.sh /usr/local/bin/idea
+ln -sf ${BIN}/idea.sh /usr/local/bin/idea
 
 echo "Done."
 {% endhighlight %}
