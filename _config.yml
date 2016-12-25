@@ -23,3 +23,5 @@ version:          0.0.1
 github:
   repo:           https://github.com/breandan/breandan.github.io
 
+# Gems
+gems: [jekyll-paginate]
