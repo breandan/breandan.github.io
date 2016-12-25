@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Tales of a Traveling Developer
+title: Tales of a Traveling Twentysomething
 
 ---
 
