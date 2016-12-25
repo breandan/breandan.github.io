@@ -98,7 +98,16 @@ If you have never been, Salzburg is a town on a river, as many European towns ar
 
 One of these was the Archbishop of Salzburg, Markus Sittikus, who by all accounts was not a very pleasant person, but hey, times were different. He built a large estate, known as [Hellbrunn Palace](https://en.wikipedia.org/wiki/Hellbrunn_Palace), containing many cruel hydraulic innovations. To this day, guides use his collection to torment passing tourists.
 
-After spending a number of pleasant days touring the lakes and mountains surrounding Salzburg, riding gondolas, watching people fling themselves off the mountainside, catching rare Pokemon and late night concerts in the park, we waved goodbye to Austria and made great haste for Frankfurt.
+After spending a number of pleasant days touring the lakes and mountains surrounding Salzburg, riding gondolas, watching people fling themselves off the mountainside, catching rare Pokemon and Mozart concerts in the park, we waved goodbye to Austria and made great haste for Frankfurt.
 
-I commandeered a [Car2Go](https://www.car2go.com) on the Frankfurt autobahn, a road that has no speed limits, beside those required by the laws of physics. This was fortunate, as we were short on time. Unfortunately, the laws of physics have set a very low speed limit for Car2Go, so it ended up taking quite a while. But once you finally park the thing, you're right next to the check-in counter.
+I commandeered a [Car2Go](https://www.car2go.com) on the Frankfurt autobahn, a road that has no speed limits, beside those required by the laws of physics. This was fortunate, as we were short on time. Unfortunately, the laws of physics have set a very low speed limit for Cars2Go, so it ended up taking quite a while. But once you finally park the thing, you're right next to the check-in counter.
 
+Spent a week in San Jose at the beginning of September, and saw some great talks at Cassandra Summit. Cassandra is a pretty cool technology if you have truly enormous amounts of data to store. Maybe by the time this blog post is finished I will have a legitimate use case.
+
+Rented a car on Friday and drove south for the weekend. If you have a special weekend enterprise and are looking for transportation, use the [Enterprise Weekend Special](https://www.enterprise.com/en/car-rental/deals/weekend-specials.html). They'll pick you up anywhere but the airport and you'll pay more for gas than the car.
+ 
+Monterey is the home of John Steinbeck, and the setting for many of his novels. John is a great writer. But he doesn't do it justice. The coastline is indescribable. You can run on warm beaches in the Caramel Highlands and walk through quiet stands of Coast Redwood in Big Sur. Go there, you will not regret it.
+
+Flew to Boston and back to the bay the next weekend for JavaOne. Taught some kids about cryptography with an American Indian. Indian American? A friend from India, who lives in the US. Went for a nice bike ride to Sausalito with some speakers from Switzerland, a contractor for the Patent Office, a developer from Ireland. Took the ferry back. Had fair bowl of ramen.
+
+Each year, Oracle swoops into downtown San Fransisco like Christmas in September and paints everything red and white. Flies in racing yachts by crane and blocks off city streets. The last few years, they built a carnival complete with ferris wheel and free food, fireworks, Elton John, then bussed ten thousand people out to an island in the bay for an all-night bacchanalian celebration. This year, they went for conservative and opted to use the baseball stadium.
