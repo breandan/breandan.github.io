@@ -96,4 +96,7 @@ Then we took a train to Salzburg, by way of Zürich. Austria was really interest
 
 If you have never been, Salzburg is a town on a river, as many European towns are prone to be. More importantly, it has an abundance of salt. Salt was once the currency of the day, back in the day, hence the English, *salary*. This means that Salzburg was a very wealthy place when salt was the legal tender, and accumulated a great deal of castles and aristocratic types through the taxation and export of salt along the river.
 
-One of these was the Prince-Archbishop of Salzburg, Markus Sittikus, who by all accounts was not a very pleasant person, but hey, times were different. He built a large estate, known today as [Hellbrunn Palace](https://en.wikipedia.org/wiki/Hellbrunn_Palace), containing many cruel hydraulic innovations. To this day, tour guides use his collection to torment passing tourists.
+One of these was the Archbishop of Salzburg, Markus Sittikus, who by all accounts was not a very pleasant person, but hey, times were different. He built a large estate, known as [Hellbrunn Palace](https://en.wikipedia.org/wiki/Hellbrunn_Palace), containing many cruel hydraulic innovations. To this day, guides use his collection to torment passing tourists.
+
+After spending a number of pleasant days touring the lakes and mountains surrounding Salzburg, riding gondolas, watching people fling themselves off the mountainside, catching rare Pokemon and late night concerts in the park, we waved goodbye to Austria and made great haste for Frankfurt.
+
