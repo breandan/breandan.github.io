@@ -100,3 +100,5 @@ One of these was the Archbishop of Salzburg, Markus Sittikus, who by all account
 
 After spending a number of pleasant days touring the lakes and mountains surrounding Salzburg, riding gondolas, watching people fling themselves off the mountainside, catching rare Pokemon and late night concerts in the park, we waved goodbye to Austria and made great haste for Frankfurt.
 
+I commandeered a [Car2Go](https://www.car2go.com) on the Frankfurt autobahn, a road that has no speed limits, beside those required by the laws of physics. This was fortunate, as we were short on time. Unfortunately, the laws of physics have set a very low speed limit for Car2Go, so it ended up taking quite a while. But once you finally park the thing, you're right next to the check-in counter.
+
