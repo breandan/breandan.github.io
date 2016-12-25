@@ -4,7 +4,7 @@ title: Tales of a Traveling Developer
 
 ---
 
-Earlier this year, I decided to go on a sabbatical. Since then, I have spent time in many interesting places - some for work, some for conferences, some just for the sheer hell of it. As the year is ending, I thought I would share parts of my journey. Perhaps you may wish to go to some of these places. Some of them, you will not.
+Earlier this year, I had the chance to go on a sabbatical. So I took it. Since then, I have spent time in many interesting places - some for work, some for conferences, some just for the sheer hell of it. As the year is almost over, I thought I would share parts of my journey. Perhaps you may wish to go to some of these places. Some of them, you will not.
 
 In January of 2016, I visited the sister of a Brother who lives in Phoenix. She kindly showed me the city where she had recently relocated from somewhere in Long Island. We ate breakfast at the [Breakfast Club](http://www.breakfastclub.us/), and looked for a relative who drowned in the attack on Pearl Harbor. In the middle of their city they have planted a [huge gun](https://en.wikipedia.org/wiki/Wesley_Bolin_Memorial_Plaza) for the lost sailors of the Battleship Arizona.
 
@@ -86,9 +86,9 @@ Geneva is the home of CERN, which is mainly why we went there. You need to book 
 
 From Geneva, we took a train to Visp, and up to Zermatt via a special railway that clings to the moutain, between cliffside dwellings perched on dubious-looking foundations. Out of an abundance of caution, we avoided a similar funicular excursion just a few days earlier, due to [large earthquake](https://en.wikipedia.org/wiki/August_2016_Central_Italy_earthquake) that had recently struck central Italy.
 
-The town of Zermatt is only accessible by train, which is a good thing, because we had no other way to get up there. However this means it is inaccessible when there are slides or avalanches. Fortunately, there were no recent slides or avalanches, and we arrived without incident. Stayed at the [Best Western](http://www.alpenresort.com/en/welcome/) (a great chain in Switzerland) and watched the sun set over the peak of the Matterhorn.
+The town of Zermatt is only accessible by train, which is a good thing, because we had no other way of getting up there. However this means it is inaccessible when there are slides or avalanches. Fortunately, there were no recent slides or avalanches, and we arrived without incident. Stayed at the [Best Western](http://www.alpenresort.com/en/welcome/) (a great chain in Switzerland) and watched the sun set over the peak of the Matterhorn.
 
-The next morning, we left bright and early on the [Glacier Express](https://en.wikipedia.org/wiki/Glacier_Express), the slowest high speed train in the world. Scenic waypoints are narrated in dulcet sing-song, like a person reading children’s fairy tale, in English, German, Italian, French and possibly Romansh. We passed through steep mountain passes, sweeping valleys, and trestles over deep gorges.
+The next morning, we left bright and early on the [Glacier Express](https://en.wikipedia.org/wiki/Glacier_Express), the slowest high speed train in the world. Scenic waypoints are narrated in dulcet sing-song, like a person reading a children’s fairy tale, in English, German, Italian, French and possibly Romansh. We passed through steep mountain passes, sweeping valleys, and trestles over deep gorges.
 
 Arriving in St. Moritz later that afternoon, we hauled our bags a kilometer uphill into a [hotel above a pizza shop](http://www.arte-stmoritz.ch/), sauntered by the lake while people maneuvered small sailboats, and watched tuxedo-clad chaps [jump horses](http://www.csistmoritz.ch/) over fences in the late summer sunshine. It was all spectacularly European. St. Moritz is very extravagant, dripping with fur, fast cars and grand old hotels.
 
@@ -98,11 +98,11 @@ If you have never been, Salzburg is a town on a river, as many European towns ar
 
 One of these was the Archbishop of Salzburg, Markus Sittikus, who by all accounts was not a very pleasant person, but hey, times were different. He built a large estate, known as [Hellbrunn Palace](https://en.wikipedia.org/wiki/Hellbrunn_Palace), containing many cruel hydraulic innovations. To this day, guides use his collection to torment passing tourists.
 
-After spending a number of pleasant days touring the lakes and mountains surrounding Salzburg, riding gondolas, watching people fling themselves off the mountainside, catching rare Pokemon and Mozart concerts in the park, we waved goodbye to Austria and made great haste for Frankfurt.
+After spending a number of pleasant days exploring the lakes and mountains surrounding Salzburg, riding gondolas, watching people fling themselves off the mountainside, catching Pokemon, concerts in the park, and eating far too much Mozartkugel, we waved goodbye to Austria and made great haste for Frankfurt.
 
-I commandeered a [Car2Go](https://www.car2go.com) on the Frankfurt autobahn, a road that has no need for speed limits, beside those required by the laws of physics. This was fortunate, as we were short on time. Unfortunately, the laws of physics have set a very low speed limit for Cars2Go, so it ended up taking quite a while. But once you finally park the thing, you're right next to the check-in counter.
+I commandeered a [Car2Go](https://www.car2go.com) on the Frankfurt autobahn, a road that has no need for speed limits, beside those required by the laws of physics. This was fortunate, as we were short on time. Unfortunately, the laws of physics have set a very low speed limit for Cars2Go, so it ended up taking quite a while. But once you finally park the thing, you're right next to the airline check-in.
 
-Spent a week in San Jose at the beginning of September, and saw some great talks at Cassandra Summit. Cassandra is a pretty cool technology if you have truly enormous amounts of data to store. Maybe by the time this blog post is finished I will have a legitimate use case.
+Then I spent a week in San Jose at the beginning of September, and saw some great talks at Cassandra Summit. Cassandra is a pretty cool technology if you have truly enormous amounts of data to store. Maybe by the time this blog post is finished I will have a legitimate use case.
 
 Rented a car on Friday and drove south for the weekend. If you have a special weekend enterprise and are looking for transportation, use the [Enterprise Weekend Special](https://www.enterprise.com/en/car-rental/deals/weekend-specials.html). They'll pick you up anywhere but the airport and you'll pay more for gas than the car.
  
