@@ -158,4 +158,4 @@ When I awoke, it was nearly midnight, and time to pick up my girlfriend at the a
 
 For reasons I cannot begin to explain, we were locked inside a malfunctioning Car2Go at a gas station. We were stuck in park at a busy intersection. We were fined for parking violations. We had to call help dozens of times, and spent hours troubleshooting their broken fleet of golf carts. Car-sharing is clearly a win in some places, but just does not work well in Canada. End rant.
 
-This time, I was in Vancouver for ConFoo, since we enjoyed the first one so much. It was a lovely conference, filled with lovely people.
+I was in Vancouver for ConFoo, since I enjoyed the one in February so much. It was their first time in Vancouver, a lovely conference, filled with lovely people. Afterwards, they bussed some of the speakers up to Whistler and we all went skiing for two days. Met some swell folks between runs, and had some interesting conversations about science, religion and post-truth society.
