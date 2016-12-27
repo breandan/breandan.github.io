@@ -277,6 +277,6 @@ From Vancouver, we flew to Toronto and spent a few days visiting friends there. 
 
 When all is said and done, I went to 18 countries, 64 cities, 16 conferences, and visited dozens of universities and meetups in 2016. If I had to do it all over again, I wouldn't do everything the same way. I spent most of the time exhausted and jetlagged. But I also had some very happy memories, particularly those that did not involve nearly dying. And I got to spend time with some extraordinary people along the way. So I'll mark it with a B+.
 
-If you made it this far, I feel compelled to leave you with some sort of message. The best tales have lessons, answers, endings. But my answers are not the one you are looking for, and even if they were, they wouldn't do you much good. There is a great big world outdoors, and if you have the desire to see it, then I would encourage you to do so (I am sure you will not regret it). But don't try bring 200kg of cast iron along with you.
+If you made it this far, I feel compelled to leave you with some sort of message. The best tales have lessons, answers, endings. But my answers are not the ones you are looking for, and even if they were, they wouldn't do you much good. There is a great big world outdoors, and if you have the desire to see it, then I would encourage you to do so (I am sure you will not regret it). But don't try bring 200kg of cast iron along with you.
 
 *This story was made possible by the patience of my family. If you enjoyed reading it, please consider giving a hug to your Grannie, or someone you love.*
