@@ -170,7 +170,7 @@ One of these was the Archbishop of Salzburg, Markus Sittikus, who by all account
 
 <center>
 <figure>
-<img src="/images/paragliding.gif"/>
+<img src="http://i.imgur.com/GChzakn.gif"/>
   <figcaption><p><center><small>Paragliders taking off from the top of Zwölferhorn Mountain in St. Gilgen, Austria.</small></center></p></figcaption>
 </figure></center>
 
