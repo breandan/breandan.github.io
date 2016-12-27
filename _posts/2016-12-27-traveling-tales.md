@@ -4,16 +4,16 @@ title: Tales of a Traveling Twentysomething
 
 ---
 
-*In which I describe globetrotting on Car2Gos, death-defying feats of gallantry, learning how to deliver a baby, and other vaguely unbelievable facts from a prodigal twentysomething technologist with first-world problems.*
+*In which I describe globetrotting on [Cars2Go](https://www.car2go.com/), death-defying feats of gallantry, learning how to deliver a baby, and other mildly interesting stories from a prodigal twentysomething technologist with first-world problems.*
 
-Earlier this year, I had the chance to go on sabbatical. So I went. Since then, I have spent time in many interesting places - some for work, some for conferences, some for the sheer hell of it. As the year is almost over, I thought I would share parts of my journey. Perhaps you may wish to visit some of these places. Some of them, you will not.
+Earlier this year, I had the chance to go on sabbatical. So I went. Since then, I have spent time in many interesting places - some for work, some for conferences, some just for the hell of it. As the year is almost over, I thought I would share parts of my journey. Perhaps you may wish to visit some of these places. Some of them, you will not.
 
 In January 2016, I visited the sister of a Brother who lives in Phoenix. She kindly showed me the city where she had recently relocated from somewhere in Long Island. We ate breakfast at the [Breakfast Club](http://www.breakfastclub.us/), and looked for a relative who drowned in the attack on Pearl Harbor. In the middle of their city they have planted a [huge gun](https://en.wikipedia.org/wiki/Wesley_Bolin_Memorial_Plaza) for the lost sailors of the Battleship Arizona.
 
 In February, I flew to Atlanta, and was promptly greeted by a cheerful Hawaiian professional photographer, turned recreational Uber driver, who gave a white kid tips for how to survive on the streets of Atlanta over Italian pasta. I think he took pity on me sitting in the backseat of his Uber. Besides [the bomb evacuation](http://www.cbs46.com/story/31337956/suspicious-package-found-under-car-in-downtown-atlanta) at DevNexus, it was a pretty nice trip.
 
 <figure>
-<img src="/images/atlanta.jpg"/>
+<img src="http://www.gstatic.com/prettyearth/assets/full/1168.jpg"/>
   <figcaption><p><small>From <a href="https://www.google.com/maps/@33.7444502,-84.3914727,753m/data=!3m1!1e3">Google Earth</a>, over the I-20 and I-85 interchange in downtown Atlanta.</small></p></figcaption>
 </figure>
 
@@ -25,7 +25,7 @@ In April I had a layover in Hong Kong and decided to get Dim Sum. Instead, I wa
 
 <figure>
 <img src="/images/choir.jpg"/>
-  <figcaption><p><small>Hong Kong, taken from Victoria Peak.</small></p></figcaption>
+  <figcaption><p><small>The 68th Hong Kong School Prize Concert for Sacred Music, at St. John's Cathedral.</small></p></figcaption>
 </figure>
 
 The rain started back up again, so I ducked into an empty church to dry off. Suddenly, there a great commotion - hundreds of children, dripping and tripping all over the place. They came in busses and bunches, shuffling onto the benches. Thunder and pouring rain. Umbrellas and coats. Candles everywhere. Then, they began to sing. I never heard anything so beautiful.
@@ -39,7 +39,7 @@ Landing in Bengaluru, I was greeted by the sound of pandemonium. Bengaluru is th
 </small></center></p></figcaption>
 </figure></center>
 
-Our tiny booth was quickly overwhelmed by a multitude of curious people. And from dawn to dusk, we shook hands, we gave away shirts, we held quizzes. Following an amazing culinary extravaganza and near-death experience with food-poisoning on MG Road, I am convinced Indian food, like all delicious things, is best consumed in moderation.
+Our tiny booth was quickly overwhelmed by a multitude of curious people. And from dawn to dusk, we shook hands, we gave away shirts, we held quizzes. Following an amazing culinary extravaganza and near-death experience with food-poisoning on [M.G. Road](https://en.wikipedia.org/wiki/M_G_Road,_Bangalore), I am convinced Indian food, like all delicious things, is best consumed in moderation.
 
 Two of my colleagues took it upon themselves to personally drive me around Bengaluru, broker steaming cups of tea from passing chaiwallas, order samosa, vada pav, and chats from busy street vendors, visit parliamentary buildings, gold-laden temples, purchase a saree, navigate massive thoroughfares and narrow alleyways, negotiate access to gated compounds.
 
@@ -47,16 +47,16 @@ Two things stand out in my mind. Indian enthusiasm is contagious. As a North Ame
 
 <figure>
 <img src="/images/dharavi.jpg"/>
-  <figcaption><p><small>Taken on the outskirts of <a href="https://en.wikipedia.org/wiki/Dharavi">Dharavi</a>, one of the largest slums in the world.</small></p></figcaption>
+  <figcaption><p><small>Street vendors on the outskirts of <a href="https://en.wikipedia.org/wiki/Dharavi">Dharavi</a>, one of the largest slums in the world.</small></p></figcaption>
 </figure>
 
-After a brief in Mumbai, I flew back to New York with a new set of problems. So I decided to ignore them and go for a prolonged bike trip through the Pacific Northwest. Turns out that was just a different set of problems. I took the Amtrak Cascades from Seattle to Vancouver, rented a bike there, packed my backpack, and headed for Alaska.
+After a brief stint in Mumbai, I flew back to New York with a new set of problems. So I decided to ignore them and go for a prolonged bike trip through the Pacific Northwest. Turns out that was just a different set of problems. I took the Amtrak Cascades from Seattle to Vancouver, rented a bike there, packed my backpack, and headed for Alaska.
 
 After several near-death collisions, I gave up and settled for Whistler. If you sit at a desk for twelve hours a day, don’t try to peddle a bike 80 miles uphill the next one. Thank me later. But Whistler has fresh air, LTE, and skiing in May, so I was happy. I watched the seaplanes take off over Green Lake and wondered what I was doing with my life. Such are the problems we have in the first world.
 
 <figure>
 <img src="/images/seaplane.jpg"/>
-  <figcaption><p><small>Seaplanes take off from Whistler, carrying passengers to Vancouver and Victoria.</small></p></figcaption>
+  <figcaption><p><small>Seaplanes take off from Whistler, carrying passengers and cargo to Vancouver.</small></p></figcaption>
 </figure>
 
 After taking stock of the situation, I decided to pursue the full-time occupation of chasing a girl halfway around the planet. That was a pretty good idea in hindsight. We met in Vancouver, in Austin, in New York, in Boston and Portland and everywhere in between, you name it and we were probably there for some event or meetup this May and June.
@@ -92,7 +92,7 @@ I spent a day dodging lorries in a dodgy part of London on [Santander Cycles](ht
   <figcaption><p><small>The <a href="https://en.wikipedia.org/wiki/Bergen_Line">Bergen Line</a> courses across Norway, carrying millions of people each year.</small></p></figcaption>
 </figure>
 
-The journey from Bergen to Oslo was completely otherworldly, filled with gaping fjords, scenic vistas, glacial streams, and mountain passes. I sat next to a biologist studying seasonal migration patterns and teaching a summer seminar in Voss. I watched Norwegian villages and stations glide past my window. Norway is a strikingly gorgeous country, and I highly recommend taking the [Bergen Railway](https://www.nsb.no/en/our-destinations/our-regional-railway-lines/bergenrailway) if your travels should take you to there.
+The journey from Bergen to Oslo was completely otherworldly, filled with gaping fjords, scenic vistas, glacial streams, and mountain passes. I sat next to a biologist studying seasonal migration patterns and teaching a summer seminar in Voss. I watched Norwegian villages and stations glide past my window. Norway is a strikingly gorgeous country, and I highly recommend the [Bergen Railway](https://www.nsb.no/en/our-destinations/our-regional-railway-lines/bergenrailway) if your travels should take you anywhere in the vicinity.
 
 Stayed with a rock band living in Oslo. They kindly loaned me their bicycle, which I put to extensive use exploring the neighboring countryside. There, I wandered into a surreal village that looked like it was from the 17th century. The townsfolk, dressed in period clothing, made pointed gestures at my bicycle while speaking Norwegian. This was confusing, as I do not speak Norwegian and seemed to be only person from the 21st century that morning. I discovered it was a [historical reenactment](https://en.wikipedia.org/wiki/Norwegian_Museum_of_Cultural_History), with live actors and livestock. Nearby, is the [Royal farm of Norway](http://www.royalcourt.no/artikkel.html?tid=28703), stocked with heavily armed soldiers in open pastures. I took the ferry back to Oslo and ate some delicious [Punjabi food](http://punjabi-masala.no/) for dinner.
 
@@ -129,6 +129,11 @@ It was in Berlin where I began to appreciate the cultural differences between Ge
 
 There is a monument in the middle of Berlin, which you should visit, called [Neue Wache](https://en.wikipedia.org/wiki/Neue_Wache). On a boulevard full of pompous looking buildings, it looks like any other. But if you take a moment to step inside, it will catch you off guard. Behind iron bars and beneath a hole in the roof sits a mother cradling her dead son. There are thousands of war memorials with huge guns. Go here instead.
 
+<figure>
+<img src="http://www.gstatic.com/prettyearth/assets/full/1943.jpg"/>
+  <figcaption><p><small>The Berlin Victory Column, as seen from outer space, looks out over the Tiergarten.</small></p></figcaption>
+</figure>
+
 Potsdam is nice to visit if you like palaces and gardens. I took the S-Bahn to Potsdam, rented a bike there, and rode for hours through the park. Later, I returned to Berlin and visited the [Olympiastadion](https://en.wikipedia.org/wiki/Olympiastadion_(Berlin)), a very impressive piece of architecture, accessible from the same line. But even if you’re not into stuffy old castles, you should visit Potsdam, because it is a very peaceful place indeed.
 
 After a brief episode of frantically running around Berlin, chasing down a taxi, swerving to avoid oncoming traffic, and scrambling around the station to find our platform, we leapt aboard the [City Night Line](https://en.wikipedia.org/wiki/City_Night_Line) to Zürich, luggage and all, as they closed their doors and whistled to beat the band. The conductor tapped on his watch crossly. It was all very [Wes Anderson-esque](https://youtu.be/8Q6YqCRMwEI?t=75), except far less fun.
@@ -139,18 +144,18 @@ Bern has some [very](http://www.bindella.ch/de/kornhauskeller.html) [good](http:
 
 <figure>
 <img src="/images/bern.jpg"/>
-  <figcaption><p><small>By the bank of the Aare river, which looks calm, but is actually very dangerous.</small></p></figcaption>
+  <figcaption><p><small>By the bank of the Aare river. It looks calm, but swimming is actually very dangerous.</small></p></figcaption>
 </figure>
 
 Geneva is the home of CERN, which is mainly why we went there. You need to book a [guided tour](https://visit.cern/tours/guided-tours-individuals) two weeks in advance, which gets reserved within a few minutes of new availability each day, so be prepared to mash <code>F5</code> 15 days before your arrival. The group self-selects for scientifically literate people, and our guide knew particle physics, so the tour is technically very educational.
 
 From Geneva, we took a train to Visp, and up to Zermatt via a special railway that clings to the mountain like a snake in a tree, between cliffside dwellings perched on dubious-looking foundations. We avoided making any sudden movements, lest they decide to take up flight. Cancelled a similar funicular excursion just a few days earlier, due to a [large earthquake](https://en.wikipedia.org/wiki/August_2016_Central_Italy_earthquake) that had recently struck central Italy.
 
-The town of Zermatt is only accessible by train, which is a good thing, because we had no other way of getting up there. However this means it is inaccessible when there are slides or avalanches. Fortunately, there were no slides or avalanches, and we arrived without incident. Stayed at the [Best Western](http://www.alpenresort.com/en/welcome/) (a great place in Switzerland) and watched the sun set over the peak of the Matterhorn.
+The town of Zermatt is only accessible by train, which is a good thing, because we had no other way of getting up there. However this means it is inaccessible when there are slides or avalanches. Fortunately, there were no slides or avalanches, and we arrived without incident. Stayed at [Best Western](http://www.alpenresort.com/en/welcome/) (a great place in Switzerland) and watched the sun set over the Matterhorn.
 
 <figure>
 <img src="/images/matterhorn.jpg"/>
-  <figcaption><p><small>The Matterhorn in late summer afternoon.</small></p></figcaption>
+  <figcaption><p><small>The Matterhorn, in the summer afternoon. It is one of the deadliest peaks in the world.</small></p></figcaption>
 </figure>
 
 The next morning, we left bright and early on the [Glacier Express](https://en.wikipedia.org/wiki/Glacier_Express), the slowest high speed train in the world. Scenic waypoints are narrated in dulcet sing-song, like a person reading a children’s fairy tale, in English, German, Italian, French and possibly Romansh. We passed through steep mountain passes, sweeping valleys, and over trestles spanning deep gorges.
@@ -163,10 +168,11 @@ Salzburg is a town on a river, as many European towns are prone to be. More impo
 
 One of these was the Archbishop of Salzburg, Markus Sittikus, who by all accounts was not a very pleasant person, but hey, times were different. He built a large estate, known as [Hellbrunn Palace](https://en.wikipedia.org/wiki/Hellbrunn_Palace), containing many cruel hydraulic innovations. To this day, guides use his collection to torment passing tourists.
 
+<center>
 <figure>
 <img src="/images/paragliding.gif"/>
-  <figcaption><p><small>The Matterhorn in late summer afternoon.</small></p></figcaption>
-</figure>
+  <figcaption><p><center><small>Paragliders taking off from the top of Zwölferhorn Mountain in St. Gilgen, Austria.</small></center></p></figcaption>
+</figure></center>
 
 After spending several pleasant days exploring the lakes and mountains of Salzburg, riding gondolas, watching people fling themselves off mountaintops on kites, catching Pokémon, concertgoing, and eating far too much Mozartkugel, we waved goodbye to Austria and made great haste for Frankfurt.
 
@@ -180,14 +186,19 @@ Monterey is the ancestral home of John Steinbeck, and the setting for many of hi
 
 <figure>
 <img src="/images/monterey.jpg"/>
-  <figcaption><p><small>Jellyfish in the montereey aquarium. They are </small></p></figcaption>
+  <figcaption><p><small>Chrysaora quinquecirrha, or Sea Nettle, are swimming inside the Monterey Aquarium.</small></p></figcaption>
 </figure>
 
 Flew to Boston and back the next weekend for JavaOne. Taught some kids how to break ciphers with an friend from India, who lives in Utah. Kids are wicked smart. Went for a nice bike ride to Sausalito with some speakers from Switzerland, a contractor for the Patent Office, a developer from Ireland. Took the ferry back. Had a fair [bowl of ramen](http://www.mensho.tokyo/).
 
 Each year, Oracle swoops into San Fransisco like Christmas in September and paints everything red and white. Flies racing yachts in by crane, blocks off city streets. The last couple years, they built a carnival complete with ferris wheel and free food, fireworks, Elton John, then bussed ten thousand people out to Treasure Island for an all-night bacchanalian celebration. This year, they were conservative and filled a baseball stadium instead.
 
-From SF, I flew to LA and back the following week, for SVCC. It rained, so I rented a car and drove into the northern Diablo Mountains. I left the clouds beneath me, and arrived at Lick Observatory on Mt. Hamilton to a haunting silence. The air was still and there was no sign of humanity. I found a custodian, who showed me the telescopes. We had to be very quiet, because most astronomers are asleep during the day.
+From SF, I flew to LA and back the following week, for SVCC. It rained, so I rented a car and drove into the northern Diablo Mountains. I left the clouds beneath me, and arrived at [Lick Observatory](https://en.wikipedia.org/wiki/Lick_Observatory) on Mt. Hamilton to a haunting silence. The air was still and there was no sign of humanity. I found a custodian, who showed me the telescopes. We had to be very quiet, because most astronomers are asleep during the day.
+
+<figure>
+<img src="/images/switchbacks.jpg"/>
+  <figcaption><p><small>Supposedly the Mt. Hamilton Road has 365 turns, but this is a <a href="https://en.wikipedia.org/wiki/Coastline_paradox">coastline problem.</a> </small></p></figcaption>
+</figure>
 
 Returning from the clouds, I had lunch at Sweet Tomatoes, which is my favorite restaurant in California. They have unlimited soup and salad, but not the usual buffet fare. It's shipped in fresh from the San Joaquin, on produce trucks every day. The supply chain is excellent.
 
@@ -199,11 +210,21 @@ Brazilians have a long tradition of making juice. Their fruit crushing and blend
 
 From Floripa, we headed to the city of Foz do Iguaçu for Latinoware. Foz do Iguaçu is a fascinating place. Located at the confluence of three rivers, it has an important [hydroelectric dam](https://en.wikipedia.org/wiki/Itaipu_Dam), an enormous Buddha, and a vibrant Islamic community. Oh, and the largest waterfall in the world.
 
+<figure>
+<img src="/images/iguacu_falls.jpg"/>
+  <figcaption><p><small>The Iguaçu Falls spill 1,756 m³/s, which in Imperial, is <i>a gargantuan amount of water</i>. </small></p></figcaption>
+</figure>
+
 The Cataratas do Iguaçu, or Iguazu Falls, is an enormous chasm in the Iguaçu river, like a giant's sunken footprint in the jungle. From the air, it looks like something from Avatar. From the ground, it's breathtaking. There's two sides, both heavily touristed. If you have to choose, go to the Argentinian side. Our guide, who spoke fluent Spanish, Portuguese and English, was a tour de force. She could lead armies.
 
 Visited the largest mosque in Foz and tried a pastry at an Islamic bakery. Tried to eat all the pastries at the bakery. I debated crossing the bridge to Ciudad del Este, but my girlfriend was convinced the Paraguayans would kidnap and sell me into slavery, which is probably not unlikely, so I decided that I was quite happy eating Islamic pastries in Brasil. On to Itajubá.
 
 Itajubá is a small city in Minas Gerais, about four hours from São Paulo by bus. Its primary attraction is the local university, one of the best in Brasil for engineering, or so I am told. I was introduced by an energetic young professor, gave a short speech to the students, then we all went out and had salgadinhos. The students were all lovely and treated me like an esteemed scholar. It was a little embarrassing, but very thoughtful and well organized.
+
+<figure>
+<img src="/images/itajuba.jpg"/>
+  <figcaption><p><small>Itajuba is home to <a href="https://en.wikipedia.org/wiki/Federal_University_of_Itajub%C3%A1">UNIFEI</a>, the second largest university in the state of Minas Gerais.</small></p></figcaption>
+</figure>
 
 Later that day, I learned how to deliver a baby. At the invitation of my new friend the professor, we visited his laboratory. Inside, was a woman in labor. As you can imagine, this was all very difficult for me to process. But there was work to be done, so we rolled up our sleeves and prepped her for C-section.
 
@@ -211,19 +232,34 @@ I soon learned the lab was studying the usability of medical equipment for neona
 
 From São Paulo, we just barely made our Dublin connection in Heathrow. Transferring from an international flight to anywhere in the British Isles requires crossing no less than three different security checkpoints. By some accident of chance, I have never missed a flight in my life, but this was the closest I have ever been. The stewardess scolded us sternly.
 
-My family picked us up in Dublin, where we all had a nice supper together. The next day, I brought the folks to PyCon Ireland, which is an excellent conference that I highly suggest you attend. Thanks to the organizers, I was able to wheel Grannie to the front row, where she learned about machine learning with TensorFlow. It was great fun, and a very gratifying experience.
+My family picked us up in Dublin, where we all had a nice supper together. The next day, I brought the folks to Python Ireland, which is an excellent conference that I highly suggest you attend. Thanks to the organizers, I was able to wheel Grannie to the front row, where she learned about machine learning with TensorFlow. It was great fun, and a very gratifying experience.
+
+<figure>
+<img src="/images/pyconie.jpg"/>
+  <figcaption><p><small>Back row: Mark (Uncle), Margaret (Mother), Breandan (yours truly). Front row: Grannie.</small></p></figcaption>
+</figure>
 
 From Dublin, we flew to Brussels for Devoxx Belgium early Monday morning. After landing in the pouring rain, taking a train in the wrong direction, taking a trolley in the wrong direction, running around like a madman, I arrived for my talk still dripping wet. It went okay, I probably should have spent less time delivering babies and prepared more. However I did learn a lot from other speakers, saw some old friends and made new ones there.
 
 Spent a weekend in Amsterdam, where I got a haircut and had a great steaming cup of hot-chocolate, made with real chocolate chips. Then we took a train back to Brussels (Charleroi, to my frustration) and flew to Vilnius for BuildStuff Lituania. There are a few small conferences in the world that are extremely high quality. BuildStuff is one of them, and the organizers donate all proceeds to charity. Go there, if you have the chance.
 
-Why would you want to go to Vilnius in the middle of November? For one, they have great restaurants where you can eat well without breaking the bank. They have a pretty nice city, with good transportation. And the Lithuanians are very friendly people. The Europa section is more modern, but has no soul food. Go to the old town, and find a place called [Gusto blynine](http://www.gusto.lt/index.php/en/). If it looks ridiculous, you'll know you're at the right place.
+Why would you ever want to go to Vilnius? For one, they have great restaurants where you can eat well without breaking the bank. They have a pretty nice city, with good transportation. And the Lithuanians are very friendly people. It's not Switzerland, but the Europa section is very modern and has good restaurants. My favorite one is in the old town, a place called [Gusto blynine](http://www.gusto.lt/index.php/en/). If it looks ridiculous, you'll know you're at the right place.
+
+<figure>
+<img src="/images/vilnius.jpg"/>
+  <figcaption><p><small><a href="https://en.wikipedia.org/wiki/Gediminas'_Tower">Gediminas Tower</a> has overlooked Vilnius for over 600 years. It is in <a href="http://www.baltictimes.com/lithuanian_cultmin_calls_for_emergency_situation_over_gediminas_hill/">need of repair</a>.</small></p></figcaption>
+</figure>
 
 From Vilnius I flew back to Dublin to take Grannie home, who in the meantime had acquired 200 kilograms of cast iron plates for our woodstove. How did Grannie do this? I haven't the faintest clue. Anyhow, I got the bright idea of putting them all in my carry-on luggage. Surprisingly, this worked. Now I just needed to get them aboard the airplane, with Grannie and her wheelchair.
 
 I decided it was a problem for another day, so we drove up to Belfast to see the Titanic Museum. Instead we ended up at the Titanic Exhibition Center, which was hosting a Snooker championship, so we watched tuxedo-clad gentlemen sink snooker balls on an oversize pool table. Then we went to the Titanic Museum across the street, which was very interesting. After wheeling Grannie halfway around Belfast, we returned to Dublin for our flight.
 
 We arrived at the airport early the next morning. Somehow made it through security all the way to US pre-clearance with our 200 kilograms of cast iron. The Irish authorities were furious. Grannie convinced them not to arrest us all then and there (thank you, Grannie!), and even managed to get our stove parts back, but we had to check everything with special permission from the airline, US Customs, pilots, and a bunch of stern looking people at the gate.
+
+<figure>
+<img src="/images/woodstove.jpg"/>
+  <figcaption><p><small>A wood stove should never be placed in your overhead bin, whether in whole or part.</small></p></figcaption>
+</figure>
 
 I made it back to Boston, dropped of Grannie, rebuilt our woodstove, got the fire going, and headed to Vancouver on a series of red-eye flights through Newark and Minneapolis. As you might expect, this was one 48-hour long nightmare. In Vancouver, I took the skytrain downtown, planned to use Car2Go, but due to earlier shenanigans in Frankfurt, Car2Go believed I was in Germany and needed to update my license. I realized this only after purchasing a boatload of groceries. It would take 24 hours to reactivate.
 
@@ -233,8 +269,8 @@ When I awoke, it was nearly midnight, and time to pick up my girlfriend at the a
 
 For reasons I cannot begin to explain, we were locked inside a malfunctioning Car2Go at a gas station. We were stuck in Park at a busy intersection. We were fined for parking violations. We had to call help dozens of times, and spent hours troubleshooting their broken fleet of golf carts. Car-sharing is clearly a win in some places, but just does not work well in Canada. End rant.
 
-I was in Vancouver for ConFoo, since I enjoyed the one in February so much. It was their first time in Vancouver, a lovely conference, filled with lovely people. Afterwards, they bussed some of the speakers up to Whistler and we all went skiing for two days. Met some swell folks between runs, and had some pondersome conversations about science, religion and post-truth society.
+I went to Vancouver for ConFoo, since I enjoyed the one in February so much. It was their first time in Vancouver, a lovely conference, filled with lovely people. Afterwards, they bussed some of the speakers up to Whistler and we all went skiing for two days. Met some swell folks between runs, and we talked about science, religion and the [post-truth society](https://en.wikipedia.org/wiki/Post-truth_politics).
 
-From Vancouver, we flew to Toronto, spent a few days visiting friends and going to meetups there, then took a train to Ottawa. Spent a few more days visiting friends, and went to Montreal. Then I came home for Christmas. We spent the last few days in the hospital because Grannie caught pneumonia. She's one tough cookie. We're hoping for good news.
+From Vancouver, we flew to Toronto, spent a few days visiting friends and going to meetups, then took a train to Ottawa. Spent a few days visiting more friends in Ottawa, nearly died of frostbite, then went to Montreal. Then I came home and spent Christmas in a hospital because Grannie came down with pneumonia. She's one tough cookie. We're hoping for good news.
 
-When all is said and done, I went to 18 countries, 64 cities, 16 conferences, and visited dozens of universities and meetups. If I had to do it all over again, I can't say I would do it exactly the same way. I spent most the year exhausted and jetlagged. But I also had some very happy memories, particularly those that did not involve nearly dying. And I met some extraordinary people along the way. So I'll mark it with a B+.
+When all is said and done, I went to 18 countries, 64 cities, 16 conferences, and visited dozens of universities and meetups. If I had to do it all over again, I can't say I would do everything the same way. I spent most the year exhausted and jetlagged. But I also had some very happy memories, particularly those that did not involve nearly dying. And I met some extraordinary people along the way. So I'll mark it with a B+.
