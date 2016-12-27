@@ -35,7 +35,7 @@ Landing in Bengaluru, I was greeted by the sound of pandemonium. Bengaluru is th
 <center> <figure>
 <img src="/images/street_food.jpg" height="500"/>
   <figcaption><p><center><small>
-    <a href="https://en.wikipedia.org/wiki/Vada_pav">Wada pao</a>, from <a href="https://goo.gl/maps/KPSXZCR2QhC2">Sagar Resturant</a> in Bengaluru.
+    <a href="https://en.wikipedia.org/wiki/Vada_pav">Vada pav</a>, from <a href="https://goo.gl/maps/KPSXZCR2QhC2">Sagar Resturant</a> in Bengaluru.
 </small></center></p></figcaption>
 </figure></center>
 
@@ -160,7 +160,7 @@ The town of Zermatt is only accessible by train, which is a good thing, because 
 
 The next morning, we left bright and early on the [Glacier Express](https://en.wikipedia.org/wiki/Glacier_Express), the slowest high speed train in the world. Scenic waypoints are narrated in dulcet sing-song, like a person reading a children’s fairy tale, in English, German, Italian, French and possibly Romansh. We passed through steep mountain passes, sweeping valleys, and over trestles spanning deep gorges.
 
-Arriving in St. Moritz later that afternoon, we hauled our bags a kilometer uphill into a [hotel above a pizza shop](http://www.arte-stmoritz.ch/) then walked around the lake. We watched people maneuvered small sailboats, and tuxedo-clad chaps [jump horses](http://www.csistmoritz.ch/) over fences in the late summer sunshine. It was all spectacularly European. St. Moritz is very extravagant, dripping with fur, fast cars and grand old hotels.
+Arriving in St. Moritz later that afternoon, we hauled our bags a kilometer uphill into a [hotel above a pizza shop](http://www.arte-stmoritz.ch/) then walked around the lake. We watched people maneuver small sailboats, and tuxedo-clad chaps [jump horses](http://www.csistmoritz.ch/) over fences in the late summer sunshine. It was all spectacularly European. St. Moritz is very extravagant, dripping with fur, fast cars and grand old hotels.
 
 Then we took a train to Salzburg, by way of Zürich. Salzburg was really interesting, and much more salt-of-the-earth. I grew up watching The Sound of Music every Christmas, so there was an immediate connection. To my dismay, Austrians do not typically break out in A Capella musical overtures, and frowned on my own attempts to engage them in doing so, vis-à-vis [My Favorite Things](https://www.youtube.com/watch?v=0IagRZBvLtw).
 
@@ -204,7 +204,7 @@ Returning from the clouds, I had lunch at Sweet Tomatoes, which is my favorite r
 
 Then I lived in Brasil for a month. I met my girlfriend in São Paulo, where we stayed for some time. Her mother cast spells in the kitchen, conjuring comida caseira: each morning there was coffee, tea, and eggs. Each afternoon there was pão carteira with mortadela and cheese. Each night there was a feast of file de frango, batatas fritas, feijao com arroz, pavé.
 
-We flew to Florianopolis for Python Brasil, where I visited a local *faculdade* to talk about unsupervised learning. An audience member offered me a drink of hot mate, which was high quality stuff. Floripa was a very warm and friendly place. You can walk for miles on white sand beaches, eat green pasta and [perfect pizza](http://www.forneriacatarina.com.br/). It was here where I discovered a most remarkable drink, limonada suiça.
+We flew to Florianopolis for Python Brasil, where I visited a local *faculdade* to talk about unsupervised learning. An audience member offered me a drink of hot mate, which was high quality stuff. Floripa is a very warm and friendly place. You can walk for miles on white sand beaches, eat green pasta and [perfect pizza](http://www.forneriacatarina.com.br/). It was here where I discovered a most remarkable drink, limonada suiça.
 
 Brazilians have a long tradition of making juice. Their fruit crushing and blending technology has progressed far beyond the rest of the world. And they have refined the science of mixing fruit beverages, with profound combinatorial breakthroughs. I will share with you one of their secret recipes. Take fresh lemonade. Carbonated water. Add ice, condensed milk and sugar. Mix to a froth. Serve immediately, with a bowl of hot spaghetti and warm bread.
 
@@ -239,7 +239,7 @@ My family picked us up in Dublin, where we all had a nice supper together. The n
   <figcaption><p><small>Back row: Mark (Uncle), Margaret (Mother), Breandan (yours truly). Front row: Grannie.</small></p></figcaption>
 </figure>
 
-From Dublin, we flew to Brussels for Devoxx Belgium early Monday morning. After landing in the pouring rain, taking a train in the wrong direction, taking a trolley in the wrong direction, running around like a madman, I arrived for my talk still dripping wet. It went okay, I probably should have spent less time delivering babies and prepared more. However I did learn a lot from other speakers, saw some old friends and made new ones there.
+From Dublin, we flew to Brussels for Devoxx Belgium early Monday morning. After landing in the pouring rain, taking a train in the wrong direction, taking a trolley in the wrong direction, and running around like a madman, I arrived for my talk still dripping wet. It went okay, I probably should have spent less time delivering babies and prepared more. However I did learn a lot from other speakers, saw some old friends and made new ones there.
 
 Spent a weekend in Amsterdam, where I got a haircut and had a great steaming cup of hot-chocolate, made with real chocolate chips. Then we took a train back to Brussels (Charleroi, to my frustration) and flew to Vilnius for BuildStuff Lituania. There are a few small conferences in the world that are extremely high quality. BuildStuff is one of them, and the organizers donate all proceeds to charity. Go there, if you have the chance.
 
@@ -254,7 +254,7 @@ From Vilnius I flew back to Dublin to take Grannie home, who in the meantime had
 
 I decided it was a problem for another day, so we drove up to Belfast to see the Titanic Museum. Instead we ended up at the Titanic Exhibition Center, which was hosting a Snooker championship, so we watched tuxedo-clad gentlemen sink snooker balls on an oversize pool table. Then we went to the Titanic Museum across the street, which was very interesting. After wheeling Grannie halfway around Belfast, we returned to Dublin for our flight.
 
-We arrived at the airport early the next morning. Somehow made it through security all the way to US pre-clearance with our 200 kilograms of cast iron. The Irish authorities were furious. Grannie convinced them not to arrest us all then and there (thank you, Grannie!), and even managed to get our stove parts back, but we had to check everything with special permission from the airline, US Customs, pilots, and a bunch of stern looking people at the gate.
+We arrived at the airport early in the morning. Somehow made it through security and all the way to US pre-clearance with our 200 kilograms of cast iron. The Irish authorities were furious. Grannie convinced them not to arrest us all then and there (thank you, Grannie!), and even managed to get our stove parts back, but we had to check everything with special permission from the airline, US Customs, pilots, and a bunch of stern looking people at the gate.
 
 <figure>
 <img src="/images/woodstove.jpg"/>
