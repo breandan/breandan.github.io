@@ -50,7 +50,7 @@ Two things stand out in my mind. Indian enthusiasm is contagious. As a North Ame
   <figcaption><p><small>Street vendors on the outskirts of <a href="https://en.wikipedia.org/wiki/Dharavi">Dharavi</a>, one of the largest slums in the world.</small></p></figcaption>
 </figure>
 
-After a brief stint in Mumbai, I flew back to New York with a new set of problems. So I decided to ignore them and go for a prolonged bike trip through the Pacific Northwest. Turns out that was just a different set of problems. I took the Amtrak Cascades from Seattle to Vancouver, rented a bike there, packed my backpack, and headed for Alaska.
+After a brief stint in Mumbai, I flew back to New York with a new set of problems. So I decided to ignore them and go for a prolonged bike trip through the Pacific Northwest. Turns out that was just a different set of problems. I took the [Amtrak Cascades](https://en.wikipedia.org/wiki/Amtrak_Cascades) from Seattle to Vancouver, rented a bike there, packed my backpack, and headed for Alaska.
 
 After several near-death collisions, I gave up and settled for Whistler. If you sit at a desk for twelve hours a day, don’t try to peddle a bike 80 miles uphill the next one. Thank me later. But Whistler has fresh air, LTE, and skiing in May, so I was happy. I watched the seaplanes take off over Green Lake and wondered what I was doing with my life. Such are the problems we have in the first world.
 
@@ -59,7 +59,9 @@ After several near-death collisions, I gave up and settled for Whistler. If you 
   <figcaption><p><small>Seaplanes take off from Whistler, carrying passengers and cargo to Vancouver.</small></p></figcaption>
 </figure>
 
-After taking stock of the situation, I decided to pursue the full-time occupation of chasing a girl halfway around the planet. That was a pretty good idea in hindsight. We met in Vancouver, in Austin, in New York, in Boston and Portland and everywhere in between, you name it and we were probably there for some event or meetup this May and June.
+After taking stock of the situation, I decided to pursue the full-time occupation of chasing a girl halfway around the planet. That was a pretty good idea in hindsight. We met in Vancouver, in Austin, in New York, in Boston and Portland and most places in between. You name it and we were probably there for some event or meetup this May or June.
+
+It was my first time visiting Portland. We went there for [Open Source Bridge](http://opensourcebridge.org/) spent some time exploring Washington Park, and saw a spectacular [Japanese Garden](http://japanesegarden.com/), recently restored and beautifully manicured, with a traveling bonsai exhibit. They have an [Gilded Era mansion](en.wikipedia.org/wiki/Pittock_Mansion) on the hill which is well-worth the visit, if just for the view. We also saw an extraordinary production of [A Streetcar Named Desire](http://www.oregonlive.com/art/index.ssf/2016/05/a_streetcar_named_desire_portl.html) at Portland Center Stage.
 
 Planes. Trains. Automobiles. Every week was somewhere new. The daily milieu of new faces and scenes provided a welcome diversion to the reality of my situation. I chatted with [Iranian barbers](http://farzadsbarbershop.com/) in Vancouver, brunched with captive bears on Grouse Mountain, had [good ramen](http://ramendanbo.com/) on Robson, explored castaway [shipwrecks](http://www.cbc.ca/news/canada/british-columbia/city-of-vancouver-may-need-to-pay-for-removal-of-boat-1.3582300) on False Creek, sat on the [largest chair](https://backofhouse.s3.amazonaws.com/uploads/ckeditor/pictures/834/content_clift-BOH-chair-1.jpg) in San Fransisco, tested the [longest slide](http://www.nytimes.com/2016/07/22/arts/design/testing-new-york-citys-longest-slide-on-governors-island.html) in New York.
 
@@ -193,7 +195,7 @@ Flew to Boston and back the next weekend for JavaOne. Taught some kids how to br
 
 Each year, Oracle swoops into San Fransisco like Christmas in September and paints everything red and white. Flies racing yachts in by crane, blocks off city streets. The last couple years, they built a carnival complete with ferris wheel and free food, fireworks, Elton John, then bussed ten thousand people out to Treasure Island for an all-night bacchanalian celebration. This year, they were conservative and filled a baseball stadium instead.
 
-From SF, I flew to LA and back the following week, for SVCC. It rained, so I rented a car and drove into the northern Diablo Mountains. I left the clouds beneath me, and arrived at [Lick Observatory](https://en.wikipedia.org/wiki/Lick_Observatory) on Mt. Hamilton to a haunting silence. The air was still and there was no sign of humanity. I found a custodian, who showed me the telescopes. We had to be very quiet, because most astronomers are asleep during the day.
+From SF, I flew to LA and back the following week, for SVCC. It rained, so I rented a car and drove into the northern Diablo Mountains. I drove into the clouds, and arrived at [Lick Observatory](https://en.wikipedia.org/wiki/Lick_Observatory) on Mt. Hamilton to a haunting silence. The air was still and there was no sign of humanity. I found a custodian, who showed me the telescopes. We had to be very quiet, because most astronomers are asleep during the day.
 
 <figure>
 <img src="http://imgur.com/uY4AwHV.jpg"/>
@@ -208,7 +210,7 @@ We flew to Florianopolis for Python Brasil, where I visited a local *faculdade* 
 
 Brazilians have a long tradition of making juice. Their fruit crushing and blending technology has progressed far beyond the rest of the world. And they have refined the science of mixing fruit beverages, with profound combinatorial breakthroughs. I will share with you one of their secret recipes. Take fresh lemonade. Carbonated water. Add ice, condensed milk and sugar. Mix to a froth. Serve immediately, with a bowl of hot spaghetti and warm bread.
 
-From Floripa, we headed to the city of Foz do Iguaçu for Latinoware. Foz do Iguaçu is a fascinating place. Located at the confluence of three rivers, it has an important [hydroelectric dam](https://en.wikipedia.org/wiki/Itaipu_Dam), an enormous Buddha, and a vibrant Islamic community. Oh, and the largest waterfall in the world.
+From Floripa, we headed to the city of Foz do Iguaçu for Latinoware. Foz do Iguaçu is a fascinating place. Located at the confluence of three rivers, it has an important [hydroelectric dam](https://en.wikipedia.org/wiki/Itaipu_Dam), an [enormous Buddha](http://www.visitefoz.com.br/en/attractions/buddhist-temple/), and a vibrant Islamic community. Oh, and the largest waterfall in the world.
 
 <figure>
 <img src="http://imgur.com/VWpxl2V.jpg"/>
@@ -243,7 +245,7 @@ From Dublin, we flew to Brussels for Devoxx Belgium early Monday morning. After 
 
 Spent a weekend in Amsterdam, where I got a haircut and had a great steaming cup of hot-chocolate, made with real chocolate chips. Then we took a train back to Brussels (Charleroi, to my frustration) and flew to Vilnius for BuildStuff Lituania. There are a few small conferences in the world that are extremely high quality. BuildStuff is one of them, and the organizers donate all proceeds to charity. Go there, if you have the chance.
 
-Why would you ever want to go to Vilnius? For one, they have great restaurants where you can eat well without breaking the bank. They have a pretty nice city, with good transportation. And the Lithuanians are very friendly people. It's not Switzerland, but the Europa section is very modern and has good restaurants. My favorite one is in the old town, a place called [Gusto blynine](http://www.gusto.lt/index.php/en/). If it looks ridiculous, you'll know you're at the right place.
+Why would you ever want to go to Vilnius? For one, they have great restaurants where you can eat well without breaking the bank. They have a pretty nice city, with good transportation. And the Lithuanians are a very friendly people. It's not Switzerland, but the Europa section is very modern and has good restaurants. My favorite one is in the old town, a place called [Gusto blynine](http://www.gusto.lt/index.php/en/). If it looks ridiculous, you'll know you're at the right place.
 
 <figure>
 <img src="http://imgur.com/tDBPni5.jpg"/>
@@ -267,10 +269,10 @@ With groceries and luggage in hand, I ran around downtown Vancouver trying to ha
 
 When I awoke, it was nearly midnight, and time to pick up my girlfriend at the airport. Luckily, Car2Go had resolved the license issue while I was asleep, allowing me to drive their golf carts again. So I ran to the nearest one available and floored it all the way to the airport to meet my girlfriend, who was just then arriving from Chernobyl. On past occasions I have put Cars2Go to very effective use, however this was simply not the case in Canada.
 
-For reasons I cannot begin to explain, we were locked inside a malfunctioning Car2Go at a gas station. We were stuck in Park at a busy intersection. We were fined for parking violations. We had to call help dozens of times, and spent hours troubleshooting their broken fleet of golf carts. Car-sharing is clearly a win in some places, but just does not work well in Canada. End rant.
+For reasons I cannot begin to explain, we were locked inside a malfunctioning Car2Go at a gas station. We were stuck in Park at a busy intersection. We were fined for alleged parking violations. We had to call help dozens of times, and spent hours troubleshooting their broken fleet of golf carts. Car-sharing is clearly a win in some places, but just does not work well in Canada. End rant.
 
-I went to Vancouver for ConFoo, since I enjoyed the one in February so much. It was their first time in Vancouver, a lovely conference, filled with lovely people. Afterwards, they bussed some of the speakers up to Whistler and we all went skiing for two days. Met some swell folks between runs, and we talked about science, religion and the [post-truth society](https://en.wikipedia.org/wiki/Post-truth_politics).
+I went to Vancouver for ConFoo, since I enjoyed the one in February so much. It was their first time in Vancouver, a lovely conference, filled with lovely people. Afterwards, they bussed some of us up to Whistler and we all went skiing for two days. Met some swell folks between runs, and we talked about science, religion and the [post-truth society](https://en.wikipedia.org/wiki/Post-truth_politics).
 
 From Vancouver, we flew to Toronto, spent a few days visiting friends and going to meetups, then took a train to Ottawa. Spent a few days visiting more friends in Ottawa, nearly died of frostbite, then went to Montreal. Then I came home and spent Christmas in a hospital because Grannie came down with pneumonia. She's one tough cookie. We're hoping for good news.
 
-When all is said and done, I went to 18 countries, 64 cities, 16 conferences, and visited dozens of universities and meetups. If I had to do it all over again, I can't say I would do everything the same way. I spent most the year exhausted and jetlagged. But I also had some very happy memories, particularly those that did not involve nearly dying. And I met some extraordinary people along the way. So I'll mark it with a B+.
+When all is said and done, I went to 18 countries, 64 cities, 16 conferences, and visited dozens of universities and meetups. If I had to do it all over again, I can't say I would do everything the same way. I spent most the year exhausted and jetlagged. But I also had some very happy memories, particularly those that did not involve nearly dying. And I spent time with some extraordinary people along the way. So I'll mark it with a B+.
