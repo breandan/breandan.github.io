@@ -25,7 +25,7 @@ In April I had a layover in Hong Kong and decided to get Dim Sum. Instead, I wa
 
 <figure>
 <img src="/images/choir.jpg"/>
-  <figcaption><p><small>The 68th Hong Kong School Prize Concert for Sacred Music, at St. John's Cathedral.</small></p></figcaption>
+  <figcaption><p><small>The 68th Hong Kong School Prize Concert for Sacred Music, at <a href="https://en.wikipedia.org/wiki/St._John's_Cathedral_(Hong_Kong)">St. John's Cathedral</a>.</small></p></figcaption>
 </figure>
 
 The rain started back up again, so I ducked into an empty church to dry off. Suddenly, there a great commotion - hundreds of children, dripping and tripping all over the place. They came in busses and bunches, shuffling onto the benches. Thunder and pouring rain. Umbrellas and coats. Candles everywhere. Then, they began to sing. I never heard anything so beautiful.
@@ -89,7 +89,7 @@ I spent a day dodging lorries in a dodgy part of London on [Santander Cycles](ht
 
 <figure>
 <img src="/images/nsbrailway.jpg"/>
-  <figcaption><p><small>The <a href="https://en.wikipedia.org/wiki/Bergen_Line">Bergen Line</a> courses across Norway, carrying millions of people each year.</small></p></figcaption>
+  <figcaption><p><small>The <a href="https://en.wikipedia.org/wiki/Bergen_Line">Bergen Line</a> connects Bergen and Oslo, carrying millions of people each year.</small></p></figcaption>
 </figure>
 
 The journey from Bergen to Oslo was completely otherworldly, filled with gaping fjords, scenic vistas, glacial streams, and mountain passes. I sat next to a biologist studying seasonal migration patterns and teaching a summer seminar in Voss. I watched Norwegian villages and stations glide past my window. Norway is a strikingly gorgeous country, and I highly recommend the [Bergen Railway](https://www.nsb.no/en/our-destinations/our-regional-railway-lines/bergenrailway) if your travels should take you anywhere in the vicinity.
@@ -182,7 +182,7 @@ Then I spent a week in San Jose at the beginning of September, and saw some grea
 
 Rented a car on Friday and drove south for the weekend. If you have a special weekend enterprise and are looking for automotive transportation, take the [Enterprise Weekend Special](https://www.enterprise.com/en/car-rental/deals/weekend-specials.html). They'll pick you up anywhere but the airport and you'll pay more for gas than the car itself.
  
-Monterey is the ancestral home of John Steinbeck, and the setting for many of his novels. John is a great writer. But he doesn't do it justice. The coastline of northern California is indescribably beautiful. You can run on warm beaches by crashing surf in the Caramel Highlands and walk through quiet stands of Coast Redwood in Big Sur. Go there, you will not regret it.
+Monterey is the ancestral home of [John Steinbeck](https://en.wikipedia.org/wiki/John_Steinbeck), and the setting for many of his novels. John is a great writer. But he doesn't do it justice. The coastline of northern California is indescribably beautiful. You can run on warm beaches crashing with surf in the Caramel Highlands and walk through quiet stands of Coast Redwood in Big Sur. Go there, you will not regret it.
 
 <figure>
 <img src="/images/monterey.jpg"/>
@@ -200,7 +200,7 @@ From SF, I flew to LA and back the following week, for SVCC. It rained, so I ren
   <figcaption><p><small>Supposedly the Mt. Hamilton Road has 365 turns, but this is a <a href="https://en.wikipedia.org/wiki/Coastline_paradox">coastline problem.</a> </small></p></figcaption>
 </figure>
 
-Returning from the clouds, I had lunch at Sweet Tomatoes, which is my favorite restaurant in California. They have unlimited soup and salad, but not the usual buffet fare. It's shipped in fresh from the San Joaquin, on produce trucks every day. The supply chain is excellent.
+Returning from the clouds, I had lunch at Sweet Tomatoes, which is my favorite restaurant in California. They have unlimited soup and salad, but not the usual buffet fare. It's shipped in fresh from the [San Joaquin](https://en.wikipedia.org/wiki/San_Joaquin_Valley#Agriculture), on produce trucks every day. The supply chain is excellent.
 
 Then I lived in Brasil for a month. I met my girlfriend in São Paulo, where we stayed for some time. Her mother cast spells in the kitchen, conjuring comida caseira: each morning there was coffee, tea, and eggs. Each afternoon there was pão carteira with mortadela and cheese. Each night there was a feast of file de frango, batatas fritas, feijao com arroz, pavé.
 
@@ -215,7 +215,7 @@ From Floripa, we headed to the city of Foz do Iguaçu for Latinoware. Foz do Igu
   <figcaption><p><small>The Iguaçu Falls spill 1,756 m³/s, which in Imperial, is <i>a gargantuan amount of water</i>. </small></p></figcaption>
 </figure>
 
-The Cataratas do Iguaçu, or Iguazu Falls, is an enormous chasm in the Iguaçu river, like a giant's sunken footprint in the jungle. From the air, it looks like something from Avatar. From the ground, it's breathtaking. There's two sides, both heavily touristed. If you have to choose, go to the Argentinian side. Our guide, who spoke fluent Spanish, Portuguese and English, was a tour de force. She could lead armies.
+The Cataratas do Iguaçu, or Iguazu Falls, is an enormous chasm in the Iguaçu river, like a giant's sunken footprint in the jungle. From the air, it looks like something from [Avatar](https://en.wikipedia.org/wiki/Avatar_(2009_film)). From the ground, it's breathtaking. There's two sides, both heavily touristed. If you have to choose between them, go to the Argentinian side. Our guide, who spoke fluent Spanish, Portuguese and English, was a tour de force. She could lead armies.
 
 Visited the largest mosque in Foz and tried a pastry at an Islamic bakery. Tried to eat all the pastries at the bakery. I debated crossing the bridge to Ciudad del Este, but my girlfriend was convinced the Paraguayans would kidnap and sell me into slavery, which is probably not unlikely, so I decided that I was quite happy eating Islamic pastries in Brasil. On to Itajubá.
 
