@@ -257,7 +257,7 @@ I decided it was a problem for another day, so we drove up to Belfast to see the
 We arrived at the airport early in the morning. Somehow made it through security and all the way to US pre-clearance with our 200 kilograms of cast iron. The Irish authorities were furious. Grannie convinced them not to arrest us all then and there (thank you, Grannie!), and even managed to get our stove parts back, but we had to check everything with special permission from the airline, US Customs, pilots, and a bunch of stern looking people at the gate.
 
 <figure>
-<img src="http://imgur.com/SRIwoCf.jpg"/>
+<img src="http://imgur.com/XqAvb58.jpg"/>
   <figcaption><p><small>A wood stove should never be placed in your overhead bin, whether in whole or part.</small></p></figcaption>
 </figure>
 
