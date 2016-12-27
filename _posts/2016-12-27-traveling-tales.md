@@ -143,7 +143,7 @@ We awoke to the Zürich sunshine in August, and quickly realized the sun can be 
 Bern has some [very](http://www.bindella.ch/de/kornhauskeller.html) [good](http://www.entrecote.ch/) [restaurants](http://www.rosengarten.be/welcome/) which I highly recommend visiting if you have the time and inclination. We toured the [Einstein House](http://www.einstein-bern.ch/), strolled through the Rose Garden, peered into a bear bit, dipped our feet into the icy blue river, and did a good bit of touristy sounding things. Switzerland is a marvelous place if you have never been there before.
 
 <figure>
-<img src="/images/bern.jpg"/>
+<img src="http://imgur.com/p54pP3f.jpg"/>
   <figcaption><p><small>By the bank of the Aare river. It looks calm, but swimming is actually very dangerous.</small></p></figcaption>
 </figure>
 
