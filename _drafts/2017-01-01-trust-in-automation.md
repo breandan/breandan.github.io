@@ -83,13 +83,13 @@ For those designing AI in a new domain, ask yourself three important questions:
     - Maybe the training set is not large enough for valid results.
     - Maybe the model is missing data on some key demographic.
 
-These techniques aim to eliminate threats to validity. Establishing validity when you design the AI is difficult enough, never mind verifying the results if you even know such a system exists. But let's say you have knowledge of such an AI, a deep background in statistics and an open API to query the AI. If the designer is not careful, you might just be able to [steal the model](https://www.usenix.org/system/files/conference/usenixsecurity16/sec16_paper_tramer.pdf) and check it yourself. For the average end-user, you matters well forget that.
+These techniques aim to eliminate threats to validity. Establishing validity when you design the system is difficult enough, never mind verifying the results if you even know such a system exists. But let's say you have knowledge of such a system, a deep background in statistics and an open API to query the AI. If the designer is not careful, you might just be able to [steal the model](https://www.usenix.org/system/files/conference/usenixsecurity16/sec16_paper_tramer.pdf) and check it yourself. For an average end-user, you matters well forget that.
 
 > Trust, but verify.
 >
 > -[Some Russian](https://en.wikipedia.org/wiki/Trust,_but_verify)
 
-The folks training these models are college dropouts and software developers, not researchers. If we're lucky, maybe they took an online course in machine learning. There should be some kind of independent evaluation system put into place, to verify big models are free from bias. Knowing developers, if we create a disaster, it will most likely be out of [stupidity than malice](https://en.wikipedia.org/wiki/Hanlon's_razor).
+The folks training these models are college dropouts and software developers, not geniuses. If we're lucky, maybe they took an online course in machine learning. There should be some kind of independent evaluation system put into place, to verify big models are free from bias. Knowing developers, if we create a monster, it will most likely be out of [stupidity than malice](https://en.wikipedia.org/wiki/Hanlon's_razor).
 
 One of the major limitations of user interfaces is bandwidth - keyboards and screens can only exchange so much information with their users. But today's computers have the ability to interact with their environment in exciting new ways. From self-flying drones to virtual patients, and home appliances to smart assistants, machines are becoming increasingly perceptive, and increasingly conversant. Machines can see, hear, and understand natural language. They can recognize faces and speech, anticipate our intentions and assist with increasingly sophisticated tasks. We call these capabilities "artificial intelligence". But a more apt name might be "[augmented intelligence](https://en.wikipedia.org/wiki/Intelligence_amplification)".
 
