@@ -75,7 +75,7 @@ If you think discrimination is bad today, just wait until the machines take over
 >
 > Fortunately we are smart people and have found a way out of this predicament. Instead of relying on algorithms, which we can be accused of manipulating for our benefit, we have turned to machine learning, an ingenious way of disclaiming responsibility for anything. **Machine learning is like money laundering for bias.** It's a clean, mathematical apparatus that gives the status quo the aura of logical inevitability.
 >
-> —Maciej Ceglowski
+> —Maciej Ceglowski (2016)
 
 As [experience](http://www.theatlantic.com/technology/archive/2016/04/the-underlying-bias-of-facial-recognition-systems/476991/) has [shown](https://www.theguardian.com/technology/2016/sep/08/artificial-intelligence-beauty-contest-doesnt-like-black-people), anticipating mistakes when designing AI is difficult enough, never mind verifying its integrity as a subject - if you know the AI exists begin with. But let's say you have prior knowledge, motive, and a deep background in statistics. If there is an open API and the designer is not careful, you might be able to [steal the model](https://www.usenix.org/system/files/conference/usenixsecurity16/sec16_paper_tramer.pdf), and check it yourself. That's a lot of "if"s. The average end-user has no hope of ever verifying the fairness of an AI, and no motive to do so unless they are unfairly targeted. If you are unfairly targeted by an AI, the incentives are not in your favor.
 
