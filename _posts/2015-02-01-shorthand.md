@@ -167,6 +167,8 @@ With this in mind, we should think of programming as an exercise in good notatio
 
 * Ye, Katherine. (2016, July 22). [Notes on notation and thought](https://github.com/hypotext/notation)
 
+### Footnotes
+
 [^1]: Oracle bone script. (2015, January 17). Wikipedia, The Free Encyclopedia. [http://en.wikipedia.org/w/index.php?title=Oracle_bone_script](http://en.wikipedia.org/w/index.php?title=Oracle_bone_script&oldid=642840965).
 
 [^2]: Gould, R. Gordon (1959). "The LASER, Light Amplification by Stimulated Emission of Radiation". In Franken, P.A. and Sands, R.H. (Eds.). The Ann Arbor Conference on Optical Pumping, the University of Michigan, 15 June through 18 June 1959. p. 128.
