@@ -146,7 +146,7 @@ This is not a matter of social welfare. This is a matter of prolonging our compe
 
 # Work in Progress
 <br/>
-AI sometimes gets a bad rap. We often hear about AI in very competitive terms: whenever bots are not stealing our jobs or out-maneuvering us at chess, they are [badly malfunctioning](https://www.wired.com/2007/10/robot-cannon-ki/) or causing some intrusion of privacy. And while it is important to maintain a healthy skepticism of the dangerous role that AI poses to our society, I think we will look back at many early applications as lacking sufficient imagination.
+AI sometimes gets a bad rap. We often hear about AI in very competitive terms: whenever bots are not stealing our jobs or out-maneuvering us at chess, they are [badly malfunctioning](https://www.wired.com/2007/10/robot-cannon-ki/) or causing some [intrusion](https://medium.com/@jitbit/facebook-is-terrifying-8dc4a016b64b) of [privacy](https://www.theguardian.com/technology/2011/aug/03/facebook-facial-recognition-privacy-germany). And while it is important to maintain a healthy skepticism of the dangerous role that AI poses to our society, I think we will look back at many early applications as lacking sufficient imagination.
 
 > The Independents, rooted in the farms and small towns of the West, were innovators, but of a conceptual kind, not the technical kind à la Alexander Bell…They intuited that the telephone’s paramount value was not as a better version of the telegraph or a more efficient means of commerce, but as the first social technology…
 >
