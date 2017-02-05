@@ -170,7 +170,7 @@ There are thousands of exciting AI applications, from tracking the spread of [in
 
 Progress begins when we stop using algorithms to just predict people's habits, and start teaching them new ones. When we give people a fighting chance, by retraining those whose jobs are threatened by automation. When we identify where humans show promise and teaching them how to improve. When we use AI to prevent diseases rather than designing drugs to treat symptoms. Progress begins when we start fixing broken systems rather than exploiting their weakness. If you want to contribute to the survival of our species, get out of the prediction game, and get into the the business of making progress.
 
-[Discuss this post on HN](https://news.ycombinator.com/item?id=13570074).
+[Discuss this post on HN](https://news.ycombinator.com/item?id=13565828)!
 
 ### Further Reading
 
