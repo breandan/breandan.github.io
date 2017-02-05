@@ -176,6 +176,7 @@ Progress begins when we stop using algorithms to just predict people's habits, a
 
 - [Practical advice for analysis of large, complex data sets](http://www.unofficialgoogledatascience.com/2016/10/practical-advice-for-analysis-of-large.html)
 - [The Art and Science of Cause and Effect](http://bayes.cs.ucla.edu/BOOK-2K/causality2-epilogue.pdf)
+- [Deep-Fried Data](http://idlewords.com/talks/deep_fried_data.htm)
 
 ### Footnotes
 
