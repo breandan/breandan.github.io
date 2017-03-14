@@ -245,7 +245,7 @@ From Dublin, we flew to Brussels for Devoxx Belgium early Monday morning. After 
 
 Spent a weekend in Amsterdam, where I got a haircut and had a great steaming cup of hot-chocolate, made with real chocolate chips. Then we took a train back to Brussels (Charleroi, to my frustration) and flew to Vilnius for [BuildStuff Lituania](https://buildstuff16lithuania.sched.org). There are a few small conferences in the world that are extremely high quality. BuildStuff is one of them, and [apparently](https://twitter.com/hhariri/status/798784908353097728) the organizers donate their proceeds to charity. Go there, if you have the chance.
 
-Why else would you want to go to Vilnius? For one, they have great restaurants where you can eat well without breaking the bank. They have a pretty nice city, with good transportation. And Lithuanians are a very friendly people. It's not Switzerland, but the Europa section is very modern and has good restaurants. My favorite one is in the [Old Town](https://en.wikipedia.org/wiki/Vilnius_Old_Town), a place called [Gusto blynine](http://www.gusto.lt/index.php/en/). If it looks ridiculous, you'll know you're at the right place.
+Why else would you want to go to Vilnius? For one, they have great restaurants where you can eat well without breaking the bank. They have a pretty nice city, with good transportation. And Lithuanians are a very friendly people. It's not Switzerland, but the Europa section is very modern and has good restaurants. My favorite one is in the [Old Town](https://en.wikipedia.org/wiki/Vilnius_Old_Town), a place called [Gusto blyninė](http://www.gusto.lt/index.php/en/). If it looks ridiculous, you'll know you're at the right place.
 
 <figure>
 <img src="http://imgur.com/tDBPni5.jpg"/>
