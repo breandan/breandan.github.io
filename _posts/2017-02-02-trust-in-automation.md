@@ -124,7 +124,7 @@ Long after machines are calling the shots, our heuristic biases will continue to
 2. Is the training data accurate and free from hidden bias? (ie. [Internal validity](https://en.wikipedia.org/wiki/Internal_validity))
     - People constantly forget (or conveniently overlook) [confounds](https://en.wikipedia.org/wiki/Confounding).
     - If the data generator is biased, the model will encode its bias.
-    - The method of sampling may have hidden [bias](https://en.wikipedia.org/wiki/Selection_bias#Sampling_bias).
+    - The method of sampling may have [hidden biases](https://en.wikipedia.org/wiki/Selection_bias#Sampling_bias).
 3. Does the training data generalize well in practice? (ie. [External validity](https://en.wikipedia.org/wiki/External_validity))
     - Maybe the training data has grown stale over time.
     - Maybe the model is missing data on some key demographic.
