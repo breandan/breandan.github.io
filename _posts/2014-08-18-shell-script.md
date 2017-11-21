@@ -93,8 +93,8 @@ ln -sf ${TARGET} /usr/local/bin/${IDE}
 
 # Prompt to launch newly installed IDE
 while true; do
-    read -p "Installation complete. To launch the IDE, just run: $IDE
-	Would you like to launch $IDE right now? (Y/N) > " REPLY
+    read -p "Installation complete. To launch $IDE, run: $IDE
+    Would you like to launch $IDE right now? (Y/N) > " REPLY
 
     case $REPLY in
         [yY] ) eval $IDE; break;;
