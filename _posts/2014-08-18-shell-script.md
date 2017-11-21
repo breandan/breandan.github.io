@@ -3,9 +3,7 @@ layout: post
 title: IntelliJ IDEA on Linux
 ---
 
-One of the challenges of using IDEs is compatibility - compatibility with frameworks, languages, tools, and a million different ways they can be used together. IntelliJ IDEA and its cousins run on Java, which is one reason it can support so many technologies as well as three different operating systems at the same time. 
-
-But, "write once, run anywhere," can sometimes be unrealistic. As a Linux user, your options are numbered - officially, IntelliJ IDEA uses the Oracle Java Development Kit, but neither Oracle's JDK nor OpenJDK offer perfect Linux support. To use IntelliJ IDEA on Linux, the following shell script will install any Linux-compatible JetBrains IDE on any [Debian based Linux distribution](https://en.wikipedia.org/wiki/List_of_Linux_distributions#Debian-based).
+One of the challenges of using IDEs is compatibility - compatibility with frameworks, languages, tools, and a million different ways they can be used together. As a Linux user, your options are numbered - officially, IntelliJ IDEA and its cousins use the Oracle Java Development Kit, but neither Oracle's JDK nor OpenJDK offer perfect Linux support. The following shell script will install any Linux-compatible JetBrains IDE on any [Debian based Linux distribution](https://en.wikipedia.org/wiki/List_of_Linux_distributions#Debian-based).
 
 {% highlight bash %}
 #!/bin/sh
