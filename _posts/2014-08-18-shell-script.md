@@ -81,7 +81,6 @@ BIN=${DIR}/bin
 echo "Adding permissions to $DIR"
 chmod -R +rwx ${DIR}
 
-
 # Enable to add desktop shortcut
 # DESK=/usr/share/applications/${IDE}.desktop
 # echo "[Desktop Entry]\nEncoding=UTF-8\nName=${IDE}\nComment=${IDE}\nExec=${BIN}/${IDE}.sh\nIcon=${BIN}/${IDE}.png\nTerminal=false\nStartupNotify=true\nType=Application" -e > ${DESK}
@@ -96,7 +95,7 @@ while true; do
     read -p "Installation complete. To launch $IDE, run: $IDE
     Would you like to launch $IDE right now? (Y/N) > " REPLY
 
-    case $REPLY in
+    case $REPLY ininstaller
         [yY] ) eval $IDE; break;;
         [nN] ) echo "Done."; break;;
     esac
