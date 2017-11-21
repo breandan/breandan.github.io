@@ -3,84 +3,110 @@ layout: post
 title: IntelliJ IDEA on Linux
 ---
 
-One of the challenges of building an IDE is compatibility - compatibility with frameworks, languages, tools, and a million different ways they can be used together. IntelliJ IDEA and its cousins run on Java, which is one reason it is able to support so many technologies without also having to target three different operating systems at the same time. 
+One of the challenges of using IDEs is compatibility - compatibility with frameworks, languages, tools, and a million different ways they can be used together. IntelliJ IDEA and its cousins run on Java, which is one reason it can support so many technologies as well as three different operating systems at the same time. 
 
-But, "write once, run anywhere," can sometimes be unrealistic. As a Linux user, your options may be numbered - officially, IntelliJ IDEA uses the Oracle Java Development Kit, but neither Oracle's JDK nor OpenJDK offer perfect Linux support. If you are determined to use IntelliJ IDEA on Linux, the following shell script will help install IntelliJ IDEA on any [Debian based Linux distro](https://en.wikipedia.org/wiki/List_of_Linux_distributions#Debian-based).
+But, "write once, run anywhere," can sometimes be unrealistic. As a Linux user, your options are numbered - officially, IntelliJ IDEA uses the Oracle Java Development Kit, but neither Oracle's JDK nor OpenJDK offer perfect Linux support. To use IntelliJ IDEA on Linux, the following shell script will install any Linux-compatible JetBrains IDE on any [Debian based Linux distribution](https://en.wikipedia.org/wiki/List_of_Linux_distributions#Debian-based).
 
 {% highlight bash %}
 #!/bin/sh
 
-echo "Installing IntelliJ IDEA..."
-
 # We need root to install
-[ $(id -u) != "0" ] && exec sudo "$0" "$@"
-
-# Attempt to install a JDK
-# apt-get install openjdk-8-jdk
-# add-apt-repository ppa:webupd8team/java && apt-get update && apt-get install oracle-java8-installer
+[ $(id -u) != "0" ] && echo "Elevating to root..." && exec sudo "$0" "$@"
 
 # Prompt for edition
 while true; do
-    read -p "Enter 'U' for Ultimate or 'C' for Community: " ed 
-    case $ed in
-        [Uu]* ) ed=U; break;;
-        [Cc]* ) ed=C; break;;
+    read -p "Please select from one of the following choices:
+    [1] IntelliJ IDEA Community Edition
+    [2] IntelliJ IDEA Ultimate Edition
+    [3] PyCharm Community Edition
+    [4] PyCharm Professional Edition
+    [5] Clion
+    [6] WebStorm
+    [7] RubyMine
+    [8] PhpStorm
+    [9] DataGrip
+   > " CODE 
+
+    case $CODE in
+        1 ) CODE=IIC; IDE=idea; break;;
+        2 ) CODE=IIU; IDE=idea; break;;
+        3 ) CODE=PCC; IDE=pycharm; break;;
+        4 ) CODE=PCP; IDE=pycharm; break;;
+        5 ) CODE=CL;  IDE=clion; break;;
+        6 ) CODE=WS;  IDE=webstorm; break;;
+        7 ) CODE=RM;  IDE=rubymine; break;;
+        8 ) CODE=PS;  IDE=phpstorm; break;;
+        9 ) CODE=DG;  IDE=datagrip; break;;
     esac
 done
 
-# Fetch the most recent version
-VERSION=$(wget "https://www.jetbrains.com/intellij-repository/releases" -qO- | grep -P -o -m 1 "(?<=https://www.jetbrains.com/intellij-repository/releases/com/jetbrains/intellij/idea/BUILD/)[^/]+(?=/)")
+echo "Installing $IDE..."
+
+# Enable to install a JDK
+# apt-get install openjdk-8-jdk
+# add-apt-repository ppa:webupd8team/java && apt-get update && apt-get install oracle-java8-installer
 
 # Prepend base URL for download
-URL="https://download.jetbrains.com/idea/ideaI$ed-$VERSION.tar.gz"
-
-echo $URL
-
-# Truncate filename
-FILE=$(basename ${URL})
+URL="https://data.services.jetbrains.com/products/download?platform=linux&code=$CODE"
+echo "Downloading from $URL"
 
 # Set download directory
-DEST=~/Downloads/$FILE
-
-echo "Downloading idea-I$ed-$VERSION to $DEST..."
+DEST=$(mktemp)
 
 # Download binary
-wget -cO ${DEST} ${URL} --read-timeout=5 --tries=0
+echo "Downloading $IDE to $DEST..."
+wget -cO ${DEST} ${URL} --read-timeout=5 --tries=0 --content-disposition
 
-echo "Download complete!"
+echo "Download complete."
 
 # Set directory name
-DIR="/opt/idea-I$ed-$VERSION"
+DIR="/opt/$IDE"
 
-echo "Installing to $DIR"
+# Overwrite installation directory if it exists
+if [ -d "$DIR" ]; then
+    echo "Removing existing installation in $DIR"
+    rm -rf $DIR
+fi
 
 # Untar file
 if mkdir ${DIR}; then
+    echo "Extracting $DEST to $DIR"
     tar -xzf ${DEST} -C ${DIR} --strip-components=1
 fi
 
 # Grab executable folder
-BIN="$DIR/bin"
+BIN=${DIR}/bin
 
 # Add permissions to install directory
+echo "Adding permissions to $DIR"
 chmod -R +rwx ${DIR}
 
-# Set desktop shortcut path
-DESK=/usr/share/applications/IDEA.desktop
 
-# Add desktop shortcut
-echo "[Desktop Entry]\nEncoding=UTF-8\nName=IntelliJ IDEA\nComment=IntelliJ IDEA\nExec=${BIN}/idea.sh\nIcon=${BIN}/idea.png\nTerminal=false\nStartupNotify=true\nType=Application" -e > ${DESK}
+# Enable to add desktop shortcut
+# DESK=/usr/share/applications/${IDE}.desktop
+# echo "[Desktop Entry]\nEncoding=UTF-8\nName=${IDE}\nComment=${IDE}\nExec=${BIN}/${IDE}.sh\nIcon=${BIN}/${IDE}.png\nTerminal=false\nStartupNotify=true\nType=Application" -e > ${DESK}
 
 # Create symlink entry
-ln -sf ${BIN}/idea.sh /usr/local/bin/idea
+TARGET=${BIN}/${IDE}.sh
+echo "Placing symbolic link to $TARGET in /usr/local/bin/"
+ln -sf ${TARGET} /usr/local/bin/${IDE}
 
-echo "Done."
+# Prompt to launch newly installed IDE
+while true; do
+    read -p "Installation complete. To launch the IDE, just run: $IDE
+	Would you like to launch $IDE right now? (Y/N) > " REPLY
+
+    case $REPLY in
+        [yY] ) eval $IDE; break;;
+        [nN] ) echo "Done."; break;;
+    esac
+done
 {% endhighlight %}
 
-The first issue you may notice when using IntelliJ IDEA is [poor font rendering](http://youtrack.jetbrains.com/issue/IDEA-57233), which is known to occur across several versions of Linux when running Swing applications, resulting in jagged or broken fonts in the UI and Editor. Here, the best course of action is to use a different font. You can switch your default font in IntelliJ IDEA from Settings, under the 'Appearance' menu.
+The first issue you may notice is [poor font rendering](http://youtrack.jetbrains.com/issue/IDEA-57233), which is known to occur across several versions of Linux when running Swing applications, resulting in jagged or broken fonts in the UI and Editor. Here, the best course of action is to use a different font. You can switch your default font in Settings, under the 'Appearance' menu.
 
 ![Override default font](/images/override_font.jpg)
 
-The second option is installing a third-party JDK such as [Infinality](http://www.infinality.net/blog/) or [tuxjdk](https://code.google.com/p/tuxjdk/) which attempt to improve font rendering within the OpenJDK project - install these at your own risk. For a full list and up-to-date information of issues on Linux, take a look at these [open tickets](http://youtrack.jetbrains.com/issues/IDEA?q=linux+sort+by%3A+votes+desc+%23Open#issueid=IDEA-22750) on YouTrack.
+The second option is installing a third-party JDK such as [Infinality](http://www.infinality.net/blog/) or [tuxjdk](https://code.google.com/p/tuxjdk/) which attempt to improve font rendering within the OpenJDK project - install these at your own risk. For a full list and up-to-date information of issues on Linux, have a look at these [open tickets](http://youtrack.jetbrains.com/issues/IDEA?q=linux+sort+by%3A+votes+desc+%23Open#issueid=IDEA-22750) on YouTrack.
 
-If you would like to see more support for OpenJDK and IntelliJ IDEA on Linux, one way you can contribute is by using them and reporting any issues you should encounter. There is a small but growing community of Linux users who are eager to share their knowledge, and by using and helping others use open source, we can all begin to write better software. Take the challenge today!
+If you would like to see more support for IntelliJ IDEA, PyCharm, WebStorm, PhpStorm, Clion, RubyMine, DataGrip, et al. on Linux, one way you can contribute is reporting any issues you should encounter. There is a small but growing community of Linux users who are eager to share their knowledge, and by using and helping others use open source, we can all begin to write better software. Thanks for reading!
