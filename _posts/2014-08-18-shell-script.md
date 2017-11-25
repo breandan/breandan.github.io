@@ -93,7 +93,7 @@ while true; do
     read -p "Installation complete. To launch $IDE, run: $IDE
     Would you like to launch $IDE right now? (Y/N) > " REPLY
 
-    case $REPLY ininstaller
+    case $REPLY in
         [yY] ) eval $IDE; break;;
         [nN] ) echo "Done."; break;;
     esac
