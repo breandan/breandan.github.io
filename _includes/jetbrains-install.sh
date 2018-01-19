@@ -38,11 +38,11 @@ echo "Installing $IDE..."
 URL="https://data.services.jetbrains.com/products/download?platform=linux&code=$CODE"
 
 # Get location header for file URL
-FILE_URL=$(wget -qSO --max-redirect 0 --spider "$URL" 2>&1 \
-           | tac | grep -P -o -m 1 "(?<=Location: ).*")
+HEADER=$(wget -qSO --max-redirect 0 --spider "$URL" 2>&1)
+FILE_URL=$(echo "$HEADER" | tac | grep -Pom 1 "(?<=Location: ).*")
 
 PATTERN="(?<=/)[^/]*(?=.tar.gz)"
-VERSION=$(echo ${FILE_URL} | grep -P -o "$PATTERN")
+VERSION=$(echo "$FILE_URL" | grep -P -o "$PATTERN")
 
 echo "Found $VERSION available to download..."
 
