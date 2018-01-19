@@ -31,11 +31,8 @@ while true; do
        9 ) CODE=DG;  IDE=datagrip; break;;
    esac
 done
-echo "Installing $IDE..."
 
-# Enable to install a JDK
-# apt-get install openjdk-8-jdk
-# add-apt-repository ppa:webupd8team/java && apt-get update && apt-get install oracle-java8-installer
+echo "Installing $IDE..."
 
 # Prepend base URL for download
 URL="https://data.services.jetbrains.com/products/download?platform=linux&code=$CODE"
