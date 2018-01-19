@@ -66,11 +66,11 @@ if [ -d "$INSTALL_DIR" ]; then
 fi
 
 # Set download directory
-DOWNLOAD_DIR=$(mktemp)
+DEST_DIR=$(mktemp)
 
 # Download binary
-echo "Downloading $VERSION from $FILE_URL to $DOWNLOAD_DIR"
-wget -cO ${DOWNLOAD_DIR} ${FILE_URL} --read-timeout=5 --tries=0
+echo "Downloading $VERSION from $FILE_URL to $DEST_DIR"
+wget -cO ${DEST_DIR} ${FILE_URL} --read-timeout=5 --tries=0
 echo "Download complete."
 
 # Overwrite installation directory if it exists
@@ -81,8 +81,8 @@ fi
 
 # Untar file
 if mkdir ${INSTALL_DIR}; then
-   echo "Extracting $DOWNLOAD_DIR to $INSTALL_DIR"
-   tar -xzf ${DOWNLOAD_DIR} -C ${INSTALL_DIR} --strip-components=1
+   echo "Extracting $DEST_DIR to $INSTALL_DIR"
+   tar -xzf ${DEST_DIR} -C ${INSTALL_DIR} --strip-components=1
 fi
 
 # Grab executable folder
