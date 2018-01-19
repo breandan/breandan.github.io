@@ -3,7 +3,7 @@ layout: post
 title: IntelliJ IDEA on Linux
 ---
 
-The IntelliJ Platform officially supports Linux operating systems running GNOME or KDE. The following shell script will install any JetBrains IDE on any [Debian based Linux distribution](https://en.wikipedia.org/wiki/List_of_Linux_distributions#Debian-based). To run it, paste `wget z.ndan.co/jetbrains-install.sh` into a terminal. This will download the following script:
+The IntelliJ Platform officially supports Linux operating systems running GNOME or KDE. The following script installs a JetBrains IDE on any [Debian based Linux distribution](https://en.wikipedia.org/wiki/List_of_Linux_distributions#Debian-based). First paste `wget z.ndan.co/jetbrains-install.sh` into a terminal to download the following script:
 
 {% highlight bash %}
 {% include jetbrains-install.sh %}
