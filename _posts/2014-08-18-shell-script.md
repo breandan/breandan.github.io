@@ -9,7 +9,7 @@ The following script installs a JetBrains IDE on any [Debian based Linux distro]
 {% include jetbrains-install.sh %}
 {% endhighlight %}
 
-Next, run `chmod 755 jetbrains-install.sh && ./jetbrains-install.sh` and follow the instructions. Once the choosen IDE has launched, the first issue you may notice is [poor font rendering](http://youtrack.jetbrains.com/issue/IDEA-57233), which is known to occur across several versions of Linux when running Swing applications, resulting in jagged or broken fonts in the UI and Editor. Here, the best course of action is to use a different font. You can switch your default font in Settings, under the 'Appearance' menu.
+Next, run `chmod 755 jetbrains-install.sh && ./jetbrains-install.sh` and follow the instructions. Once the chosen IDE has launched, the first issue you may notice is [poor font rendering](http://youtrack.jetbrains.com/issue/IDEA-57233), which is known to occur across several versions of Linux when running Swing applications, resulting in jagged or broken fonts in the UI and Editor. Here, the best course of action is to use a different font. You can switch your default font in Settings, under the 'Appearance' menu.
 
 ![Override default font](/images/override_font.jpg)
 
