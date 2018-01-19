@@ -19,8 +19,6 @@ paginate:         1
 
 # Custom vars
 version:          0.0.1
-includes:
-- public
 
 github:
   repo:           https://github.com/breandan/breandan.github.io
