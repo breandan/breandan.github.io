@@ -1,7 +1,10 @@
 #!/bin/sh
 
 # We need root to install
-[ $(id -u) != "0" ] && echo "Elevating to root..." && exec sudo "$0" "$@"
+if [ $(id -u) != "0" ]; then
+    echo "Elevating to root..."
+    exec sudo "$0" "$@"
+fi
 
 # Prompt for edition
 while true; do
