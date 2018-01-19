@@ -3,7 +3,7 @@ layout: post
 title: IntelliJ IDEA on Linux
 ---
 
-The following script installs a JetBrains IDE on any [Debian based Linux distro](https://en.wikipedia.org/wiki/List_of_Linux_distributions#Debian-based). To use it, paste `wget z.ndan.co/jetbrains-install.sh` into a terminal to fetch the script below:
+The following script installs a JetBrains IDE on any [Debian based Linux distro](https://en.wikipedia.org/wiki/List_of_Linux_distributions#Debian-based). To use it, run `wget z.ndan.co/jetbrains-install.sh` to fetch the script below:
 
 {% highlight bash %}
 {% include jetbrains-install.sh %}
