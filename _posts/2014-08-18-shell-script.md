@@ -3,13 +3,13 @@ layout: post
 title: IntelliJ IDEA on Linux
 ---
 
-One of the challenges of using IDEs is compatibility - compatibility with frameworks, languages, tools, and a million different ways they can be used together. As a Linux user, your options are numbered - officially, IntelliJ IDEA and its cousins use the Oracle Java Development Kit, but neither Oracle's JDK nor OpenJDK offer perfect Linux support. The following shell script will install any Linux-compatible JetBrains IDE on any [Debian based Linux distribution](https://en.wikipedia.org/wiki/List_of_Linux_distributions#Debian-based).
+As a Java application, the IntelliJ Platform officially supports Linux operating systems running GNOME or KDE. The following shell script will install any Linux-compatible JetBrains IDE on any [Debian based Linux distribution](https://en.wikipedia.org/wiki/List_of_Linux_distributions#Debian-based). To run it, paste the following command into your terminal `wget http://breandan.net/public/jetbrains-install.sh`. This will fetch the following script:
 
 {% highlight bash %}
-{% include jetbrains-install.sh %}
+{% include /public/jetbrains-install.sh %}
 {% endhighlight %}
 
-The first issue you may notice is [poor font rendering](http://youtrack.jetbrains.com/issue/IDEA-57233), which is known to occur across several versions of Linux when running Swing applications, resulting in jagged or broken fonts in the UI and Editor. Here, the best course of action is to use a different font. You can switch your default font in Settings, under the 'Appearance' menu.
+To use it, run the command `chmod 755 jetbrains-install.sh && ./jetbrains-install.sh` and follow the instructions. Once installed, the first issue you may notice is [poor font rendering](http://youtrack.jetbrains.com/issue/IDEA-57233), which is known to occur across several versions of Linux when running Swing applications, resulting in jagged or broken fonts in the UI and Editor. Here, the best course of action is to use a different font. You can switch your default font in Settings, under the 'Appearance' menu.
 
 ![Override default font](/images/override_font.jpg)
 

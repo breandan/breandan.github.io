@@ -41,22 +41,23 @@ URL="https://data.services.jetbrains.com/products/download?platform=linux&code=$
 FILE_URL=$(wget -qSO --max-redirect 0 --spider "$URL" 2>&1 \
            | tac | grep -P -o -m 1 "(?<=Location: ).*")
 
-LATEST_VERSION=$(echo ${FILE_URL} | grep -P -o "(?<=/)[^/]*(?=.tar.gz)")
+PATTERN="(?<=/)[^/]*(?=.tar.gz)"
+VERSION=$(echo ${FILE_URL} | grep -P -o "$PATTERN")
 
-echo "Found $LATEST_VERSION available to download..."
+echo "Found $VERSION available to download..."
 
 # Set install directory
-INSTALL_DIR="/opt/$LATEST_VERSION"
+INSTALL_DIR="/opt/$VERSION"
 
 # Check if latest version has been installed
 if [ -d "$INSTALL_DIR" ]; then
-   echo "Found an existing installation directory: $INSTALL_DIR"
-   echo "$LATEST_VERSION may have previously been installed."
+   echo "Found an existing install directory: $INSTALL_DIR"
+   echo "$VERSION may have previously been installed."
    while true; do
        read -p "Would you like to reinstall? (Y/N) > " REPLY
        case $REPLY in
-           [yY] ) echo "Reinstalling $LATEST_VERSION..."; break;;
-           [nN] ) echo "Installation cancelled."; exit 1; break;;
+           [yY] ) echo "Reinstalling $VERSION..."; break;;
+           [nN] ) echo "Aborted install."; exit 1; break;;
        esac
    done
 fi
@@ -65,7 +66,7 @@ fi
 DOWNLOAD_DIR=$(mktemp)
 
 # Download binary
-echo "Downloading $LATEST_VERSION from $FILE_URL to $DOWNLOAD_DIR"
+echo "Downloading $VERSION from $FILE_URL to $DOWNLOAD_DIR"
 wget -cO ${DOWNLOAD_DIR} ${FILE_URL} --read-timeout=5 --tries=0
 echo "Download complete."
 
