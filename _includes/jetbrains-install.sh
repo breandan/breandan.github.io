@@ -39,12 +39,12 @@ URL="https://data.services.jetbrains.com/products/download?platform=linux&code=$
 
 # Get location header for file URL
 HEADER=$(wget -qSO --max-redirect 0 --spider "$URL" 2>&1)
-FILE_URL=$(echo "$HEADER" | tac | grep -Pom 1 "(?<=Location: ).*")
-
+PATTERN="(?<=Location: ).*"
+FILE_URL=$(echo "$HEADER" | tac | grep -Pom 1 "$PATTERN")
 PATTERN="(?<=/)[^/]*(?=.tar.gz)"
 VERSION=$(echo "$FILE_URL" | grep -P -o "$PATTERN")
 
-echo "Found $VERSION available to download..."
+echo "Latest stable version: $VERSION"
 
 # Set install directory
 INSTALL_DIR="/opt/$VERSION"
