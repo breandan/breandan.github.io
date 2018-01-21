@@ -38,12 +38,11 @@ echo "Installing $IDE..."
 URL="https://data.services.jetbrains.com/products/download?platform=linux&code=$CODE"
 
 # Get location header for file URL
-HEADER=$(wget -qSO --max-redirect 0 --spider "$URL" 2>&1)
-PATTERN="(?<=Location: ).*"
-FILE_URL=$(echo "$HEADER" | tac | grep -Pom 1 "$PATTERN")
-PATTERN="(?<=/)[^/]*(?=.tar.gz)"
-VERSION=$(echo "$FILE_URL" | grep -P -o "$PATTERN")
-
+HEADERS=$(wget -qSO --max-redirect 0 --spider "$URL" 2>&1)
+LOCATION=$(echo "$HEADERS" | tac | grep -m 1 "Location: ")
+FILE_URL=$(echo "$LOCATION" | sed 's/.*Location: //')
+VERSION=$(echo "$FILE_URL" | sed -En 's/.*\/(.*).tar.gz/\1/p')
+echo "File to be downloaded: $FILE_URL"
 echo "Latest stable version: $VERSION"
 
 # Set install directory
