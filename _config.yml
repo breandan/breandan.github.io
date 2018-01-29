@@ -1,5 +1,5 @@
 # Dependencies
-markdown:	  kramdown
+markdown:	      kramdown
 highlighter:	  rouge
 
 # Permalinks
@@ -10,7 +10,7 @@ title:            Breandan's Blog
 tagline:          
 description:       
 url:              breandan.net
-
+comments:         false
 author:
   name:           Breandan Considine
   url:            https://twitter.com/breandan
