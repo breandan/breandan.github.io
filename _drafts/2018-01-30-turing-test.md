@@ -12,22 +12,22 @@ In reinforcement learning (RL), using static datasets for training is somewhat l
 
 While these approaches may be necessary for safety-critical applications, they are imperfect approximations of real world environments. In environments where RL does not pose direct harm, we can train policies on real humans. At Google and Facebook, user [experimentation](https://research.google.com/pubs/pub36500.html) is common, but often requires an intractable number of experimental trials to yield accurate models. The data-hungry nature of such methods remains an obstacle towards the wider adoption of RL in smaller business applications, however there are [several techniques](https://scholar.google.ca/scholar?as_ylo=2014&q=data+efficient+reinforcement+learning) for reducing the number of trials required to obtain robust models in practice. One technique for improving policy-evaluation is to use [human preferences](https://blog.openai.com/deep-reinforcement-learning-from-human-preferences/) to guide the policy search (Christiano et al., 2017).
 
-Let us consider the following game:
+Let us consider the following two-player game:
 
  * Players are randomly matched with an anonymous human or bot.
- * Players can communicate in real time through text messages.
+ * Players can communicate in real time via text messages.
  * A player can end the match by predicting their correspondent's identity.
     * If their prediction is correct, the predictor gets a reward. 
     * If their prediction is incorrect, the predictor gets a penalty.
  * If a human predicts another human correctly, they both receive a reward.
  * If a bot correctly predicts a human, neither player receives a reward.
- * Players matched with players of equivalent skill according to ELO.
+ * Players are matched according to skill in an ELO ranking.
 
 The payoff matrix for this game can be summarized as follows:
 
 {% include payoff_matrix.html %}
 
-In order to prevent unwanted dialog, we restrict words using a predictive keyboard containing with small, fixed vocabulary set. The game is initially populated with humans, and a single chatbot. There is an API where developers may register their own chatbots to compete in the ranking.
+The objective of the game is to correctly identify of the corresponding player, and avoid being identified by a bot. In order to prevent exclusive voabulary, we restrict acceptable words to a small, fixed vocabulary set. The game is initially populated with humans, and a single chatbot. There is an API where developers may register their own chatbots to compete in a ranking system. Conversations between human pairs can be used as a traditional dataset, while machines can evaluate new dialog policies on real human beings.
 
 
 {% if page.comments %}  
