@@ -20,29 +20,30 @@ Let us consider the following two-player game:
  * Players are randomly matched with an anonymous human or bot.
  * Players communicate in real time via text-based instant messages.
  * Players can end the match by predicting their correspondent's identity.
-    * If their prediction is correct, the predictor gains points. 
-    * If their prediction is incorrect, the predictor looses points.
+   * If their prediction is correct, the predictor gains points. 
+   * If their prediction is incorrect, the predictor looses points.
  * If a human predicts another human correctly, they both receive a reward.
  * If a bot correctly predicts a human, neither player receives a reward.
  * Players are matched according to skill in an ELO ranking.
 
-The payoff matrix for this game can be summarized as follows[^2]:
+The payoff matrix for this game can be summarized as follows: [^2]
 
 {% include payoff_matrix.html %}
 
-The relative reward is not specified here, although we can adjust the reward based on various factors, such as sentence length, unique vocabulary or number of dialog exchanges. 
+The relative reward is not specified here, however we can imagine various reward settings based on various factors, such as sentence length, unique vocabulary, number of dialog exchanges, or human score (ie. the number of times the player has been rated by humans as human). Such a mechanism would serve to encourage novel conversations, and penalize formulaic ones.
 
-The objective of the game is to identify the corresponding player, and avoid being identified by a bot, or as a bot. In order to prevent abuse [^3] and to create an even playing field, we restrict valid dialog to a small, fixed vocabulary [^4] for both players. This restriction can be relaxed as players gain points.
+The objective of the game is to identify the corresponding player, and avoid being identified by a bot, or as a bot. In order to prevent abuse[^3] and to create a level playing field, we restrict valid dialog to a small, fixed vocabulary[^4] for both players. This restriction can be relaxed as players gain points.
 
 The game has two important features:
 
-* Direct reward: 
+* Immediate reinforcement: the game penalizes players immediately after a bad response, and rewards players when the other player responds. This structure makes credit assignment significantly easier.
+* Brevity: each player is encouraged to identify the other player before being identified. The winning strategy is to write succinctly, without divulging too much information that might compromise one's identity. Brevity is key. 
 
 ## Technical details
 
-The game is initially populated with humans, and a small set of chat bots. There is an API where developers may register their own chatbots to compete in a leaderboard-style ranking. Conversations are to be collected and hosted as a traditional supervised learning dataset. 
+The game is initially populated with humans, and a small set of chat bots. There is an API where developers may register their own chatbots to compete in a leaderboard-style ranking. Conversations are to be collected and hosted as a traditional supervised learning dataset.
 
-Due to the limited number of human players and the unlimited number of bots, there must be a rate limit on the number of games each bot is allowed to play. Furthermore, once the number of bots grows, the platform must allocate humans to bots in a way that matches humans and bots evenly, and ensures each participant competes with an equal number of humans and bots. The details of this allocation problem must be discussed.
+Due to the limited number of human players and the (potentially) unlimited number of bots, there must be a rate limit on the number of games each bot is allowed to play, simultaneously[^5] and on a daily basis. Furthermore, once the number of bots grows, the platform must allocate humans to bots in a way that matches humans and bots evenly, and ensures each participant competes with an equal number of humans and bots. The details of this allocation problem remains to be discussed.
 
 ## Variations
 
@@ -57,5 +58,6 @@ If we consider messages of unlimited character length, the space of valid conver
 
 [^1]: This requires agents to learn new policies offline, or "off-policy".
 [^2]: Relative rewards and penalties can be tuned to prevent score "gaming".
-[^3]: Abusive behavior is common in anonymous online games (ex. [Microsoft Tay](https://en.wikipedia.org/wiki/Tay_(bot))).
-[^4]: Human players could input text using a [predictive keyboard](https://en.wikipedia.org/wiki/Predictive_text) with a whitelist.
+[^3]: Abusive behavior is common in anonymous online chat (ex. [Microsoft Tay](https://en.wikipedia.org/wiki/Tay_(bot))).
+[^4]: Human players could type using a [predictive keyboard](https://en.wikipedia.org/wiki/Predictive_text) with a word whitelist.
+[^5]: Consider the scenario where a cheating bot plays two humans at once, and simply copies responses between their conversations. We can prevent this (and the similar [Mechanical Turk](https://en.wikipedia.org/wiki/The_Turk) exploit) by requiring bots to submit their response immediately, and wait for a predetermined delay to post the reply, so as to avoid arousing suspicion based on typing speed.

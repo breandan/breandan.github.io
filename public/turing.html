@@ -1,425 +1,432 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
-  <head>
-  <link href="http://gmpg.org/xfn/11" rel="profile">
-  <meta http-equiv="content-type" content="text/html; charset=utf-8">
-
-  <!-- Enable responsiveness on mobile devices-->
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
-
-  <title>
-    
-      A Chatroulette-Style Turing Test &middot; Breandan's Blog
-    
-  </title>
-
-  <!-- CSS -->
-  <link rel="stylesheet" href="/public/css/poole.css">
-  <link rel="stylesheet" href="/public/css/syntax.css">
-  <link rel="stylesheet" href="/public/css/pullquote.css">
-  <style type="text/css">
-	p {
-	    text-align: justify;
-	}
-
-    div.footnotes {
-        text-align: left;
-    }
-
-    .quote {
-        text-align:right;
-    }
-
-    .span{float:right;}
-
-    .leftquote {
-        /* Reset metrics. */
-        padding: 0;
-        border: none;
-
-        /* Pull out to the right, modular scale based margins. */
-        float: left;
-        width: 50%;
-        margin: 1em 1.5em 1em 0;
-
-        /* Baseline correction */
-        position: relative;
-        top: 6px;
-    }
-
-    .mathquote {
-        /* Reset metrics. */
-        padding: 0;
-        border: none;
-
-        /* Pull out to the right, modular scale based margins. */
-        float: right;
-        margin: 0 0 1em 1.5em;
-
-        /* Baseline correction */
-        position: relative;
-        top: 6px;
-    }
-
-    blockquote {
-        padding:20px 30px;
-        border-left:3px solid #ccc;
-        display:inline-block;
-        color:#666;
-        background:#eee;
-        text-align:left;
-    }
-  </style>
-
-	
-
-	
-
-  <!-- Icons -->
-  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/public/apple-touch-icon-144-precomposed.png">
-                                 <link rel="shortcut icon" href="/public/favicon.gif">
-</head>
-
-  <script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-  ga('require', 'displayfeatures');
-  ga('create', 'UA-49839115-1', 'breandan.net');
-  ga('send', 'pageview');
-</script>
-
-  <body>
-
-    <div class="container content">
-      <div class="masthead">
-        <h3 class="masthead-title">
-          <a href="/" title="Home">Breandan's Blog</a>
-          <small></small>
-        </h3>
-      </div>
-
-      <div class="post">
-  <h1 class="post-title">A Chatroulette-Style Turing Test</h1>
-  <span class="post-date">30 Jan 2018</span>
-  <p>Abstract: <em>We introduce a novel <a href="https://en.wikipedia.org/wiki/Chatroulette">Chatroulette</a>-style training environment using human-human, human-computer, and computer-computer <a href="https://en.wikipedia.org/wiki/Turing_test">Turing-tests</a>. Players compete in a text-based <a href="https://en.wikipedia.org/wiki/Coordination_game">coordination game</a> whose goal is to correctly identify their correspondent and simultaneously avoid being identified. Players communicate through instant messages.</em></p>
-
-<p>The success of supervised learning (SL) is often attributed to the widespread availability of human-labeled <a href="https://en.wikipedia.org/wiki/List_of_datasets_for_machine_learning_research">datasets</a>. One such dataset, called <a href="http://www.image-net.org/">ImageNet</a> has fueled a tremendous amount of productive research in visual object recognition over the last few years. Beyond the usefulness of the raw data itself, datasets provide a useful benchmark for comparing the accuracy of various algorithms, and help promote <a href="www.cs.mcgill.ca/~jpineau/ICLR2018-ReproducibilityChallenge.html">reproducibility</a> in the field of machine learning. While such datasets are often a surrogate for real world data, if <a href="https://en.wikipedia.org/wiki/Sampling_(statistics)">sampled</a> and <a href="https://en.wikipedia.org/wiki/Training,_test,_and_validation_sets">used</a> correctly, they can produce models that generalize extremely well in practice.</p>
-
-<p>In reinforcement learning (RL), using static datasets for training is somewhat less efficient than SL. Rather than learn the structure of an environment directly, RL agents typically learn a <a href="https://en.wikipedia.org/wiki/Reinforcement_learning#Criterion_of_optimality"><em>policy</em></a> for finding rewards inside an environment. Given the high branching factor in most real-world settings, many RL datasets are collected using only a fixed policy and a narrow set of trajectories through the environment. To learn policies from these datasets, researchers can employ two broad strategies. They can try to infer a good policy using trajectories from a fixed policy (ex. medical trials). This approach requires agents to learn real-world policies offline, or “off-policy”. Or they can invest a large amount of time building an environment in silico (ex. driving simulators).</p>
-
-<p>While these approaches may be necessary for safety-critical applications, they are imperfect approximations of real world environments. In environments where RL does not pose direct harm, we can train policies on real humans. At Google and Facebook, user <a href="https://research.google.com/pubs/pub36500.html">experimentation</a> is common, but often requires an intractable number of experimental trials to yield accurate models. The data-hungry nature of such methods remains an obstacle towards the wider adoption of RL in smaller business applications, however there are <a href="https://scholar.google.ca/scholar?as_ylo=2014&amp;q=data+efficient+reinforcement+learning">several techniques</a> for reducing the number of trials required to obtain robust models in practice. One technique for improving policy-evaluation is to use <a href="https://blog.openai.com/deep-reinforcement-learning-from-human-preferences/">human preferences</a> to guide the policy search (Christiano et al., 2017).</p>
-
-<p>Let us consider the following two-player game:</p>
-
-<ul>
-  <li>Players are randomly matched with an anonymous human or bot.</li>
-  <li>Players can communicate in real time via text messages.</li>
-  <li>A player can end the match by predicting their correspondent’s identity.
-    <ul>
-      <li>If their prediction is correct, the predictor gets a reward.</li>
-      <li>If their prediction is incorrect, the predictor gets a penalty.</li>
-    </ul>
-  </li>
-  <li>If a human predicts another human correctly, they both receive a reward.</li>
-  <li>If a bot correctly predicts a human, neither player receives a reward.</li>
-  <li>Players are matched according to skill in an ELO ranking.</li>
-</ul>
-
-<p>The payoff matrix for this game can be summarized as follows:</p>
-
 <head>
-    <style type="text/css">@import url('https://themes.googleusercontent.com/fonts/css?kit=lhDjYqiy3mZ0x6ROQEUoUw');
+    <link href="http://gmpg.org/xfn/11" rel="profile">
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
 
-    ol {
-        margin: 0;
-        padding: 0
-    }
+    <!-- Enable responsiveness on mobile devices-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
 
-    table td, table th {
-        padding: 0
-    }
+    <title>
 
-    .c4 {
-        border-right-style: solid;
-        padding: 5pt 5pt 5pt 5pt;
-        border-bottom-color: #000000;
-        border-top-width: 1pt;
-        border-right-width: 1pt;
-        border-left-color: #000000;
-        vertical-align: middle;
-        border-right-color: #000000;
-        border-left-width: 1pt;
-        border-top-style: solid;
-        border-left-style: solid;
-        border-bottom-width: 1pt;
-        width: 150pt;
-        border-top-color: #000000;
-        border-bottom-style: solid
-    }
+        A Chatroulette-Style Turing Test &middot; Breandan's Blog
 
-    .c16 {
-        border-right-style: solid;
-        padding: 5pt 5pt 5pt 5pt;
-        border-bottom-color: #000000;
-        border-top-width: 1pt;
-        border-right-width: 1pt;
-        border-left-color: #000000;
-        vertical-align: middle;
-        border-right-color: #000000;
-        border-left-width: 1pt;
-        border-top-style: solid;
-        border-left-style: solid;
-        border-bottom-width: 1pt;
-        width: 172.8pt;
-        border-top-color: #000000;
-        border-bottom-style: solid
-    }
+    </title>
 
-    .c1 {
-        color: #000000;
-        font-weight: 400;
-        text-decoration: none;
-        vertical-align: baseline;
-        font-size: 14pt;
-        font-family: "Consolas";
-        font-style: normal
-    }
+    <!-- CSS -->
+    <link rel="stylesheet" href="/public/css/poole.css">
+    <link rel="stylesheet" href="/public/css/syntax.css">
+    <link rel="stylesheet" href="/public/css/pullquote.css">
+    <style type="text/css">
+        p {
+            text-align: justify;
+        }
 
-    .c5 {
-        color: #000000;
-        font-weight: 400;
-        text-decoration: none;
-        vertical-align: baseline;
-        font-size: 14pt;
-        font-family: "Arial";
-        font-style: normal
-    }
+        div.footnotes {
+            text-align: left;
+        }
 
-    .c10 {
-        padding-top: 0pt;
-        padding-bottom: 0pt;
-        line-height: 1.15;
-        orphans: 2;
-        widows: 2;
-        text-align: left;
-        height: 14pt
-    }
+        .quote {
+            text-align:right;
+        }
 
-    .c17 {
-        padding-top: 0pt;
-        padding-bottom: 0pt;
-        line-height: 1.15;
-        orphans: 2;
-        widows: 2;
-        text-align: left
-    }
+        .span{float:right;}
 
-    .c0 {
-        padding-top: 0pt;
-        padding-bottom: 0pt;
-        line-height: 1.0;
-        text-align: center;
-        height: 14pt
-    }
+        .leftquote {
+            /* Reset metrics. */
+            padding: 0;
+            border: none;
 
-    .c7 {
-        padding-top: 0pt;
-        padding-bottom: 0pt;
-        line-height: 1.0;
-        text-align: left;
-        height: 14pt
-    }
+            /* Pull out to the right, modular scale based margins. */
+            float: left;
+            width: 50%;
+            margin: 1em 1.5em 1em 0;
 
-    .c12 {
-        color: #000000;
-        text-decoration: none;
-        vertical-align: baseline;
-        font-size: 14pt;
-        font-style: normal
-    }
+            /* Baseline correction */
+            position: relative;
+            top: 6px;
+        }
 
-    .c3 {
-        padding-top: 0pt;
-        padding-bottom: 0pt;
-        line-height: 1.0;
-        text-align: center
-    }
+        .mathquote {
+            /* Reset metrics. */
+            padding: 0;
+            border: none;
 
-    .c15 {
-        margin-left: auto;
-        border-spacing: 0;
-        border-collapse: collapse;
-        margin-right: auto
-    }
+            /* Pull out to the right, modular scale based margins. */
+            float: right;
+            margin: 0 0 1em 1.5em;
 
-    .c14 {
-        padding-top: 0pt;
-        padding-bottom: 0pt;
-        line-height: 1.0;
-        text-align: left
-    }
+            /* Baseline correction */
+            position: relative;
+            top: 6px;
+        }
 
-    .c13 {
-        max-width: 697.9pt;
-        padding: 72pt 72pt 72pt 72pt
-    }
-
-    .c2 {
-        font-weight: 400;
-        font-family: "Consolas"
-    }
-
-    .c11 {
-        height: 23pt
-    }
-
-    .c9 {
-        background-color: #ea9999
-    }
-
-    .c6 {
-        background-color: #ffffff
-    }
-
-    .c8 {
-        background-color: #9fc5e8
-    }
-
-    .p1 {
-        margin: 0;
-        color: #000000;
-        font-size: 14pt;
-        font-family: "Arial"
-    }
-
-
+        blockquote {
+            padding:20px 30px;
+            border-left:3px solid #ccc;
+            display:inline-block;
+            color:#666;
+            background:#eee;
+            text-align:left;
+        }
     </style>
+
+
+
+
+
+    <!-- Icons -->
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/public/apple-touch-icon-144-precomposed.png">
+    <link rel="shortcut icon" href="/public/favicon.gif">
 </head>
 
-<table class="c15">
-    <tbody>
-    <tr class="c11">
-        <td class="c16" colspan="2" rowspan="2" style="background:linear-gradient(to top right,#eaecf0 49.5%,#aaa 49.5%,#aaa 50.5%,#eaecf0 50.5%);line-height:1;">
-            <p class="p1 c7"><span class="c1"></span></p>
-            <p class="p1" style="text-align:right;"><span class="c2">Player B</span></p>
-            <p class="p1" style="text-align:left;"><span class="c2">&nbsp;&nbsp;&nbsp;Player A</span></p></td>
-        <td class="c9 c16" colspan="1" rowspan="2"><p class="p1 c3"><span class="c2 c12">Human</span></p></td>
-
-        <td class="c9 c16" colspan="1" rowspan="2"><p class="p1 c3"><span class="c2 c12">Bot</span></p></td></tr>
-    <tr class="c11">
-
-
-    </tr>
-    <tr class="c11">
-        <td class="c4 c8" colspan="1" rowspan="2"><p class="p1 c3"><span class="c12 c2">Human</span></p></td>
-        <td class="c4" colspan="1" rowspan="1"><p class="p1 c3"><span class="c1">“B is Human”</span></p></td>
-        <td class="c4" colspan="1" rowspan="1"><p class="p1 c3"><span class="c2">+2 / +2</span></p></td>
-        <td class="c4" colspan="1" rowspan="1"><p class="p1 c3"><span class="c2 c6">-2 / +2</span></p></td>
-
-
-    </tr>
-    <tr class="c11">
-        <td class="c4" colspan="1" rowspan="1"><p class="p1 c3"><span class="c1">“B is a Bot”</span></p></td>
-        <td class="c4" colspan="1" rowspan="1"><p class="p1 c3"><span class="c2 c6">-2 / -1</span></p></td>
-        <td class="c4" colspan="1" rowspan="1"><p class="p1 c3"><span class="c1">+1 / -2</span></p></td>
-
-
-    </tr>
-    <tr class="c11">
-        <td class="c4 c8" colspan="1" rowspan="2"><p class="p1 c3"><span class="c12 c2">Bot </span></p></td>
-        <td class="c4" colspan="1" rowspan="1"><p class="p1 c3"><span class="c1">“B is Human”</span></p></td>
-        <td class="c4" colspan="1" rowspan="1"><p class="p1 c3"><span class="c1">+0 / +0</span></p></td>
-        <td class="c4" colspan="1" rowspan="1"><p class="p1 c3"><span class="c1">-1 / +1</span></p></td>
-
-
-    </tr>
-    <tr class="c11">
-        <td class="c4" colspan="1" rowspan="1"><p class="p1 c3"><span class="c1">“B is a Bot”</span></p></td>
-        <td class="c4" colspan="1" rowspan="1"><p class="p1 c3"><span class="c1">-1 / +0</span></p></td>
-        <td class="c4" colspan="1" rowspan="1"><p class="p1 c3"><span class="c1">+1 / -1</span></p></td>
-
-
-    </tr>
-    </tbody>
-</table>
-
-<p>The objective of the game is to correctly identify of the corresponding player, and avoid being identified by a bot. In order to prevent exclusive voabulary, we restrict acceptable words to a small, fixed vocabulary set. The game is initially populated with humans, and a single chatbot. There is an API where developers may register their own chatbots to compete in a ranking system. Conversations between human pairs can be used as a traditional dataset, while machines can evaluate new dialog policies on real human beings.</p>
-
-<div id="disqus_thread"></div>
 <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
-    /**
-     *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
-     *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
-    /*
-    var disqus_config = function () {
-    this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
-    this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
-    };
-    */
-    (function() { // DON'T EDIT BELOW THIS LINE
-        var d = document, s = d.createElement('script');
-        s.src = 'https://breandan.disqus.com/embed.js';
-        s.setAttribute('data-timestamp', +new Date());
-        (d.head || d.body).appendChild(s);
-    })();
+    ga('require', 'displayfeatures');
+    ga('create', 'UA-49839115-1', 'breandan.net');
+    ga('send', 'pageview');
 </script>
 
-<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<body>
 
-</div>
-
-<div class="related">
-  <h2>Related Posts</h2>
-  <ul class="related-posts">
-    
-      <li>
-        <h3>
-          <a href="/2017/02/02/trust-in-automation/">
-            Trust in Automation
-            <small>02 Feb 2017</small>
-          </a>
+<div class="container content">
+    <div class="masthead">
+        <h3 class="masthead-title">
+            <a href="/" title="Home">Breandan's Blog</a>
+            <small></small>
         </h3>
-      </li>
-    
-      <li>
-        <h3>
-          <a href="/2016/12/27/traveling-tales/">
-            Tales of a Traveling Twentysomething
-            <small>27 Dec 2016</small>
-          </a>
-        </h3>
-      </li>
-    
-      <li>
-        <h3>
-          <a href="/2016/04/13/equal-education-in-china/">
-            Democratizing Education in China
-            <small>13 Apr 2016</small>
-          </a>
-        </h3>
-      </li>
-    
-  </ul>
-</div>
-
-
-      <div class="footer">
-        <p>
-          &copy; 2018. All rights reserved.
-        </p>
-      </div>
     </div>
 
-    <!-- KaTeX -->
-    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/KaTeX/0.1.1/katex.min.css">
-    <script src="//cdnjs.cloudflare.com/ajax/libs/KaTeX/0.1.1/katex.min.js"></script>
+    <div class="post">
+        <h1 class="post-title">A Chatroulette-Style Turing Test</h1>
+        <span class="post-date">30 Jan 2018</span>
+        <p>Abstract: <em>We introduce a novel <a href="https://en.wikipedia.org/wiki/Chatroulette">Chatroulette</a>-style training environment using human-human, human-computer, and computer-computer <a href="https://en.wikipedia.org/wiki/Turing_test">Turing tests</a>. Players compete in a text-based <a href="https://en.wikipedia.org/wiki/Coordination_game">coordination game</a> whose goal is to correctly identify their correspondent and simultaneously avoid being identified. Players communicate through instant messages.</em></p>
 
-   <script type="text/javascript"
-      src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
-   </script>
-  </body>
+        <h2 id="introduction">Introduction</h2>
+
+        <p>The success of supervised learning (SL) is often attributed to the widespread availability of human-labeled <a href="https://en.wikipedia.org/wiki/List_of_datasets_for_machine_learning_research">datasets</a>. One such dataset, called <a href="http://www.image-net.org/">ImageNet</a> has fueled a tremendous amount of research in visual object recognition over the last few years. In addition to the statistical value of raw data, datasets provide a  benchmark for comparing the accuracy of various algorithms, and help promote <a href="www.cs.mcgill.ca/~jpineau/ICLR2018-ReproducibilityChallenge.html">reproducibility</a> in the field of machine learning. While SL datasets are often a surrogate for real world data, if <a href="https://en.wikipedia.org/wiki/Sampling_(statistics)">sampled</a> and <a href="https://en.wikipedia.org/wiki/Training,_test,_and_validation_sets">used</a> correctly, they can produce models that generalize extremely well in practice.</p>
+
+        <p>In reinforcement learning (RL), using static datasets for training is less efficient than SL. Rather than model the structure of an environment directly, RL agents typically learn a <a href="https://en.wikipedia.org/wiki/Reinforcement_learning#Criterion_of_optimality"><em>policy</em></a> for collecting rewards inside an environment. Given the high branching factor in most real-world settings, many RL datasets are gathered using a fixed policy and a limited set of trajectories through the environment. To learn good policies from these datasets, researchers can employ two broad strategies. They can try to improve a policy using trajectories from a existing policy (ex. medical trials).<sup id="fnref:1"><a href="#fn:1" class="footnote">1</a></sup> Or they can invest lots of time reconstruting an environment in silico (ex. driving simulators).</p>
+
+        <p>While these two approaches may be strictly necessary for safety-critical applications, they are imperfect approximations of real world environments. In environments where RL does not pose direct harm, we can train policies on real humans. At Google and Facebook, user <a href="https://research.google.com/pubs/pub36500.html">experimentation</a> is common, but often requires an intractable number of experimental trials to yield robust models. The data-hungry nature of such methods remains an obstacle towards the wider adoption of RL in smaller business applications, however there are <a href="https://scholar.google.ca/scholar?as_ylo=2014&amp;q=data+efficient+reinforcement+learning">several techniques</a> for reducing the number of trials required to obtain robust models in practice. One technique for learning policies quickly is to use <a href="https://blog.openai.com/deep-reinforcement-learning-from-human-preferences/">human preferences</a> to guide the policy search (Christiano et al., 2017).</p>
+
+        <h2 id="rules">Rules</h2>
+
+        <p>Let us consider the following two-player game:</p>
+
+        <ul>
+            <li>Players are randomly matched with an anonymous human or bot.</li>
+            <li>Players communicate in real time via text-based instant messages.</li>
+            <li>Players can end the match by predicting their correspondent’s identity.
+                <ul>
+                    <li>If their prediction is correct, the predictor gains points.</li>
+                    <li>If their prediction is incorrect, the predictor looses points.</li>
+                </ul>
+            </li>
+            <li>If a human predicts another human correctly, they both receive a reward.</li>
+            <li>If a bot correctly predicts a human, neither player receives a reward.</li>
+            <li>Players are matched according to skill in an ELO ranking.</li>
+        </ul>
+
+        <p>The payoff matrix for this game can be summarized as follows: <sup id="fnref:2"><a href="#fn:2" class="footnote">2</a></sup></p>
+
+        <head>
+            <style type="text/css">@import url('https://themes.googleusercontent.com/fonts/css?kit=lhDjYqiy3mZ0x6ROQEUoUw');
+            ol {
+                margin: 0;
+                padding: 0
+            }
+
+            table td, table th {
+                padding: 0
+            }
+
+            .c4 {
+                border-right-style: solid;
+                padding: 5pt 5pt 5pt 5pt;
+                border-bottom-color: #000000;
+                border-top-width: 1pt;
+                border-right-width: 1pt;
+                border-left-color: #000000;
+                vertical-align: middle;
+                border-right-color: #000000;
+                border-left-width: 1pt;
+                border-top-style: solid;
+                border-left-style: solid;
+                border-bottom-width: 1pt;
+                width: 150pt;
+                border-top-color: #000000;
+                border-bottom-style: solid
+            }
+
+            .c16 {
+                border-right-style: solid;
+                padding: 5pt 5pt 5pt 5pt;
+                border-bottom-color: #000000;
+                border-top-width: 1pt;
+                border-right-width: 1pt;
+                border-left-color: #000000;
+                vertical-align: middle;
+                border-right-color: #000000;
+                border-left-width: 1pt;
+                border-top-style: solid;
+                border-left-style: solid;
+                border-bottom-width: 1pt;
+                width: 172.8pt;
+                border-top-color: #000000;
+                border-bottom-style: solid
+            }
+
+            .c1 {
+                color: #000000;
+                font-weight: 400;
+                text-decoration: none;
+                vertical-align: baseline;
+                font-size: 14pt;
+                font-family: "Consolas";
+                font-style: normal
+            }
+
+            .c5 {
+                color: #000000;
+                font-weight: 400;
+                text-decoration: none;
+                vertical-align: baseline;
+                font-size: 14pt;
+                font-family: "Arial";
+                font-style: normal
+            }
+
+            .c10 {
+                padding-top: 0pt;
+                padding-bottom: 0pt;
+                line-height: 1.15;
+                orphans: 2;
+                widows: 2;
+                text-align: left;
+                height: 14pt
+            }
+
+            .c17 {
+                padding-top: 0pt;
+                padding-bottom: 0pt;
+                line-height: 1.15;
+                orphans: 2;
+                widows: 2;
+                text-align: left
+            }
+
+            .c0 {
+                padding-top: 0pt;
+                padding-bottom: 0pt;
+                line-height: 1.0;
+                text-align: center;
+                height: 14pt
+            }
+
+            .c7 {
+                padding-top: 0pt;
+                padding-bottom: 0pt;
+                line-height: 1.0;
+                text-align: left;
+                height: 14pt
+            }
+
+            .c12 {
+                color: #000000;
+                text-decoration: none;
+                vertical-align: baseline;
+                font-size: 14pt;
+                font-style: normal
+            }
+
+            .c3 {
+                padding-top: 0pt;
+                padding-bottom: 0pt;
+                line-height: 1.0;
+                text-align: center
+            }
+
+            .c15 {
+                margin-left: auto;
+                border-spacing: 0;
+                border-collapse: collapse;
+                margin-right: auto
+            }
+
+            .c14 {
+                padding-top: 0pt;
+                padding-bottom: 0pt;
+                line-height: 1.0;
+                text-align: left
+            }
+
+            .c13 {
+                max-width: 697.9pt;
+                padding: 72pt 72pt 72pt 72pt
+            }
+
+            .c2 {
+                font-weight: 400;
+                font-family: "Consolas"
+            }
+
+            .c11 {
+                height: 23pt
+            }
+
+            .c9 {
+                background-color: #ea9999
+            }
+
+            .c6 {
+                background-color: #ffffff
+            }
+
+            .c8 {
+                background-color: #9fc5e8
+            }
+
+            .p1 {
+                margin: 0;
+                color: #000000;
+                font-size: 14pt;
+                font-family: "Arial"
+            }
+            </style>
+        </head>
+
+        <table class="c15">
+            <tbody>
+            <tr class="c11">
+                <td class="c16" colspan="2" rowspan="2" style="background:linear-gradient(to top right,#eaecf0 49.5%,#aaa 49.5%,#aaa 50.5%,#eaecf0 50.5%);line-height:1;">
+                    <p class="p1 c7"><span class="c1"></span></p>
+                    <p class="p1" style="text-align:right;"><span class="c2">Player B</span></p>
+                    <p class="p1" style="text-align:left;"><span class="c2">&nbsp;&nbsp;&nbsp;Player A</span></p></td>
+                <td class="c9 c16" colspan="1" rowspan="2"><p class="p1 c3"><span class="c2 c12">Human</span></p></td>
+                <td class="c9 c16" colspan="1" rowspan="2"><p class="p1 c3"><span class="c2 c12">Bot</span></p></td></tr>
+            <tr class="c11"></tr>
+            <tr class="c11">
+                <td class="c4 c8" colspan="1" rowspan="2"><p class="p1 c3"><span class="c12 c2">Human</span></p></td>
+                <td class="c4" colspan="1" rowspan="1"><p class="p1 c3"><span class="c1">“B is Human”</span></p></td>
+                <td class="c4" colspan="1" rowspan="1"><p class="p1 c3"><span class="c2">++ / ++</span></p></td>
+                <td class="c4" colspan="1" rowspan="1"><p class="p1 c3"><span class="c2 c6">-- / ++</span></p></td>
+            </tr>
+            <tr class="c11">
+                <td class="c4" colspan="1" rowspan="1"><p class="p1 c3"><span class="c1">“B is a Bot”</span></p></td>
+                <td class="c4" colspan="1" rowspan="1"><p class="p1 c3"><span class="c2 c6">-- / --</span></p></td>
+                <td class="c4" colspan="1" rowspan="1"><p class="p1 c3"><span class="c1">++ / --</span></p></td>
+            </tr>
+            <tr class="c11">
+                <td class="c4 c8" colspan="1" rowspan="2"><p class="p1 c3"><span class="c12 c2">Bot </span></p></td>
+                <td class="c4" colspan="1" rowspan="1"><p class="p1 c3"><span class="c1">“B is Human”</span></p></td>
+                <td class="c4" colspan="1" rowspan="1"><p class="p1 c3"><span class="c1">++ / -</span></p></td>
+                <td class="c4" colspan="1" rowspan="1"><p class="p1 c3"><span class="c1">- / +</span></p></td>
+            </tr>
+            <tr class="c11">
+                <td class="c4" colspan="1" rowspan="1"><p class="p1 c3"><span class="c1">“B is a Bot”</span></p></td>
+                <td class="c4" colspan="1" rowspan="1"><p class="p1 c3"><span class="c1">-- / --</span></p></td>
+                <td class="c4" colspan="1" rowspan="1"><p class="p1 c3"><span class="c1">+ / -</span></p></td>
+            </tr>
+            </tbody>
+        </table>
+
+        <p>The relative reward is not specified here, however we can imagine various reward settings based on various factors, such as sentence length, unique vocabulary, number of dialog exchanges, or human score (ie. the number of times the player has been rated by humans as human). Such a mechanism would serve to encourage novel conversations, and penalize formulaic ones.</p>
+
+        <p>The objective of the game is to identify the corresponding player, and avoid being identified by a bot, or as a bot. In order to prevent abuse<sup id="fnref:3"><a href="#fn:3" class="footnote">3</a></sup> and to create a level playing field, we restrict valid dialog to a small, fixed vocabulary<sup id="fnref:4"><a href="#fn:4" class="footnote">4</a></sup> for both players. This restriction can be relaxed as players gain points.</p>
+
+        <p>The game has two important features:</p>
+
+        <ul>
+            <li>Immediate reinforcement: the game penalizes players immediately after a bad response, and rewards players when the other player responds. This structure makes credit assignment significantly easier.</li>
+            <li>Brevity: each player is encouraged to identify the other player before being identified. The winning strategy is to write succinctly, without divulging too much information that might compromise one’s identity. Brevity is key.</li>
+        </ul>
+
+        <h2 id="technical-details">Technical details</h2>
+
+        <p>The game is initially populated with humans, and a small set of chat bots. There is an API where developers may register their own chatbots to compete in a leaderboard-style ranking. Conversations are to be collected and hosted as a traditional supervised learning dataset.</p>
+
+        <p>Due to the limited number of human players and the (potentially) unlimited number of bots, there must be a rate limit on the number of games each bot is allowed to play, simultaneously<sup id="fnref:5"><a href="#fn:5" class="footnote">5</a></sup> and on a daily basis. Furthermore, once the number of bots grows, the platform must allocate humans to bots in a way that matches humans and bots evenly, and ensures each participant competes with an equal number of humans and bots. The details of this allocation problem remains to be discussed.</p>
+
+        <h2 id="variations">Variations</h2>
+
+        <p>If we consider messages of unlimited character length, the space of valid conversations would make sampling impossible. Even restricting message length and vocabulary size, the game would still require an inaccessible amount of human input for training. One way to reduce the complexity, might be introducing “forums” with different criteria on length, content and structure. For example, we might consider games of the following format:</p>
+
+        <ul>
+            <li>Player A asks a question of length N.</li>
+            <li>Player B is allowed a one-word reply.</li>
+        </ul>
+
+        <p><em>Special thanks to <a href="http://koustuvsinha.github.io/">Koustuv Sinha</a> for suggesting numerous helpful improvements.</em></p>
+
+        <h2 id="footnotes">Footnotes</h2>
+
+        <div class="footnotes">
+            <ol>
+                <li id="fn:1">
+                    <p>This requires agents to learn new policies offline, or “off-policy”. <a href="#fnref:1" class="reversefootnote">&#8617;</a></p>
+                </li>
+                <li id="fn:2">
+                    <p>Relative rewards and penalties can be tuned to prevent score “gaming”. <a href="#fnref:2" class="reversefootnote">&#8617;</a></p>
+                </li>
+                <li id="fn:3">
+                    <p>Abusive behavior is common in anonymous online chat (ex. <a href="https://en.wikipedia.org/wiki/Tay_(bot)">Microsoft Tay</a>). <a href="#fnref:3" class="reversefootnote">&#8617;</a></p>
+                </li>
+                <li id="fn:4">
+                    <p>Human players could type using a <a href="https://en.wikipedia.org/wiki/Predictive_text">predictive keyboard</a> with a word whitelist. <a href="#fnref:4" class="reversefootnote">&#8617;</a></p>
+                </li>
+                <li id="fn:5">
+                    <p>Consider the scenario where a cheating bot plays two humans at once, and simply copies responses between their conversations. We can prevent this (and the similar <a href="https://en.wikipedia.org/wiki/The_Turk">Mechanical Turk</a> exploit) by requiring bots to submit their response immediately, and wait for a predetermined delay to post the reply, so as to avoid arousing suspicion based on typing speed. <a href="#fnref:5" class="reversefootnote">&#8617;</a></p>
+                </li>
+            </ol>
+        </div>
+
+    </div>
+
+    <div class="related">
+        <h2>Related Posts</h2>
+        <ul class="related-posts">
+
+            <li>
+                <h3>
+                    <a href="/2017/02/02/trust-in-automation/">
+                        Trust in Automation
+                        <small>02 Feb 2017</small>
+                    </a>
+                </h3>
+            </li>
+
+            <li>
+                <h3>
+                    <a href="/2016/12/27/traveling-tales/">
+                        Tales of a Traveling Twentysomething
+                        <small>27 Dec 2016</small>
+                    </a>
+                </h3>
+            </li>
+
+            <li>
+                <h3>
+                    <a href="/2016/04/13/equal-education-in-china/">
+                        Democratizing Education in China
+                        <small>13 Apr 2016</small>
+                    </a>
+                </h3>
+            </li>
+
+        </ul>
+    </div>
+
+
+    <div class="footer">
+        <p>
+            &copy; 2018. All rights reserved.
+        </p>
+    </div>
+</div>
+</body>
 </html>
