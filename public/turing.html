@@ -104,15 +104,15 @@
     <div class="post">
         <h1 class="post-title">A Chatroulette-Style Turing Test</h1>
         <span class="post-date">30 Jan 2018</span>
-        <p>Abstract: <em>We introduce a novel <a href="https://en.wikipedia.org/wiki/Chatroulette">Chatroulette</a>-style training environment using human-human, human-computer, and computer-computer <a href="https://en.wikipedia.org/wiki/Turing_test">Turing tests</a>. Players compete in a text-based <a href="https://en.wikipedia.org/wiki/Coordination_game">coordination game</a> whose goal is to correctly identify their correspondent and simultaneously avoid being identified. Players communicate through instant messages.</em></p>
+        <p>Abstract: <em>We suggest a novel <a href="https://en.wikipedia.org/wiki/Chatroulette">Chatroulette</a>-style training environment using human-human, human-computer, and computer-computer <a href="https://en.wikipedia.org/wiki/Turing_test">Turing tests</a>. Players compete in a text-based <a href="https://en.wikipedia.org/wiki/Coordination_game">coordination game</a> whose goal is to correctly identify their correspondent and simultaneously avoid being identified. Players communicate through instant messages.</em></p>
 
         <h2 id="introduction">Introduction</h2>
 
-        <p>The success of supervised learning (SL) is often attributed to the widespread availability of human-labeled <a href="https://en.wikipedia.org/wiki/List_of_datasets_for_machine_learning_research">datasets</a>. One such dataset, called <a href="http://www.image-net.org/">ImageNet</a> has fueled a tremendous amount of research in visual object recognition over the last few years. In addition to the statistical value of raw data, datasets provide a  benchmark for comparing the accuracy of various algorithms, and help promote <a href="www.cs.mcgill.ca/~jpineau/ICLR2018-ReproducibilityChallenge.html">reproducibility</a> in the field of machine learning. While SL datasets are often a surrogate for real world data, if <a href="https://en.wikipedia.org/wiki/Sampling_(statistics)">sampled</a> and <a href="https://en.wikipedia.org/wiki/Training,_test,_and_validation_sets">used</a> correctly, they can produce models that generalize extremely well in practice.</p>
+        <p>The success of supervised learning (SL) is often attributed to the widespread availability of human-labeled <a href="https://en.wikipedia.org/wiki/List_of_datasets_for_machine_learning_research">datasets</a>. One such dataset, called <a href="http://www.image-net.org/">ImageNet</a> has fueled a tremendous amount of research in visual object recognition over the last few years. In addition to the statistical value of raw data, datasets provide a benchmark for comparing the accuracy of various algorithms, and help promote <a href="www.cs.mcgill.ca/~jpineau/ICLR2018-ReproducibilityChallenge.html">reproducibility</a> in the field of machine learning. While SL datasets are often a surrogate for real world data, if <a href="https://en.wikipedia.org/wiki/Sampling_(statistics)">sampled</a> and <a href="https://en.wikipedia.org/wiki/Training,_test,_and_validation_sets">used</a> correctly, they can produce models that generalize extremely well in practice.</p>
 
-        <p>In reinforcement learning (RL), using static datasets for training is less efficient than SL. Rather than model the structure of an environment directly, RL agents typically learn a <a href="https://en.wikipedia.org/wiki/Reinforcement_learning#Criterion_of_optimality"><em>policy</em></a> for collecting rewards inside an environment. Given the high branching factor in most real-world settings, many RL datasets are gathered using a fixed policy and a limited set of trajectories through the environment. To learn good policies from these datasets, researchers can employ two broad strategies. They can try to improve a policy using trajectories from a existing policy (ex. medical trials).<sup id="fnref:1"><a href="#fn:1" class="footnote">1</a></sup> Or they can invest lots of time reconstruting an environment in silico (ex. driving simulators).</p>
+        <p>In reinforcement learning (RL), using static datasets for training is less efficient than SL. Rather than model the structure of an environment directly, RL agents typically learn a <a href="https://en.wikipedia.org/wiki/Reinforcement_learning#Criterion_of_optimality"><em>policy</em></a> for collecting rewards inside an environment. Given the high branching factor in most real-world settings, many RL datasets are gathered using a fixed policy and a limited set of trajectories through the environment. To learn policies from static datasets, researchers can employ two broad strategies. They can try to improve a policy using trajectories from a existing policy (ex. medical trials).<sup id="fnref:1"><a href="#fn:1" class="footnote">1</a></sup> Or they can invest lots of time reconstructing an environment in silico (ex. driving simulators).</p>
 
-        <p>While these two approaches may be strictly necessary for safety-critical applications, they are imperfect approximations of real world environments. In environments where RL does not pose direct harm, we can train policies on real humans. At Google and Facebook, user <a href="https://research.google.com/pubs/pub36500.html">experimentation</a> is common, but often requires an intractable number of experimental trials to yield robust models. The data-hungry nature of such methods remains an obstacle towards the wider adoption of RL in smaller business applications, however there are <a href="https://scholar.google.ca/scholar?as_ylo=2014&amp;q=data+efficient+reinforcement+learning">several techniques</a> for reducing the number of trials required to obtain robust models in practice. One technique for learning policies quickly is to use <a href="https://blog.openai.com/deep-reinforcement-learning-from-human-preferences/">human preferences</a> to guide the policy search (Christiano et al., 2017).</p>
+        <p>While these two approaches may be strictly necessary for safety-critical applications, they are imperfect approximations of real world environments. In environments where RL does not pose direct harm, we can train policies on real humans. At Google and Facebook, user <a href="https://research.google.com/pubs/pub36500.html">experimentation</a> is common, but often requires an intractable number of experimental trials to yield robust models. The data-hungry nature of such methods remains an obstacle towards the wider adoption of RL in many smaller applications, however there are <a href="https://scholar.google.ca/scholar?as_ylo=2014&amp;q=data+efficient+reinforcement+learning">several techniques</a> for reducing the number of trials required to obtain robust models in practice. One technique for learning policies quickly is to use <a href="https://blog.openai.com/deep-reinforcement-learning-from-human-preferences/">human preferences</a> to guide the policy search (Christiano et al., 2017).</p>
 
         <h2 id="rules">Rules</h2>
 
@@ -120,7 +120,7 @@
 
         <ul>
             <li>Players are randomly matched with an anonymous human or bot.</li>
-            <li>Players communicate in real time via text-based instant messages.</li>
+            <li>Players can communicate in real time via text-based instant messages.</li>
             <li>Players can end the match by predicting their correspondent’s identity.
                 <ul>
                     <li>If their prediction is correct, the predictor gains points.</li>
@@ -335,31 +335,55 @@
             </tbody>
         </table>
 
-        <p>The relative reward is not specified here, however we can imagine various reward settings based on various factors, such as sentence length, unique vocabulary, number of dialog exchanges, or human score (ie. the number of times the player has been rated by humans as human). Such a mechanism would serve to encourage novel conversations, and penalize formulaic ones.</p>
+        <p>The relative reward is not specified here, although we can imagine different reward settings based on various factors, such as sentence length, unique vocabulary, number of dialog exchanges, or human score (ie. the number of times the player has been rated by humans as human). Such a mechanism might serve to encourage novel conversations, or penalize formulaic ones.</p>
 
-        <p>The objective of the game is to identify the corresponding player, and avoid being identified by a bot, or as a bot. In order to prevent abuse<sup id="fnref:3"><a href="#fn:3" class="footnote">3</a></sup> and to create a level playing field, we restrict valid dialog to a small, fixed vocabulary<sup id="fnref:4"><a href="#fn:4" class="footnote">4</a></sup> for both players. This restriction can be relaxed as players gain points.</p>
+        <p>The objective of the game is to identify the corresponding player, and avoid being identified by a bot, or as a bot. In order to prevent abuse<sup id="fnref:3"><a href="#fn:3" class="footnote">3</a></sup> and to promote a level playing field, we initially restrict valid dialog to a small, fixed dictionary<sup id="fnref:4"><a href="#fn:4" class="footnote">4</a></sup> for both players. Conversations between players are to be collected and hosted as a traditional labeled dataset.</p>
 
         <p>The game has two important features:</p>
 
         <ul>
-            <li>Immediate reinforcement: the game penalizes players immediately after a bad response, and rewards players when the other player responds. This structure makes credit assignment significantly easier.</li>
-            <li>Brevity: each player is encouraged to identify the other player before being identified. The winning strategy is to write succinctly, without divulging too much information that might compromise one’s identity. Brevity is key.</li>
+            <li><em>Immediate reinforcement</em>: The game penalizes players immediately after a poor response, and implicitly rewards players when the correspondent responds. This property makes credit assignment significantly easier.</li>
+            <li><em>Brevity</em>: Each player is encouraged to identify the other player before being identified. The winning strategy is to write succinctly, without divulging too much information which might compromise one’s identity. Brevity is key.</li>
         </ul>
 
-        <h2 id="technical-details">Technical details</h2>
+        <h2 id="the-audition-phase">The audition phase</h2>
 
-        <p>The game is initially populated with humans, and a small set of chat bots. There is an API where developers may register their own chatbots to compete in a leaderboard-style ranking. Conversations are to be collected and hosted as a traditional supervised learning dataset.</p>
+        <p>The game is initially populated with humans, and a small set of bots. There is an API where developers may register their own chatbots to compete in a leaderboard-style ranking, and a publicly downloadable training set for developers to train new bots.</p>
 
-        <p>Due to the limited number of human players and the (potentially) unlimited number of bots, there must be a rate limit on the number of games each bot is allowed to play, simultaneously<sup id="fnref:5"><a href="#fn:5" class="footnote">5</a></sup> and on a daily basis. Furthermore, once the number of bots grows, the platform must allocate humans to bots in a way that matches humans and bots evenly, and ensures each participant competes with an equal number of humans and bots. The details of this allocation problem remains to be discussed.</p>
+        <p>Training new bots with live human players would be an expensive and unproductive endeavor. Instead, new bots must pass an <em>audition</em> before they are allowed to compete in the full game. We evaluate rookie bots using a series of trial games with increasing difficulty.</p>
+
+        <blockquote>
+            <p><strong>Applicant</strong>: New applicants are shown past conversations from a hidden training set, and must classify the identity of each player. If they do not pass a minimum accuracy threshold, they are frozen for a period of time to avoid gaming the test.</p>
+        </blockquote>
+
+        <blockquote>
+            <p><strong>Rookie</strong>: Rookie bots are placed in a bot-only league, where they are allowed to converse with approved bots on the platform<sup id="fnref:5"><a href="#fn:5" class="footnote">5</a></sup> If the corresponding bot identifies the rookie player in a small number of turns, the rookie looses points. If they are unable to identify the rookie after a fixed number of turns, the rookie wins. After passing a certain number of conversations undetected, rookies proceed to novice.</p>
+        </blockquote>
+
+        <blockquote>
+            <p><strong>Novice</strong>: Novice bots are allowed to compete in the full game (ie. with live humans) on a trial basis, possibly for 1000 conversations. If they win to loss ratio falls below a certain amount, they are downgraded, and must retake the rookie test. If novices fail this test several times consecutively, they are disqualified for a longer period of time.</p>
+        </blockquote>
+
+        <blockquote>
+            <p><strong>Full player</strong>: Once bots graduate from the audition, they are allowed to compete with no restrictions except a API rate limit.<sup id="fnref:6"><a href="#fn:6" class="footnote">6</a></sup></p>
+        </blockquote>
+
+        <p>If a bot is discovered cheating<sup id="fnref:7"><a href="#fn:7" class="footnote">7</a></sup> (for example, by opening multiple accounts or colluding with other bots), their API token is to be revoked and their public record wiped from the leaderboard. Past conversations with disqualified bots are to be labeled as such.</p>
 
         <h2 id="variations">Variations</h2>
 
-        <p>If we consider messages of unlimited character length, the space of valid conversations would make sampling impossible. Even restricting message length and vocabulary size, the game would still require an inaccessible amount of human input for training. One way to reduce the complexity, might be introducing “forums” with different criteria on length, content and structure. For example, we might consider games of the following format:</p>
+        <p>If we consider messages of unlimited character length, the space of valid conversations would make sampling impossible. Even restricting message length and vocabulary size, the game would still require an inaccessible amount of human input for training. One way to reduce the overall amount of conversations, is by hosting “forums” with different criteria on length, content and structure. For example, we might consider role playing games of the following format:</p>
 
         <ul>
-            <li>Player A asks a question of length N.</li>
-            <li>Player B is allowed a one-word reply.</li>
+            <li><strong>Interrogator/Predictor</strong>: Is allowed to ask a question of length N.</li>
+            <li><strong>Suspect</strong>: Is allowed a one-word reply.</li>
         </ul>
+
+        <p>In such a scenario, players would choose which role they wish to play. In such a game, we can imagine different restrictions, where only the interrogator is allowed to predict the suspect’s identity, or vis versa. If a prediction is incorrect, the predictor looses, and the predicted wins. If a prediction is correct the predictor wins.</p>
+
+        <p>More generally, we can imagine soliciting community-submitted role-playing games, where bot developers can submit short descriptions for player roles, constraints on the conversation length and message format, and a payoff matrix for correct and incorrect player predictions. When an idea for a new discussion game gains enough player votes, we can host the game.</p>
+
+        <p>Furthermore, once there is a sufficiently large number of human players, we can begin to host forums where more complex, or domain-specific vocabulary is permitted. This would allow bots to compete in <a href="https://en.wikipedia.org/wiki/Subject_matter_expert_Turing_test">specialized Turing tests</a>, for example debate, flirting, self-help, and other forums with guidelines on content and conversation style.</p>
 
         <p><em>Special thanks to <a href="http://koustuvsinha.github.io/">Koustuv Sinha</a> for suggesting numerous helpful improvements.</em></p>
 
@@ -374,13 +398,19 @@
                     <p>Relative rewards and penalties can be tuned to prevent score “gaming”. <a href="#fnref:2" class="reversefootnote">&#8617;</a></p>
                 </li>
                 <li id="fn:3">
-                    <p>Abusive behavior is common in anonymous online chat (ex. <a href="https://en.wikipedia.org/wiki/Tay_(bot)">Microsoft Tay</a>). <a href="#fnref:3" class="reversefootnote">&#8617;</a></p>
+                    <p>Abusive dialogue is common in anonymous online chat (ex. <a href="https://en.wikipedia.org/wiki/Tay_(bot)">Microsoft Tay</a>). <a href="#fnref:3" class="reversefootnote">&#8617;</a></p>
                 </li>
                 <li id="fn:4">
-                    <p>Human players could type using a <a href="https://en.wikipedia.org/wiki/Predictive_text">predictive keyboard</a> with a word whitelist. <a href="#fnref:4" class="reversefootnote">&#8617;</a></p>
+                    <p>Human players are guided using a <a href="https://en.wikipedia.org/wiki/Predictive_text">predictive keyboard</a> with a whitelist of valid words. This restriction can be relaxed as bots become more sophisticated. <a href="#fnref:4" class="reversefootnote">&#8617;</a></p>
                 </li>
                 <li id="fn:5">
-                    <p>Consider the scenario where a cheating bot plays two humans at once, and simply copies responses between their conversations. We can prevent this (and the similar <a href="https://en.wikipedia.org/wiki/The_Turk">Mechanical Turk</a> exploit) by requiring bots to submit their response immediately, and wait for a predetermined delay to post the reply, so as to avoid arousing suspicion based on typing speed. <a href="#fnref:5" class="reversefootnote">&#8617;</a></p>
+                    <p>During this phase, rookie bots are <em>only</em> allowed to send messages, and not allowed to end the conversation by predicting their correspondent. <a href="#fnref:5" class="reversefootnote">&#8617;</a></p>
+                </li>
+                <li id="fn:6">
+                    <p>Due to the potential imbalance between the number of humans and bots, there is a <em>matchmaking problem</em>. It is necessary to impose a rate limit on the number of games each bot is allowed to play, both simultaneously and on a daily basis. Furthermore, once the number of bots grows, the platform must allocate humans to bots in a such a way that humans and bots are matched evenly throughout the day, and ensures each participant competes with an equal number of humans and bots. The details of the matchmaking problem are not discussed here. <a href="#fnref:6" class="reversefootnote">&#8617;</a></p>
+                </li>
+                <li id="fn:7">
+                    <p>Consider the scenario where a cheating bot plays two humans at once, and simply copies responses between their conversations. We can prevent this (and the similar <a href="https://en.wikipedia.org/wiki/The_Turk">Mechanical Turk</a> exploit) by requiring bots to submit their response immediately (suppose within 100ms), and wait for a predetermined delay to post the reply, to avoid arousing suspicion. <a href="#fnref:7" class="reversefootnote">&#8617;</a></p>
                 </li>
             </ol>
         </div>
