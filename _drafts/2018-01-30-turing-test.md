@@ -3,7 +3,7 @@ layout: post
 title: A Chatroulette-Style Turing Test
 ---
 
-Abstract: *We introduce a novel [Chatroulette](https://en.wikipedia.org/wiki/Chatroulette)-style training environment using human-human, human-computer, and computer-computer [Turing tests](https://en.wikipedia.org/wiki/Turing_test). Players compete in a text-based [coordination game](https://en.wikipedia.org/wiki/Coordination_game) whose goal is to correctly identify their correspondent and simultaneously avoid being identified. Players communicate through instant messages.*
+Abstract: *We introduce a novel [Chatroulette](https://en.wikipedia.org/wiki/Chatroulette)-style RL training environment using human-human, human-computer, and computer-computer [Turing tests](https://en.wikipedia.org/wiki/Turing_test). Players compete in a text-based [coordination game](https://en.wikipedia.org/wiki/Coordination_game) whose goal is to correctly identify their correspondent and simultaneously avoid being identified. Players communicate through instant messages.*
 
 ## Introduction
 
