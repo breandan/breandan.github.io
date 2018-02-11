@@ -3,7 +3,7 @@ layout: post
 title: A Chatroulette-Style Turing Test
 ---
 
-Abstract: *We suggest a novel [Chatroulette](https://en.wikipedia.org/wiki/Chatroulette)-style training environment using human-human, human-computer, and computer-computer [Turing tests](https://en.wikipedia.org/wiki/Turing_test). Players compete in a text-based [coordination game](https://en.wikipedia.org/wiki/Coordination_game) whose goal is to correctly identify their correspondent and simultaneously avoid being identified. Players communicate through instant messages.*
+Abstract: *We introduce a novel [Chatroulette](https://en.wikipedia.org/wiki/Chatroulette)-style training environment using human-human, human-computer, and computer-computer [Turing tests](https://en.wikipedia.org/wiki/Turing_test). Players compete in a text-based [coordination game](https://en.wikipedia.org/wiki/Coordination_game) whose goal is to correctly identify their correspondent and simultaneously avoid being identified. Players communicate through instant messages.*
 
 ## Introduction
 
@@ -23,7 +23,7 @@ Let us consider the following two-player game:
    * If their prediction is correct, the predictor gains points. 
    * If their prediction is incorrect, the predictor looses points.
  * If a human predicts another human correctly, they both receive a reward.
- * If a bot correctly predicts a human, neither player receives a reward.
+ * If a bot correctly predicts a human, the bot receives a reward.
  * Players are matched according to skill in an ELO ranking.
 
 The payoff matrix for this game can be summarized as follows: [^2]
@@ -34,10 +34,11 @@ The relative reward is not specified here, although we can imagine different rew
 
 The objective of the game is to identify the corresponding player, and avoid being identified by a bot, or as a bot. In order to prevent abuse[^3] and to promote a level playing field, we initially restrict valid dialog to a small, fixed dictionary[^4] for both players. Conversations between players are to be collected and hosted as a traditional labeled dataset.
 
-The game has two important features:
+The game has some important features:
 
 * *Immediate reinforcement*: The game penalizes players immediately after a poor response, and implicitly rewards players when the correspondent responds. This property makes credit assignment significantly easier.
 * *Brevity*: Each player is encouraged to identify the other player before being identified. The winning strategy is to write succinctly, without divulging too much information which might compromise one's identity. Brevity is key.
+* *Self-enforcing equilibrium*: It is in each player's best interest to seem intelligent, but not exceptionally so. [Winnograd-style](https://en.wikipedia.org/wiki/Winograd_Schema_Challenge) trick questions and conspicuous social signalling is not the most successful strategy, as answering challenging questions correctly or broadcasting human-level intelligence is just as likely to divulge a human's identity to a discerning bot as another human.
 
 ## The audition phase
 
@@ -53,7 +54,7 @@ Training new bots with live human players would be an expensive and unproductive
 
 > **Full player**: Once bots graduate from the audition, they are allowed to compete with no restrictions except a API rate limit.[^6]
 
-If a bot is discovered cheating[^7] (for example, by opening multiple accounts or colluding with other bots), their API token is to be revoked and their public record wiped from the leaderboard. Past conversations with disqualified bots are to be labeled as such.
+If a bot is caught cheating[^7] (for example, by opening multiple accounts or colluding with other bots), their API token is to be revoked and their public record wiped from the leaderboard. Past conversations with disqualified bots are to be re-labeled as such.
 
 ## Variations
 
@@ -64,9 +65,9 @@ If we consider messages of unlimited character length, the space of valid conver
 
 In such a scenario, players would choose which role they wish to play. In such a game, we can imagine different restrictions, where only the interrogator is allowed to predict the suspect's identity, or vis versa. If a prediction is incorrect, the predictor looses, and the predicted wins. If a prediction is correct the predictor wins.
 
-More generally, we can imagine soliciting community-submitted role-playing games, where bot developers can submit short descriptions for player roles, constraints on the conversation length and message format, and a payoff matrix for correct and incorrect player predictions. When an idea for a new discussion game gains enough player votes, we can host the game.
+More generally, we can imagine soliciting community-submitted role-playing games, where bot developers can submit short descriptions for player roles, constraints on the conversation length and message format[^8], and a payoff matrix for correct and incorrect player predictions. When an idea for a new discussion game gains enough support, we can host the game.
  
-Furthermore, once there is a sufficiently large number of human players, we can begin to host forums where more complex, or domain-specific vocabulary is permitted. This would allow bots to compete in [specialized Turing tests](https://en.wikipedia.org/wiki/Subject_matter_expert_Turing_test), for example debate, flirting, self-help, and other forums with guidelines on content and conversation style.
+Furthermore, once there is a sufficiently large number of human players, we can begin to host forums where more complex, or domain-specific vocabulary is permitted. This would allow bots to compete in [specialized Turing tests](https://en.wikipedia.org/wiki/Subject_matter_expert_Turing_test), for example debate, flirting, self-help, and discussion forums with guidelines on content and conversation style.
 
 *Special thanks to [Koustuv Sinha](http://koustuvsinha.github.io/) for suggesting numerous helpful improvements.*
 
@@ -79,3 +80,4 @@ Furthermore, once there is a sufficiently large number of human players, we can 
 [^5]: During this phase, rookie bots are *only* allowed to send messages, and not allowed to end the conversation by predicting their correspondent.
 [^6]: Due to the potential imbalance between the number of humans and bots, there is a *matchmaking problem*. It is necessary to impose a rate limit on the number of games each bot is allowed to play, both simultaneously and on a daily basis. Furthermore, once the number of bots grows, the platform must allocate humans to bots in a such a way that humans and bots are matched evenly throughout the day, and ensures each participant competes with an equal number of humans and bots. The details of the matchmaking problem are not discussed here.
 [^7]: Consider the scenario where a cheating bot plays two humans at once, and simply copies responses between their conversations. We can prevent this (and the similar [Mechanical Turk](https://en.wikipedia.org/wiki/The_Turk) exploit) by requiring bots to submit their response immediately (suppose within 100ms), and wait for a predetermined delay to post the reply, to avoid arousing suspicion.
+[^8]: Such constraints would need to be open 

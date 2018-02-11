@@ -104,7 +104,7 @@
     <div class="post">
         <h1 class="post-title">A Chatroulette-Style Turing Test</h1>
         <span class="post-date">30 Jan 2018</span>
-        <p>Abstract: <em>We suggest a novel <a href="https://en.wikipedia.org/wiki/Chatroulette">Chatroulette</a>-style training environment using human-human, human-computer, and computer-computer <a href="https://en.wikipedia.org/wiki/Turing_test">Turing tests</a>. Players compete in a text-based <a href="https://en.wikipedia.org/wiki/Coordination_game">coordination game</a> whose goal is to correctly identify their correspondent and simultaneously avoid being identified. Players communicate through instant messages.</em></p>
+        <p>Abstract: <em>We introduce a novel <a href="https://en.wikipedia.org/wiki/Chatroulette">Chatroulette</a>-style training environment using human-human, human-computer, and computer-computer <a href="https://en.wikipedia.org/wiki/Turing_test">Turing tests</a>. Players compete in a text-based <a href="https://en.wikipedia.org/wiki/Coordination_game">coordination game</a> whose goal is to correctly identify their correspondent and simultaneously avoid being identified. Players communicate through instant messages.</em></p>
 
         <h2 id="introduction">Introduction</h2>
 
@@ -128,7 +128,7 @@
                 </ul>
             </li>
             <li>If a human predicts another human correctly, they both receive a reward.</li>
-            <li>If a bot correctly predicts a human, neither player receives a reward.</li>
+            <li>If a bot correctly predicts a human, the bot receives a reward.</li>
             <li>Players are matched according to skill in an ELO ranking.</li>
         </ul>
 
@@ -339,11 +339,12 @@
 
         <p>The objective of the game is to identify the corresponding player, and avoid being identified by a bot, or as a bot. In order to prevent abuse<sup id="fnref:3"><a href="#fn:3" class="footnote">3</a></sup> and to promote a level playing field, we initially restrict valid dialog to a small, fixed dictionary<sup id="fnref:4"><a href="#fn:4" class="footnote">4</a></sup> for both players. Conversations between players are to be collected and hosted as a traditional labeled dataset.</p>
 
-        <p>The game has two important features:</p>
+        <p>The game has some important features:</p>
 
         <ul>
             <li><em>Immediate reinforcement</em>: The game penalizes players immediately after a poor response, and implicitly rewards players when the correspondent responds. This property makes credit assignment significantly easier.</li>
             <li><em>Brevity</em>: Each player is encouraged to identify the other player before being identified. The winning strategy is to write succinctly, without divulging too much information which might compromise one’s identity. Brevity is key.</li>
+            <li><em>Self-enforcing equilibrium</em>: It is in each player’s best interest to seem intelligent, but not exceptionally so. <a href="https://en.wikipedia.org/wiki/Winograd_Schema_Challenge">Winnograd-style</a> trick questions and conspicuous social signalling is not the most successful strategy, as answering challenging questions correctly or broadcasting human-level intelligence is just as likely to divulge a human’s identity to a discerning bot as another human.</li>
         </ul>
 
         <h2 id="the-audition-phase">The audition phase</h2>
@@ -368,7 +369,7 @@
             <p><strong>Full player</strong>: Once bots graduate from the audition, they are allowed to compete with no restrictions except a API rate limit.<sup id="fnref:6"><a href="#fn:6" class="footnote">6</a></sup></p>
         </blockquote>
 
-        <p>If a bot is discovered cheating<sup id="fnref:7"><a href="#fn:7" class="footnote">7</a></sup> (for example, by opening multiple accounts or colluding with other bots), their API token is to be revoked and their public record wiped from the leaderboard. Past conversations with disqualified bots are to be labeled as such.</p>
+        <p>If a bot is caught cheating<sup id="fnref:7"><a href="#fn:7" class="footnote">7</a></sup> (for example, by opening multiple accounts or colluding with other bots), their API token is to be revoked and their public record wiped from the leaderboard. Past conversations with disqualified bots are to be re-labeled as such.</p>
 
         <h2 id="variations">Variations</h2>
 
@@ -381,9 +382,9 @@
 
         <p>In such a scenario, players would choose which role they wish to play. In such a game, we can imagine different restrictions, where only the interrogator is allowed to predict the suspect’s identity, or vis versa. If a prediction is incorrect, the predictor looses, and the predicted wins. If a prediction is correct the predictor wins.</p>
 
-        <p>More generally, we can imagine soliciting community-submitted role-playing games, where bot developers can submit short descriptions for player roles, constraints on the conversation length and message format, and a payoff matrix for correct and incorrect player predictions. When an idea for a new discussion game gains enough player votes, we can host the game.</p>
+        <p>More generally, we can imagine soliciting community-submitted role-playing games, where bot developers can submit short descriptions for player roles, constraints on the conversation length and message format<sup id="fnref:8"><a href="#fn:8" class="footnote">8</a></sup>, and a payoff matrix for correct and incorrect player predictions. When an idea for a new discussion game gains enough support, we can host the game.</p>
 
-        <p>Furthermore, once there is a sufficiently large number of human players, we can begin to host forums where more complex, or domain-specific vocabulary is permitted. This would allow bots to compete in <a href="https://en.wikipedia.org/wiki/Subject_matter_expert_Turing_test">specialized Turing tests</a>, for example debate, flirting, self-help, and other forums with guidelines on content and conversation style.</p>
+        <p>Furthermore, once there is a sufficiently large number of human players, we can begin to host forums where more complex, or domain-specific vocabulary is permitted. This would allow bots to compete in <a href="https://en.wikipedia.org/wiki/Subject_matter_expert_Turing_test">specialized Turing tests</a>, for example debate, flirting, self-help, and discussion forums with guidelines on content and conversation style.</p>
 
         <p><em>Special thanks to <a href="http://koustuvsinha.github.io/">Koustuv Sinha</a> for suggesting numerous helpful improvements.</em></p>
 
@@ -411,6 +412,9 @@
                 </li>
                 <li id="fn:7">
                     <p>Consider the scenario where a cheating bot plays two humans at once, and simply copies responses between their conversations. We can prevent this (and the similar <a href="https://en.wikipedia.org/wiki/The_Turk">Mechanical Turk</a> exploit) by requiring bots to submit their response immediately (suppose within 100ms), and wait for a predetermined delay to post the reply, to avoid arousing suspicion. <a href="#fnref:7" class="reversefootnote">&#8617;</a></p>
+                </li>
+                <li id="fn:8">
+                    <p>Such constraints would need to be open <a href="#fnref:8" class="reversefootnote">&#8617;</a></p>
                 </li>
             </ol>
         </div>
