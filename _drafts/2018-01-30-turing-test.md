@@ -30,7 +30,7 @@ The payoff matrix for this game can be summarized as follows: [^2]
 
 {% include payoff_matrix.html %}
 
-The relative reward is not specified here, although we can imagine different reward settings based on various factors, such as sentence length, unique vocabulary, number of dialog exchanges, or human score (ie. the number of times the player has been rated by humans as human). Such a mechanism might serve to encourage novel conversations, or penalize formulaic ones.
+Precise reward values are not specified here, although we can imagine variations based on contributing factors, such as sentence length, unique vocabulary, number of dialog exchanges, or human score (ie. the number of times the player has been rated by humans as human). Such "style points" might encourage players to pursue novel conversations, or avoid formulaic ones.
 
 The objective of the game is to identify the corresponding player, and avoid being identified by a bot, or as a bot. In order to prevent abuse[^3] and to promote a level playing field, we initially restrict valid dialog to a small, fixed dictionary[^4] for both players. Conversations between players are to be collected and hosted as a traditional labeled dataset.
 
