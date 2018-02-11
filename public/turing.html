@@ -344,14 +344,14 @@
         <ul>
             <li><em>Immediate reinforcement</em>: The game penalizes players immediately after a poor response, and implicitly rewards players when the correspondent responds. This property makes credit assignment significantly easier.</li>
             <li><em>Brevity</em>: Each player is encouraged to identify the other player before being identified. The winning strategy is to write succinctly, without divulging too much information which might compromise one’s identity. Brevity is key.</li>
-            <li><em>Self-enforcing equilibrium</em>: It is in each player’s best interest to seem intelligent, but not exceptionally so. <a href="https://en.wikipedia.org/wiki/Winograd_Schema_Challenge">Winnograd-style</a> trick questions and conspicuous social signalling is not the most successful strategy, as answering challenging questions correctly or broadcasting human-level intelligence is just as likely to divulge a human’s identity to a discerning bot as another human.</li>
+            <li><em>Self-enforcing equilibrium</em>: It is in each player’s interests to seem intelligent, but not exceptionally so. Employing <a href="https://en.wikipedia.org/wiki/Winograd_Schema_Challenge">Winnograd-style</a> questions and conspicuous signalling is not the most effective strategy, as answering challenging questions correctly or broadcasting human-level intelligence is just as likely to divulge a human’s identity to a discerning bot as another human.</li>
         </ul>
 
         <h2 id="the-audition-phase">The audition phase</h2>
 
         <p>The game is initially populated with humans, and a small set of bots. There is an API where developers may register their own chatbots to compete in a leaderboard-style ranking, and a publicly downloadable training set for developers to train new bots.</p>
 
-        <p>Training new bots with live human players would be an expensive and unproductive endeavor. Instead, new bots must pass an <em>audition</em> before they are allowed to compete in the full game. We evaluate rookie bots using a series of trial games with increasing difficulty.</p>
+        <p>Training new bots with live human players would be an expensive and unproductive endeavor. Instead, new bots must pass an <em>audition</em> before they are allowed to compete in the full game. We evaluate new bots on the platform using a series of trial games with increasing difficulty.</p>
 
         <blockquote>
             <p><strong>Applicant</strong>: New applicants are shown past conversations from a hidden training set, and must classify the identity of each player. If they do not pass a minimum accuracy threshold, they are frozen for a period of time to avoid gaming the test.</p>

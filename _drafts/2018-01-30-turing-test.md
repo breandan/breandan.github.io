@@ -38,7 +38,7 @@ The game has some important features:
 
 * *Immediate reinforcement*: The game penalizes players immediately after a poor response, and implicitly rewards players when the correspondent responds. This property makes credit assignment significantly easier.
 * *Brevity*: Each player is encouraged to identify the other player before being identified. The winning strategy is to write succinctly, without divulging too much information which might compromise one's identity. Brevity is key.
-* *Self-enforcing equilibrium*: It is in each player's best interest to seem intelligent, but not exceptionally so. [Winnograd-style](https://en.wikipedia.org/wiki/Winograd_Schema_Challenge) trick questions and conspicuous social signalling is not the most successful strategy, as answering challenging questions correctly or broadcasting human-level intelligence is just as likely to divulge a human's identity to a discerning bot as another human.
+* *Self-enforcing equilibrium*: It is in each player's interests to seem intelligent, but not exceptionally so. Employing [Winnograd-style](https://en.wikipedia.org/wiki/Winograd_Schema_Challenge) questions and conspicuous signalling is not the most effective strategy, as answering challenging questions correctly or broadcasting human-level intelligence is just as likely to divulge a human's identity to a discerning bot as another human.
 
 ## The audition phase
 
