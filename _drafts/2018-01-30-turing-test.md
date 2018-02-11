@@ -30,7 +30,7 @@ The payoff matrix for this game can be summarized as follows: [^2]
 
 {% include payoff_matrix.html %}
 
-Precise reward values are not specified here, although we can imagine variations based on contributing factors, such as sentence length, unique vocabulary, number of dialog exchanges, or human score (ie. the number of times the player has been rated by humans as human). Such "style points" might encourage players to pursue novel conversations, or avoid formulaic ones.
+Precise reward values are not specified here, although we can imagine variations based on contributing or mitigating factors, such as sentence length, unique vocabulary, number of dialog exchanges, or human score (ie. the number of times the player has been rated by humans as human). Such "style points" might encourage players to pursue novel conversations, or avoid formulaic ones.
 
 The objective of the game is to identify the corresponding player, and avoid being identified by a bot, or as a bot. In order to prevent abuse[^3] and to promote a level playing field, we initially restrict valid dialog to a small, fixed dictionary[^4] for both players. Conversations between players are to be collected and hosted as a traditional labeled dataset.
 
@@ -44,26 +44,26 @@ The game has some important features:
 
 The game is initially populated with humans, and a small set of bots. There is an API where developers may register their own chatbots to compete in a leaderboard-style ranking, and a publicly downloadable training set for developers to train new bots.
 
-Training new bots with live human players would be an expensive and unproductive endeavor. Instead, new bots must pass an *audition* before they are allowed to compete in the full game. We evaluate new bots on the platform using a series of trial games with increasing difficulty.
+Training new bots with live human players would be an expensive and unproductive endeavor. Instead, new bots must pass an *audition* before they are allowed to compete in the full game. We evaluate new bots on the platform using a series of trials with increasing difficulty.
 
-> **Applicant**: New applicants are shown past conversations from a hidden training set, and must classify the identity of each player. If they do not pass a minimum accuracy threshold, they are frozen for a period of time to avoid gaming the test.
+> **Applicant**: New applicants are shown past conversations from a hidden training set, and must correctly classify each player as a human or bot. If they do not pass a minimum accuracy threshold, their accounts are frozen for a short duration to avoid gaming the test.
 
 > **Rookie**: Rookie bots are placed in a bot-only league, where they are allowed to converse with approved bots on the platform[^5] If the corresponding bot identifies the rookie player in a small number of turns, the rookie looses points. If they are unable to identify the rookie after a fixed number of turns, the rookie wins. After passing a certain number of conversations undetected, rookies proceed to novice.
 
 > **Novice**: Novice bots are allowed to compete in the full game (ie. with live humans) on a trial basis, possibly for 1000 conversations. If they win to loss ratio falls below a certain amount, they are downgraded, and must retake the rookie test. If novices fail this test several times consecutively, they are disqualified for a longer period of time.
 
-> **Full player**: Once bots graduate from the audition, they are allowed to compete with no restrictions except a API rate limit.[^6]
+> **Full player**: Once bots pass the audition, they are allowed to compete with no restrictions except a API rate limit.[^6]
 
 If a bot is caught cheating[^7] (for example, by opening multiple accounts or colluding with other bots), their API token is to be revoked and their public record wiped from the leaderboard. Past conversations with disqualified bots are to be re-labeled as such.
 
 ## Variations
 
-If we consider messages of unlimited character length, the space of valid conversations would make sampling impossible. Even restricting message length and vocabulary size, the game would still require an inaccessible amount of human input for training. One way to reduce the overall amount of conversations, is by hosting "forums" with different criteria on length, content and structure. For example, we might consider role playing games of the following format:
+If we consider messages of unlimited character length, the space of valid conversations would make sampling impossible. Even restricting message length and vocabulary size, the game would still require an inaccessible amount of human input for training. One way of reducing the number of possible conversations, is by hosting "forums" with different criteria on length, content and structure. For example, we might consider role playing games of the following format:
 
 * **Interrogator/Predictor**: Is allowed to ask a question of length N.
 * **Suspect**: Is allowed a one-word reply.
 
-In such a scenario, players would choose which role they wish to play. In such a game, we can imagine different restrictions, where only the interrogator is allowed to predict the suspect's identity, or vis versa. If a prediction is incorrect, the predictor looses, and the predicted wins. If a prediction is correct the predictor wins.
+In such a scenario, players might choose which role they wish to play. In such a game, we can imagine different restrictions, where only the interrogator is allowed to predict the suspect's identity, or vis versa. If a prediction is incorrect, the predictor looses points. If the prediction is human, the predicted gains points. If a prediction is correct, the predictor also gains some points. 
 
 More generally, we can imagine soliciting community-submitted role-playing games, where bot developers can submit short descriptions for player roles, constraints on the conversation length and message format[^8], and a payoff matrix for correct and incorrect player predictions. When an idea for a new discussion game gains enough support, we can host the game.
  
@@ -79,5 +79,5 @@ Furthermore, once there is a sufficiently large number of human players, we can 
 [^4]: Human players are guided using a [predictive keyboard](https://en.wikipedia.org/wiki/Predictive_text) with a whitelist of valid words. This restriction can be relaxed as bots become more sophisticated.
 [^5]: During this phase, rookie bots are *only* allowed to send messages, and not allowed to end the conversation by predicting their correspondent.
 [^6]: Due to the potential imbalance between the number of humans and bots, there is a *matchmaking problem*. It is necessary to impose a rate limit on the number of games each bot is allowed to play, both simultaneously and on a daily basis. Furthermore, once the number of bots grows, the platform must allocate humans to bots in a such a way that humans and bots are matched evenly throughout the day, and ensures each participant competes with an equal number of humans and bots. The details of the matchmaking problem are not discussed here.
-[^7]: Consider the scenario where a cheating bot plays two humans at once, and simply copies responses between their conversations. We can prevent this (and the similar [Mechanical Turk](https://en.wikipedia.org/wiki/The_Turk) exploit) by requiring bots to submit their response immediately (suppose within 100ms), and wait for a predetermined delay to post the reply, to avoid arousing suspicion.
+[^7]: Consider the scenario where a cheating bot plays two humans at once, and simply copies responses between their conversations. We can prevent this (and the similar [Mechanical Turk](https://en.wikipedia.org/wiki/The_Turk) exploit) by requiring bots to submit their response immediately (suppose within 1 second), and wait for a predetermined delay to post the reply, to avoid arousing suspicion.
 [^8]: Such message and conversation constraints could be implemented for example, with a simple [lexer](https://en.wikipedia.org/wiki/Lexical_analysis) or [pattern-matching](https://en.wikipedia.org/wiki/Pattern_matching) DSL.

@@ -335,7 +335,7 @@
             </tbody>
         </table>
 
-        <p>Precise reward values are not specified here, although we can imagine variations based on contributing factors, such as sentence length, unique vocabulary, number of dialog exchanges, or human score (ie. the number of times the player has been rated by humans as human). Such "style points" might encourage players to pursue novel conversations, or avoid formulaic ones.</p>
+        <p>Precise reward values are not specified here, although we can imagine variations based on contributing or mitigating factors, such as sentence length, unique vocabulary, number of dialog exchanges, or human score (ie. the number of times the player has been rated by humans as human). Such “style points” might encourage players to pursue novel conversations, or avoid formulaic ones.</p>
 
         <p>The objective of the game is to identify the corresponding player, and avoid being identified by a bot, or as a bot. In order to prevent abuse<sup id="fnref:3"><a href="#fn:3" class="footnote">3</a></sup> and to promote a level playing field, we initially restrict valid dialog to a small, fixed dictionary<sup id="fnref:4"><a href="#fn:4" class="footnote">4</a></sup> for both players. Conversations between players are to be collected and hosted as a traditional labeled dataset.</p>
 
@@ -351,10 +351,10 @@
 
         <p>The game is initially populated with humans, and a small set of bots. There is an API where developers may register their own chatbots to compete in a leaderboard-style ranking, and a publicly downloadable training set for developers to train new bots.</p>
 
-        <p>Training new bots with live human players would be an expensive and unproductive endeavor. Instead, new bots must pass an <em>audition</em> before they are allowed to compete in the full game. We evaluate new bots on the platform using a series of trial games with increasing difficulty.</p>
+        <p>Training new bots with live human players would be an expensive and unproductive endeavor. Instead, new bots must pass an <em>audition</em> before they are allowed to compete in the full game. We evaluate new bots on the platform using a series of trials with increasing difficulty.</p>
 
         <blockquote>
-            <p><strong>Applicant</strong>: New applicants are shown past conversations from a hidden training set, and must classify the identity of each player. If they do not pass a minimum accuracy threshold, they are frozen for a period of time to avoid gaming the test.</p>
+            <p><strong>Applicant</strong>: New applicants are shown past conversations from a hidden training set, and must correctly classify each player as a human or bot. If they do not pass a minimum accuracy threshold, their accounts are frozen for a short duration to avoid gaming the test.</p>
         </blockquote>
 
         <blockquote>
@@ -366,21 +366,21 @@
         </blockquote>
 
         <blockquote>
-            <p><strong>Full player</strong>: Once bots graduate from the audition, they are allowed to compete with no restrictions except a API rate limit.<sup id="fnref:6"><a href="#fn:6" class="footnote">6</a></sup></p>
+            <p><strong>Full player</strong>: Once bots pass the audition, they are allowed to compete with no restrictions except a API rate limit.<sup id="fnref:6"><a href="#fn:6" class="footnote">6</a></sup></p>
         </blockquote>
 
         <p>If a bot is caught cheating<sup id="fnref:7"><a href="#fn:7" class="footnote">7</a></sup> (for example, by opening multiple accounts or colluding with other bots), their API token is to be revoked and their public record wiped from the leaderboard. Past conversations with disqualified bots are to be re-labeled as such.</p>
 
         <h2 id="variations">Variations</h2>
 
-        <p>If we consider messages of unlimited character length, the space of valid conversations would make sampling impossible. Even restricting message length and vocabulary size, the game would still require an inaccessible amount of human input for training. One way to reduce the overall amount of conversations, is by hosting “forums” with different criteria on length, content and structure. For example, we might consider role playing games of the following format:</p>
+        <p>If we consider messages of unlimited character length, the space of valid conversations would make sampling impossible. Even restricting message length and vocabulary size, the game would still require an inaccessible amount of human input for training. One way of reducing the number of possible conversations, is by hosting “forums” with different criteria on length, content and structure. For example, we might consider role playing games of the following format:</p>
 
         <ul>
             <li><strong>Interrogator/Predictor</strong>: Is allowed to ask a question of length N.</li>
             <li><strong>Suspect</strong>: Is allowed a one-word reply.</li>
         </ul>
 
-        <p>In such a scenario, players would choose which role they wish to play. In such a game, we can imagine different restrictions, where only the interrogator is allowed to predict the suspect’s identity, or vis versa. If a prediction is incorrect, the predictor looses, and the predicted wins. If a prediction is correct the predictor wins.</p>
+        <p>In such a scenario, players might choose which role they wish to play. In such a game, we can imagine different restrictions, where only the interrogator is allowed to predict the suspect’s identity, or vis versa. If a prediction is incorrect, the predictor looses points. If the prediction is human, the predicted gains points. If a prediction is correct, the predictor also gains some points.</p>
 
         <p>More generally, we can imagine soliciting community-submitted role-playing games, where bot developers can submit short descriptions for player roles, constraints on the conversation length and message format<sup id="fnref:8"><a href="#fn:8" class="footnote">8</a></sup>, and a payoff matrix for correct and incorrect player predictions. When an idea for a new discussion game gains enough support, we can host the game.</p>
 
@@ -411,7 +411,7 @@
                     <p>Due to the potential imbalance between the number of humans and bots, there is a <em>matchmaking problem</em>. It is necessary to impose a rate limit on the number of games each bot is allowed to play, both simultaneously and on a daily basis. Furthermore, once the number of bots grows, the platform must allocate humans to bots in a such a way that humans and bots are matched evenly throughout the day, and ensures each participant competes with an equal number of humans and bots. The details of the matchmaking problem are not discussed here. <a href="#fnref:6" class="reversefootnote">&#8617;</a></p>
                 </li>
                 <li id="fn:7">
-                    <p>Consider the scenario where a cheating bot plays two humans at once, and simply copies responses between their conversations. We can prevent this (and the similar <a href="https://en.wikipedia.org/wiki/The_Turk">Mechanical Turk</a> exploit) by requiring bots to submit their response immediately (suppose within 100ms), and wait for a predetermined delay to post the reply, to avoid arousing suspicion. <a href="#fnref:7" class="reversefootnote">&#8617;</a></p>
+                    <p>Consider the scenario where a cheating bot plays two humans at once, and simply copies responses between their conversations. We can prevent this (and the similar <a href="https://en.wikipedia.org/wiki/The_Turk">Mechanical Turk</a> exploit) by requiring bots to submit their response immediately (suppose within 1 second), and wait for a predetermined delay to post the reply, to avoid arousing suspicion. <a href="#fnref:7" class="reversefootnote">&#8617;</a></p>
                 </li>
                 <li id="fn:8">
                     <p>Such message and conversation constraints could be implemented for example, with a simple <a href="https://en.wikipedia.org/wiki/Lexical_analysis">lexer</a> or <a href="https://en.wikipedia.org/wiki/Pattern_matching">pattern-matching</a> DSL. <a href="#fnref:8" class="reversefootnote">&#8617;</a></p>
