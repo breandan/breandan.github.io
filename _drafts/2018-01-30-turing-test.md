@@ -44,7 +44,7 @@ The game has some important features:
 
 The game is initially populated with humans, and a small set of bots. There is an API where developers may register their own chatbots to compete in a leaderboard-style ranking, and a publicly downloadable training set for developers to train new bots.
 
-Training new bots with live human players would be an expensive and unproductive endeavor. Instead, new bots must pass an *audition* before they are allowed to compete in the full game. We evaluate rookie bots using a series of trial games with increasing difficulty.
+Training new bots with live human players would be an expensive and unproductive endeavor. Instead, new bots must pass an *audition* before they are allowed to compete in the full game. We evaluate new bots on the platform using a series of trial games with increasing difficulty.
 
 > **Applicant**: New applicants are shown past conversations from a hidden training set, and must classify the identity of each player. If they do not pass a minimum accuracy threshold, they are frozen for a period of time to avoid gaming the test.
 
