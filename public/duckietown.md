@@ -28,7 +28,7 @@ Place the Duckiebot’s SD card into the MicroSD card adapter, insert it into th
 
 This will download and run an installer to prepare the SD card. Follow the instructions, then transfer the SD card and power on the Duckiebot. Wait for a minute, then visit the following URL:
 
-`http://localhost:9000/`
+`http://<DUCKIEBOT_NAME>.local:9000/`
 
 You should be greeted by a Portainer web interface. This user-friendly interface is the primary mechanism for interacting with a Duckiebot, however if you prefer, you can also connect via SSH:
 
