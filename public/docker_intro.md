@@ -70,9 +70,12 @@ total 0
 -rw-r--r-- 1 root root 0 May 21 20:52 new_file
 ```
 
-However if we exit the container and rerun `docker run -it daphne/duck bash`, we may notice an alarming result:
+However if we exit the container and rerun, we may notice an alarming result:
 
 ```
+root@295fd7879184:/# exit
+exit
+$ docker run -it daphne/duck bash
 root@18f13bb4571a:/# ls
 root@18f13bb4571a:/# touch new_file1 && ls
 total 0
@@ -108,13 +111,13 @@ CONTAINER ID     IMAGE           ...     NAMES
 52994ef22481     daphne/duck     ...     happy_hamster
 ```
 
-Now suppose we would like to share the container `shady_giraffe` with someone else. To do so, we must first snapshot the running container, or *commit* it to a new image. This will create a checkpoint which we may later refer to:
+Now suppose we would like to share the container `shady_giraffe` with someone else. To do so, we must first snapshot the running container, or *commit* it to a new image, giving it a name and a tag. This will create a checkpoint which we may later refer to:
 
 ```
 $ docker commit -m “fork Daphne’s duck” shady_giraffe your/duck:v2
 ```
 
-Wherever you see a funny-looking name like `shady_giraffe` in Docker, this is just another way to refer to container. We either can use the container ID, `18f13bb4571a` or the designated name, ie. `shady_giraffe`. The above `your` can be your username on a Docker registry. Now we can push this image to the world:
+Wherever you see a funny-looking name like `shady_giraffe` in Docker, this is just another way to refer to container. We either can use the container ID, `18f13bb4571a` or the designated name, ie. `shady_giraffe`. The above `your` can be your username on a Docker registry. This image will be called `your/duck`, and has an optional tag, `v2`. Now we can push it to the registry:
 
 ```
 $ docker push your/duck:v2
