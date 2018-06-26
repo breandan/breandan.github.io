@@ -92,7 +92,7 @@ CONTAINER ID     IMAGE           ...     STATUS                              NAM
 52994ef22481     daphne/duck     ...     Up 10 minutes                       happy_hamster
 ```
 
-It looks like `295fd7879184` a.k.a. `merry_manatee` survived, but it is no longer running. Whenever a container's main process (recall we ran `merry_manatee` with `bash`) finishes, the container will stop, but it will not cease to exist. In fact, we can resume right the stopped container right where we left off:
+It looks like `295fd7879184` a.k.a. `merry_manatee` survived, but it is no longer running. Whenever a container's main process (recall we ran `merry_manatee` with `bash`) finishes, the container will stop, but it will not cease to exist. In fact, we can resume the stopped container right where we left off:
 
 ```
 $ docker start -a merry_manatee
@@ -111,7 +111,7 @@ CONTAINER ID     IMAGE           ...     NAMES
 52994ef22481     daphne/duck     ...     happy_hamster
 ```
 
-Now suppose we would like to share the container `shady_giraffe` with someone else. To do so, we must first snapshot the running container, or *commit* it to a new image, giving it a name and a tag. This will create a checkpoint which we may later refer to:
+Now suppose we would like to share the container `shady_giraffe` with someone else. To do so, we must first snapshot the running container, or **commit** it to a new image, giving it a name and a tag. This will create a checkpoint which we may later refer to:
 
 ```
 $ docker commit -m “fork Daphne’s duck” shady_giraffe your/duck:v2
