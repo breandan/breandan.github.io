@@ -70,7 +70,7 @@ total 0
 -rw-r--r-- 1 root root 0 May 21 20:52 new_file
 ```
 
-However if we exit the container and rerun it, we may notice an alarming result:
+However if we exit the container and rerun `docker run -it daphne/duck bash`, we may notice an alarming result:
 
 ```
 root@18f13bb4571a:/# ls
@@ -79,22 +79,42 @@ total 0
 -rw-r--r-- 1 root root 0 May 21 21:32 new_file1
 ```
 
-It seems like `new_file` has disappeared! This result may be somewhat less surprising when we notice the container ID has changed. Let’s open a new terminal (without leaving the current one) to see what’s running:
+It seems like `new_file` has disappeared! Notice how the container ID (`18f13bb4571a`) is now different. This is because we ran a new container from the image `daphne/duck`, rather than restarting our old container. Let's see all the containers on our machine:
+
+```
+$ docker container ls -a
+CONTAINER ID     IMAGE           ...     STATUS                              NAMES
+295fd7879184     daphne/duck     ...     Exited (130) About a minute ago     merry_manatee
+18f13bb4571a     daphne/duck     ...     Up 5 minutes                        shady_giraffe
+52994ef22481     daphne/duck     ...     Up 10 minutes                       happy_hamster
+```
+
+It looks like `295fd7879184` a.k.a. `merry_manatee` survived, but it is no longer running. Whenever a container's main process (recall we ran `merry_manatee` with `bash`) finishes, the container will stop, but it will not cease to exist. In fact, we can resume right the stopped container right where we left off:
+
+```
+$ docker start -a merry_manatee
+root@295fd7879184:/# ls
+total 0
+-rw-r--r-- 1 root root 0 May 21 20:52 new_file
+```
+
+Nothing was lost! Let’s open a new terminal (without leaving the current one) to see what other containers are running:
 
 ```
 $ docker ps
 CONTAINER ID     IMAGE           ...     NAMES
-52994ef22481     daphne/duck     ...     happy_hamster
+295fd7879184     daphne/duck     ...     merry_manatee
 18f13bb4571a     daphne/duck     ...     shady_giraffe
+52994ef22481     daphne/duck     ...     happy_hamster
 ```
 
-To save the running container, we can snapshot or “commit” a new image to our repository:
+Now suppose we would like to share the container `shady_giraffe` with someone else. To do so, we must first snapshot the running container, or *commit* it to a new image. This will create a checkpoint which we may later refer to:
 
 ```
 $ docker commit -m “fork Daphne’s duck” shady_giraffe your/duck:v2
 ```
 
-Wherever you see a funny-looking name like `shady_giraffe`, we either can use the ID, `18f13bb4571a` or the designated name, `shady_giraffe`. Here, `your` should be your username on a Docker registry. Now we can push this to the world, and anyone with access on the registry can pull our Docker image:
+Wherever you see a funny-looking name like `shady_giraffe` in Docker, this is just another way to refer to container. We either can use the container ID, `18f13bb4571a` or the designated name, ie. `shady_giraffe`. The above `your` can be your username on a Docker registry. Now we can push this image to the world:
 
 ```
 $ docker push your/duck:v2
@@ -108,9 +128,11 @@ total 0
 -rw-r--r-- 1 root root 0 May 21 21:32 new_file1
 ```
 
+This is a convenient way to share an image with others. Anyone with access to the repository can start using our image right as we left it, or create another image based on our own. Images can be created via the command line or by using something called a `Dockerfile`.
+
 ## Containers come from recipies
 
-The second way to create a Docker image is to write a recipe, called a Dockerfile. A Dockerfile is a text file that specifies the commands required to create a Docker image, typically by modifying an existing container image using a scripting interface. They also have special keywords like `FROM`, `RUN`, `ENTRYPOINT` and so on. For example:
+The second way to create a Docker image is to write a recipe, called a `Dockerfile`. A `Dockerfile` is a text file that specifies the commands required to create a Docker image, typically by modifying an existing container image using a scripting interface. They also have special keywords like `FROM`, `RUN`, `ENTRYPOINT` and so on. For example:
 
 ```
 $ echo -e '
