@@ -42,3 +42,4 @@ Depending on your internet connection, this step may take a while to run. Now, y
 
 * `roslaunch pkg_name talker.launch`
 * `roslaunch duckietown joystick.launch veh:=docker`
+* `roslaunch duckietown_demos lane_following.launch line_detector_param_file_name:=$*`
