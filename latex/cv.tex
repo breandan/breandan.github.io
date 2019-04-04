@@ -15,6 +15,7 @@
 \usepackage{enumitem}
 \usepackage[hidelinks]{hyperref}
 \usepackage{fancyhdr}
+\usepackage{ragged2e}
 \usepackage[english]{babel}
 
 \pagestyle{fancy}
@@ -74,69 +75,59 @@
 
 %----------HEADING-----------------
 \begin{tabular*}{\textwidth}{l@{\extracolsep{\fill}}cccccr}
-\textbf{\href{http://brea.ndan.co/}{\Large Breandan Considine}} & \textbullet & 3855 Main St. Bethlehem, NH 03574-5101 & \textbullet & +1-802-438-3573 & \textbullet & \href{mailto:bre@ndan.co}{bre@ndan.co}\\
+\textbf{\href{http://brea.ndan.co/}{\Large Breandan Considine}} & \textbullet & 3855 Main St. Bethlehem, NH 03574-5101 & \textbullet & \href{tel:+1-802-438-3573}{+1-802-438-3573} & \textbullet & \href{mailto:bre@ndan.co}{bre@ndan.co}\\
 %\href{http://brea.ndan.co/}{http://brea.ndan.co/} & Test & Mobile : +1-802-438-3573 \\
 \end{tabular*}
 
 %-----------Seeking-----------------
-
-\section{Statement of purpose}
+\begin{justify}
+\section{Research Statement}
 \resumeSubHeadingListStart
-\item Seeking challenging research problems in machine learning, programming languages and software engineering.
+\item My research seeks to understand the relationship between software artifacts using deep learning, reason about the behavior of real-world programs and use this knowledge to build smarter programming tools for developers.
 \resumeSubHeadingListEnd
-
 
 %-----------EDUCATION-----------------
 \section{Education}
 \resumeSubHeadingListStart
-\resumeSubheading
-{Mila, Universit\'e de Montr\'eal}{Montr\'eal, QC, Canada}
-{Master of Science in Computer Science}{2017--2019 (expected)}
-\resumeSubheading
-{Rochester Institute of Technology}{Rochester, NY, USA}
-{Bachelor of Science in Computer Science}{2008--2010, 2011--2012}
-\resumeSubheading
-{Shanghai Jiaotong Uniersity}{Shanghai, China}
-{Chinese Language Studies}{2010--2011}
+\resumeSubItem{McGill University}{-- Ph.D. Student in Computer Science (Accepted, est. 2019--2023) Supervisor: Jin Guo}
+\resumeSubItem{Universit\'e de Montr\'eal}{-- M.S. in Computer Science (2017--est. 2019) Co-supervisors: Liam Paull, Michalis Famelis}
+\resumeSubItem{Rochester Institute of Technology}{-- B.S. in Computer Science, Minor in Chinese Language (2008--2012)}
+\resumeSubItem{Shanghai Jiaotong University}{-- Certificate of Completion in Chinese Language Studies (2010--2011)}
 \resumeSubHeadingListEnd
 
 
 %-----------EXPERIENCE-----------------
 \section{Experience}
 \resumeSubHeadingListStart
-\resumeSubItem{JetBrains}{(2014--2016) -- Java Developer Advocate. Wrote technical documentation, recorded screencasts, taught developer tools, spoke at conferences, company events and workshops around the world. Created and curated the Java Annotated Monthly newsletter for two years. Built a number of popular IDE plugins and developer tools.}
-\resumeSubItem{OneSpot}{(2012--2013) -- Software Engineer. Responsible for launching a business-critical real-time bidder to match ads, websites and visitors using Bayesian inference. Patented new techniques for data mining, high-frequency transaction processing and real-time machine learning on large datasets, helping raise over \$7 million in venture capital.}
-\resumeSubItem{Garnet Hill}{(Summer 2009, Summer 2010) -- Data Analysis Intern. Wrote a company-wide business knowledge database. Built and tuned an inventory control tool to handle liquidation surplus and wrote SQL Server procedures to model price elasticity of demand and dynamically adjust SKU pricing across product categories during sales events.}
-\resumeSubItem{FIRST Robotics Team \#2523}{(2007--2008) -- Co-founder, Lead Prorammmer. Wrote our team's winning \$15k NASA grant application. Collaborated with industry advisors from IBM and Oracle. Designed and wrote our team's AI and control software for the FIRST Robotics Competition, leading our team to the New England finals.}
+\resumeSubItem{JetBrains}{(2014--2016) -- Developer Advocate. Wrote technical documentation, recorded screencasts and webinars on developer tools, taught courses and collected feedback at conferences, companies and universities around the world. Created and curated the Java Annotated Monthly newsletter. Built several IDE plugins for the IntelliJ Platform.}
+\resumeSubItem{OneSpot}{(2012--2013) -- Software Engineer. Responsible for launching a business-critical real-time bidder to match advertisements, websites and visitors using Bayesian inference. Patented new techniques for data mining, high-frequency transaction processing and machine learning for online auctions, helping to raise over \$7 million in venture capital.}
+\resumeSubItem{Garnet Hill}{(Summer 2009, Summer 2010) -- Data Analysis Intern. Authored a company-wide business knowledge database. Built and tuned an inventory control tool to handle liquidation surplus and wrote SQL Server procedures to model price elasticity of demand and dynamically adjust SKU pricing across product categories during sales events.}
+\resumeSubItem{FIRST Robotics Team \#2523}{(2007--2008) -- Co-founder, Lead Prorammmer. Wrote our team's winning \$15k NASA grant application. Collaborated with industry advisors from IBM and Oracle. Designed and wrote our robot's AI and control software for the FIRST Robotics Competition, leading our team to the New England finals in our first year.}
 \resumeSubHeadingListEnd
 
 %-----------LEADERSHIP---------------
 
-\section{Workshops}
+\section{Selected Publications}
 \resumeSubHeadingListStart
-\resumeSubItem{POPL, LAFI (né PPS)}
-    {(2019) -- Kotlin$\nabla$: Differentiable Functional Programming with Algebraic Data Types}
-\resumeSubItem{Montreal AI Symposium}
-{(2018) -- Duckietown: a Platform for Teaching, Robotics and Machine Learning Research}
-\resumeSubItem{IROS, Automating Robot Experiments}
-    {(2018) -- Duckietown: Software Infrastructure for Autonomous Robotics}
+\resumeSubItem{POPL, LAFI (n\'e PPS)} {(2019) -- Kotlin$\nabla$: Differentiable Functional Programming with Algebraic Data Types}
+\resumeSubItem{Montreal AI Symposium} {(2018) -- Duckietown: a Platform for Teaching, Robotics and Machine Learning Research}
+\resumeSubItem{Under Review} {(2019) -- Multi-objective training of Generative Adversarial Networks with multiple discriminators}
+\resumeSubItem{IROS, Automating Robot Experiments} {(2018) -- Duckietown: Software Infrastructure for Autonomous Robotics}
+\resumeSubItem{arXiv preprint} {(2018) -- Deep Pepper: Expert Iteration based Chess agent in the Reinforcement Learning Setting}
+\resumeSubItem{US Patent Application US20140244405A1} {(2014) -- Automatic Generation of Digital Advertisements (OneSpot)}
 \resumeSubHeadingListEnd
 
 \section{Leadership}
 \resumeSubHeadingListStart
-\resumeSubItem{Conference Speaker} {-- Teaching developer tools, machine learning, organizing meetups. JavaOne Shanghai (2013), Vermont Code Camp (2014), Houston TechFest (2014), Silicon Valley Code Camp (2014, 2016), Stanford University Career Fair (2015), GWT.Create (2015), Boston Code Camp (2015), DroidCon Montreal (2015), AnDevCon Boston (2015), JavaOne Brazil (2015, 2016), JavaOne San Fransisco (2015, 2016), DevNexus (2016, 2017), ConFoo (2016, 2017), EclipseCon (2016), Great Indian Developer Summit (2016, 2017), PyCon Ireland (2016), Devoxx Belgium (2016), Devoxx US (2017), Oracle Code Tokyo (2017), Montreal AI Symposium (2018), ROSCon (2018), POPL/LAFI (2019)}
-\resumeSubItem{Mila Lab Rep} {(2018--2019) -- Elected as a first year Masters' student to represent the student body. Advised colleagues and staff during the merger of Montr\'eal's two largest AI labs, hosted Thanksgiving dinner, and ran the 2019 election.}
+\resumeSubItem{Conference Speaker} {-- Teaching about programming tools, machine learning, type systems and speech recognition. JavaOne Shanghai (2013), Vermont Code Camp (2014), Houston TechFest (2014), Silicon Valley Code Camp (2014, 2016), Stanford University Career Fair (2015), GWT.Create (2015), Boston Code Camp (2015), DroidCon Montreal (2015), AnDevCon Boston (2015), JavaOne Brazil (2015, 2016), JavaOne San Fransisco (2015, 2016), DevNexus (2016, 2017), ConFoo (2016, 2017), EclipseCon (2016), Great Indian Developer Summit (2016, 2017), PyCon Ireland (2016), Devoxx Belgium (2016), Devoxx US (2017), Java Day Tokyo (2017), Montreal AI Symposium (2018), ROSCon (2018)}
+\resumeSubItem{Mila Lab Rep} {(2018--2019) -- Elected as a first year master's student to represent the student body. Advised colleagues and staff during the merger of Montr\'eal's two largest AI labs, hosted Thanksgiving dinner, and ran the 2019 election.}
 \resumeSubItem{RIT Badminton} {-- Student athlete (2008--2010) and President (2011--2012). Recruited talented athletes, organized fundraisers and tournaments, ran practices and lead the expansion of RIT's inter-collegiate badminton program.}
-\resumeSubItem{Shanghai Jiaotong University} {(2010--2011) -- Student Ambassador. Coordinated extracurricular activities connecting Chinese and international students, and helped promote cultural exchange.}
+\resumeSubItem{Shanghai Jiaotong University} {(2010--2011) -- Student Ambassador. Coordinated extracurricular activities for foreign language students, and helped promote cultural exchange between Chinese and international students in Shanghai.}
 \resumeSubItem{Grace Stuart Orcutt Library} {(2007--2008) -- Archivist. Collected, cataloged, preserved and archived \textit{The Newell Collection}, an anthology of ancient manuscripts from Vermont State Senator and Latin instructor, Graham Newell.}
 \resumeSubHeadingListEnd
 
 %--------PROGRAMMING SKILLS------------
 \section{Excellence}
-People-oriented programmer with a passion for languages. Fluent in Java, Kotlin, Python, C/C++,
-and Chinese. Well-traveled on clouds, Rails, containers, Git, Maven and Gradle. Fast algorithms and
-rapid prototypes. Clean design patterns with an open source track record. Results-driven software
-engineer with experience in machine learning, type systems and relational databases.
-Strong referential integrity (available upon request).
-
+People-oriented programmer with a passion for languages. Fluent in Java, Kotlin, Python, C/C++, and Chinese. Well-traveled on clouds, Rails, HTTP and *nix. Fast algorithms and rapid prototypes. Clean code with a proven track record in open source collaboration. Results-driven engineer with experience in machine learning, embedded systems and build automation. Strong consistency and referentially transparent (references available on request).
+\end{justify}
 \end{document}
