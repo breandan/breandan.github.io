@@ -9,7 +9,7 @@ title: Trust in Automation
 Houston, we have a problem. According to social media, a large fraction of our population will soon be unemployed. Not just unemployed, but [unemployable](https://www.youtube.com/watch?v=7Pq-S557XQU). Thanks to rapid growth of automation and recent breakthroughs in machine learning, a majority of the world's human labor will soon be economically obsolete. Too young to retire, and too old to retrain, there will be an enormous displacement of unskilled labor. This is not just idle speculation. Leading [scientists](https://twitter.com/AndrewYNg/status/815342695321174017) and [politicians](https://www.youtube.com/watch?v=72bHop6AIcc) have recognized the immediacy of this problem, and the importance of addressing it in our society.
 
 <figure>
-<img src="http://i.imgur.com/XnD53bA.jpg"/>
+<img src="https://i.imgur.com/XnD53bA.jpg"/>
 <figcaption><p><small>Trains will move <a href="https://news.ycombinator.com/item?id=13570074">~332 million</a> passengers during the <a href="https://en.wikipedia.org/wiki/Chunyun">largest migration</a> in history.</small></p></figcaption>
 </figure>
 

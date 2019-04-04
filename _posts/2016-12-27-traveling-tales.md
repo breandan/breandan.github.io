@@ -13,7 +13,7 @@ In January 2016, I visited the sister of a Brother who lives in Phoenix. She kin
 In February, I flew to Atlanta, and was promptly greeted by a cheerful Hawaiian professional photographer, turned recreational Uber driver, who gave a white kid tips for how to survive on the streets of Atlanta over Italian pasta. I think he took pity on me sitting in the backseat of his Uber. Besides [the bomb evacuation](http://www.cbs46.com/story/31337956/suspicious-package-found-under-car-in-downtown-atlanta) at DevNexus, it was a pretty nice trip.
 
 <figure>
-<img src="http://www.gstatic.com/prettyearth/assets/full/1168.jpg"/>
+<img src="https://www.gstatic.com/prettyearth/assets/full/1168.jpg"/>
   <figcaption><p><small>From <a href="https://www.google.com/maps/@33.7444502,-84.3914727,753m/data=!3m1!1e3">Google Earth</a>, over the I-20 and I-85 interchange in downtown Atlanta.</small></p></figcaption>
 </figure>
 
@@ -24,7 +24,7 @@ Shortly after driving down to [EclipseCon](https://www.eclipsecon.org/na2016/eve
 In April I had a layover in Hong Kong and decided to get Dim Sum. Instead, I wandered around and got caught in a thunderstorm. So I did what anyone would normally do and climbed the tallest mountain I could find. After nearly dying of electrocution, the stormclouds parted and I caught a glimpse of the sprawling cyberpunk nirvana that is Greater Hong Kong.
 
 <figure>
-<img src="http://imgur.com/mzG3FIg.jpg"/>
+<img src="https://imgur.com/mzG3FIg.jpg"/>
   <figcaption><p><small>The 68th Hong Kong School Prize Concert for Sacred Music, at <a href="https://en.wikipedia.org/wiki/St._John's_Cathedral_(Hong_Kong)">St. John's Cathedral</a>.</small></p></figcaption>
 </figure>
 
@@ -33,7 +33,7 @@ The rain started back up again, so I ducked into an empty church to dry off. Sud
 Landing in Bengaluru, I was greeted by the sound of pandemonium. Bengaluru is the tech capital of India, and I was here to work. After a long series of business meetings, chasing down deliveries, hailing three-wheeled contraptions, and drinking my weight in water every day, I felt cautiously prepared for the ensuing conference festivities.
 
 <center> <figure>
-<img src="http://imgur.com/Qf54aVZ.jpg" height="500"/>
+<img src="https://imgur.com/Qf54aVZ.jpg" height="500"/>
   <figcaption><p><center><small>
     <a href="https://en.wikipedia.org/wiki/Vada_pav">Vada pav</a>, from <a href="https://goo.gl/maps/KPSXZCR2QhC2">Sagar Resturant</a> in Bengaluru.
 </small></center></p></figcaption>
@@ -46,7 +46,7 @@ Two of my colleagues took it upon themselves to personally drive me around Benga
 Two things stand out in my mind. Indian enthusiasm is contagious. As a North American, my people are cool, reserved. We work hard, and complain a lot. Indians are hard working, and will happily talk to you about anything under the sun. I guess everyone is the same, everyone is different. But I am deeply grateful for their kindness.
 
 <figure>
-<img src="http://imgur.com/AizBAJq.jpg"/>
+<img src="https://imgur.com/AizBAJq.jpg"/>
   <figcaption><p><small>Street vendors on the outskirts of <a href="https://en.wikipedia.org/wiki/Dharavi">Dharavi</a>, one of the largest slums in the world.</small></p></figcaption>
 </figure>
 
@@ -55,7 +55,7 @@ After a brief stint in Mumbai, I flew back to New York with a new set of proble
 After several near-death collisions, I gave up and settled for Whistler. If you sit at a desk for twelve hours a day, don’t try to peddle a bike 80 miles uphill the next one. Thank me later. But Whistler has fresh air, LTE, and skiing in May, so I was happy. I watched the seaplanes take off over Green Lake and wondered what I was doing with my life. Such are the problems we have in the first world.
 
 <figure>
-<img src="http://imgur.com/TLCTbYX.jpg"/>
+<img src="https://imgur.com/TLCTbYX.jpg"/>
   <figcaption><p><small>Seaplanes take off from Whistler, carrying passengers and cargo to Vancouver.</small></p></figcaption>
 </figure>
 
@@ -66,7 +66,7 @@ It was my first time visiting Portland. We went there for [Open Source Bridge](h
 Planes. Trains. Automobiles. Every week was somewhere new. The daily milieu of new faces and scenes provided a welcome diversion to the reality of my situation. I chatted with [Iranian barbers](http://farzadsbarbershop.com/) in Vancouver, brunched with captive bears on Grouse Mountain, had [good ramen](http://ramendanbo.com/) on Robson, explored castaway [shipwrecks](http://www.cbc.ca/news/canada/british-columbia/city-of-vancouver-may-need-to-pay-for-removal-of-boat-1.3582300) on False Creek, sat on the [largest chair](https://backofhouse.s3.amazonaws.com/uploads/ckeditor/pictures/834/content_clift-BOH-chair-1.jpg) in San Fransisco, tested the [longest slide](http://www.nytimes.com/2016/07/22/arts/design/testing-new-york-citys-longest-slide-on-governors-island.html) in New York.
 
 <figure>
-<img src="http://imgur.com/SRIwoCf.jpg"/>
+<img src="https://imgur.com/SRIwoCf.jpg"/>
   <figcaption><p><small>The Cheng-Shi. Her captain was <a href="https://www.facebook.com/motormontyb">"A sailor of the mind"</a>. <a href="https://www.gofundme.com/riseagain">Sadly</a>, not a sailor of the sea.</small></p></figcaption>
 </figure>
 
@@ -77,7 +77,7 @@ In June, I boarded UA 149 to São Paulo International Airport with a couple hund
 In São Paulo I had some [amazing milkshakes](https://twitter.com/breandan/status/750761636714151936), ate coxinhas and churrasco. I kept watch for police as my friend flew his drone around Ibirapuera Park to much public dismay, reassured fleeing bystanders, and in general did a whole lot of chasing other people around São Paulo. I had [excellent ramen](http://lamenkazu.com.br/) in Liberdade. Somehow managed to give a coherent talk about machine learning. Or maybe not. English is not their first language.
 
 <figure>
-<img src="http://imgur.com/dedYenP.jpg" alt="Boys in the yard"/>
+<img src="https://imgur.com/dedYenP.jpg" alt="Boys in the yard"/>
   <figcaption><p><small><a href="https://www.facebook.com/My-Oh-My-Milkshakes-319551614901766/">Oh My Milkshakes</a> has the best milkshake I have ever tasted. It's really, really good.</small></p></figcaption>
 </figure>
 
@@ -90,7 +90,7 @@ In August, after surviving another bout of food poisoning, I flew from LA to Ber
 I spent a day dodging lorries in a dodgy part of London on [Santander Cycles](https://tfl.gov.uk/modes/cycling/santander-cycles), and eating [mediocre ramen](https://www.shoryuramen.com/stores/1-regent-street/categories) in Piccadilly Circus. After making my Heathrow connection with seconds to spare, I arrived in Bergen, still breathless, with my newly printed [Eurail pass](http://www.eurail.com/) proudly in hand to show the customs officer. He sighed, and stamped my passport.
 
 <figure>
-<img src="http://imgur.com/BlaXOvl.jpg"/>
+<img src="https://imgur.com/BlaXOvl.jpg"/>
   <figcaption><p><small>The <a href="https://en.wikipedia.org/wiki/Bergen_Line">Bergen Line</a> connects Bergen and Oslo, carrying millions of people each year.</small></p></figcaption>
 </figure>
 
@@ -104,7 +104,7 @@ King of Sweden orders the largest warship ever built. Three masts. 64 guns. Toph
 
 
 <figure>
-<img src="http://imgur.com/ZTB1hGt.jpg"/>
+<img src="https://imgur.com/ZTB1hGt.jpg"/>
   <figcaption><p><small><a href="https://en.wikipedia.org/wiki/Bergen_Line">Kaknästornet</a> is a tower that broadcasts television and radio signals all over Sweden.</small></p></figcaption>
 </figure>
 
@@ -117,7 +117,7 @@ There exists [a train](https://en.wikipedia.org/wiki/Vogelfluglinie) from Køben
 My girlfriend met me in Hamburg. Much to her chagrin, my primary reason for visiting there was to see the [Miniatur Wunderland](http://www.miniatur-wunderland.com/). To her further chagrin, the second reason was now [DESY](https://en.wikipedia.org/wiki/DESY). This time, I went alone. I slipped into a small tour, lead by someone who looked important. Later I discovered the tour was in German, but by then it was too late to turn back. I nodded thoughtfully and continued to do so for the remaining three hours as we walked from one secure facility to the next. Crisis averted.
 
 <figure>
-<img src="http://imgur.com/iVFY75G.jpg"/>
+<img src="https://imgur.com/iVFY75G.jpg"/>
   <figcaption><p><small>Beneath a quiet suburb of Hamburg, DESY accelerates particles to 0.9999999C.</small></p></figcaption>
 </figure>
 
@@ -132,7 +132,7 @@ It was in Berlin where I began to appreciate the cultural differences between Ge
 There is a monument in the middle of Berlin, which you should visit, called [Neue Wache](https://en.wikipedia.org/wiki/Neue_Wache). On a boulevard full of pompous looking buildings, it looks like any other. But if you take a moment to step inside, it will catch you off guard. Behind iron bars and beneath a hole in the roof sits a mother cradling her dead son. There are thousands of war memorials with huge guns. Go here instead.
 
 <figure>
-<img src="http://www.gstatic.com/prettyearth/assets/full/1943.jpg"/>
+<img src="https://www.gstatic.com/prettyearth/assets/full/1943.jpg"/>
   <figcaption><p><small>The Berlin Victory Column, as seen from outer space, looks out over the Tiergarten.</small></p></figcaption>
 </figure>
 
@@ -145,7 +145,7 @@ We awoke to the Zürich sunshine in August, and quickly realized the sun can be 
 Bern has some [very](http://www.bindella.ch/de/kornhauskeller.html) [good](http://www.entrecote.ch/) [restaurants](http://www.rosengarten.be/welcome/) which I highly recommend visiting if you have the time and inclination. We toured the [Einstein House](http://www.einstein-bern.ch/), strolled through the Rose Garden, peered into a bear bit, dipped our feet into the icy blue river, and did a good bit of touristy sounding things. Switzerland is a marvelous place if you have never been there before.
 
 <figure>
-<img src="http://imgur.com/p54pP3f.jpg"/>
+<img src="https://imgur.com/p54pP3f.jpg"/>
   <figcaption><p><small>By the bank of the Aare river. It looks calm, but swimming is actually very dangerous.</small></p></figcaption>
 </figure>
 
@@ -156,7 +156,7 @@ From Geneva, we took a train to Visp, and up to Zermatt via a special railway th
 The town of Zermatt is only accessible by train, which is a good thing, because we had no other way of getting up there. However this means it is inaccessible when there are slides or avalanches. Fortunately, there were no slides or avalanches, and we arrived without incident. Stayed at [Best Western](http://www.alpenresort.com/en/welcome/) (a great place in Switzerland) and watched the sun set over the Matterhorn.
 
 <figure>
-<img src="http://imgur.com/vNMZNqh.jpg"/>
+<img src="https://imgur.com/vNMZNqh.jpg"/>
   <figcaption><p><small>The Matterhorn in the summer afternoon. It is one of the deadliest peaks in the world.</small></p></figcaption>
 </figure>
 
@@ -172,7 +172,7 @@ One of these was the Archbishop of Salzburg, Markus Sittikus, who by all account
 
 <center>
 <figure>
-<img src="http://i.imgur.com/GChzakn.gif"/>
+<img src="https://i.imgur.com/GChzakn.gif"/>
   <figcaption><p><center><small>Paragliders taking off from the top of Zwölferhorn Mountain in St. Gilgen, Austria.</small></center></p></figcaption>
 </figure></center>
 
@@ -187,7 +187,7 @@ Rented a car on Friday and drove south for the weekend. If you have a special we
 Monterey is the ancestral home of [John Steinbeck](https://en.wikipedia.org/wiki/John_Steinbeck), and the setting for many of his novels. John is a great writer. But he doesn't do it justice. The coastline of northern California is indescribably beautiful. You can run on warm beaches crashing with surf in the Caramel Highlands and walk through quiet stands of Coast Redwood in Big Sur. Go there, you will not regret it.
 
 <figure>
-<img src="http://imgur.com/Ug7YDlX.jpg"/>
+<img src="https://imgur.com/Ug7YDlX.jpg"/>
   <figcaption><p><small>Chrysaora quinquecirrha, or Sea Nettle, are swimming inside the Monterey Aquarium.</small></p></figcaption>
 </figure>
 
@@ -198,7 +198,7 @@ Each year, Oracle swoops into San Fransisco like Christmas in September and pain
 From SF, I flew to LA and back the following week, for SVCC. It rained, so I rented a car and drove into the northern Diablo Mountains. I drove into the clouds, and arrived at [Lick Observatory](https://en.wikipedia.org/wiki/Lick_Observatory) on Mt. Hamilton to a haunting silence. The air was still and there was no sign of humanity. I found a custodian, who showed me the telescopes. We had to be very quiet, because most astronomers are asleep during the day.
 
 <figure>
-<img src="http://imgur.com/uY4AwHV.jpg"/>
+<img src="https://imgur.com/uY4AwHV.jpg"/>
   <figcaption><p><small>Supposedly the Mt. Hamilton Road has 365 turns, but this is a <a href="https://en.wikipedia.org/wiki/Coastline_paradox">coastline problem.</a> </small></p></figcaption>
 </figure>
 
@@ -213,7 +213,7 @@ Brazilians have a long tradition of making juice. Their fruit crushing and blend
 From Floripa, we headed to the city of [Foz do Iguaçu](https://en.wikipedia.org/wiki/Foz_do_Igua%C3%A7u) for Latinoware. Foz do Iguaçu is a fascinating place. Located at the confluence of three rivers, it has an important [hydroelectric dam](https://en.wikipedia.org/wiki/Itaipu_Dam), an [enormous Buddha](http://www.visitefoz.com.br/en/attractions/buddhist-temple/), and a vibrant Islamic community. Oh, and the largest waterfall in the world.
 
 <figure>
-<img src="http://imgur.com/VWpxl2V.jpg"/>
+<img src="https://imgur.com/VWpxl2V.jpg"/>
   <figcaption><p><small>The Iguaçu Falls spill 1,756 m³/s, which in Imperial, is <i>a gargantuan amount of water</i>. </small></p></figcaption>
 </figure>
 
@@ -224,7 +224,7 @@ Visited the largest mosque in Foz and tried a pastry at an Islamic bakery. Tried
 Itajubá is a small city in Minas Gerais, about four hours from São Paulo by bus. Its primary attraction is the local university, one of the best in Brasil for engineering, or so I am told. I was introduced by an energetic young professor, gave a short speech to the students, then we all went out and had salgadinhos. The students were all lovely and treated me like an esteemed scholar. It was a little embarrassing, but very thoughtful and well organized.
 
 <figure>
-<img src="http://imgur.com/kMGBYSz.jpg"/>
+<img src="https://imgur.com/kMGBYSz.jpg"/>
   <figcaption><p><small>Itajuba is home to <a href="https://en.wikipedia.org/wiki/Federal_University_of_Itajub%C3%A1">UNIFEI</a>, the second largest university in the state of Minas Gerais.</small></p></figcaption>
 </figure>
 
@@ -237,7 +237,7 @@ From São Paulo, we just barely made our Heathrow connection to Dublin. Transfer
 My family picked us up in Dublin, where we all had a nice supper together. The next day, I brought the folks to [Python Ireland](https://python.ie), which is an excellent conference that I highly suggest you attend. Thanks to the organizers, I was able to wheel Grannie to the front row, where she learned about machine learning with TensorFlow. It was great fun, and a very gratifying experience.
 
 <figure>
-<img src="http://imgur.com/W5JzD1J.jpg"/>
+<img src="https://imgur.com/W5JzD1J.jpg"/>
   <figcaption><p><small>Back row: Mark (Uncle), Margaret (Mother), Breandan (yours truly). Front row: Grannie.</small></p></figcaption>
 </figure>
 
@@ -248,8 +248,8 @@ Spent a weekend in Amsterdam, where I got a haircut and had a great steaming cup
 Why else would you want to go to Vilnius? For one, they have great restaurants where you can eat well without breaking the bank. They have a pretty nice city, with good transportation. And Lithuanians are a very friendly people. It's not Switzerland, but the Europa section is very modern and has good restaurants. My favorite one is in the [Old Town](https://en.wikipedia.org/wiki/Vilnius_Old_Town), a place called [Gusto blyninė](http://www.gusto.lt/index.php/en/). If it looks ridiculous, you'll know you're at the right place.
 
 <figure>
-<img src="http://imgur.com/tDBPni5.jpg"/>
-  <figcaption><p><small><a href="https://en.wikipedia.org/wiki/Gediminas'_Tower">Gediminas Tower</a> has overlooked Vilnius for over 600 years. It is in <a href="http://www.baltictimes.com/lithuanian_cultmin_calls_for_emergency_situation_over_gediminas_hill/">need of repair</a>.</small></p></figcaption>
+<img src="https://imgur.com/tDBPni5.jpg"/>
+  <figcaption><p><small><a href="https://en.wikipedia.org/wiki/Gediminas'_Tower">Gediminas Tower</a> has overlooked Vilnius for over 600 years. It is in <a href="https://www.baltictimes.com/lithuanian_cultmin_calls_for_emergency_situation_over_gediminas_hill/">need of repair</a>.</small></p></figcaption>
 </figure>
 
 From Vilnius I flew back to Dublin to take Grannie home, who in the meantime had acquired 200 kilograms of cast iron plates for our woodstove. How did Grannie do this? I haven't the faintest clue. Anyhow, I got the bright idea of putting them all in my carry-on luggage. Surprisingly, this worked. Now I just needed to get them aboard the airplane, with Grannie and her wheelchair.
@@ -259,7 +259,7 @@ I decided it was a problem for another day, so we drove up to Belfast to see the
 We arrived at the airport in the early morning. Somehow made it through security and all the way to US pre-clearance with our 200 kilograms of cast iron. The Irish authorities were furious. Grannie convinced them not to arrest us all then and there (thank you, Grannie!), and even managed to get our stove parts back, but we had to check everything with special permission from the airline, US Customs, pilots, and a bunch of stern looking people at the gate.
 
 <figure>
-<img src="http://imgur.com/XqAvb58.jpg"/>
+<img src="https://imgur.com/XqAvb58.jpg"/>
   <figcaption><p><small>A wood stove should never be placed in your overhead bin, whether in whole or part.</small></p></figcaption>
 </figure>
 
