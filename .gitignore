@@ -39,9 +39,12 @@ validation-report.json
 
 # Folders to ignore
 node_modules
+out
 
 # LaTeX
 *.aux
 *.out
 *.log
 *.gz
+*.bbl
+*.blg
