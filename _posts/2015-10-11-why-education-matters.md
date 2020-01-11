@@ -22,4 +22,4 @@ We have the technology to radically transform education in developing countries,
 
 Further Reading
 
-* [Technology and Equity in Schooling: Deconstructing the Digital Divide](http://www.education.uci.edu/person/warschauer_m/docs/tes.pdf)
+* [Technology and Equity in Schooling: Deconstructing the Digital Divide](https://pdfs.semanticscholar.org/372b/826c8164dc48ef4d1f93e9cf69b8a40f137b.pdf)

@@ -69,7 +69,7 @@ More generally, we can imagine soliciting community-submitted role-playing games
  
 Furthermore, once there is a sufficiently large number of human players, we can begin to host forums where more complex, or domain-specific vocabulary is permitted. This would allow bots to compete in [specialized Turing tests](https://en.wikipedia.org/wiki/Subject_matter_expert_Turing_test), for example debate, flirting, self-help, and discussion forums with guidelines on content and conversation style.
 
-*Special thanks to [Koustuv Sinha](http://koustuvsinha.github.io/) for suggesting numerous helpful improvements.*
+*Special thanks to [Koustuv Sinha](https://koustuvsinha.github.io/) for suggesting numerous helpful improvements.*
 
 ## Footnotes
 

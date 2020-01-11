@@ -34,14 +34,14 @@ With the advent of terabyte HDDs and modern CPUs, one might imagine the structur
 \end{align*}
 $$</span>
 
-Notation can also change how we think. Alonzo Church’s λ-calculus is one example of notation that changed not only just nomenclature, but usage as well. In the 1930s, Church developed a notation for describing computable functions called a *lambda expression*. Today we think of λ-expressions as a kind of shorthand for defining [anonymous functions](http://en.wikipedia.org/wiki/Anonymous_function). More importantly, λ-calculus treats functions and data as the same and provides an alternative model of computation through *substitution*. While equivalent to the procedural model, it can lead to vastly different (and often far simpler) solutions to the same problem.
+Notation can also change how we think. Alonzo Church’s λ-calculus is one example of notation that changed not only just nomenclature, but usage as well. In the 1930s, Church developed a notation for describing computable functions called a *lambda expression*. Today we think of λ-expressions as a kind of shorthand for defining [anonymous functions](https://en.wikipedia.org/wiki/Anonymous_function). More importantly, λ-calculus treats functions and data as the same and provides an alternative model of computation through *substitution*. While equivalent to the procedural model, it can lead to vastly different (and often far simpler) solutions to the same problem.
 
 <figure>
 <img src="/public/folding_lambda.gif"/>
   <figcaption><p><small>Translating a λ-expression in Java. Objects in editor are closure than they appear.</small></p></figcaption>
 </figure>
 
-Today there are many writing systems which share a number of interesting similarities with traditional stenography. For example, [Emmet](http://docs.emmet.io/) is a shorthand for typing HTML. IntelliJ IDEA has a similar system of [macros](https://www.jetbrains.com/idea/help/live-templates.html) and [keyboard shortcuts](https://www.jetbrains.com/idea/docs/IntelliJIDEA_ReferenceCard.pdf) for automating repetitive programming tasks. Some television subtitles are now generated with a supervised speech recognizer[^5]. And many handheld
+Today there are many writing systems which share a number of interesting similarities with traditional stenography. For example, [Emmet](https://docs.emmet.io/) is a shorthand for typing HTML. IntelliJ IDEA has a similar system of [macros](https://www.jetbrains.com/idea/help/live-templates.html) and [keyboard shortcuts](https://www.jetbrains.com/idea/docs/IntelliJIDEA_ReferenceCard.pdf) for automating repetitive programming tasks. Some television subtitles are now generated with a supervised speech recognizer[^5]. And many handheld
 <span class="leftquote"><img src="/public/ime.png"/><small><a href="https://en.wikipedia.org/wiki/Character_amnesia">Character amnesia</a> is a growing problem in Asia.</small></span>devices have predictive keyboards, which use [Markov chains](http://setosa.io/blog/2014/07/26/markov-chains/index.html) to suggest the next letter or word in a sentence. All of these are modern examples of stenography, yet they are radically different in form and function.
 
 This uncoupling between the creation and representation of text raises a number of intriguing questions. With the sudden ease of which we can create new abstractions and programming shorthands through macros, polymorphism and reflection, what is the appropriate level of notation required for a particular task? With the availability of code generation tools that write code, type systems for verification, and powerful IDEs to understand how it fits together, how do we differentiate between *source* and *target*? And who, or what, is the audience? These are not new questions[^6], but their significance today has only become more apparent.
@@ -51,7 +51,7 @@ This uncoupling between the creation and representation of text raises a number 
   <figcaption><p><small>Some editors like MPS treat text as an intermediate format, rather than the "source". This enables some degree of flexibility in the composition and presentation of code.</small></p></figcaption>
 </figure>
 
-Let us consider a few examples. Conciseness is one desirable property in language design, although achieving it while maintaining precision is often quite challenging. Even in Java, one of the most carefully guarded[^7] programming languages today, new language features have created the potential for ambiguous code. [Method references](http://docs.oracle.com/javase/specs/jls/se8/html/jls-15.html#jls-15.13.1) are a shorthand in Java 1.8 whose simplicity apparently outweighed the potential ambiguity.
+Let us consider a few examples. Conciseness is one desirable property in language design, although achieving it while maintaining precision is often quite challenging. Even in Java, one of the most carefully guarded[^7] programming languages today, new language features have created the potential for ambiguous code. [Method references](https://docs.oracle.com/javase/specs/jls/se8/html/jls-15.html#jls-15.13.1) are a shorthand in Java 1.8 whose simplicity apparently outweighed the potential ambiguity.
 
 <figure>
 {% highlight java %}
@@ -86,7 +86,7 @@ public class Foo {
 </caption>
 </figure>
 
-In Kotlin, there are [no static members](http://blog.jetbrains.com/kotlin/2013/06/static-constants-in-kotlin/), making this somewhat less of an issue. However unlike Java, which is capable of distinguishing method references based on the type signature, Kotlin does not support ambiguous method references (ie. [function references](http://kotlinlang.org/docs/reference/reflection.html#function-references)) to overloaded functions. It should be noted that while it is not possible to resolve ambiguous method references in Java without altering the syntax, disambiguating overloaded functions in Kotlin ought to be relatively straightforward.
+In Kotlin, there are [no static members](https://blog.jetbrains.com/kotlin/2013/06/static-constants-in-kotlin/), making this somewhat less of an issue. However unlike Java, which is capable of distinguishing method references based on the type signature, Kotlin does not support ambiguous method references (ie. [function references](http://kotlinlang.org/docs/reference/reflection.html#function-references)) to overloaded functions. It should be noted that while it is not possible to resolve ambiguous method references in Java without altering the syntax, disambiguating overloaded functions in Kotlin ought to be relatively straightforward.
 
 <figure>
 {% highlight kotlin %}
@@ -126,7 +126,7 @@ $$
 </caption>
 </figure>
 
-$$\TeX$$ was conceived in the late 1970s by Donald Knuth[^10], prior to the era of IDEs and modern text editors. It consists of a set of commands that exactly specify the visual arrangement of text on a page, and has been used for this purpose in academic circles for nearly four decades. Despite its popularity, $$\TeX$$has remained largely unchanged over that time, owing in part to a flexible system of macros[^11]. Macros (short for [macro instructions](http://en.wikipedia.org/wiki/Macro_instruction)), are a substitution rule for replacing text, which in $$\TeX$$'s case, occurs during compilation.
+$$\TeX$$ was conceived in the late 1970s by Donald Knuth[^10], prior to the era of IDEs and modern text editors. It consists of a set of commands that exactly specify the visual arrangement of text on a page, and has been used for this purpose in academic circles for nearly four decades. Despite its popularity, $$\TeX$$has remained largely unchanged over that time, owing in part to a flexible system of macros[^11]. Macros (short for [macro instructions](https://en.wikipedia.org/wiki/Macro_instruction)), are a substitution rule for replacing text, which in $$\TeX$$'s case, occurs during compilation.
 
 <figure>
 {% highlight tex %}
@@ -153,7 +153,7 @@ $$
 </caption>
 </figure>
 
-In [automatic programming](http://en.wikipedia.org/wiki/Automatic_programming), macros are not an uncommon feature - the C preprocessor performs lexical substitution prior to compilation. IDEs and text editors offer increasingly sophisticated keyboard macros under various names (eg. templates, macros, autocorrection). And many build tools incorporate [document generators](http://maven.apache.org/plugins/maven-javadoc-plugin/) and [string expansions](https://gradle.org/docs/current/javadoc/org/gradle/api/tasks/AbstractCopyTask.html#expand(java.util.Map)) that substitute and rewrite portions of source code. <span class='has-pullquote' data-pullquote='Programs must be written for people to read, and only incidentally for machines to execute. -Harold Abelson'></span>In a way, this gives programmers the ability to take notation into their own hands. It is unclear whether this is a good idea.
+In [automatic programming](https://en.wikipedia.org/wiki/Automatic_programming), macros are not an uncommon feature - the C preprocessor performs lexical substitution prior to compilation. IDEs and text editors offer increasingly sophisticated keyboard macros under various names (eg. templates, macros, autocorrection). And many build tools incorporate [document generators](http://maven.apache.org/plugins/maven-javadoc-plugin/) and [string expansions](https://gradle.org/docs/current/javadoc/org/gradle/api/tasks/AbstractCopyTask.html#expand(java.util.Map)) that substitute and rewrite portions of source code. <span class='has-pullquote' data-pullquote='Programs must be written for people to read, and only incidentally for machines to execute. -Harold Abelson'></span>In a way, this gives programmers the ability to take notation into their own hands. It is unclear whether this is a good idea.
 
 The key, it seems, to make automatic programming work is readability. In a perfect world, we might never have to write a single line of code twice. But perhaps what we should really be working towards, is not necessarily the conservation of keystrokes, but rather the conservation of ideas through effective notation. For all the time we spend writing code, albeit plenty, is dwarfed by the amount of time others spend trying to understand it (and failing to do so, spin off their own version with the same reckless abandon we poured into the first).
 
@@ -169,28 +169,28 @@ With this in mind, we should think of programming as an exercise in good notatio
 
 ### Footnotes
 
-[^1]: Oracle bone script. (2015, January 17). Wikipedia, The Free Encyclopedia. [http://en.wikipedia.org/w/index.php?title=Oracle_bone_script](http://en.wikipedia.org/w/index.php?title=Oracle_bone_script&oldid=642840965).
+[^1]: Oracle bone script. (2015, January 17). Wikipedia, The Free Encyclopedia. [https://en.wikipedia.org/w/index.php?title=Oracle_bone_script](https://en.wikipedia.org/w/index.php?title=Oracle_bone_script&oldid=642840965).
 
 [^2]: Gould, R. Gordon (1959). "The LASER, Light Amplification by Stimulated Emission of Radiation". In Franken, P.A. and Sands, R.H. (Eds.). The Ann Arbor Conference on Optical Pumping, the University of Michigan, 15 June through 18 June 1959. p. 128.
 
-[^3]: Radar. (2015, January 30). Wikipedia, The Free Encyclopedia. [http://en.wikipedia.org/w/index.php?title=Radar](http://en.wikipedia.org/w/index.php?title=Radar&oldid=644873164).
+[^3]: Radar. (2015, January 30). Wikipedia, The Free Encyclopedia. [https://en.wikipedia.org/w/index.php?title=Radar](https://en.wikipedia.org/w/index.php?title=Radar&oldid=644873164).
 
 [^4]: Although even average ones have stayed afloat with good notation.
 
-[^5]: Imai, Toru. (2012). “[Speech Recognition for Real-time Closed Captioning](http://www.nhk.or.jp/strl/publica/bt/en/fe0048-2.pdf),” Broadcast Technology No. 48, pp.1-9.
+[^5]: Imai, Toru. (2012). “[Speech Recognition for Real-time Closed Captioning](https://www.nhk.or.jp/strl/publica/bt/en/fe0048-2.pdf),” Broadcast Technology No. 48, pp.1-9.
 
 [^6]: Wesch, M. (2007, January 31). Web 2.0. The machine is us/ing us [Video file]. Retrieved from [https://www.youtube.com/watch?v=NLlGopyXT_g](https://www.youtube.com/watch?v=NLlGopyXT_g).
 
 [^7]: Goetz, B. (2007, January 31). Stewardship: The sobering parts [Video file]. Retrieved from [https://www.youtube.com/watch?v=2y5Pv4yN0b0](https://www.youtube.com/watch?v=2y5Pv4yN0b0).
 
-[^8]: Java annotation (History). (2015, January 20). Wikipedia, The Free Encyclopedia. [http://en.wikipedia.org/wiki/Java_annotation#History](http://en.wikipedia.org/wiki/Java_annotation#History).
+[^8]: Java annotation (History). (2015, January 20). Wikipedia, The Free Encyclopedia. [https://en.wikipedia.org/wiki/Java_annotation#History](https://en.wikipedia.org/wiki/Java_annotation#History).
 
-[^9]: Java language keywords. Oracle Corporation. [http://docs.oracle.com/javase/tutorial/java/nutsandbolts/_keywords.html](http://docs.oracle.com/javase/tutorial/java/nutsandbolts/_keywords.html)
+[^9]: Java language keywords. Oracle Corporation. [https://docs.oracle.com/javase/tutorial/java/nutsandbolts/_keywords.html](http://docs.oracle.com/javase/tutorial/java/nutsandbolts/_keywords.html)
 
-[^10]: Author and computer scientist at Stanford University, more famously known for writing *[The Art of Computer Programming](http://www-cs-faculty.stanford.edu/~uno/taocp.html)*.
+[^10]: Author and computer scientist at Stanford University, more famously known for writing *[The Art of Computer Programming](https://www-cs-faculty.stanford.edu/~uno/taocp.html)*.
 
-[^11]: Knuth, D. E. (1986). Definitions (also called Macros). The TeXbook. [http://web.mit.edu/jgross/www/LaTeX/texbook.pdf](http://web.mit.edu/jgross/www/LaTeX/texbook.pdf).
+[^11]: Knuth, D. E. (1986). Definitions (also called Macros). The TeXbook. [https://web.mit.edu/jgross/www/LaTeX/texbook.pdf](http://www.ctex.org/documents/shredder/src/texbook.pdf).
 
 [^12]: Liang, F. M. (2010). Interview. [http://tug.org/interviews/liang.pdf](http://tug.org/interviews/liang.pdf).
 
-[^13]: Liang, F. M. (1983). Word Hy-phen-a-tion by Com-put-er (Doctoral dissertation, Stanford University).
+[^13]: Liang, F. M. (1983). Word Hy-phen-a-tion by Com-put-er (Doctoral dissertation, Stanford University). [https://www.tug.org/docs/liang/liang-thesis.pdf](https://www.tug.org/docs/liang/liang-thesis.pdf)
