@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="266pt" height="212pt" xmlns:cc="http://creativecommons.org/ns#" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" version="1.1" viewBox="-1 -1 265 211" xmlns="http://www.w3.org/2000/svg">
+    <g transform="translate(108,-54)">
+        <g font-family="Times-Roman">
+            <g class="node">
+                <title>C</title>
+                <circle cx="60" cy="185" r="18" fill="#fff" stroke="#000"/>
+                <text x="60" y="190" text-anchor="middle">x</text>
+            </g>
+            <g class="node">
+                <title>E</title>
+                <circle cx="132" cy="185" r="18" fill="#fff" stroke="#000"/>
+                <text x="132" y="190" text-anchor="middle">y</text>
+            </g>
+            <g class="node">
+                <title>D</title>
+                <ellipse cx="96" cy="131" rx="17" ry="18" fill="#fff" stroke="#000"/>
+                <text x="96" y="136" text-anchor="middle">+</text>
+            </g>
+            <g class="edge">
+                <title>D-&gt;C</title>
+                <path d="m86 147c-3 4-7 9-10 14" fill="none" stroke="#000"/>
+                <polygon points="70 170 73 160 78 164" stroke="#000"/>
+            </g>
+            <g class="edge">
+                <title>D-&gt;E</title>
+                <path d="m106 147c3 4 7 9 10 14" fill="none" stroke="#000"/>
+                <polygon points="122 170 114 164 119 160" stroke="#000"/>
+            </g>
+        </g>
+    </g>
+    <metadata>
+        <rdf:RDF>
+            <cc:Work rdf:about="">
+                <dc:format>image/svg+xml</dc:format>
+                <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
+                <dc:title/>
+            </cc:Work>
+        </rdf:RDF>
+    </metadata>
+    <g class="node" font-family="Times-Roman">
+        <title>A</title>
+        <ellipse cx="24" cy="131" rx="17" ry="18" fill="#fff" stroke="#000"/>
+        <text x="24" y="136" text-anchor="middle">x</text>
+    </g>
+    <g>
+        <g font-family="Times-Roman">
+            <g class="node">
+                <title>C</title>
+                <circle cx="60" cy="185" r="18" fill="#fff" stroke="#000"/>
+                <text x="60" y="190" text-anchor="middle">y</text>
+            </g>
+            <g class="node">
+                <title>E</title>
+                <circle cx="132" cy="185" r="18" fill="#fff" stroke="#000"/>
+                <text x="132" y="190" text-anchor="middle">z</text>
+            </g>
+            <g class="node">
+                <title>D</title>
+                <ellipse cx="96" cy="131" rx="17" ry="18" fill="#fff" stroke="#000"/>
+                <text x="96" y="136" text-anchor="middle">-</text>
+            </g>
+            <g class="edge">
+                <title>D-&gt;C</title>
+                <path d="m86 147c-3 4-7 9-10 14" fill="none" stroke="#000"/>
+                <polygon points="73 160 78 164 70 170" stroke="#000"/>
+            </g>
+            <g class="edge">
+                <title>D-&gt;E</title>
+                <path d="m106 147c3 4 7 9 10 14" fill="none" stroke="#000"/>
+                <polygon points="114 164 119 160 122 170" stroke="#000"/>
+            </g>
+        </g>
+    </g>
+    <g font-family="Times-Roman">
+        <g class="node">
+            <title>B</title>
+            <circle cx="60" cy="77" r="18" fill="#fff" stroke="#000"/>
+            <text x="60" y="82" text-anchor="middle">*</text>
+        </g>
+        <g class="edge">
+            <title>B-&gt;A</title>
+            <path d="m50 92c-3 5-6 10-10 15" fill="none" stroke="#000"/>
+            <polygon points="37 105 43 109 34 115" stroke="#000"/>
+        </g>
+        <g class="edge">
+            <title>B-&gt;D</title>
+            <path d="m70 92c3 5 6 10 10 15" fill="none" stroke="#000"/>
+            <polygon points="77 109 83 105 86 115" stroke="#000"/>
+        </g>
+        <g class="node">
+            <title>F</title>
+            <circle cx="132" cy="23" r="18" fill="#fff" stroke="#000"/>
+            <text x="132" y="28" text-anchor="middle">+</text>
+        </g>
+        <g class="edge">
+            <title>F-&gt;B</title>
+            <path d="m117 34c-11 8-23 17-34 26" fill="none" stroke="#000"/>
+            <polygon points="81 57 85 63 75 66" stroke="#000"/>
+        </g>
+        <g class="edge">
+            <title>F-&gt;G</title>
+            <path d="m147 34c11 8 23 17 34 26" fill="none" stroke="#000"/>
+            <polygon points="179 63 183 57 189 66" stroke="#000"/>
+        </g>
+    </g>
+</svg>

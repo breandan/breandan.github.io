@@ -30,23 +30,29 @@ This year, I predicted the pandemic weeks before the lockdown, exited the market
 
 # Everything old is new again
 
-As a kid, I was given a book on the history of mathematics. I remember it had some interesting puzzles, including one with bridges and a man called Euler. It mentioned a formula for determining if there was path crossing each bridge exactly once. I remember spending days drawing little pictures to work out the formula.
+As a kid, I was given a book on the history of mathematics. I remember it had some interesting puzzles, including one with bridges and a man called Euler. Which towns had a path crossing each bridge exactly once? Did they have anything in common? I remember spending days drawing little graphs to figure this out.
 
 [![](https://camo.githubusercontent.com/74d8abc0a363a3e01495de6ccea99828febc07fb/68747470733a2f2f75706c6f61642e77696b696d656469612e6f72672f77696b6970656469612f636f6d6d6f6e732f312f31352f496d6167652d4b6f656e696773626572672532435f4d61705f62795f4d657269616e2d457262656e5f313635322e6a7067)](https://en.wikipedia.org/wiki/Seven_Bridges_of_K%C3%B6nigsberg)
 
-In the late 90s, my mom and I went to Ireland. I remember visiting Trinity College, and learning about a man called Hamilton who scraped some formula onto a bridge. We visited the bridge, and the tour guide pointed out the stone, which we touched for good luck. The Irish have a thing for stones.
+In the late 90s, my mom and I went to Ireland. I remember visiting Trinity College, and learning about a man called Hamilton who found some kind of deep connection between algebra and geometry, and carved the formula onto a bridge. We visited the bridge, and the tour guide pointed out the stone, which we touched for good luck. The Irish have a thing for stones.
 
-In 2007, when applying to college, I took the Amtrack Lake Shore Limited to South Bend, Indiana, home of the Fighting Irish. Wandering about, I arrived in the computing department, where I found a magazine by a Hungarian called [Albert](https://en.wikipedia.org/wiki/Albert-L%C3%A1szl%C3%B3_Barab%C3%A1si) who had some interesting things to say about "scale-free networks". There was something beautiful about that idea. I still have the magazine.
+[![](../images/quaternions.jpg)](http://www.kurims.kyoto-u.ac.jp/EMIS/classics/Hamilton/PRIAIcos.pdf)
+
+In 2007, when applying to college, I took the Amtrack Lake Shore Limited from Boston to South Bend, Indiana, home of the Fighting Irish. Wandering about, I came to the computing department, where I found a magazine by a Hungarian called [Albert](https://en.wikipedia.org/wiki/Albert-L%C3%A1szl%C3%B3_Barab%C3%A1si) who had some interesting things to say about "scale-free networks". There was something beautiful about that idea. I still have the magazine.
 
 [![](https://i1.rgstatic.net/publication/3207878_The_Architecture_of_Complexity/links/547c515f0cf293e2da2daf21/largepreview.png)](https://barabasi.com/f/226.pdf)
 
-In 2009, while a student in Rochester, I [carpooled](../images/complex_network_seminar.png) with a [nice professor](https://twitter.com/hguclu) who was enthusiastic about complex networks. I learned complex networks are found in brains, languages and social networks. I remember being very excited about this and its implications for the study of intelligence. Nothing seemed to come of it.
+In 2009, while a student in Rochester, I [carpooled](../images/complex_network_seminar.png) with a [nice professor](https://twitter.com/hguclu) who was enthusiastic about complex networks. I learned complex networks are found in brains, languages and social networks. I remember being very excited about this and its implications for the study of intelligence. Nothing seemed to come of it, until recently.
 
-In 2017, I spent some time with folks interested in algorithmic differentiation. Olivier presented Myia and Buche. Matt Johnson gave a talk at Google Brain which left an impression on me. I met Chris Olah in Long Beach, who gave me the idea to study differentiable programming. I stole his idea, dressed it up in Kotlin and traded it for a POPL workshop paper and later a [Master's thesis](https://github.com/breandan/kotlingrad/blob/master/latex/thesis/thesis.pdf). Our contributions were mostly algebra, shapes and dataflow graphs.
+In 2017, I spent some time with folks interested in algorithmic differentiation. Olivier Breleux presented [Myia](https://github.com/mila-iqia/myia) and [Buche](https://github.com/breuleux/buche). Matt Johnson gave a talk on [Autograd](https://github.com/HIPS/autograd) which left an impression on me. I met Chris Olah in Long Beach, who gave me the idea to study [differentiable programming](https://colah.github.io/posts/2015-09-NN-Types-FP/). I stole his idea, dressed it up in Kotlin and traded it for a POPL workshop paper and later a [Master's thesis](https://github.com/breandan/kotlingrad/blob/master/latex/thesis/thesis.pdf). Our contributions were mostly algebra, shapes and casting AD as a transformation on a dataflow graph.
 
-In 2019, I joined a lab with a [nice professor](https://www.cs.mcgill.ca/~jguo/) interested in applying knowledge graphs to software engineering. I believe this is an important area of research with a lot of potential. Knowledge and connectivity plays an important role in software, and it's the bread-and-butter of a good IDE. The world needs better IDEs if we're ever going to untangle this mess we're in.
+[![](https://github.com/breandan/kotlingrad/raw/master/samples/src/main/resources/dataflow.svg)](https://github.com/breandan/kotlingrad#dataflow-graphs)
 
-This Spring, I took a seminar in Graph Representation Learning. A lot of graph theory had been worked out over the last decade. PageRank turned into power iteration. People made some interesting connections to linear algebra, including Weisfeiler-Lehman graph kernels, graph Laplacians and spectral graph theory. Graph synthesis is starting to show real promise.
+In 2019, I joined a lab with a [nice professor](https://www.cs.mcgill.ca/~jguo/) interested in applying knowledge graphs to software engineering. Knowledge graphs are an old idea from the first wave of AI in the 1960s and 70s. I believe this is an important area of research with a lot of potential. Knowledge and connectivity plays an important role in software, and it's the bread-and-butter of a good IDE. The world needs better IDEs if we're ever going to untangle this mess we're in.
+
+[![Structurizr](https://raw.githubusercontent.com/cecuesta/structurizr-java/master/docs/images/graphviz-spring-petclinic-components.png)](https://structurizr.com/)
+
+This Spring, I took a seminar in Graph Representation Learning. A lot of graph theory had been worked out over the preceeding decade. PageRank turned into power iteration. People made some interesting connections to linear algebra, including Weisfeiler-Lehman graph kernels, graph Laplacians and spectral graph theory. Graph synthesis is starting to show real promise.
 
 # Graphs, inductively
 
@@ -55,9 +61,9 @@ Graphs are general-purpose data structures used to represent many data types and
 - **Sets**: data, multisets, posets, symbols
 - **Sequences**: Lists, strings, traces, linear function composition
 - **Trees**: [Abstract syntax trees](https://en.wikipedia.org/wiki/Abstract_syntax_tree), [document object model](https://en.wikipedia.org/wiki/Document_Object_Model), [phylogenic trees](https://en.wikipedia.org/wiki/Phylogenetic_tree), [decision trees](https://en.wikipedia.org/wiki/Decision_tree)
-- **DAGs**: [Git](https://eagain.net/articles/git-for-computer-scientists/), [control flow](https://en.wikipedia.org/wiki/Control-flow_graph), [citation networks](https://en.wikipedia.org/wiki/Citation_network), [dependency graphs](https://en.wikipedia.org/wiki/Dependency_graph)
-- **Directed graphs**: [State machines](https://en.wikipedia.org/wiki/Finite-state_machine), [lambda calculus](http://dkeenan.com/Lambda/), [web pages](https://computersciencewiki.org/index.php/The_web_as_a_directed_graph), [call graphs](https://en.wikipedia.org/wiki/Call_graph), neural networks
-- **Hypergraphs**: Knowledge graphs, [Zettelkasten](https://zettelkasten.de/), [categories](https://en.wikipedia.org/wiki/Category_theory), [the universe](https://writings.stephenwolfram.com/2020/04/finally-we-may-have-a-path-to-the-fundamental-theory-of-physics-and-its-beautiful/)
+- **DAGs**: [Git](https://eagain.net/articles/git-for-computer-scientists/), [control flow](https://en.wikipedia.org/wiki/Control-flow_graph), [citation networks](https://en.wikipedia.org/wiki/Citation_network), [dependency graphs](https://en.wikipedia.org/wiki/Dependency_graph), MLPs
+- **Directed graphs**: [State machines](https://en.wikipedia.org/wiki/Finite-state_machine), [lambda calculus](http://dkeenan.com/Lambda/), [web pages](https://computersciencewiki.org/index.php/The_web_as_a_directed_graph), [call graphs](https://en.wikipedia.org/wiki/Call_graph), RNNs
+- **Hypergraphs**: [Knowledge graphs](https://arxiv.org/pdf/2003.02320.pdf), [Zettelkasten](https://zettelkasten.de/), [categories](https://en.wikipedia.org/wiki/Category_theory), [the universe](https://writings.stephenwolfram.com/2020/04/finally-we-may-have-a-path-to-the-fundamental-theory-of-physics-and-its-beautiful/)
 
 Graphs are often used to represent mathematical notation as I show in [Kotlin∇](https://github.com/breandan/kotlingrad). Graphs can also be used to represent other programming languages, including source code, intermediate representations and markup languages. There are many recent examples of learning graphs for symbolic applications:
 
@@ -69,9 +75,11 @@ Graphs are also used to model natural language, including [constituency](https:/
 
 ![](https://upload.wikimedia.org/wikipedia/commons/8/8e/Thistreeisillustratingtherelation%28PSG%29.png)
 
-[Knowledge graphs](https://arxiv.org/pdf/2003.02320.pdf) are another important type of graph structure used to represent relations between concepts, e.g. on wikis and other web based content management systems.
+[Knowledge graphs](https://arxiv.org/pdf/2003.02320.pdf) are another important type of graph used to represent relations between concepts, e.g. on wikis and other web based content management systems.
 
-One thing that fascinates me about PL is the idea of inductively defined languages:
+![](https://aske.gtri.gatech.edu/v0.1/img/olog.dot.svg)
+
+One thing that fascinates me about programming languages is the idea of inductively defined grammars:
 
 ```
 <exp> := x | y | z
@@ -82,9 +90,18 @@ One thing that fascinates me about PL is the idea of inductively defined languag
 <exp> := (<exp>)
 ```
 
-This generates an abstract syntax tree, which becomes a directed acyclic graph if you merge equivalent nodes. All trees are graphs.
+Each time you expand an `<exp>` with another production rule, this generates a rooted subtree on the operator, whose leaves are the operands.
 
-Similarly, it is possible to define graphs inductively.
+![](../images/tree.svg)
+ 
+ This tree becomes a directed acyclic graph if you merge equivalent operands. DAG are trees with a gemel.
+ 
+ ![](../images/subtree_dag.svg)
+
+
+![gemel](../images/gemel.png)
+
+What happens Similarly, it is possible to define graphs inductively.
 
 ```
 type Node        = Int
@@ -104,6 +121,10 @@ Another definition of a graph is an adjacency matrix containing nodes V and edge
     \end{cases}
 \end{align*}
 $$</span>
+
+# Graphs, algebraically
+
+What happens if we define some operators on graphs, such as addition and multiplication? How would we do that, and what does it mean?
 
 # Graphs, efficiently
 
