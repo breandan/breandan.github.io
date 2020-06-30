@@ -6,27 +6,27 @@ title: Computation graphs and graph computation
 
 # New decade, new delusions
 
-Over the last decade, I bet on some strange ideas. A lot of the people I looked up to at the time laughed at me. I'll bet they aren't laughing anymore. I ought to thank them one day, because their laughter has given me a lot of motivation over the years.
+Over the last decade, I bet on some strange ideas. A lot of the people I looked up to at the time laughed at me. I'll bet they aren't laughing anymore. I ought to thank them one day, because their laughter gave me a lot of motivation over the years.
 
-In 2012, I sat beside an ex-poker player named [Amir](https://twitter.com/amirpc) at an Austin tech incubator who was excited about Hinton's work. I poured over his technicolor slides and something must have clicked, because I quit my job in a hurry and started [an educational project](http://breandan.net/2014/02/09/the-end-of-illiteracy/) using speech recognition and restricted Boltzman machines. It never panned out, but I learned a lot about speech recognition and Android development. Still love that idea.
+In 2012, I was in Austin sitting next to an ex-poker player named [Amir](https://twitter.com/amirpc) who was excited about Hinton's work. I poured over his technicolor slides and something must have clicked, because I quit my job in a hurry and started [an educational project](http://breandan.net/2014/02/09/the-end-of-illiteracy/) using speech recognition and restricted Boltzman machines. It never panned out, but I learned a lot about speech recognition and Android audio. Still love that idea.
 
 In 2016, I quit my next job as a tech evangelist to [run around the world](http://breandan.net/2016/12/27/traveling-tales/) giving incoherent talks about deep learning. I met Yoshua at the United Nations. He encouraged me to study in Canada. I applied to UofT and UdeM. Ended up at UdeM because I hate asking for recommendations, and they were the only ones who didn't care about them anyway. Best decision I ever made. Move to Montreal, thank me later. 
 
-In 2017, I started writing a book on the social consequences of machine learning and [predicted](http://breandan.net/2017/02/02/trust-in-automation/) mass unemployment and unrest. Although I got the causes wrong (pandemic / automation), the information economy and bias stuff were all dead right. Sadly, the worst parts came true faster than I could imagine and are driving the world completely insane.
+In 2017, I started writing a book on the ethics of automation and [predicted](http://breandan.net/2017/02/02/trust-in-automation/) mass unemployment and social unrest. Although I got the automation wrong (pandemic, go figure), the information economy and bias stuff were all dead right. Sadly, the worst parts came true faster than I imagined and are now driving the world completely insane.
 
 [![](../images/diff_prog.png)](https://colah.github.io/posts/2015-09-NN-Types-FP/)
 
-In 2017, while hanging out with the Theano team, I saw the rise of differentiable programming, which I stole from Chris Olah and turned into a [master's thesis](https://github.com/breandan/kotlingrad/blob/master/latex/thesis/thesis.pdf). Wrote a lot of arrogant whig historiography that my advisors pleaded with me to cut, but even they'll admit we got some things right. Look at the proceedings of any ML conference today and you'll find dozens of papers on differentiable sorting and rendering and simulation. Types are coming. Don't thank me, thank Chris and the Theano guys.
+In 2017, I saw the rise of differentiable programming, which I stole from Chris Olah and turned into a [master's thesis](https://github.com/breandan/kotlingrad/blob/master/latex/thesis/thesis.pdf). Wrote a lot of arrogant whig historiography that my advisors pleaded with me to cut, but even they'll admit we got some things right. Look at the proceedings of any ML conference today and you'll find dozens of papers on differentiable sorting and rendering and simulation. [Types](https://github.com/tensorflow/tensorflow/issues/12345) are [coming](https://docs.python.org/3.9/whatsnew/3.9.html#pep-585-builtin-generic-types). Don't thank me, thank Chris and the Theano guys.
 
-In 2018, I bet on big code and ML4SE. A lot of people saw this coming, but I correctly predicted Microsoft would acquire GitHub to mine code. Why MS and not Google? I'll bet they tried, but Google's leadership had fantasies of AGI and besides JetBrains, MS were the only ones who gave a damn about developers. They haven't fully cracked the code yet, but synthesis is starting to trickle into real products.
+In 2018, I bet on big code and ML4SE. A lot of people saw this coming, but I correctly predicted Microsoft would acquire GitHub to mine code. Why MS and not Google? I'll bet they tried, but Google's leadership had fantasies of AGI and besides JetBrains, MS were the only ones who gave a damn about developers. They haven't fully cracked the code yet, but synthesis is starting to trickle into [real](https://github.com/JetBrains-Research/DeepBugsPlugin) [products](https://devblogs.microsoft.com/visualstudio/ai-assisted-intellisense-for-your-teams-codebase/).
 
 <blockquote class="twitter-tweet"><p lang="en" dir="ltr">Prediction: MS will acquire GH within five years. If the <a href="https://twitter.com/hashtag/ML4Code?src=hash&amp;ref_src=twsrc%5Etfw">#ML4Code</a> stuff delivers for MS, acquisition is highly likely. Although it would have been cheaper a few years ago. <a href="https://t.co/5ZMtiRtifD">https://t.co/5ZMtiRtifD</a> <a href="https://t.co/TaxkArm5ps">https://t.co/TaxkArm5ps</a></p>&mdash; breandan (@breandan) <a href="https://twitter.com/breandan/status/993553301927936001?ref_src=twsrc%5Etfw">May 7, 2018</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 
 [![](../images/microsoft_github_aquisition.png)](https://blogs.microsoft.com/blog/2018/10/26/microsoft-completes-github-acquisition/)
 
-I can't take credit for any of these ideas, I'm no genius. I just show up and listen to the right people. Some call it privilege, some call it luck. Perhaps you think I'm just another washed up brogrammer with an ego and axe to grind, and perhaps you're not wrong. Whatever my flaws, God gave me two gifts. I can spot good ideas (sometimes), and I can write (poorly).
+I can't claim credit for any of these ideas, I'm no genius. I just show up and listen to the right people. Some call it privilege, some call it luck. Call it what you want. Perhaps you think I'm just another washed up brogrammer with an ego and axe to grind, and perhaps you're not wrong. Whatever my flaws, God gave me two gifts. I can spot good ideas (sometimes), and I can write about them (poorly).
 
-This year, I predicted the pandemic (citation needed), turned down a job at Google to work on my qualifying exams, and I'm going all in on some new ideas (none of which are mine). I will make some predictions and get some wrong, but I am convinced there is the same spark of genius in them. Get ready, because these things going to shake the foundations of modern computing.
+This year, I predicted the pandemic weeks before the lockdown, exited the market, and turned down a job at Google. They called me crazy. Now I'm going all-in on some new ideas (none of which are mine). I'm making some big bets and some may be wrong, but I see the very same spark of truth in them. Hang on to your hats, because if I'm right, these things are going to shake the foundations of modern computing.
 
 # Everything old is new again
 
@@ -40,16 +40,15 @@ In 2007, when applying to college, I took the Amtrack Lake Shore Limited to Sout
 
 [![](https://i1.rgstatic.net/publication/3207878_The_Architecture_of_Complexity/links/547c515f0cf293e2da2daf21/largepreview.png)](https://barabasi.com/f/226.pdf)
 
-In 2009, while a student in Rochester, I [carpooled](../images/complex_network_seminar.png) with a [nice professor](https://twitter.com/hguclu) who was enthusiastic about complex networks. I learned complex networks are found in brains, languages and social networks. I remember being very excited about this and its implications for the study of intelligence.
+In 2009, while a student in Rochester, I [carpooled](../images/complex_network_seminar.png) with a [nice professor](https://twitter.com/hguclu) who was enthusiastic about complex networks. I learned complex networks are found in brains, languages and social networks. I remember being very excited about this and its implications for the study of intelligence. Nothing seemed to come of it.
 
-In 2017, I spent some time with folks interested in algorithmic differentiation. Matt Johnson gave a talk at Google Brain which left an impression on me. I met Chris Olah in Long Beach, who gave me the idea to study differentiable programming. I stole his idea, dressed it up in Kotlin and traded it for a POPL workshop paper and later a [Master's thesis](https://github.com/breandan/kotlingrad/blob/master/latex/thesis/thesis.pdf). Our contributions were mostly algebra, shapes and dataflow graphs.
+In 2017, I spent some time with folks interested in algorithmic differentiation. Olivier presented Myia and Buche. Matt Johnson gave a talk at Google Brain which left an impression on me. I met Chris Olah in Long Beach, who gave me the idea to study differentiable programming. I stole his idea, dressed it up in Kotlin and traded it for a POPL workshop paper and later a [Master's thesis](https://github.com/breandan/kotlingrad/blob/master/latex/thesis/thesis.pdf). Our contributions were mostly algebra, shapes and dataflow graphs.
 
-In 2019, I joined a lab with a [nice professor](https://www.cs.mcgill.ca/~jguo/) interested in applying knowledge graphs to software engineering. I believe this is an important area which has a lot of potential. Knowledge and software connectivity plays an important role in writing software, and it's the bread-and-butter of any good IDE. The world needs better IDEs if we're ever going to untangle this mess we're in.
+In 2019, I joined a lab with a [nice professor](https://www.cs.mcgill.ca/~jguo/) interested in applying knowledge graphs to software engineering. I believe this is an important area of research with a lot of potential. Knowledge and connectivity plays an important role in software, and it's the bread-and-butter of a good IDE. The world needs better IDEs if we're ever going to untangle this mess we're in.
 
-This Spring, I took a seminar in Graph Representation Learning. A lot of graph theory had been worked out over the last decade. PageRank turned into power iteration. People made some interesting connections to linear algebra, inclduing Weisfeiler-Lehman graph kernels, graph Laplacians and spectral graph theory. Graph synthesis is starting to show promise.
+This Spring, I took a seminar in Graph Representation Learning. A lot of graph theory had been worked out over the last decade. PageRank turned into power iteration. People made some interesting connections to linear algebra, including Weisfeiler-Lehman graph kernels, graph Laplacians and spectral graph theory. Graph synthesis is starting to show real promise.
 
 # Graphs, inductively
-
 
 Graphs are general-purpose data structures used to represent many data types and procedural phenomena. Consider the following hierarchy of graphs, from least to greatest expressiveness:
 
@@ -71,8 +70,6 @@ Graphs are also used to model natural language, including [constituency](https:/
 ![](https://upload.wikimedia.org/wikipedia/commons/8/8e/Thistreeisillustratingtherelation%28PSG%29.png)
 
 [Knowledge graphs](https://arxiv.org/pdf/2003.02320.pdf) are another important type of graph structure used to represent relations between concepts, e.g. on wikis and other web based content management systems.
-
-Our goal is to apply graphs to understand the relationships between natural and formal languages in software repositories. Software repositories contain a variety of file formats, each with varying grammar and implicit or explicit link structure. All of these documents are essentially graphs with different schema and labels.
 
 One thing that fascinates me about PL is the idea of inductively defined languages:
 
@@ -107,3 +104,7 @@ Another definition of a graph is an adjacency matrix containing nodes V and edge
     \end{cases}
 \end{align*}
 $$</span>
+
+# Graphs, efficiently
+
+A lot of the stuff in Graph Representation Learning is motivated by computational constraints. You can't instantiate the adjacency matrix, because it's too large, so you need all kinds of mathematical tricks to sum over or approximate it. But most graphs are sparse and have all kinds of symmetries. Finding the right graph embedding can get you real far...
