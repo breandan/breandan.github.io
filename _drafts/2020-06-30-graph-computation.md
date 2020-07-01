@@ -10,21 +10,21 @@ Over the last decade, I bet on some strange ideas. A lot of the people I looked 
 
 In 2012, I was in Austin sitting next to an ex-poker player named [Amir](https://twitter.com/amirpc) who was excited about Hinton's work. I poured over his technicolor slides and something must have clicked, because I quit my job in a hurry and started [an educational project](http://breandan.net/2014/02/09/the-end-of-illiteracy/) using speech recognition and restricted Boltzman machines. It never panned out, but I learned a lot about speech recognition and Android audio. Still love that idea.
 
+![](../images/rbm.png)
+
 In 2016, I quit my next job as a tech evangelist to [run around the world](http://breandan.net/2016/12/27/traveling-tales/) giving incoherent talks about deep learning. I met Yoshua at the United Nations. He encouraged me to study in Canada. I applied to UofT and UdeM. Ended up at UdeM because I hate asking for recommendations, and they were the only ones who didn't care about them anyway. Best decision I ever made. Move to Montreal, thank me later. 
 
 In 2017, I started writing a book on the ethics of automation and [predicted](http://breandan.net/2017/02/02/trust-in-automation/) mass unemployment and social unrest. Although I got the automation wrong (pandemic, go figure), the information economy and bias stuff were all dead right. Sadly, the worst parts came true faster than I imagined and are now driving the world completely insane.
 
 [![](../images/diff_prog.png)](https://colah.github.io/posts/2015-09-NN-Types-FP/)
 
-In 2017, I saw the rise of differentiable programming, which I stole from Chris Olah and turned into a [master's thesis](https://github.com/breandan/kotlingrad/blob/master/latex/thesis/thesis.pdf). Wrote a lot of arrogant whig historiography that my advisors pleaded with me to cut, but even they'll admit we got some things right. Look at the proceedings of any ML conference today and you'll find dozens of papers on differentiable sorting and rendering and simulation. [Types](https://github.com/tensorflow/tensorflow/issues/12345) are [coming](https://docs.python.org/3.9/whatsnew/3.9.html#pep-585-builtin-generic-types). Don't thank me, thank Chris and the Theano guys.
+In 2017, I saw the rise of differentiable programming, which I stole from Chris Olah and turned into a [master's thesis](https://github.com/breandan/kotlingrad/blob/master/latex/thesis/thesis.pdf). Wrote a lot of [cargo cult science](https://en.wikipedia.org/wiki/Cargo_cult_science) I was advised to cut, but it got some things right. Look at the proceedings of any machine learning conference today and you'll find dozens of papers on differentiable sorting and rendering and simulation. [Types](https://github.com/tensorflow/tensorflow/issues/12345) are [coming](https://docs.python.org/3.9/whatsnew/3.9.html#pep-585-builtin-generic-types). Don't thank me, thank Chris and the Theano guys.
 
-In 2018, I bet on big code and ML4SE. A lot of people saw this coming, but I correctly predicted Microsoft would acquire GitHub to mine code. Why MS and not Google? I'll bet they tried, but Google's leadership had fantasies of AGI and besides JetBrains, MS were the only ones who gave a damn about developers. They haven't fully cracked the code yet, but synthesis is starting to trickle into [real](https://github.com/JetBrains-Research/DeepBugsPlugin) [products](https://devblogs.microsoft.com/visualstudio/ai-assisted-intellisense-for-your-teams-codebase/).
+In 2018, I bet on big code and ML4SE. A lot of people saw this coming, but I correctly predicted Microsoft would acquire GitHub to mine code. Why MS and not Google? I'll bet they tried, but Google's leadership had fantasies of AGI and besides JetBrains, MS were the only ones who cared about developers. They haven't fully cracked the code yet, but synthesis is starting to trickle into [real](https://github.com/JetBrains-Research/DeepBugsPlugin) [products](https://devblogs.microsoft.com/visualstudio/ai-assisted-intellisense-for-your-teams-codebase/).
 
 <blockquote class="twitter-tweet"><p lang="en" dir="ltr">Prediction: MS will acquire GH within five years. If the <a href="https://twitter.com/hashtag/ML4Code?src=hash&amp;ref_src=twsrc%5Etfw">#ML4Code</a> stuff delivers for MS, acquisition is highly likely. Although it would have been cheaper a few years ago. <a href="https://t.co/5ZMtiRtifD">https://t.co/5ZMtiRtifD</a> <a href="https://t.co/TaxkArm5ps">https://t.co/TaxkArm5ps</a></p>&mdash; breandan (@breandan) <a href="https://twitter.com/breandan/status/993553301927936001?ref_src=twsrc%5Etfw">May 7, 2018</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 
 [![](../images/microsoft_github_aquisition.png)](https://blogs.microsoft.com/blog/2018/10/26/microsoft-completes-github-acquisition/)
-
-I can't claim credit for any of these ideas, I'm no genius. I just show up and listen to the right people. Some call it privilege, some call it luck. Call it what you want. Perhaps you think I'm just another washed up brogrammer with an ego and axe to grind, and perhaps you're not wrong. Whatever my flaws, God gave me two gifts. I can spot good ideas (sometimes), and I can write about them (poorly).
 
 This year, I predicted the pandemic weeks before the lockdown, exited the market, and turned down a job at Google. They called me crazy. Now I'm going all-in on some new ideas (none of which are mine). I'm making some big bets and some may be wrong, but I see the very same spark of truth in them. Hang on to your hats, because if I'm right, these things are going to shake the foundations of modern computing.
 
@@ -63,7 +63,7 @@ Graphs are general-purpose data structures used to represent many data types and
 - **Trees**: [Abstract syntax trees](https://en.wikipedia.org/wiki/Abstract_syntax_tree), [document object model](https://en.wikipedia.org/wiki/Document_Object_Model), [phylogenic trees](https://en.wikipedia.org/wiki/Phylogenetic_tree), [decision trees](https://en.wikipedia.org/wiki/Decision_tree)
 - **DAGs**: [Git](https://eagain.net/articles/git-for-computer-scientists/), [control flow](https://en.wikipedia.org/wiki/Control-flow_graph), [citation networks](https://en.wikipedia.org/wiki/Citation_network), [dependency graphs](https://en.wikipedia.org/wiki/Dependency_graph), MLPs
 - **Directed graphs**: [State machines](https://en.wikipedia.org/wiki/Finite-state_machine), [lambda calculus](http://dkeenan.com/Lambda/), [web pages](https://computersciencewiki.org/index.php/The_web_as_a_directed_graph), [call graphs](https://en.wikipedia.org/wiki/Call_graph), RNNs
-- **Hypergraphs**: [Knowledge graphs](https://arxiv.org/pdf/2003.02320.pdf), [Zettelkasten](https://zettelkasten.de/), [categories](https://en.wikipedia.org/wiki/Category_theory), [the universe](https://writings.stephenwolfram.com/2020/04/finally-we-may-have-a-path-to-the-fundamental-theory-of-physics-and-its-beautiful/)
+- **Hypergraphs**: [Knowledge graphs](https://arxiv.org/pdf/2003.02320.pdf), [Zettelkasten](https://zettelkasten.de/), [categories](https://en.wikipedia.org/wiki/Category_theory), [the universe](https://writings.stephenwolfram.com/2020/04/finally-we-may-have-a-path-to-the-fundamental-theory-of-physics-and-its-beautiful/), hypernetworks
 
 Graphs are often used to represent mathematical notation as I show in [Kotlin∇](https://github.com/breandan/kotlingrad). Graphs can also be used to represent other programming languages, including source code, intermediate representations and markup languages. There are many recent examples of learning graphs for symbolic applications:
 
@@ -120,10 +120,38 @@ Another definition of a graph is an adjacency matrix containing nodes V and edge
 \end{align*}
 $$</span>
 
+# Graph rewriting
+
+Consider the following system of rules, which operate on computation graphs:
+
+(R1) D<sub>x</sub>(X) := 1
+
+(R2) D<sub>x</sub>(Y) := 0
+
+(R3) D<sub>x</sub>(u+v) := D<sub>x</sub>(u) + D<sub>x</sub>(v)
+
+(R4) D<sub>x</sub>(u⋅v) := u⋅D<sub>x</sub>(v) + D<sub>x</sub>(u)⋅v
+
+This generates the following graph:
+
+![](../images/confluence.svg)
+
+This property is called confluence.
+
+![](../images/confluence_montreal.png)
+
 # Graphs, algebraically
 
 What happens if we define some operators on graphs, such as addition and multiplication? How would we do that, and what does it mean?
 
 # Graphs, efficiently
 
+<blockquote class="twitter-tweet"><p lang="en" dir="ltr">Prediction: In 20 years, most of today&#39;s ISAs (x86, ARM, MIPS) will be virtual or obsolete. Underneath the hood, everything will be sparse matmuls running on a homogeneous silicon mesh. Physical CPUs will be like gasoline engines - marvels of engineering, but far too complicated.</p>&mdash; breandan (@breandan) <a href="https://twitter.com/breandan/status/1278139598942679041?ref_src=twsrc%5Etfw">July 1, 2020</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script> 
+
 A lot of the stuff in Graph Representation Learning is motivated by computational constraints. You can't instantiate the adjacency matrix, because it's too large, so you need all kinds of mathematical tricks to sum over or approximate it. But most graphs are sparse and have all kinds of symmetries. Finding the right graph embedding can get you real far...
+
+# References
+
+- [GRL Notes](https://cs.mcgill.ca/~wlh/comp766/notes.html)
+- [Term Rewriting and All That](https://doi.org/10.1017/CBO9781139172752)
+- [Representation of Events in Nerve Nets and Finite Automata](https://www.rand.org/content/dam/rand/pubs/research_memoranda/2008/RM704.pdf)
