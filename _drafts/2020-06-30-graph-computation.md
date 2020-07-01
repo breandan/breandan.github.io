@@ -26,7 +26,7 @@ In 2018, I bet on big code and ML4SE. A lot of people saw this coming, but I cor
 
 [![](../images/microsoft_github_aquisition.png)](https://blogs.microsoft.com/blog/2018/10/26/microsoft-completes-github-acquisition/)
 
-This year, I predicted the pandemic weeks before the lockdown, exited the market, and turned down a job at Google. They called me crazy. Now I'm going all-in on some new ideas (none of which are mine). I'm making some big bets and some may be wrong, but I see the very same spark of truth in them. Hang on to your hats, because if I'm right, these things are going to shake the foundations of modern computing.
+This year, I predicted the pandemic weeks before the lockdown, exited the market, and turned down a job at Google. Some people called me crazy. Now I'm going all-in on some new ideas (none of which are mine). I'm making some big bets and some may be wrong, but I see the very same spark of truth in them. Hang on to your hats, because if I'm right, these things are going to shake the foundations of modern computing.
 
 # Everything old is new again
 
@@ -52,9 +52,9 @@ In 2019, I joined a lab with a [nice professor](https://www.cs.mcgill.ca/~jguo/)
 
 [![Structurizr](https://raw.githubusercontent.com/cecuesta/structurizr-java/master/docs/images/graphviz-spring-petclinic-components.png)](https://structurizr.com/)
 
-This Spring, I took a seminar in Graph Representation Learning. A lot of graph theory had been worked out over the preceeding decade. PageRank turned into power iteration. People made some interesting connections to linear algebra, including Weisfeiler-Lehman graph kernels, graph Laplacians and spectral graph theory. Graph synthesis is starting to show real promise.
+This Spring, I took a seminar in Graph Representation Learning. A lot of graph theory had been worked out over the preceding decade. PageRank turned into power iteration. People made some interesting connections to linear algebra, including Weisfeiler-Lehman graph kernels, graph Laplacians and spectral graph theory. Graph synthesis is starting to show real promise.
 
-# Graphs, inductively
+# Graphs, by example
 
 Graphs are general-purpose data structures used to represent many data types and procedural phenomena. Consider the following hierarchy of graphs, from least to greatest expressiveness:
 
@@ -77,7 +77,9 @@ Graphs are also used to model natural language, including [constituency](https:/
 
 [Knowledge graphs](https://arxiv.org/pdf/2003.02320.pdf) are another important type of graph used to represent relations between concepts, e.g. on wikis and other web based content management systems.
 
-![](https://aske.gtri.gatech.edu/v0.1/img/olog.dot.svg)
+![](../images/knowledge_graph.png)
+
+# Graphs, inductively
 
 One thing that fascinates me about programming languages is the idea of inductively defined grammars:
 
@@ -99,7 +101,7 @@ Each time you expand an `<exp>` with another production rule, this generates a r
 ![](../images/tree_dag.svg)
 ![gemel](../images/gemel.png)
 
-What happens Similarly, it is possible to define graphs inductively.
+Similarly, it is possible to define graphs inductively.
 
 ```
 type Node        = Int
@@ -120,9 +122,9 @@ Another definition of a graph is an adjacency matrix containing nodes V and edge
 \end{align*}
 $$</span>
 
-# Graph rewriting
+# Graphs, grammatically
 
-Consider the following system of rules, which operate on computation graphs:
+Consider the following system of rules, which operate on computation graphs, just like before, we can apply the rules to transform the graph:
 
 (R1) D<sub>x</sub>(X) := 1
 
@@ -135,16 +137,130 @@ Consider the following system of rules, which operate on computation graphs:
 This generates the following graph:
 
 ![](../images/confluence.svg)
+![](../images/confluence.png)
 
 This property is called confluence.
 
-![](../images/confluence_montreal.png)
+Graph grammars are grammars on graphs. 
+
+Single/Double pushout
+
+# Graphs, automatically
+
+Consider the [elementary cellular automata](https://en.wikipedia.org/wiki/Elementary_cellular_automaton), which consists of a one dimensional array, and a 3-cell rewrite grammar. There are 2<sup>2<sup>3</sup></sup>=256 rules for rewriting the tape. 
+
+![](https://en.wikipedia.org/wiki/Cellular_automaton#/media/File:One-d-cellular-automate-rule-30.gif)
+
+It turns out even in this simple space, there are remarkable automata. The following rule is Turing complete:
+
+| current pattern           | `111` | `110` | `101` | `100` | `011` | `010` | `001` | `000` |
+| ------------------------- | --- | --- | --- | --- | --- | --- | --- | --- |
+| new pattern | ` 0 `  | ` 1 `  | ` 1 `  | ` 0 `  | ` 1 ` | ` 1 `  | ` 1 `  | ` 0 `  |
+
+Consider the lambda calculus, which is also Turing complete. It consists of the following rules:
+
+...
+
+This can be represented graphically:
+
+...
 
 # Graphs, algebraically
-
+  
 What happens if we define some operators on graphs, such as addition and multiplication? How would we do that, and what does it mean?
 
+Naively, a directed graph is a boolean matrix. Just like real matrices in linear algebra, we can add, subtract and multiply and exponentiate them.
+
+# Graphs, computationally
+
+One of the earliest examples of graph computation can be found in Valiant, 1975.
+
+<blockquote class="twitter-tweet"><p lang="en" dir="ltr">TIL: CFL parsing can be reduced to boolean matrix multiplication (Valiant, 1975), known to be subcubic (Strassen, 1969), and later proven an asymptotic lower bound (Lee, 1997). This admits efficient GPGPU implementation (Azimov, 2017) in <a href="https://twitter.com/YaccConstructor?ref_src=twsrc%5Etfw">@YaccConstructor</a> <a href="https://t.co/3Vbml0v6b9">https://t.co/3Vbml0v6b9</a></p>&mdash; breandan (@breandan) <a href="https://twitter.com/breandan/status/1277136195118600192?ref_src=twsrc%5Etfw">June 28, 2020</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+- Finite automata
+- Buchi automata
+- Pushdown automata
+
+All of these things can be evolved using matmuls.
+
+Boolean matmuls:
+
+0 * 0 = 0
+0 * 1 = 0
+1 * 1 = 1
+1 * 1 = 1
+0 + 0 = 0
+1 + 0 = 1
+0 + 1 = 1
+1 + 1 = 1
+
+
+
+![](../images/step0.svg)
+
+```
+0  0  0     1     0
+1  0  0  *  0  =  1
+0  1  1     0     0
+```
+
+![](../images/step1.svg)
+
+```
+0  0  0     0     0
+1  0  0  *  1  =  0
+0  1  1     0     1
+```
+
+![](../images/step2.svg)
+
+```
+0  0  0     0     0
+1  0  0  *  0  =  0
+0  1  1     1     1
+```
+
+![](../images/step2.svg)
+
+Fixedpoint reached.
+
+What about directed graphs?
+
+![](../images/dag0.svg)
+
+```
+0  0  0  0    1     0
+1  0  0  0    0     1
+1  0  0  0    0     1
+0  1  1  1    0     0
+```
+
+![](../images/dag1.svg)
+
+```
+0  0  0  0    0     0
+1  0  0  0    1     0
+1  0  0  0    1     0
+0  1  1  1    0     1
+```
+
+![](../images/dag2.svg)
+
+```
+0  0  0  0    0     0
+1  0  0  0    0     0
+1  0  0  0    0     0
+0  1  1  0    1     0
+```
+
+Done.
+
+
 # Graphs, efficiently
+
+Many interesting problems on graphs are NP-complete, including Hamiltonian paths and subgraph isomorphism. If so, how are we supposed to do computation with this?
+
+We can encode a program as a graph.
 
 <blockquote class="twitter-tweet"><p lang="en" dir="ltr">Prediction: In 20 years, most of today&#39;s ISAs (x86, ARM, MIPS) will be virtual or obsolete. Underneath the hood, everything will be sparse matmuls running on a homogeneous silicon mesh. Physical CPUs will be like gasoline engines - marvels of engineering, but far too complicated.</p>&mdash; breandan (@breandan) <a href="https://twitter.com/breandan/status/1278139598942679041?ref_src=twsrc%5Etfw">July 1, 2020</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script> 
 
