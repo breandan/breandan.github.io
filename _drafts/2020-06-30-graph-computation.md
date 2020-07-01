@@ -97,7 +97,7 @@ Each time you expand an `<exp>` with another production rule, this generates a r
  This tree becomes a directed acyclic graph if you merge equivalent operands. DAG are trees with a gemel.
  
 ![](../images/tree_dag.svg)
-![gemel](../images/gemel.png | height=300)
+![gemel](../images/gemel.png)
 
 What happens Similarly, it is possible to define graphs inductively.
 
