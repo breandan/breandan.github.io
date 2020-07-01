@@ -40,7 +40,7 @@ In the late 90s, my mom and I went to Ireland. I remember visiting Trinity Colle
 
 In 2007, when applying to college, I took the Amtrack Lake Shore Limited from Boston to South Bend, Indiana, home of the Fighting Irish. Wandering about, I came to the computing department, where I found a magazine by a Hungarian called [Albert](https://en.wikipedia.org/wiki/Albert-L%C3%A1szl%C3%B3_Barab%C3%A1si) who had some interesting things to say about "scale-free networks". There was something beautiful about that idea. I still have the magazine.
 
-[![](https://i1.rgstatic.net/publication/3207878_The_Architecture_of_Complexity/links/547c515f0cf293e2da2daf21/largepreview.png)](https://barabasi.com/f/226.pdf)
+[![](../images/complex_networks.png)](https://barabasi.com/f/226.pdf)
 
 In 2009, while a student in Rochester, I [carpooled](../images/complex_network_seminar.png) with a [nice professor](https://twitter.com/hguclu) who was enthusiastic about complex networks. I learned complex networks are found in brains, languages and social networks. I remember being very excited about this and its implications for the study of intelligence. Nothing seemed to come of it, until recently.
 
@@ -96,10 +96,8 @@ Each time you expand an `<exp>` with another production rule, this generates a r
  
  This tree becomes a directed acyclic graph if you merge equivalent operands. DAG are trees with a gemel.
  
- ![](../images/subtree_dag.svg)
-
-
-![gemel](../images/gemel.png)
+![](../images/tree_dag.svg)
+![gemel](../images/gemel.png | height=300)
 
 What happens Similarly, it is possible to define graphs inductively.
 
