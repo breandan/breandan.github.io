@@ -79,11 +79,11 @@ Graphs are also used to model natural language, including [constituency](https:/
 
 ![](../images/knowledge_graph.png)
 
-Lo and behold, the key idea behind knowledge graphs is our old friend, types. Knowledge graphs are graphs whose nodes and edges have a type. 
+Lo and behold, the key idea behind knowledge graphs is our old friend, types. Knowledge graphs are graphs whose nodes and edges have a type. This is useful information retrieval, since we can build an index on type, but also for reasoning about queries over the graph, such as "Which companies have a direct flight from a port city to a capital city?"
 
 # Graphs, inductively
 
-One thing that fascinates me about programming languages is the idea of inductively defined grammars:
+One thing that fascinates me about programming languages is the idea of inductively defined grammars. The following grammar generates a 3-variable algebra:
 
 ```
 <exp> := x | y | z
@@ -171,7 +171,15 @@ This can be represented graphically:
   
 What happens if we define some operators on graphs, such as addition and multiplication? How would we do that, and what does it mean?
 
-Naively, a directed graph is a boolean matrix. Just like real matrices in linear algebra, we can add, subtract and multiply and exponentiate them.
+Naively, a directed graph is just a square boolean matrix whose values indicate edges between nodes. Just like real matrices in linear algebra, we can add, subtract, multiply and exponentiate them.
+
+One interesting game mathematicians like to play is taking a square matrix R^2 and raise it to a power. There are various tricks for designing the matrix and normalizing the product so it does not explode or vanish. This has many important applications in control theory and dynamical systems.
+
+Another interesting game that mathematicians like to play is to take iterated matrix-vector products. One way to think about this is MMMV. Another way is M(M(M(V))), where M is a function on a vector space. These are equivalent. Matrices are functions on a vector spaces.
+
+It turns out the very same method can be applied to Z^2 and has many interesting applications for graph theory.
+
+
 
 # Graphs, computationally
 
@@ -274,7 +282,48 @@ Done.
 
 # Graphs, efficiently
 
-Many interesting problems on graphs are NP-complete, including Hamiltonian paths and subgraph isomorphism. If so, how are we supposed to do computation with this?
+One issue with efficient representation of graphs is space complexity. Suppose we have a graph with 10<sup>5</sup>=100,000 nodes, but only a single edge. We will need 10<sup>5*2</sup> bits, or about 1 GB to store it in adjacency matrix form, whereas if we use an adjacency list, we will need only ⌈ 2\*log<sub>2</sub>10<sup>5</sup> ⌉ = 34 bits. Most graphs are similarly sparse. But how do you multiply adjacency lists? Unclear. The solution is to use sparse matrices. That was easy.
+
+Another, thornier, problem with graph algorithms is their time complexity. Many interesting problems on graphs are NP-complete, including Hamiltonian paths and subgraph isomorphism. If so, how are we supposed to do any computation if every operation may take nondeterminstic polynomial time? Computer science people are mostly concerned with worst case complexity, which is practically never going to happen. Real world graphs can be solved quickly using approximate algorithms, such as Weisfeiler-Lehman algorithm. My colleague David Bieber has a nice [blog post](https://davidbieber.com/post/2019-05-10-weisfeiler-lehman-isomorphism-test/) about this. I'll focus on the implementation.
+
+First, we need a pooling operator, which aggregates all neighbors on a vertex's ego graph:
+
+```kotlin
+fun <R> poolBy(op: Set<Vertex>.() -> R): Map<Vertex, R> =
+  nodes.map { it to op(it.neighbors()) }.toMap()
+```
+
+Next we need a histogram operator, which simply counts how many neighbors each node has. This is the degree matrix, sparisfied:
+
+```kotlin
+val histogram: Map<Vertex, Int> by lazy { poolBy { size } }
+```
+
+Now we're ready to define the Weisfeiler-Lehman operator, which recursively computes a hash on the histogram for `k` steps.
+
+```kotlin
+tailrec fun wl(k: Int, labels: Map<Vertex, Int>): Map<Vertex, Int> =
+  if (k <= 0) labels
+  else wl(k - 1, poolBy { map { labels[it]!! }.sorted().hashCode() })
+```
+
+The hashcode of the entire graph is the hash code of the WL labels. With one round, we're just comparing the degree historgram. The more rounds we use, the more likely it is to detect a symmetry breaking issue:
+
+```kotlin
+override fun Graph.hashCode(steps: Int = 10) = 
+    wl(steps, histogram).values.sorted().hashCode()
+```
+
+Now we can define an isomorphism test to if one graph is isomorphic to entire graph:
+
+```kotlin
+fun Graph.isIsomorphicTo(that: Graph) =
+  nodes.size == that.nodes.size && 
+  numOfEdges == that.numOfEdges && 
+  hashCode() == that.hashCode()
+```
+
+Now we're done. This algorithm works on almost every graph you will ever encounter. That was easy!
 
 We can encode a program as a graph.
 
