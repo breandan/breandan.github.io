@@ -181,20 +181,7 @@ One of the earliest examples of graph computation can be found in Valiant, 1975.
 - Buchi automata
 - Pushdown automata
 
-All of these things can be evolved using matmuls.
-
-Boolean matmuls:
-
-0 * 0 = 0
-0 * 1 = 0
-1 * 1 = 1
-1 * 1 = 1
-0 + 0 = 0
-1 + 0 = 1
-0 + 1 = 1
-1 + 1 = 1
-
-
+All of these things can be evolved using matrix multiplication.
 
 ![](../images/step0.svg)
 
@@ -224,7 +211,7 @@ Boolean matmuls:
 
 Fixedpoint reached.
 
-What about directed graphs?
+What about directed acyclic graphs?
 
 ![](../images/dag0.svg)
 
@@ -255,6 +242,33 @@ What about directed graphs?
 
 Done.
 
+What about dataflow graphs?
+
+![](../images/dfg0.svg)
+
+```
+    a  b  +  *
+   ___________
+a | 0  0  0  0    2     0
+b | 0  0  0  0    3     0
++ | 1  1  0  0    0     5  = 2 + 3
+* | 0  1  1  1    0     3
+```
+
+![](../images/dfg1.svg)
+
+```
+    a  b  +  *
+   ___________
+a | 0  0  0  0    0     0
+b | 0  0  0  0    0     0
++ | 1  1  0  0    5     0
+* | 0  1  1  1    3     15 = 5 * 3
+```
+
+![](../images/dfg2.svg)
+
+Done.
 
 # Graphs, efficiently
 
