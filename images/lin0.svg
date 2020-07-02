@@ -12,14 +12,14 @@
         <!-- a -->
         <g id="node1" class="node">
             <title>a</title>
-            <ellipse fill="none" stroke="#000000" cx="18" cy="-18" rx="18" ry="18"/>
-            <text text-anchor="middle" x="18" y="-13.8" font-family="Times,serif" font-size="14.00" fill="#000000">0</text>
+            <ellipse fill="#d3d3d3" stroke="#000000" cx="18" cy="-18" rx="18" ry="18"/>
+            <text text-anchor="middle" x="18" y="-13.8" font-family="Times,serif" font-size="14.00" fill="#000000">a</text>
         </g>
         <!-- b -->
         <g id="node2" class="node">
             <title>b</title>
             <ellipse fill="none" stroke="#000000" cx="90" cy="-18" rx="18" ry="18"/>
-            <text text-anchor="middle" x="90" y="-13.8" font-family="Times,serif" font-size="14.00" fill="#000000">1</text>
+            <text text-anchor="middle" x="90" y="-13.8" font-family="Times,serif" font-size="14.00" fill="#000000">b</text>
         </g>
         <!-- a&#45;&gt;b -->
         <g id="edge1" class="edge">
@@ -30,8 +30,8 @@
         <!-- c -->
         <g id="node3" class="node">
             <title>c</title>
-            <ellipse fill="#d3d3d3" stroke="#000000" cx="162" cy="-18" rx="18" ry="18"/>
-            <text text-anchor="middle" x="162" y="-13.8" font-family="Times,serif" font-size="14.00" fill="#000000">2</text>
+            <ellipse fill="none" stroke="#000000" cx="162" cy="-18" rx="18" ry="18"/>
+            <text text-anchor="middle" x="162" y="-13.8" font-family="Times,serif" font-size="14.00" fill="#000000">c</text>
         </g>
         <!-- b&#45;&gt;c -->
         <g id="edge2" class="edge">

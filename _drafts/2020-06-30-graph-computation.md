@@ -14,27 +14,27 @@ In 2012, I was in Austin sitting next to an ex-poker player named [Amir](https:/
 
 In 2016, I quit my next job as a tech evangelist to [run around the world](http://breandan.net/2016/12/27/traveling-tales/) giving incoherent talks about deep learning. I met Yoshua at the United Nations. He encouraged me to study in Canada. I applied to UofT and UdeM. Ended up at UdeM because I hate asking for recommendations, and they were the only ones who didn't care about them anyway. Best decision I ever made. Move to Montreal, thank me later. 
 
-In 2017, I started writing a book on the ethics of automation and [predicted](http://breandan.net/2017/02/02/trust-in-automation/) mass unemployment and social unrest. Although I got the causes wrong (pandemic, go figure), the information economy and bias stuff were all dead right. Sadly, the worst parts came true faster than I imagined and are now driving the world completely insane. Don't thank me, go out and fix the system.
+In 2017, I started writing a book on the ethics of automation and [predicted](http://breandan.net/2017/02/02/trust-in-automation/) mass unemployment and social unrest. Although I got the causes wrong (pandemic, go figure), the information economy and bias takes were all dead right. Sadly, the worst parts came true faster than I imagined and are now driving the world completely insane. Don't thank me, go out and fix our broken systems. The world needs more engineers who care.
 
 [![](../images/diff_prog.png)](https://colah.github.io/posts/2015-09-NN-Types-FP/)
 
-In 2017, I witnessed the birth of differentiable programming, which I stole from Chris Olah and turned into a [master's thesis](https://github.com/breandan/kotlingrad/blob/master/latex/thesis/thesis.pdf). Had a lot of difficulty convincing people that programs could be made differentiable, but look at the proceedings of any machine learning conference today and you'll find dozens of papers on differentiable sorting and rendering and simulation. [Types](https://github.com/tensorflow/tensorflow/issues/12345) are [coming](https://docs.python.org/3.9/whatsnew/3.9.html#pep-585-builtin-generic-types). Don't thank me, thank Chris and the Theano guys.
+In 2017, I witnessed the birth of differentiable programming, which I stole from Chris Olah and turned into a [master's thesis](https://github.com/breandan/kotlingrad/blob/master/latex/thesis/thesis.pdf). Had a lot of trouble convincing people that programs could be made differentiable, but look at the proceedings of any machine learning conference today and you'll find dozens of papers on differentiable sorting and rendering and simulation. [Types](https://github.com/tensorflow/tensorflow/issues/12345) are [coming](https://docs.python.org/3.9/whatsnew/3.9.html#pep-585-builtin-generic-types). Don't thank me, thank Chris and the Theano guys.
 
-In 2018, I bet on big code and ML4SE. This was pretty clear to a lot of people, but I correctly predicted Microsoft would acquire GitHub to mine code. Why MS and not Google? I'll bet they tried, but Google's leadership had fantasies of AGI and besides JetBrains, MS were the only ones who cared about developers. Now machine learning for software engineering is a thriving research area showing up in [real](https://github.com/JetBrains-Research/DeepBugsPlugin) [products](https://devblogs.microsoft.com/visualstudio/ai-assisted-intellisense-for-your-teams-codebase/).
+In 2018, I bet on big code and ML4SE. This was pretty clear to a lot of people, but I correctly predicted Microsoft would acquire GitHub to mine code. Why MS and not Google? I'll bet they tried, but Google's leadership had fantasies of AGI and besides JetBrains, MS were the only ones who cared about developers. Now ML4SE is a thriving research area and showing up in [real](https://github.com/JetBrains-Research/DeepBugsPlugin) [products](https://devblogs.microsoft.com/visualstudio/ai-assisted-intellisense-for-your-teams-codebase/).
 
 <blockquote class="twitter-tweet"><p lang="en" dir="ltr">Prediction: MS will acquire GH within five years. If the <a href="https://twitter.com/hashtag/ML4Code?src=hash&amp;ref_src=twsrc%5Etfw">#ML4Code</a> stuff delivers for MS, acquisition is highly likely. Although it would have been cheaper a few years ago. <a href="https://t.co/5ZMtiRtifD">https://t.co/5ZMtiRtifD</a> <a href="https://t.co/TaxkArm5ps">https://t.co/TaxkArm5ps</a></p>&mdash; breandan (@breandan) <a href="https://twitter.com/breandan/status/993553301927936001?ref_src=twsrc%5Etfw">May 7, 2018</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 
 [![](../images/microsoft_github_aquisition.png)](https://blogs.microsoft.com/blog/2018/10/26/microsoft-completes-github-acquisition/)
 
-This year, I predicted the pandemic weeks before the lockdown, exited the market, and turned down a job at Google. Some people called me crazy. Now I'm going all-in on some new ideas (none of which are mine). I'm making some big bets and some may be wrong, but I see the very same spark of truth in them. Hang on to your hats, because if I'm right, these things are going to shake the foundations of modern computing.
+This year, I predicted the pandemic weeks before the lockdown, exited the market, and turned down a job at Google. Some people called me crazy. Now I'm going all-in on some new ideas (none of which are mine). I'm making some big bets and some may be wrong, but I see the very same spark of genius in them. Hang on to your hats, because if I'm right, these things are going to shake the foundations of modern computing.
 
 # Everything old is new again
 
-As a kid, I was given a book on the history of mathematics. I remember it had some interesting puzzles, including one with [some bridges](https://en.wikipedia.org/wiki/Seven_Bridges_of_K%C3%B6nigsberg) and a man called Euler. Which towns had a path crossing each bridge exactly once? Was it possible to tell without trying every path? I remember spending days drawing little graphs to figure this out.
+As a kid, I was given a book on the history of mathematics. I remember it had some interesting puzzles, including one with [some bridges](https://en.wikipedia.org/wiki/Seven_Bridges_of_K%C3%B6nigsberg) and a man called Euler. Which towns had a path crossing each bridge exactly once? Was it possible to tell without trying every path? I remember spending days drawing little maps to figure this out.
 
 [![](https://camo.githubusercontent.com/74d8abc0a363a3e01495de6ccea99828febc07fb/68747470733a2f2f75706c6f61642e77696b696d656469612e6f72672f77696b6970656469612f636f6d6d6f6e732f312f31352f496d6167652d4b6f656e696773626572672532435f4d61705f62795f4d657269616e2d457262656e5f313635322e6a7067)](https://en.wikipedia.org/wiki/Seven_Bridges_of_K%C3%B6nigsberg)
 
-In the late 90s, my mom and I went to Ireland. I remember visiting Trinity College, and learning about a mathematician called [Hamilton](https://en.wikipedia.org/wiki/William_Rowan_Hamilton) who found a formula connecting algebra and geometry, and carved it onto a [bridge](https://en.wikipedia.org/wiki/Broom_Bridge). We later visited the bridge, and the tour guide pointed out the stone, which we touched for good luck. The Irish have a [thing](https://en.wikipedia.org/wiki/Poulnabrone_dolmen) for [stones](https://en.wikipedia.org/wiki/Newgrange).
+In the late 90s, my mom and I went to Ireland. I remember visiting Trinity College, and learning about a mathematician called [Hamilton](https://en.wikipedia.org/wiki/William_Rowan_Hamilton) who discovered a formula connecting algebra and geometry, and carved it onto a [bridge](https://en.wikipedia.org/wiki/Broom_Bridge). We later visited the bridge, and the tour guide pointed out the stone, which we touched for good luck. The Irish have a [thing](https://en.wikipedia.org/wiki/Poulnabrone_dolmen) for [stones](https://en.wikipedia.org/wiki/Newgrange).
 
 [![](../images/quaternions.jpg)](http://www.kurims.kyoto-u.ac.jp/EMIS/classics/Hamilton/PRIAIcos.pdf)
 
@@ -44,17 +44,17 @@ In 2007, when applying to college, I took the Amtrack Lake Shore Limited from Bo
 
 In 2009, while a student in Rochester, I [carpooled](../images/complex_network_seminar.png) with a [nice professor](https://avesis.medeniyet.edu.tr/hasan.guclu) who was enthusiastic about complex networks, which are found in brains, languages, social networks and many other interesting places. I remember being very excited about this and its implications for the study of intelligence. Nothing seemed to come of it, until recently.
 
-In 2017, I spent some time around folks working on algorithmic differentiation. Olivier Breleux presented [Myia](https://github.com/mila-iqia/myia) and [Buche](https://github.com/breuleux/buche). Matt Johnson gave a talk on [Autograd](https://github.com/HIPS/autograd) which left an impression on me. I met Chris Olah in Long Beach, who gave me the idea to study [differentiable programming](https://colah.github.io/posts/2015-09-NN-Types-FP/). I stole his idea, dressed it up in Kotlin and traded it for a POPL workshop paper and later a [Master's thesis](https://github.com/breandan/kotlingrad/blob/master/latex/thesis/thesis.pdf). Our key ideas were algebra, shapes inference and casting AD as term rewriting. Forget all that, if I had only one idea to give these AI people, it's the importance of types. Types are the foundation of any automated reasoning system. Without them, you're as good as blind.
+In 2017, I spent some time around folks working on algorithmic differentiation. Olivier Breleux presented [Myia](https://github.com/mila-iqia/myia) and [Buche](https://github.com/breuleux/buche). Matt Johnson gave a talk on [Autograd](https://github.com/HIPS/autograd) which left an impression on me. I met Chris Olah in Long Beach, who gave me the idea to study [differentiable programming](https://colah.github.io/posts/2015-09-NN-Types-FP/). I stole his idea, dressed it up in Kotlin and traded it for a POPL workshop paper and later a [Master's thesis](https://github.com/breandan/kotlingrad/blob/master/latex/thesis/thesis.pdf). Our contributions were algebra, shapes inference and presenting AD as term rewriting. But forget all that -- if I had only one idea to give these ML people, I would choose types. Types are the foundation of any automated reasoning system. Without them, you're as good as blind.
 
 [![](https://github.com/breandan/kotlingrad/raw/master/samples/src/main/resources/dataflow.svg)](https://github.com/breandan/kotlingrad#dataflow-graphs)
 
-In 2019, I joined a lab with a [nice professor](https://www.cs.mcgill.ca/~jguo/) at McGill working on applying knowledge graphs to software engineering. Knowledge graphs are an old idea from the first wave of AI in the 1960s and 70s which has recently been revived and improved in light of recent progress in representation learning. I believe this is an important area of research with a lot of potential. Knowledge and traceability plays an important role in software engineering, and it's the bread-and-butter of a good IDE. The world needs better IDEs if we're ever going to untangle this mess we're in.
+In 2019, I joined a lab with a [nice professor](https://www.cs.mcgill.ca/~jguo/) at McGill working on applying knowledge graphs to software engineering. Knowledge graphs are an old idea from the first wave of AI in the 1960s and 70s which had recently been revived and studied in light of recent progress in representation learning on graphs. I believe this is an important area of research with a lot of potential. Knowledge and traceability plays an important role in software engineering, and it's the bread-and-butter of a good IDE. The world needs better IDEs if we're ever going to untangle this mess we're in.
 
 [![Structurizr](https://raw.githubusercontent.com/cecuesta/structurizr-java/master/docs/images/graphviz-spring-petclinic-components.png)](https://structurizr.com/)
 
-This Spring, I took a fascinating [seminar on Graph Representation Learning](https://cs.mcgill.ca/~wlh/comp766/index.html). A lot of graph theory had been worked out over the preceding decade. [PageRank](https://en.wikipedia.org/wiki/PageRank) turned into power iteration. People made some interesting connections to linear algebra, including Weisfeiler-Lehman graph kernels, graph Laplacians and spectral graph theory. Graph synthesis is starting to show real promise. The key idea here is that there are some very elegant mathematical abstractions for representing graphs, and choosing the right representation allows us to learn graphs.
+This Spring, I took a fascinating [seminar on Graph Representation Learning](https://cs.mcgill.ca/~wlh/comp766/index.html). A lot of graph theory had been worked out over the preceding decade. [PageRank](https://en.wikipedia.org/wiki/PageRank) turned into power iteration. People made some interesting connections to linear algebra, including Weisfeiler-Lehman graph kernels, graph Laplacians and spectral graph theory. Graph synthesis is starting to show real promise. The key idea here is there are some very elegant mathematics for representing graphs, and choosing the right representation is very powerful. More on that later.
 
-# Graphs, by example
+# What are graphs?
 
 Graphs are general-purpose data structures used to represent many data types and procedural phenomena. Consider the following hierarchy of graphs, from least to greatest expressiveness:
 
@@ -96,12 +96,15 @@ One thing that fascinates me about programming languages is the idea of inductiv
 
 Each time you expand an `<exp>` with another production rule, this generates a rooted subtree on the operator, whose leaves are the operands.
 
-![](../images/tree.svg)
+|Syntax Tree| Peach Tree|
+|-----------|-----------|
+|![](../images/tree.svg)|![](../images/bird_tree.png)
  
  This tree becomes a directed acyclic graph if you merge equivalent operands. DAG are trees with a gemel.
- 
-![](../images/tree_dag.svg)
-![gemel](../images/gemel.png)
+
+|DAG|Gemel|
+|---|----|
+|![](../images/tree_dag.svg)|![gemel](../images/gemel.png)|
 
 Similarly, it is possible to define graphs inductively.
 
@@ -138,8 +141,9 @@ Consider the following system of rules, which operate on computation graphs, jus
 
 This generates the following graph:
 
-![](../images/confluence.svg)
-![](../images/confluence.png)
+|Graph|Map|
+|-----|---|
+|![](../images/confluence.svg)|![](../images/confluence.png)|
 
 This property is called confluence.
 
@@ -193,92 +197,413 @@ One of the earliest examples of graph computation can be found in Valiant, 1975.
 
 All of these things can be evolved using matrix multiplication.
 
-![](../images/step0.svg)
+## Linear chains
+
+<table>
+<tr>
+<td> <b>Graph</b> </td> <td> <b>Matrix</b> </td> <td> <b>S</b> </td><td> <b>S'</b> </td>
+</tr>
+<tr>
+<td> 
+ 
+![](../images/lin0.svg)
+
+</td>
+<td>
 
 ```
-0  0  0     1     0
-1  0  0  *  0  =  1
-0  1  1     0     0
+    a  b  c
+   ________
+a | 0  0  0
+b | 1  0  0
+c | 0  1  1
 ```
 
-![](../images/step1.svg)
+</td>
+<td>
 
 ```
-0  0  0     0     0
-1  0  0  *  1  =  0
-0  1  1     0     1
+
+
+1
+0
+0
 ```
 
-![](../images/step2.svg)
+</td>
+<td>
 
 ```
-0  0  0     0     0
-1  0  0  *  0  =  0
-0  1  1     1     1
+
+
+0
+1
+0
 ```
 
-![](../images/step2.svg)
+</td>
+</tr>
+<tr>
+<td> 
+ 
+![](../images/lin1.svg)
 
-Fixedpoint reached.
+</td>
+<td>
 
-What about directed acyclic graphs?
+```
+    a  b  c
+   ________
+a | 0  0  0
+b | 1  0  0
+c | 0  1  1
+```
 
+</td>
+<td>
+
+```
+
+
+0
+1
+0
+```
+
+</td>
+<td>
+
+```
+
+
+0
+0
+1
+```
+
+</td>
+</tr>
+<tr>
+<td> 
+ 
+![](../images/lin2.svg)
+
+</td>
+<td>
+
+```
+    a  b  c
+   ________
+a | 0  0  0
+b | 1  0  0
+c | 0  1  1
+```
+
+</td>
+<td>
+
+```
+
+
+0
+0
+1
+```
+
+</td>
+<td>
+
+```
+
+
+0
+0
+1
+```
+
+</td>
+</tr>
+</table>
+
+## Directed acyclic graphs
+
+<table>
+<tr>
+<td> <b>Graph</b> </td> <td> <b>Matrix</b> </td> <td> <b>S</b> </td><td> <b>S'</b> </td>
+</tr>
+<tr>
+<td> 
+ 
 ![](../images/dag0.svg)
 
+</td>
+<td>
+
 ```
-0  0  0  0    1     0
-1  0  0  0    0     1
-1  0  0  0    0     1
-0  1  1  1    0     0
+    a  b  c  d
+   ___________
+a | 0  0  0  0
+b | 1  0  0  0
+c | 1  0  0  0
+d | 0  1  1  1
 ```
 
+</td>
+<td>
+
+```
+
+
+1
+0
+0
+0
+```
+
+</td>
+<td>
+
+```
+
+
+0
+1
+1
+0
+```
+
+</td>
+</tr>
+<tr>
+<td> 
+ 
 ![](../images/dag1.svg)
 
+</td>
+<td>
+
 ```
-0  0  0  0    0     0
-1  0  0  0    1     0
-1  0  0  0    1     0
-0  1  1  1    0     1
+    a  b  c  d
+   ___________
+a | 0  0  0  0
+b | 1  0  0  0
+c | 1  0  0  0
+d | 0  1  1  1
 ```
 
+</td>
+<td>
+
+```
+
+
+0
+1
+1
+0
+```
+
+</td>
+<td>
+
+```
+
+
+0
+0
+0
+1
+```
+
+</td>
+</tr>
+<tr>
+<td> 
+ 
 ![](../images/dag2.svg)
 
+</td>
+<td>
+
 ```
-0  0  0  0    0     0
-1  0  0  0    0     0
-1  0  0  0    0     0
-0  1  1  0    1     0
+    a  b  c  d
+   ___________
+a | 0  0  0  0
+b | 1  0  0  0
+c | 1  0  0  0
+d | 0  1  1  1
 ```
 
-Done.
+</td>
+<td>
 
-What about dataflow graphs?
+```
 
+
+0
+0
+0
+1
+```
+
+</td>
+<td>
+
+```
+
+
+0
+0
+0
+1
+```
+
+</td>
+</tr>
+
+</table>
+
+We encode the last node as a self cycle in order to detect the fixpoint.
+
+## Dataflow graphs
+
+Suppose we have the function `f(a, b) = (a + b) * b` and want to compute `f(2, 3)`.
+
+<table>
+<tr>
+<td> <b>Graph</b> </td> <td> <b>Matrix</b> </td> <td> <b>S</b> </td><td> <b>S'</b> </td>
+</tr>
+<tr>
+<td> 
+ 
 ![](../images/dfg0.svg)
 
+</td>
+<td>
+
 ```
     a  b  +  *
    ___________
-a | 0  0  0  0    2     0
-b | 0  0  0  0    3     0
-+ | 1  1  0  0    0     5  = 2 + 3
-* | 0  1  1  1    0     3
+a | 0  0  0  0
+b | 0  0  0  0
++ | 1  1  0  0
+* | 0  1  1  1
 ```
 
+</td>
+<td>
+
+```
+
+
+2
+3
+0
+0
+```
+
+</td>
+<td>
+
+```
+
+
+0
+0
+5
+3
+```
+
+</td>
+</tr>
+<tr>
+<td> 
+ 
 ![](../images/dfg1.svg)
 
+</td>
+<td>
+
 ```
     a  b  +  *
    ___________
-a | 0  0  0  0    0     0
-b | 0  0  0  0    0     0
-+ | 1  1  0  0    5     0
-* | 0  1  1  1    3     15 = 5 * 3
+a | 0  0  0  0
+b | 0  0  0  0
++ | 1  1  0  0
+* | 0  1  1  1
 ```
 
-![](../images/dfg2.svg)
+</td>
+<td>
 
-Done.
+```
+
+
+0
+0
+5
+3
+```
+
+</td>
+<td>
+
+```
+
+
+0
+0
+0
+15
+```
+
+</td>
+</tr>
+<tr>
+<td> 
+ 
+![](../images/dfg1.svg)
+
+</td>
+<td>
+
+```
+    a  b  +  *
+   ___________
+a | 0  0  0  0
+b | 0  0  0  0
++ | 1  1  0  0
+* | 0  1  1  1
+```
+
+</td>
+<td>
+
+```
+
+
+0
+0
+0
+15
+```
+
+</td>
+<td>
+
+```
+
+
+0
+0
+0
+15
+```
+
+</td>
+</tr>
+
+</table>
 
 # Graphs, efficiently
 
