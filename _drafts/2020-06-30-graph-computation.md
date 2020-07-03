@@ -44,7 +44,7 @@ In 2007, when applying to college, I took the Amtrack Lake Shore Limited from Bo
 
 In 2009, while a student in Rochester, I [carpooled](../images/complex_network_seminar.png) with a [nice professor](https://avesis.medeniyet.edu.tr/hasan.guclu) who was enthusiastic about complex networks, which are found in brains, languages, social networks and many other interesting places. I remember being very excited about this and its implications for the study of intelligence. Nothing seemed to come of it, until recently.
 
-In 2017, I spent some time around folks working on algorithmic differentiation. Olivier Breleux presented [Myia](https://github.com/mila-iqia/myia) and [Buche](https://github.com/breuleux/buche). Matt Johnson gave a talk on [Autograd](https://github.com/HIPS/autograd) which left an impression on me. I met Chris Olah in Long Beach, who gave me the idea to study [differentiable programming](https://colah.github.io/posts/2015-09-NN-Types-FP/). I stole his idea, dressed it up in Kotlin and traded it for a POPL workshop paper and later a [Master's thesis](https://github.com/breandan/kotlingrad/blob/master/latex/thesis/thesis.pdf). Our contributions were algebra, shapes inference and presenting AD as term rewriting. But forget all that -- if I had only one idea to give these ML people, I would choose types. Types are the foundation of any automated reasoning system. Without them, you're as good as blind.
+In 2017, I spent some time around folks working on algorithmic differentiation. Olivier Breleux presented [Myia](https://github.com/mila-iqia/myia) and [Buche](https://github.com/breuleux/buche). Matt Johnson gave a talk on [Autograd](https://github.com/HIPS/autograd) which left an impression on me. I met Chris Olah in Long Beach, who gave me the idea to study [differentiable programming](https://colah.github.io/posts/2015-09-NN-Types-FP/). I stole his idea, dressed it up in Kotlin and traded it for a POPL workshop paper and later a [Master's thesis](https://github.com/breandan/kotlingrad/blob/master/latex/thesis/thesis.pdf). Our contributions were algebra, shapes inference and presenting AD as term rewriting. But forget all that -- if I had only one idea to share with these ML people, it would be types. Types are the best way we know for automating reasoning. Without them, you're as good as blind.
 
 [![](https://github.com/breandan/kotlingrad/raw/master/samples/src/main/resources/dataflow.svg)](https://github.com/breandan/kotlingrad#dataflow-graphs)
 
@@ -102,7 +102,7 @@ Each time you expand an `<exp>` with another production rule, this generates a r
  
  This tree becomes a directed acyclic graph if you merge equivalent operands. DAG are trees with a gemel.
 
-|DAG|Gemel|
+|Directed Acyclic Graph|Tree with a gemel|
 |---|----|
 |![](../images/tree_dag.svg)&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;|![gemel](../images/gemel.png)|
 
@@ -141,8 +141,8 @@ Consider the following system of rules, which operate on computation graphs, jus
 
 This generates the following graph:
 
-|Graph|Map|
-|-----|---|
+|Term confluence|River confluence|
+|:---:|:---:|
 |![](../images/confluence.svg)&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;|![](../images/confluence.png)|
 
 This property is called confluence.
@@ -160,7 +160,7 @@ Consider the [elementary cellular automata](https://en.wikipedia.org/wiki/Elemen
 It turns out even in this simple space, there are remarkable automata. The following rule is Turing complete:
 
 | current pattern           | `111` | `110` | `101` | `100` | `011` | `010` | `001` | `000` |
-| ------------------------- | --- | --- | --- | --- | --- | --- | --- | --- |
+|:-------------------------:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:----:|
 | new pattern | ` 0 `  | ` 1 `  | ` 1 `  | ` 0 `  | ` 1 ` | ` 1 `  | ` 1 `  | ` 0 `  |
 
 Consider the lambda calculus, which is also Turing complete. It consists of the following rules:
@@ -183,7 +183,11 @@ Another interesting game that mathematicians like to play is to take iterated ma
 
 It turns out the very same method can be applied to Z^2 and has many interesting applications for graph theory.
 
-
+|DOT Graph|Matrix|
+|---|---|
+|![](../images/pref_graph0.svg)|![](../images/pref_mat0.png)|
+|![](../images/pref_graph1.svg)|![](../images/pref_mat1.png)|
+|![](../images/pref_graph2.svg)|![random_matrix](../images/pref_mat2.png)|
 
 # Graphs, computationally
 
@@ -204,7 +208,7 @@ All of these things can be evolved using matrix multiplication.
 <td> <b>Graph</b> </td> <td> <b>Matrix</b> </td> <td> <b>S</b> </td><td> <b>S'</b> </td>
 </tr>
 <tr>
-<td> 
+<td>
  
 ![](../images/lin0.svg)
 
