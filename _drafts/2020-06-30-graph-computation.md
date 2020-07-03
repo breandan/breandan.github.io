@@ -98,13 +98,13 @@ Each time you expand an `<exp>` with another production rule, this generates a r
 
 |Syntax Tree| Peach Tree|
 |-----------|-----------|
-|![](../images/tree.svg)&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;|![](../images/bird_tree.png)|
+|![](../images/tree_syntax.svg)|![](../images/tree_peach.png)|
  
  This tree becomes a directed acyclic graph if you merge equivalent operands. DAG are trees with a gemel.
 
 |Directed Acyclic Graph|Tree with a gemel|
 |---|----|
-|![](../images/tree_dag.svg)&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;|![gemel](../images/gemel.png)|
+|![](../images/tree_dag.svg)|![gemel](../images/tree_gemel.png)|
 
 Similarly, it is possible to define graphs inductively.
 
@@ -143,7 +143,7 @@ This generates the following graph:
 
 |Term confluence|River confluence|
 |:---:|:---:|
-|![](../images/confluence.svg)&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;|![](../images/confluence.png)|
+|![](../images/confluence_term.svg)|![](../images/confluence_river.png)|
 
 This property is called confluence.
 
