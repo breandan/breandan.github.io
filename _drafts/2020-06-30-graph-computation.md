@@ -30,7 +30,7 @@ This year, I predicted the pandemic weeks before the lockdown, exited the market
 
 # Everything old is new again
 
-As a kid, I was given a book on the history of mathematics. I remember it had some interesting puzzles, including one with [some bridges](https://en.wikipedia.org/wiki/Seven_Bridges_of_K%C3%B6nigsberg) and a man called Euler. Which towns had a path crossing each bridge exactly once? Was it possible to tell without trying every path? I remember spending days drawing little maps to figure this out.
+As a kid, I was given a book on the history of mathematics. I remember it had some interesting puzzles, including one with [some bridges](https://en.wikipedia.org/wiki/Seven_Bridges_of_K%C3%B6nigsberg) and a man called Euler. Which towns had a path crossing each bridge exactly once? Was it possible to tell without walking every path? I remember spending days drawing little maps to figure this out.
 
 [![](https://camo.githubusercontent.com/74d8abc0a363a3e01495de6ccea99828febc07fb/68747470733a2f2f75706c6f61642e77696b696d656469612e6f72672f77696b6970656469612f636f6d6d6f6e732f312f31352f496d6167652d4b6f656e696773626572672532435f4d61705f62795f4d657269616e2d457262656e5f313635322e6a7067)](https://en.wikipedia.org/wiki/Seven_Bridges_of_K%C3%B6nigsberg)
 
@@ -38,11 +38,11 @@ In the late 90s, my mom and I went to Ireland. I remember visiting Trinity Colle
 
 [![](../images/quaternions.jpg)](http://www.kurims.kyoto-u.ac.jp/EMIS/classics/Hamilton/PRIAIcos.pdf)
 
-In 2007, when applying to college, I took the Amtrack Lake Shore Limited from Boston to South Bend, Indiana, home of the Fighting Irish. Wandering about, I came to the computing department, where I found a magazine by a Hungarian mathematician called [Barabási](https://en.wikipedia.org/wiki/Albert-L%C3%A1szl%C3%B3_Barab%C3%A1si) who had some interesting things to say about [complex networks](https://en.wikipedia.org/wiki/Complex_network). There was something beautiful about that idea. I still have the magazine.
+In 2007, when applying to colleges, I took the Amtrack Lake Shore Limited from Boston to South Bend, Indiana, home of the Fighting Irish. Wandering about, I found a magazine article by a Hungarian mathematician called [Barabási](https://en.wikipedia.org/wiki/Albert-L%C3%A1szl%C3%B3_Barab%C3%A1si) who had some interesting things to say about "[complex networks](https://en.wikipedia.org/wiki/Complex_network)". There was something beautiful about that idea. Later in 2009, while studying in Rochester, I [carpooled](../images/complex_network_seminar.png) with a [nice professor](https://avesis.medeniyet.edu.tr/hasan.guclu) who was enthusiastic about complex networks, found in brains, languages, social networks and many other interesting places. I remember being very excited about this and its implications for the study of intelligence.
 
 [![](../images/complex_networks.png)](https://barabasi.com/f/226.pdf)
 
-In 2009, while a student in Rochester, I [carpooled](../images/complex_network_seminar.png) with a [nice professor](https://avesis.medeniyet.edu.tr/hasan.guclu) who was enthusiastic about complex networks, which are found in brains, languages, social networks and many other interesting places. I remember being very excited about this and its implications for the study of intelligence. Nothing seemed to come of it, until recently.
+
 
 In 2017, I spent some time around folks working on algorithmic differentiation. Olivier Breleux presented [Myia](https://github.com/mila-iqia/myia) and [Buche](https://github.com/breuleux/buche). Matt Johnson gave a talk on [Autograd](https://github.com/HIPS/autograd) which left an impression on me. I met Chris Olah in Long Beach, who gave me the idea to study [differentiable programming](https://colah.github.io/posts/2015-09-NN-Types-FP/). I stole his idea, dressed it up in Kotlin and traded it for a POPL workshop paper and later a [Master's thesis](https://github.com/breandan/kotlingrad/blob/master/latex/thesis/thesis.pdf). Our contributions were algebra, shapes inference and presenting AD as term rewriting. But forget all that -- if I had only one idea to share with these ML people, it would be types. Types are the best way we know for automating reasoning. Without them, you're as good as blind.
 
@@ -65,48 +65,67 @@ Graphs are general-purpose data structures used to represent many data types and
 - **Directed graphs**: [State machines](https://en.wikipedia.org/wiki/Finite-state_machine), [lambda calculus](http://dkeenan.com/Lambda/), [web pages](https://computersciencewiki.org/index.php/The_web_as_a_directed_graph), [call graphs](https://en.wikipedia.org/wiki/Call_graph), RNNs
 - **Hypergraphs**: [Knowledge graphs](https://arxiv.org/pdf/2003.02320.pdf), [Zettelkasten](https://zettelkasten.de/), [categories](https://en.wikipedia.org/wiki/Category_theory), [the universe](https://writings.stephenwolfram.com/2020/04/finally-we-may-have-a-path-to-the-fundamental-theory-of-physics-and-its-beautiful/), hypernetworks
 
-Graphs are often used to represent mathematical notation as I show in [Kotlin∇](https://github.com/breandan/kotlingrad). Graphs can also be used to represent other programming languages, including source code, intermediate representations and markup languages. There are many recent examples of learning graphs for symbolic applications:
+Graphs are often used to represent mathematical expressions as I show in [Kotlin∇](https://github.com/breandan/kotlingrad). Graphs can also be used to represent other computational structures, including source code, intermediate representations and markup languages. There are many recent examples of learning graphs for symbolic applications:
 
 * [Deep Learning for Symbolic Mathematics](https://arxiv.org/abs/1912.01412)
 * [Discovering Symbolic Models from Deep Learning with Inductive Biases](https://arxiv.org/pdf/2006.11287.pdf)
 * [Symbolic Pregression: Discovering Physical Laws from Raw Distorted Video](https://arxiv.org/pdf/2005.11212.pdf)
 
-Graphs are also used to model natural language, including [constituency](https://en.wikipedia.org/wiki/Phrase_structure_grammar) and [dependency grammars](https://en.wikipedia.org/wiki/Dependency_grammar), [link grammars](https://en.wikipedia.org/wiki/Dependency_grammar) and other syntactic and semantic relationships between natural language entities.
+Graphs are also used to model natural language, including [constituency](https://en.wikipedia.org/wiki/Phrase_structure_grammar) and [dependency grammars](https://en.wikipedia.org/wiki/Dependency_grammar), [link grammars](https://en.wikipedia.org/wiki/Dependency_grammar) and other syntactic and semantic relationships between natural language entities. You might think this is not very useful for computation, but recent techniques have shown promise in automatic knowledge base construction. For example, natural langauge parsing can give us syntax trees in various grammars:
 
 ![](https://upload.wikimedia.org/wikipedia/commons/8/8e/Thistreeisillustratingtherelation%28PSG%29.png)
+
+Using syntax parsing and graph matching techniques not dissimilar to compilers, we can use semantic representations to construct logical forms. From these, we can construct are a kind of knowledge graph.
+
+![logical_forms](../images/logical_forms.png) [Reddy et al.](https://www.mitpressjournals.org/doi/pdf/10.1162/tacl_a_00088)
 
 [Knowledge graphs](https://arxiv.org/pdf/2003.02320.pdf) are another important type of graph used to represent relations between concepts, e.g. on wikis and other web based content management systems.
 
 ![](../images/knowledge_graph.png)
 
-Lo and behold, the key idea behind knowledge graphs is our old friend, types. Knowledge graphs are graphs whose nodes and edges have a type. This is useful information retrieval, since we can build an index on type, but also for reasoning about queries over the graph, such as "Which companies have a direct flight from a port city to a capital city?"
+Lo and behold, the key idea behind knowledge graphs is our old friend, types. Knowledge graphs are graphs whose nodes and edges have a type. This allows us to  since we can build an index on type, which is useful for information retrieval, but also for reasoning about queries over the graph, such as "Which companies have a direct flight from a port city to a capital city?"
 
 # Graphs, inductively
 
-One thing that fascinates me about programming languages is the idea of inductively defined grammars. The following grammar generates a 3-variable algebra:
+One thing that fascinates me about programming languages is the idea of inductively defined sets. Consider a very simple language with the following structure:
 
 ```
-<exp> := x | y | z
-<exp> := <exp> + <exp>
-<exp> := <exp> – <exp>
-<exp> := <exp> * <exp>
-<exp> := <exp> / <exp>
-<exp> := (<exp>)
+<true> := 1
+<term> := 0 | 10 | ε
+<expr> := <expr> <term>
 ```
 
-Each time you expand an `<exp>` with another production rule, this generates a rooted subtree on the operator, whose leaves are the operands.
+Notice how no variable on the left hand side occurs more than once on the right hand side. This property guarantees the language can be recognized by a special kind of graph, called a finite state machine. FSMs scan a string and traverse the graph, performing certain internal operations.
+
+|Machine | Meaning|
+|--------|--------|
+|![](../images/fsm_simple.svg)|![](../images/ring_once.png)|
+
+This machine implements a British waiting room: you can wait as long as you like and eventually someone will serve you. You can press the bell once, and wait to be served. You can press the bell again if you have not been served. But you must never press the bell twice in a row, or you will be thrown out without being served.
+
+Starting on S<sub>0</sub>, we consume each symbol we see and follow the edge marked with that symbol (or `ε` without consuming anything). If there are no edges, we reject the string. Only strings which take us back to S<sub>0</sub> are in the language. This machine will accept all binary strings which do not contain `11`.
+
+Now, consider a slightly more sophisticated language. The following grammar generates a 3-variable algebra:
+
+```
+<expr> := x | y | z
+<op>   := + | - | * | /
+<expr> := <expr> <op> <expr>
+```
+
+This is known as a context-free language. Each time you expand an `<exp>` with another production rule, this generates a rooted subtree on the operator, whose leaves are the operands.
 
 |Syntax Tree| Peach Tree|
 |-----------|-----------|
 |![](../images/tree_syntax.svg)|![](../images/tree_peach.png)|
  
- This tree becomes a directed acyclic graph if you merge equivalent operands. DAG are trees with a gemel.
+This tree becomes a directed acyclic graph if you merge equivalent operands. DAG are trees with a gemel.
 
 |Directed Acyclic Graph|Tree with a gemel|
 |---|----|
 |![](../images/tree_dag.svg)|![gemel](../images/tree_gemel.png)|
 
-Similarly, it is possible to define graphs inductively.
+Similarly, it is possible to define graphs inductively:
 
 ```
 type Node        = Int
