@@ -51,35 +51,36 @@ In 2019, I joined a lab with a [nice professor](https://www.cs.mcgill.ca/~jguo/)
 
 [![Structurizr](https://raw.githubusercontent.com/cecuesta/structurizr-java/master/docs/images/graphviz-spring-petclinic-components.png)](https://structurizr.com/)
 
-This Spring, I took a fascinating [seminar on Graph Representation Learning](https://cs.mcgill.ca/~wlh/comp766/index.html), in which a lot of graph theory had been worked out over the preceding decade. [PageRank](https://en.wikipedia.org/wiki/PageRank) turned into power iteration. People made some interesting connections to linear algebra, including Weisfeiler-Lehman graph kernels, graph Laplacians and spectral graph theory. The idea here is there are some elegant mathematics for representing graphs, and choosing the right representation can be very powerful. More on that later.
+This Spring, I took a fascinating [seminar on Graph Representation Learning](https://cs.mcgill.ca/~wlh/comp766/index.html). A lot of delightful graph theory had been worked out over the preceding decade. [PageRank](https://en.wikipedia.org/wiki/PageRank) turned into power iteration. People made lots of interesting connections to linear algebra, including Weisfeiler-Lehman graph kernels, graph Laplacians and spectral graph theory. The idea here is there are some elegant mathematics for representing graphs, and choosing the right representation can be very powerful. More on that later.
 
 # What are graphs?
 
-Graphs are general-purpose data structures used to represent many data types and procedural phenomena. Consider the following hierarchy of graphs, from least to greatest expressiveness:
+Graphs are general-purpose data structures used to represent many data types and procedural phenomena. Consider the following hierarchy of data structures, all of which are graphs with increasing structure:
 
-- **Sets**: data, multisets, posets, symbols
-- **Sequences**: Lists, strings, traces, linear function composition
-- **Trees**: [Abstract syntax trees](https://en.wikipedia.org/wiki/Abstract_syntax_tree), [document object model](https://en.wikipedia.org/wiki/Document_Object_Model), [phylogenic trees](https://en.wikipedia.org/wiki/Phylogenetic_tree), [decision trees](https://en.wikipedia.org/wiki/Decision_tree)
-- **DAGs**: [Git](https://eagain.net/articles/git-for-computer-scientists/), [control flow](https://en.wikipedia.org/wiki/Control-flow_graph), [citation networks](https://en.wikipedia.org/wiki/Citation_network), [dependency graphs](https://en.wikipedia.org/wiki/Dependency_graph), MLPs
-- **Directed graphs**: [State machines](https://en.wikipedia.org/wiki/Finite-state_machine), [lambda calculus](http://dkeenan.com/Lambda/), [web pages](https://computersciencewiki.org/index.php/The_web_as_a_directed_graph), [call graphs](https://en.wikipedia.org/wiki/Call_graph), RNNs
-- **Hypergraphs**: [Knowledge graphs](https://arxiv.org/pdf/2003.02320.pdf), [Zettelkasten](https://zettelkasten.de/), [categories](https://en.wikipedia.org/wiki/Category_theory), [the universe](https://writings.stephenwolfram.com/2020/04/finally-we-may-have-a-path-to-the-fundamental-theory-of-physics-and-its-beautiful/), hypernetworks
+- **Sets**: datasets, multisets, posets, alphabets
+- **Sequences**: Lists, strings, arrays, linear function composition
+- **Trees**: [Abstract syntax trees](https://en.wikipedia.org/wiki/Abstract_syntax_tree), [document object models](https://en.wikipedia.org/wiki/Document_Object_Model), [phylogenic trees](https://en.wikipedia.org/wiki/Phylogenetic_tree), [decision trees](https://en.wikipedia.org/wiki/Decision_tree)
+- **DAGs**: [Git](https://eagain.net/articles/git-for-computer-scientists/), [citation networks](https://en.wikipedia.org/wiki/Citation_network), [dependency graphs](https://en.wikipedia.org/wiki/Dependency_graph), [workflows](https://en.wikipedia.org/wiki/Workflow_management_system), [control flow](https://en.wikipedia.org/wiki/Control-flow_graph), [MLPs](https://en.wikipedia.org/wiki/Multilayer_perceptron)
+- **Directed graphs**: [State machines](https://en.wikipedia.org/wiki/Finite-state_machine), [lambda calculus](http://dkeenan.com/Lambda/), [web pages](https://computersciencewiki.org/index.php/The_web_as_a_directed_graph), [call graphs](https://en.wikipedia.org/wiki/Call_graph), [RNNs](https://en.wikipedia.org/wiki/Recurrent_neural_network)
+- **Hypergraphs**: [Knowledge graphs](https://arxiv.org/pdf/2003.02320.pdf), [Zettelkasten](https://zettelkasten.de/), [categories](https://en.wikipedia.org/wiki/Category_theory), [the universe](https://writings.stephenwolfram.com/2020/04/finally-we-may-have-a-path-to-the-fundamental-theory-of-physics-and-its-beautiful/), [hypernetworks](https://openreview.net/pdf?id=rkpACe1lx)
 
-Graphs are often used to represent mathematical expressions as I show in [Kotlin∇](https://github.com/breandan/kotlingrad). Graphs are also used to represent other types of symbolic data, including source code, intermediate representations and markup languages. There are many recent examples of learning graphs for symbolic applications:
+Graphs are useful for representing mathematical expressions as I show in [Kotlin∇](https://github.com/breandan/kotlingrad). Graphs are also used to represent other types of symbolic data, including source code, intermediate representations and markup languages. There are many recent examples of learning graphs for symbolic applications:
 
 * [Deep Learning for Symbolic Mathematics](https://arxiv.org/abs/1912.01412)
 * [Discovering Symbolic Models from Deep Learning with Inductive Biases](https://arxiv.org/pdf/2006.11287.pdf)
 * [Symbolic Pregression: Discovering Physical Laws from Raw Distorted Video](https://arxiv.org/pdf/2005.11212.pdf)
+* [DreamCoder: Growing generalizable, interpretable knowledge with wake-sleep Bayesian program learning](https://arxiv.org/pdf/2006.08381.pdf)
 
-Graphs also have many applications for modeling natural language, including [constituency](https://en.wikipedia.org/wiki/Phrase_structure_grammar) and [dependency grammars](https://en.wikipedia.org/wiki/Dependency_grammar), [link grammars](https://en.wikipedia.org/wiki/Dependency_grammar) and others lexical structures. Research has shown many useful applications for semantic parsing in the extraction and representation of human knowledge.
+Graphs have many applications for modeling natural language, such as parsing [constituency](https://en.wikipedia.org/wiki/Phrase_structure_grammar) and [dependency grammars](https://en.wikipedia.org/wiki/Dependency_grammar), [link grammars](https://en.wikipedia.org/wiki/Dependency_grammar) and others lexical structures. Research begun to show many useful applications for semantic parsing in the extraction and representation of human knowledge in large text corpora.
 
 ![](https://upload.wikimedia.org/wikipedia/commons/8/8e/Thistreeisillustratingtherelation%28PSG%29.png)
 
-Using entity resolution techniques, we can reconstruct logical relations between entities. These relationships can be stored in [knowledge graphs](https://arxiv.org/pdf/2003.02320.pdf), and used for information retrieval and question answering, e.g. on wikis and other web based content management systems. Recent techniques have shown a lot of promise in automatic knowledge base construction using e.g. logical forms ([Reddy et al.](https://www.mitpressjournals.org/doi/pdf/10.1162/tacl_a_00088), 2016).
+Using entity resolution techniques from NLP, we can reconstruct logical relations between entities. These relationships can be stored in [knowledge graphs](https://arxiv.org/pdf/2003.02320.pdf), and used for information retrieval and question answering, e.g. on wikis and other web based content management systems. Recent techniques have shown a lot of promise in automatic knowledge base construction using e.g. logical forms (cf. [Reddy et al.](https://www.mitpressjournals.org/doi/pdf/10.1162/tacl_a_00088), 2016).
 
 <!--![logical_forms](../images/logical_forms.png) -->
 ![](../images/knowledge_graph.png)
 
-Lo and behold, the key idea behind knowledge graphs is our old friend, types. Knowledge graphs are graphs whose nodes and edges have a type. This allows us to  build an index on a type, which is useful for information retrieval, but more importantly for reasoning about complex queries over the graph, e.g. "Which companies have a direct flight from a port city to a capital city?"
+Lo and behold, the key idea behind knowledge graphs is our old friend, types. Knowledge graphs are graphs whose nodes and edges have a type. We can build index data based on a type, which is useful for information retrieval, and use types to reasoning about complex queries which would otherwise be difficult to model directly, e.g. "Which companies have a direct flight from a port city to a capital city?"
 
 # Graphs, inductively
 
@@ -97,13 +98,13 @@ Notice how each non-terminal occurs at most once in any single production. This 
 |--------|--------|
 |![](../images/fsm_bell.svg)| ![](../images/bell.png)<br/>Please ring the bell **once** and wait for assistance. |
 
-Imagine a library desk: you can wait quietly and eventually you will be served. You can ring the bell once, and wait to be served. Should no one arrive, you can press the bell again and continue waiting. Though you must never ring the bell twice, or you will disturb the patrons and be tossed out.
+Imagine a library desk: you can wait quietly and eventually you will be served. You can ring the bell once, and wait to be served. Should no one arrive, you may press the bell again and continue waiting. Though you must never ring the bell twice, or you will disturb the patrons and be tossed out.
 
-Now, let us consider a slightly more expressive language. This time, we have a nonterminal occurring twice in one production -- an `<expr>` can be a conjunction of two shorter `<expr>`s:
+Now, let us consider a slightly more expressive language. This time, a nonterminal occurs twice in a single production -- an `<expr>` can be composed of two shorter `<expr>`s:
 
 ```
 <term> → x | y | z | 0
-<op>   → + | -
+<op>   → + | - | · | /
 <expr> → <term> | <op> <expr> | <expr> <op> <expr>
 ```
 
@@ -113,20 +114,39 @@ This is known as a context-free language (CFL). We can represent strings in this
 |-----------|-----------|
 |![](../images/tree_syntax.svg)|![](../images/tree_peach.png)|
  
-Suppose we introduce the following rules to our previous grammar. Instead of just having strings on the right, we also have strings on the left. Applying a rule can shrink the length of the string:
+Now suppose we introduce the following rules to this grammar. Instead of just allowing strings on the right, we can also have strings to the left, and applying a rule can shrink the string:
 
 ```
-x + x → +x
-x - x → 0
+t + t → +t
+t - t → 0
 ```
 
-This is known as a recursively enumerable language, or string rewrite system. This particular example produces directed acyclic graphs. Some people say that all trees are DAGs, but not all DAGs are trees. Having grown up in the woods, I prefer to think of DAGs as trees with a gemel:
+This is known as a recursively enumerable language, or string rewrite system. This particular example produces directed acyclic graphs. Some people say that all trees are DAGs, but not all DAGs are trees. Growing up in the woods, I prefer to think of DAGs as trees with a gemel:
 
-|Directed Acyclic Graph|Tree with a gemel|
+|Rewrite Rule|Deformed Tree|
 |---|----|
 |![](../images/tree_dag.svg)|![gemel](../images/tree_gemel.png)|
+|![](../images/tree_dag_minus.svg)|![gemel](../images/stump.png)|
 
-Similarly, it is possible to define graphs inductively:
+Let us again introduce some new rules to our grammar, which operate on computation graphs. We introduce a new operator, `Dₓ`, and apply the rules to transform the graph:
+
+```
+          <term> → Dₓ(<term>)
+(R1)       Dₓ(x) → 1                  
+(R2)       Dₓ(y) → 0                  
+(R3)     Dₓ(u+v) → Dₓ(u) + Dₓ(v)      
+(R4)     Dₓ(u·v) → u·Dₓ(v) + Dₓ(u)·v  
+```
+
+Each rule is a rewriting operator. Here, we assign an ordering `R1`-`R4` for notational convenience, but regardless of the order of application, they will always produce the same result.
+
+|Term Confluence|Ottawa-St. Lawrence Confluence|
+|:---:|:---:|
+|![](../images/confluence_term.svg)|![](../images/confluence_river.png)|
+
+This propery, called [confluence](https://en.wikipedia.org/wiki/Confluence_(abstract_rewriting)), is an important property for rewrite systems. Furthermore, all strings in this language will converge to a form which can be simplified no further, called its normal form. We call such systems *strongly normalizing*.
+
+Similarly, it is possible to define graphs themselves inductively, using algebraic data types:
 
 ```
 type Node        = Int
@@ -139,7 +159,7 @@ Another definition of a graph is an adjacency matrix containing nodes V and edge
 
 <span class='mathquote'>$$
 \begin{align*}
-    \mathbf A \in \mathbb \mathbb B ^{|V|\times|V|} \text{ where } \mathbf A\[u, v\] = 
+    \mathbf A \in \mathbb \mathbb B ^{|V|\times|V|} \text{ where } \mathbf A\[u, v\] =
     \begin{cases}
        1,& \text{if } u, v \in E \\
        0,& \text{otherwise}
@@ -147,69 +167,88 @@ Another definition of a graph is an adjacency matrix containing nodes V and edge
 \end{align*}
 $$</span>
 
-# Graphs, grammatically
-
-Consider the following system of rules, which operate on computation graphs, just like before, we can apply the rules to transform the graph:
-
-(R1) D<sub>x</sub>(X) → 1
-
-(R2) D<sub>x</sub>(Y) → 0
-
-(R3) D<sub>x</sub>(u+v) → D<sub>x</sub>(u) + D<sub>x</sub>(v)
-
-(R4) D<sub>x</sub>(u⋅v) → u⋅D<sub>x</sub>(v) + D<sub>x</sub>(u)⋅v
-
-This generates the following graph:
-
-|Term confluence|River confluence|
-|:---:|:---:|
-|![](../images/confluence_term.svg)|![](../images/confluence_river.png)|
-
-This property is called confluence.
-
-Graph grammars are grammars on graphs. 
-
+Graph grammars are grammars on graphs.
 Single/Double pushout
 
-# Graphs, automatically
 
-Consider the [elementary cellular automata](https://en.wikipedia.org/wiki/Elementary_cellular_automaton), which consists of a one dimensional array, and a 3-cell rewrite grammar. There are 2<sup>2<sup>3</sup></sup>=256 rules for rewriting the tape. 
+# Graphs, visually
 
-![](https://en.wikipedia.org/wiki/Cellular_automaton#/media/File:One-d-cellular-automate-rule-30.gif)
+Consider the [elementary cellular automata](https://en.wikipedia.org/wiki/Elementary_cellular_automaton), which consists of a one dimensional array, and a 3-cell rewrite grammar. There are 2<sup>2<sup>3</sup></sup>=256 rules for rewriting the tape. It turns out even in this simple space, there are remarkable automata. Consider the following rewrite system:
 
-It turns out even in this simple space, there are remarkable automata. The following rule is Turing complete:
+![Rule 110](../images/ca_rule%20110.png)
 
-| current pattern           | `111` | `110` | `101` | `100` | `011` | `010` | `001` | `000` |
-|:-------------------------:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:----:|
-| new pattern | ` 0 `  | ` 1 `  | ` 1 `  | ` 0 `  | ` 1 ` | ` 1 `  | ` 1 `  | ` 0 `  |
+<!--![](https://en.wikipedia.org/wiki/Cellular_automaton#/media/File:One-d-cellular-automate-rule-30.gif)-->
 
-Consider the lambda calculus, which is also Turing complete. It consists of the following rules:
+<!--We can represent this using graphs:-->
 
-...
+<!--![image](../images/ca_rule30.png)-->
 
-This can be represented graphically:
 
-...
 
-# Graphs, algebraically
-  
+<!--| current pattern           | `111` | `110` | `101` | `100` | `011` | `010` | `001` | `000` |-->
+<!--|:-------------------------:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:----:|-->
+<!--| new pattern | ` 0 `  | ` 1 `  | ` 1 `  | ` 0 `  | ` 1 ` | ` 1 `  | ` 1 `  | ` 0 `  |-->
+
+
+This system is equivalent to a [Turing machine](https://wpmedia.wolfram.com/uploads/sites/13/2018/02/15-1-1.pdf). Consider the λ-calculus, another Turing complete system. It consists of the following rules:
+
+```
+<expr> := <name> | <func> | <appl>
+<func> := λ <name>.<expr>
+<appl> := <expr><expr>
+```
+
+```
+λx.M[x]  → λy.M[y]    (α-conversion)
+(λx.M) E → M[x := E]  (β-reduction)
+```
+
+The lambda calculus can also be represented graphically. I refer the gentle reader to these interesting proposals:
+
+* [Graphic lambda calculus](https://arxiv.org/pdf/1305.5786.pdf)
+* [Visual lambda calculus](http://bntr.planet.ee/lambda/work/visual_lambda.pdf)
+* [To Dissect a Mockingbird: A Graphical Notation for the Lambda Calculus](http://dkeenan.com/Lambda/)
+
+Graphs have found many interesting applications as reasoning devices in various sciences:
+
+Feynman diagram
+
+![](https://upload.wikimedia.org/wikipedia/commons/1/1f/Feynmann_Diagram_Gluon_Radiation.svg)
+
+[Matrices as graphs](https://www.math3ma.com/blog/matrices-probability-graphs)
+
+![](https://uploads-ssl.webflow.com/5b1d427ae0c922e912eda447/5c7de09a2121fc6c13ed3bd5_pic5.jpg)
+
+
+One way to visualize a graph is a boolean matrix.
+
+|Graph | Matrix |
+|------|--------|
+|![](../images/ld_graph_dot.svg)|![](../images/ld_graph_mat.png)|
+
+Note its lower diagonal structure, indicating there are no cycles, which is not immediately obvious from the visual appearance. Note also its sparsity, indicating the number of present and missing edges. While graph layout techniques is an active area of research, matrices can often reveal symmetries that are not obvious from a naive graph layout.
+
+However matrices have some disadvantages. Notably, we impose an ordering over all nodes. This is problematic for isomorphism. Also note the size of the matrix. This can also be problematic. More on that later.
+
+I strongly suspect these representations are not only useful as cognitive aides, but are effective data structures for performing computation.
+
+# Graphs, computationally
+
 What happens if we define some operators on graphs, such as addition and multiplication? How would we do that, and what does it mean?
 
 Naively, a directed graph is just a square boolean matrix whose values indicate edges between nodes. Just like real matrices in linear algebra, we can add, subtract, multiply and exponentiate them.
 
-One interesting game mathematicians like to play is taking a square matrix R^2 and raise it to a power. There are various tricks for designing the matrix and normalizing the product so it does not explode or vanish. This has many important applications in control theory and dynamical systems.
+One interesting game mathematicians like to play is taking a square matrix R^2 and raise it to a power. There are various tricks for designing the matrix and normalizing the product so it does not explode or vanish. This game has many important applications in control theory, dynamical systems and machine learning (RNNs).
 
-Another interesting game that mathematicians like to play is to take iterated matrix-vector products. One way to think about this is MMMV. Another way is M(M(M(V))), where M is a function on a vector space. These are equivalent. Matrices are functions on a vector spaces.
+Another interesting game that mathematicians like to play is to take iterated matrix-vector products. One way to think about this is MMMV. Another way is M(M(M(V))), where M is a function on a vector space. These are equivalent. As Tae Danae Bradley [vividly portrays](https://www.math3ma.com/blog/matrices-probability-graphs), matrices are not just 2D arrays, matrices are *functions on a vector spaces*.
 
-It turns out the very same method can be applied to Z^2 and has many interesting applications for graph theory.
+It turns out the very same idea is not just valid for R^2, but can be applied to B^2, Z^2 and has many interesting connections to graph theory and automata.
 
 |DOT Graph|Matrix|
 |---|---|
 |![](../images/pref_graph0.svg)|![](../images/pref_mat0.png)|
 |![](../images/pref_graph1.svg)|![](../images/pref_mat1.png)|
 |![](../images/pref_graph2.svg)|![random_matrix](../images/pref_mat2.png)|
-
-# Graphs, computationally
 
 One of the earliest examples of graph computation can be found in Valiant, 1975.
 
@@ -219,7 +258,7 @@ One of the earliest examples of graph computation can be found in Valiant, 1975.
 - Buchi automata
 - Pushdown automata
 
-All of these things can be evolved using matrix multiplication.
+Suppose we want to simulate an automata. All of these automata can be evolved using matrix multiplication!
 
 ## Linear chains
 
