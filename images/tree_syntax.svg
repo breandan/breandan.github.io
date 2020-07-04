@@ -12,7 +12,7 @@
     m [label="-" ]
     t [label="-" ]
     p [label="+" ]
-    d [label="/" ]
+    d [label="+" ]
 
 
 
@@ -65,9 +65,9 @@
         </g>
         <!-- q -->
         <g id="node8" class="node">
-            <title>q</title>
+            <title>x</title>
             <ellipse fill="none" stroke="#000000" cx="72" cy="-18" rx="18" ry="18"/>
-            <text text-anchor="middle" x="72" y="-13.8" font-family="Times,serif" font-size="14.00" fill="#000000">q</text>
+            <text text-anchor="middle" x="72" y="-13.8" font-family="Times,serif" font-size="14.00" fill="#000000">x</text>
         </g>
         <!-- m&#45;&gt;q -->
         <g id="edge4" class="edge">
@@ -101,9 +101,9 @@
         </g>
         <!-- d -->
         <g id="node6" class="node">
-            <title>d</title>
+            <title>p</title>
             <ellipse fill="none" stroke="#000000" cx="99" cy="-162" rx="18" ry="18"/>
-            <text text-anchor="middle" x="99" y="-157.8" font-family="Times,serif" font-size="14.00" fill="#000000">/</text>
+            <text text-anchor="middle" x="99" y="-157.8" font-family="Times,serif" font-size="14.00" fill="#000000">+</text>
         </g>
         <!-- p&#45;&gt;d -->
         <g id="edge5" class="edge">
