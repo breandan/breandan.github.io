@@ -4,90 +4,112 @@ title: Computation graphs and graph computation
 
 ---
 
+A carefully edited anthology in which I vindicate my illustrious career as a hype-chasing Hacker News junkie, AI astrologer, and Twitter prognosticator, while debunking my critics in the peanut gallery. I also extoll the virtues of graphs, algebra, types, and the value of these concepts for human-computer interaction. Finally, I share my predictions for the path ahead and what I believe to be the start of an exciting new chapter in the history of computing.
+
 # New decade, new delusions
 
-Over the last decade, I bet on some strange ideas. A lot of the people I looked up to at the time laughed at me. I'll bet they aren't laughing anymore. I ought to thank them one day, because their laughter gave me a lot of motivation over the years. I have often been wrong, but I've also made a number of laughable predictions which turned out to be correct. Lesson learned: don't doubt your intuitions.
+Over the last decade, I bet on some strange ideas. A lot of people I looked up to at the time laughed at me. I'll bet they aren't laughing anymore. I ought to thank them one day, because their laughter gave me a lot of motivation. I've said some idiotic things to be sure, but I've also made some laughable predictions which turned out correct. Lesson learned: aim straighter.
 
-In 2012, I was in Austin sitting next to an ex-poker player named [Amir](https://twitter.com/amirpc) who was excited about Hinton's ideas. I poured over his technicolor slides and something must have clicked, because I quit my job in a hurry and started [an educational project](http://breandan.net/2014/02/09/the-end-of-illiteracy/) using speech recognition and restricted Boltzman machines. It never panned out, but I learned a lot about ASR and Android audio. Still love that idea.
+In 2012, I was in Austin sitting next to an ex-poker player named [Amir](https://twitter.com/amirpc) who was singing Hinton's praises. I poured over his technicolor slides and something must have clicked, because I quit my job in a hurry and launched an educational project using speech recognition and restricted Boltzman machines. It never panned out, but I learned a lot about ASR and Android audio. Still love [that idea](http://breandan.net/2014/02/09/the-end-of-illiteracy/).
 
-![](../images/rbm.png)
+<center>
+<a href="https://www.cs.toronto.edu/~hinton/csc2535/notes/lec4new.pdf"><img align="center" width="75%" src="../images/rbm.png"/></a>
+</center>
 
-In 2016, I quit my next job as a tech evangelist to [run around the world](http://breandan.net/2016/12/27/traveling-tales/) giving incoherent talks about deep learning. I met Yoshua at the United Nations. He encouraged me to study in Canada. I applied to UofT and UdeM. Ended up at UdeM because I hate asking for recommendations, and they were the only ones who didn't care about them anyway. Best decision I ever made. Move to Montreal, thank me later. 
+In 2016, I quit my next job as a tech evangelist to [run around the world](http://breandan.net/2016/12/27/traveling-tales/) giving incoherent talks about deep learning. Met Yoshua at the United Nations and decided to study in Canada. I applied to UofT and UdeM. Ended up at UdeM because I hate asking for recommendations, and they were the only ones who didn't care about them anyway. Best decision I ever made. Move to Montréal, thank me later.
 
 In 2017, I started writing a book on the ethics of automation and [predicted](http://breandan.net/2017/02/02/trust-in-automation/) mass unemployment and social unrest. Although I got the causes wrong (pandemic, go figure), the information economy and bias takes were all dead right. Sadly, this is now driving the world completely insane. Don't say I warned you, go out and fix our broken systems. The world needs more engineers who care.
 
-[![](../images/diff_prog.png)](https://colah.github.io/posts/2015-09-NN-Types-FP/)
+<center>
+<a href="https://colah.github.io/posts/2015-09-NN-Types-FP/"><img align="center" width="75%" src="../images/diff_prog.png"/></a>
+</center>
 
 In 2017, I witnessed the birth of differentiable programming, which I stole from Chris Olah and turned into a [master's thesis](https://github.com/breandan/kotlingrad/blob/master/latex/thesis/thesis.pdf). Had a lot of trouble convincing people that programs could be made differentiable, but look at the proceedings of any machine learning conference today and you'll find dozens of papers on differentiable sorting and rendering and simulation. Don't thank me, thank Chris and the Theano guys.
 
-In 2018, I bet on big code and [ML4SE](https://ml4se.github.io/). This was pretty clear to a lot of people, but I correctly predicted Microsoft would acquire GitHub to mine code. Why MS and not Google? I'll bet they tried, but Google's leadership had fantasies of AGI and besides JetBrains, MS were the only ones who gave a damn about developers. Now ML4SE is a thriving research area and showing up in [real](https://github.com/JetBrains-Research/DeepBugsPlugin) [products](https://devblogs.microsoft.com/visualstudio/ai-assisted-intellisense-for-your-teams-codebase/).
+In 2018, I correctly predicted Microsoft would acquire GitHub to mine code. Why MS and not Google? I'll bet they tried, but Google's leadership had fantasies of AGI and besides JetBrains, MS were the only ones who gave a damn about developers. Now ML4SE is a thriving [research area](https://ml4se.github.io/) and showing up in [real](https://github.com/JetBrains-Research/DeepBugsPlugin) [products](https://devblogs.microsoft.com/visualstudio/ai-assisted-intellisense-for-your-teams-codebase/), much to the chagrin of those who believed ML was a fad. I suspect their hype filter blinded them to the value those tools provide. Lesson learned: focus on tools, not hype.
 
+<center>
 <blockquote class="twitter-tweet"><p lang="en" dir="ltr">Prediction: MS will acquire GH within five years. If the <a href="https://twitter.com/hashtag/ML4Code?src=hash&amp;ref_src=twsrc%5Etfw">#ML4Code</a> stuff delivers for MS, acquisition is highly likely. Although it would have been cheaper a few years ago. <a href="https://t.co/5ZMtiRtifD">https://t.co/5ZMtiRtifD</a> <a href="https://t.co/TaxkArm5ps">https://t.co/TaxkArm5ps</a></p>&mdash; breandan (@breandan) <a href="https://twitter.com/breandan/status/993553301927936001?ref_src=twsrc%5Etfw">May 7, 2018</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 
-[![](../images/microsoft_github_aquisition.png)](https://blogs.microsoft.com/blog/2018/10/26/microsoft-completes-github-acquisition/)
+<a href="https://blogs.microsoft.com/blog/2018/10/26/microsoft-completes-github-acquisition/">
+<img align="center" width="75%" src="../images/microsoft_github_aquisition.png"/></a>
+</center>
 
-Forget everything I've said -- if there was just one idea I wish these ML people would pick up on, it would be types. Beat that drum as loud as I could. Types are the best tool we know for synthetic reasoning. If you want to build provably correct systems that scale up to real world applications, types are the answer you seek. Not everyone is onboard yet, but mark my words, [types](https://github.com/tensorflow/tensorflow/issues/12345) are [coming](https://docs.python.org/3.9/whatsnew/3.9.html#pep-585-builtin-generic-types).
+But to heck with everything I've said! If I had just one idea to share with these ML people, it would be types. Beat that drum as loud as I could. Types are the best tool we know for synthetic reasoning. If you want to build provably correct systems that scale on real world applications, types are the answer. Not everyone is convinced yet, but mark my words, [types](https://github.com/tensorflow/tensorflow/issues/12345) are [coming](https://docs.python.org/3.9/whatsnew/3.9.html#pep-585-builtin-generic-types). Whoever figures out how to connect types and learning will be the next Barbara Liskov or Frances Allen.
 
-This year, I predicted the pandemic weeks before the lockdown, exited the market, and turned down a job at Google. Some people called me crazy. Now I'm going all-in on some new ideas (none of which are mine). I'm making some big bets and some may be wrong, but I see the very same spark of genius in them. Hang on to your hats, because if I'm right, these things are going to shake the foundations of modern computing.
+This year, I predicted the pandemic weeks before the lockdown, exited the market, and turned down a job at Google. Some people called me crazy. Now I'm going all-in on some new ideas (none of which are mine). I'm making some big bets and some will be wrong, but I see the very same spark of genius in them. Hang on to your hats, because if I'm right, these ideas are going to shake the foundations of modern computing.
 
 # Everything old is new again
 
-As a kid, I was given a book on the history of mathematics. I remember it had some interesting puzzles, including one with [some bridges](https://en.wikipedia.org/wiki/Seven_Bridges_of_K%C3%B6nigsberg) crossing a town divided by rivers, once posed by a man called Euler. Which towns had a path crossing each bridge exactly once? Was it possible to tell without checking every path? I remember spending days trying to untangle the answer.
+As a kid, I was given a book on the history of mathematics. I remember it had some interesting puzzles, including one with [some bridges](https://en.wikipedia.org/wiki/Seven_Bridges_of_K%C3%B6nigsberg) in a town divided by rivers, inhabited by a man called Euler. Which towns had a path crossing each bridge exactly once? Was it possible to tell without checking every path? I remember spending days trying to figure out the answer.
 
-[![](https://camo.githubusercontent.com/74d8abc0a363a3e01495de6ccea99828febc07fb/68747470733a2f2f75706c6f61642e77696b696d656469612e6f72672f77696b6970656469612f636f6d6d6f6e732f312f31352f496d6167652d4b6f656e696773626572672532435f4d61705f62795f4d657269616e2d457262656e5f313635322e6a7067)](https://en.wikipedia.org/wiki/Seven_Bridges_of_K%C3%B6nigsberg)
+<center>
+<a href="https://en.wikipedia.org/wiki/Seven_Bridges_of_K%C3%B6nigsberg"><img align="center" width="60%" src="https://camo.githubusercontent.com/74d8abc0a363a3e01495de6ccea99828febc07fb/68747470733a2f2f75706c6f61642e77696b696d656469612e6f72672f77696b6970656469612f636f6d6d6f6e732f312f31352f496d6167652d4b6f656e696773626572672532435f4d61705f62795f4d657269616e2d457262656e5f313635322e6a7067"/></a>
+</center>
 
 In the late 90s, my mom and I went to Ireland. I remember visiting Trinity College, and learning about a mathematician called [Hamilton](https://en.wikipedia.org/wiki/William_Rowan_Hamilton) who discovered a famous formula connecting algebra and geometry, and carved it onto a [bridge](https://en.wikipedia.org/wiki/Broom_Bridge). We later visited the bridge, and the tour guide pointed out the stone, which we touched for good luck. The Irish have a [thing](https://en.wikipedia.org/wiki/Poulnabrone_dolmen) for [stones](https://en.wikipedia.org/wiki/Newgrange).
 
-[![](../images/quaternions.jpg)](http://www.kurims.kyoto-u.ac.jp/EMIS/classics/Hamilton/PRIAIcos.pdf)
+<center>
+<a href="http://www.kurims.kyoto-u.ac.jp/EMIS/classics/Hamilton/PRIAIcos.pdf"><img align="center" width="40%" src="../images/quaternions.jpg"/></a>
+</center>
 
 In 2007, I was applying to college and took the train from Boston to South Bend, Indiana, home of the Fighting Irish. Wandering about, I found a magazine article by a Hungarian mathematician called [Barabási](https://en.wikipedia.org/wiki/Albert-L%C3%A1szl%C3%B3_Barab%C3%A1si) who had some interesting things to say about "[complex networks](https://en.wikipedia.org/wiki/Complex_network)". Later in 2009, while studying in Rochester, I [carpooled](../images/complex_network_seminar.png) with a [nice professor](https://avesis.medeniyet.edu.tr/hasan.guclu), and learned complex networks are found in brains, languages, social networks and many marvelous places.
 
-[![](../images/complex_networks.png)](https://barabasi.com/f/226.pdf)
+<center>
+<a href="https://barabasi.com/f/226.pdf"><img align="center" width="75%" src="../images/complex_networks.png"/></a>
+</center>
 
+Fast forward to 2017. I was lured by the siren song of algorithmic differentiation. Olivier Breleux presented [Myia](https://github.com/mila-iqia/myia) and [Buche](https://github.com/breuleux/buche). Matt Johnson gave a talk on [Autograd](https://github.com/HIPS/autograd). I met Chris Olah in Long Beach, who gave me the idea to study [differentiable programming](https://colah.github.io/posts/2015-09-NN-Types-FP/). I stole his idea, dressed it up in Kotlin and traded it for a POPL workshop paper and later a [Master's thesis](https://github.com/breandan/kotlingrad/blob/master/latex/thesis/thesis.pdf). Our contributions were using algebra, shape inference and presenting AD as term rewriting.
 
-Fast forward to 2017. I was lured into working on algorithmic differentiation. Olivier Breleux presented [Myia](https://github.com/mila-iqia/myia) and [Buche](https://github.com/breuleux/buche). Matt Johnson gave a talk on [Autograd](https://github.com/HIPS/autograd). I met Chris Olah in Long Beach, who gave me the idea to study [differentiable programming](https://colah.github.io/posts/2015-09-NN-Types-FP/). I stole his idea, dressed it up in Kotlin and traded it for a POPL workshop paper and later a [Master's thesis](https://github.com/breandan/kotlingrad/blob/master/latex/thesis/thesis.pdf). Our contributions were using algebra, shape inference and presenting AD as term rewriting.
-
-
-[![](https://github.com/breandan/kotlingrad/raw/master/samples/src/main/resources/dataflow.svg)](https://github.com/breandan/kotlingrad#dataflow-graphs)
+<center>
+<a href="https://github.com/breandan/kotlingrad#dataflow-graphs"><img align="center" width="75%" src="https://github.com/breandan/kotlingrad/raw/master/samples/src/main/resources/dataflow.svg"/></a>
+</center>
 
 In 2019, I joined a lab with a [nice professor](https://www.cs.mcgill.ca/~jguo/) at McGill applying knowledge graphs to software engineering. Like types, knowledge graphs are an idea from the first wave of AI in the 1960s and 70s which have been revived and studied in light of recent progress in representation learning on graphs. I believe this is an important area of research with a lot of potential. Knowledge and traceability plays an important role in software engineering, and it's the bread-and-butter of a good IDE. The world needs better IDEs if we're ever going to untangle this mess we're in.
 
-[![Structurizr](https://raw.githubusercontent.com/cecuesta/structurizr-java/master/docs/images/graphviz-spring-petclinic-components.png)](https://structurizr.com/)
+<center>
+<a href="https://structurizr.com/"><img align="center" width="45%" src="https://raw.githubusercontent.com/cecuesta/structurizr-java/master/docs/images/graphviz-spring-petclinic-components.png"/></a>
+</center>
 
 This Spring, I took a fascinating [seminar on Graph Representation Learning](https://cs.mcgill.ca/~wlh/comp766/index.html). A lot of delightful graph theory had been worked out over the preceding decade. [PageRank](https://en.wikipedia.org/wiki/PageRank) turned into power iteration. People made lots of interesting connections to linear algebra, including Weisfeiler-Lehman graph kernels, graph Laplacians and spectral graph theory. There are some elegant mathematics for representing graphs, and choosing the right representation can be very powerful. More on that later.
 
 # What are graphs?
 
-Graphs are general-purpose data structures used to represent many data types and procedural phenomena. Consider the following hierarchy of data structures, all of which are graphs with increasing structure:
+Graphs are general-purpose data structures used to represent many data types and procedural phenomena. Consider the following hierarchy of data structures, all of which are graphs with increasing expressiveness:
 
 - **Sets**: datasets, multisets, posets, alphabets
 - **Sequences**: Lists, strings, arrays, linear function composition
-- **Trees**: [Abstract syntax trees](https://en.wikipedia.org/wiki/Abstract_syntax_tree), [document object models](https://en.wikipedia.org/wiki/Document_Object_Model), [phylogenic trees](https://en.wikipedia.org/wiki/Phylogenetic_tree), [decision trees](https://en.wikipedia.org/wiki/Decision_tree)
-- **DAGs**: [Git](https://eagain.net/articles/git-for-computer-scientists/), [citation networks](https://en.wikipedia.org/wiki/Citation_network), [dependency graphs](https://en.wikipedia.org/wiki/Dependency_graph), [workflows](https://en.wikipedia.org/wiki/Workflow_management_system), [control flow](https://en.wikipedia.org/wiki/Control-flow_graph), [MLPs](https://en.wikipedia.org/wiki/Multilayer_perceptron)
-- **Directed graphs**: [State machines](https://en.wikipedia.org/wiki/Finite-state_machine), [lambda calculus](http://dkeenan.com/Lambda/), [web pages](https://computersciencewiki.org/index.php/The_web_as_a_directed_graph), [call graphs](https://en.wikipedia.org/wiki/Call_graph), [RNNs](https://en.wikipedia.org/wiki/Recurrent_neural_network)
-- **Hypergraphs**: [Knowledge graphs](https://arxiv.org/pdf/2003.02320.pdf), [Zettelkasten](https://zettelkasten.de/), [categories](https://en.wikipedia.org/wiki/Category_theory), [the universe](https://writings.stephenwolfram.com/2020/04/finally-we-may-have-a-path-to-the-fundamental-theory-of-physics-and-its-beautiful/), [hypernetworks](https://openreview.net/pdf?id=rkpACe1lx)
+- **Trees**: [Abstract syntax](https://en.wikipedia.org/wiki/Abstract_syntax_tree), [XML](https://en.wikipedia.org/wiki/Document_Object_Model), [phylogeny](https://en.wikipedia.org/wiki/Phylogenetic_tree), [decision trees](https://en.wikipedia.org/wiki/Decision_tree)
+- **DAGs**: [Git](https://eagain.net/articles/git-for-computer-scientists/), [citations](https://en.wikipedia.org/wiki/Citation_network), [dependency graphs](https://en.wikipedia.org/wiki/Dependency_graph), [workflows](https://en.wikipedia.org/wiki/Workflow_management_system), [control flow](https://en.wikipedia.org/wiki/Control-flow_graph), [MLPs](https://en.wikipedia.org/wiki/Multilayer_perceptron)
+- **Directed graphs**: [State machines](https://en.wikipedia.org/wiki/Finite-state_machine), [λ-calculus](http://dkeenan.com/Lambda/), [the web](https://computersciencewiki.org/index.php/The_web_as_a_directed_graph), [call graphs](https://en.wikipedia.org/wiki/Call_graph), [RNNs](https://en.wikipedia.org/wiki/Recurrent_neural_network)
+- **Hypergraphs**: [Knowledge](https://arxiv.org/pdf/2003.02320.pdf), [Zettelkasten](https://zettelkasten.de/), [categories](https://en.wikipedia.org/wiki/Category_theory), [physics](https://writings.stephenwolfram.com/2020/04/finally-we-may-have-a-path-to-the-fundamental-theory-of-physics-and-its-beautiful/), [hypernetworks](https://openreview.net/pdf?id=rkpACe1lx)
 
-Graphs are useful for representing mathematical expressions as I show in [Kotlin∇](https://github.com/breandan/kotlingrad). Graphs are also used to represent other types of symbolic data, including source code, intermediate representations and markup languages. There are many recent examples of learning graphs for symbolic applications:
+Graphs can be used for encoding mathematical expressions as I show in [Kotlin∇](https://github.com/breandan/kotlingrad), as well as other types of symbolic data, including source code, intermediate representations and markup languages. There are many recent examples of learning graphs for symbolic applications:
 
-* [Deep Learning for Symbolic Mathematics](https://arxiv.org/abs/1912.01412)
-* [Discovering Symbolic Models from Deep Learning with Inductive Biases](https://arxiv.org/pdf/2006.11287.pdf)
-* [Symbolic Pregression: Discovering Physical Laws from Raw Distorted Video](https://arxiv.org/pdf/2005.11212.pdf)
-* [DreamCoder: Growing generalizable, interpretable knowledge with wake-sleep Bayesian program learning](https://arxiv.org/pdf/2006.08381.pdf)
+* [Deep Learning for Symbolic Mathematics](https://arxiv.org/pdf/1912.01412.pdf), Lample and Charton, 2019.
+* [Discovering Symbolic Models from Deep Learning with Inductive Biases](https://arxiv.org/pdf/2006.11287.pdf), Cranmer et al., 2020.
+* [Symbolic Pregression: Discovering Physical Laws from Raw Distorted Video](https://arxiv.org/pdf/2005.11212.pdf), Udrescu & Tegmark, 2020.
+* [DreamCoder: Growing generalizable, interpretable knowledge with wake-sleep Bayesian program learning](https://arxiv.org/pdf/2006.08381.pdf), Ellis et al., 2020.
 
-Graphs have many applications for modeling natural language, such as parsing [constituency](https://en.wikipedia.org/wiki/Phrase_structure_grammar) and [dependency grammars](https://en.wikipedia.org/wiki/Dependency_grammar), [link grammars](https://en.wikipedia.org/wiki/Dependency_grammar) and others lexical structures. Research begun to show many useful applications for semantic parsing in the extraction and representation of human knowledge in large text corpora.
+Graphs are also used for natural language parsing, including [constituency](https://en.wikipedia.org/wiki/Phrase_structure_grammar) and [dependency grammars](https://en.wikipedia.org/wiki/Dependency_grammar), [link grammars](https://en.wikipedia.org/wiki/Dependency_grammar) and others lexical structures. Research has begun to show many useful applications for semantic parsing in the extraction and representation of human knowledge in large text corpora.
 
-![](https://upload.wikimedia.org/wikipedia/commons/8/8e/Thistreeisillustratingtherelation%28PSG%29.png)
 
-Using entity resolution techniques from NLP, we can reconstruct logical relations between entities. These relationships can be stored in [knowledge graphs](https://arxiv.org/pdf/2003.02320.pdf), and used for information retrieval and question answering, e.g. on wikis and other web based content management systems. Recent techniques have shown a lot of promise in automatic knowledge base construction using e.g. logical forms (cf. [Reddy et al.](https://www.mitpressjournals.org/doi/pdf/10.1162/tacl_a_00088), 2016).
+<center>
+<img align="center" width="60%" src="https://upload.wikimedia.org/wikipedia/commons/8/8e/Thistreeisillustratingtherelation%28PSG%29.png"/>
+</center>
+
+Using entity resolution techniques, we can reconstruct logical relations between natural language entities. These relationships can be stored in [knowledge graphs](https://arxiv.org/pdf/2003.02320.pdf), and used for information retrieval and question answering, e.g. on wikis and other web based content management systems. Recent techniques have shown a lot of promise in automatic knowledge base construction (cf. [Reddy et al.](https://www.mitpressjournals.org/doi/pdf/10.1162/tacl_a_00088), 2016).
 
 <!--![logical_forms](../images/logical_forms.png) -->
-![](../images/knowledge_graph.png)
+<center>
+<img align="center" width="75%" src="../images/knowledge_graph.png"/>
+</center>
 
-Lo and behold, the key idea behind knowledge graphs is our old friend, types. Knowledge graphs are graphs whose nodes and edges have a type. We can build index data based on a type, which is useful for information retrieval, and use types to reasoning about complex queries which would otherwise be difficult to model directly, e.g. "Which companies have a direct flight from a port city to a capital city?"
+Lo and behold, the key idea behind knowledge graphs is our old friend, types. Knowledge graphs are graphs whose nodes and edges have a type. We can build index data based on a type, which is useful for information retrieval, and use types to reason about complex queries otherwise difficult to model directly, e.g. "Which companies have a direct flight from a port city to a capital city?"
 
 # Graphs, inductively
 
-One thing has always fascinated me is the idea of inductively defined languages. Consider a very simple language with the following grammar. The `|`, which we read as "or", is just a shorthand for defining multiple productions on a single line:
+One thing that always fascinated me is the idea of inductively defined languages. Consider a very simple language with the following grammar. The `|`, which we read as "or", is just a shorthand for defining multiple productions on a single line:
 
 ```
 <true> → 1
@@ -98,12 +120,12 @@ One thing has always fascinated me is the idea of inductively defined languages.
 Notice how each non-terminal occurs at most once in any single production. This property guarantees the language is recognizable by a special kind of graph, called a finite state machine. As their name indicates, FSMs contain a finite number of states, with labeled transitions between them:
 
 |Finite State Machine | Library Courtesy Bell |
-|--------|--------|
-|![](../images/fsm_bell.svg)| ![](../images/bell.png)<br/>Please ring the bell **once** and wait for assistance. |
+|:------:|:------:|
+|![](../images/fsm_bell.svg)| ![](../images/bell.png)<br/>Please ring the bell **once**<br/> and wait for assistance. |
 
-Imagine a library desk: you can wait quietly and eventually you will be served. You can ring the bell once, and wait to be served. Should no one arrive, you may press the bell again and continue waiting. Though you must never ring the bell twice, or you will disturb the patrons and be tossed out.
+Imagine a library desk: you can wait quietly and eventually you will be served. You can ring the bell once, and wait to be served. Should no one arrive, you may press the bell again and continue waiting. Though you must ne'er ring the bell twice, lest you disturb the patrons and be tossed out.
 
-Now, let us consider a slightly more expressive language. In this one, a non-terminal occurs twice inside a single production -- an `<expr>` can be composed of two shorter `<expr>`s:
+Now suppose we have a slightly more expressive language. In this language , a non-terminal occurs twice inside a single production -- an `<expr>` can be composed of two shorter `<expr>`s:
 
 ```
 <term> → 1 | 0 | x | y
@@ -133,7 +155,7 @@ This is known as a recursively enumerable language, or string rewrite system. Th
 |![](../images/tree_dag.svg)|![gemel](../images/tree_gemel.png)|
 |![](../images/tree_dag_minus.svg)|![gemel](../images/stump.png)|
 
-Let us now introduce a new operator, `Dₓ`, and corresponding rules our grammar. In effect, these rules will push `Dₓ` as far towards the leaves as possible, while rewriting terms along the way:
+Let us now introduce a new operator, `Dₓ`, and some corresponding rules. In effect, these rules will push `Dₓ` as far towards the leaves as possible, while rewriting terms along the way:
 
 ```
 (R0)     <term> → Dₓ(<term>)
@@ -165,17 +187,6 @@ type Context a b = (Adj b, Node, a, Adj b)
 type Graph a b   = Empty | Context a b & Graph a b
 ```
 
-Another definition of a graph is an adjacency matrix containing nodes V and edges E, where:
-
-<span class='mathquote'>$$
-\begin{align*}
-    \mathbf A \in \mathbb \mathbb B ^{|V|\times|V|} \text{ where } \mathbf A\[u, v\] =
-    \begin{cases}
-       1,& \text{if } u, v \in E \\
-       0,& \text{otherwise}
-    \end{cases}
-\end{align*}
-$$</span>
 
 Graph grammars are grammars on graphs.
 Single/Double pushout
@@ -183,9 +194,11 @@ Single/Double pushout
 
 # Graphs, visually
 
-Consider the [elementary cellular automata](https://en.wikipedia.org/wiki/Elementary_cellular_automaton), which consists of a one dimensional array, and a 3-cell rewrite grammar. There are 2<sup>2<sup>3</sup></sup>=256 rules for rewriting the tape. It turns out even in this simple space, there are remarkable automata. Consider the following rewrite system:
+Consider the [elementary cellular automata](https://en.wikipedia.org/wiki/Elementary_cellular_automaton), which consists of a one dimensional array, and a 3-cell rewrite grammar. There are 2<sup>2<sup>3</sup></sup>=256 rules for rewriting the tape. It turns out even in this simple space, there are remarkable automata. Consider the following rewrite system, which can be represented graphically:
 
-![Rule 110](../images/ca_rule%20110.png)
+<center>
+<img align="center" src="../images/ca_rule%20110.png"/>
+</center>
 
 <!--![](https://en.wikipedia.org/wiki/Cellular_automaton#/media/File:One-d-cellular-automate-rule-30.gif)-->
 
@@ -203,17 +216,14 @@ Consider the [elementary cellular automata](https://en.wikipedia.org/wiki/Elemen
 This system is equivalent to a [Turing machine](https://wpmedia.wolfram.com/uploads/sites/13/2018/02/15-1-1.pdf). Consider the λ-calculus, another Turing complete system. It consists of the following rules:
 
 ```
-<expr> := <name> | <func> | <appl>
-<func> := λ <name>.<expr>
-<appl> := <expr><expr>
-```
-
-```
+<expr>   → <name> | <func> | <appl>
+<func>   → λ <name>.<expr>
+<appl>   → <expr><expr>
 λx.M[x]  → λy.M[y]    (α-conversion)
 (λx.M) E → M[x := E]  (β-reduction)
 ```
 
-The lambda calculus can also be represented graphically. I refer the gentle reader to these interesting proposals:
+The λ-calculus can also be represented graphically. I refer the gentle reader to these interesting proposals:
 
 * [Graphic lambda calculus](https://arxiv.org/pdf/1305.5786.pdf)
 * [Visual lambda calculus](http://bntr.planet.ee/lambda/work/visual_lambda.pdf)
@@ -221,28 +231,38 @@ The lambda calculus can also be represented graphically. I refer the gentle read
 
 Graphs have found many interesting applications as reasoning devices in various disciplines:
 
-Feynman diagram
+|Name|Diagram|
+|:--:|:-----:|
+|Feynman diagram|<br/><center><img align="center" width="50%" src="https://upload.wikimedia.org/wikipedia/commons/1/1f/Feynmann_Diagram_Gluon_Radiation.svg"/></center>|
+| Category theory |<br/><center><img align="center" width="50%" src="https://upload.wikimedia.org/wikipedia/commons/e/ef/Commutative_diagram_for_morphism.svg"/></center>|
 
-![](https://upload.wikimedia.org/wikipedia/commons/1/1f/Feynmann_Diagram_Gluon_Radiation.svg)
+As Tae Danae Bradley [vividly portrays](https://www.math3ma.com/blog/matrices-probability-graphs), matrices are not just 2D arrays, matrices are *functions on a vector spaces*. This lends a nice visual representation using a bipartite graph.
 
-Category theory
+<center>
+<a href="https://www.math3ma.com/blog/matrices-probability-graphs"><img align="center" width="75%" src="https://uploads-ssl.webflow.com/5b1d427ae0c922e912eda447/5c7ed4bcea0c9faeafe61466_pic1.jpg"/></a>
+</center>
 
-![](https://upload.wikimedia.org/wikipedia/commons/e/ef/Commutative_diagram_for_morphism.svg)
+Not only do matrices correspond to graphs, graphs also correspond to matrices.  One way to think of a graph is as a boolean matrix, or real matrix for weighted graphs. Consider an adjacency matrix containing nodes V, and edges E, where:
 
+$$
+\begin{align*}
+\mathbf A \in \mathbb B^{|V|\times|V|} \text{ where } \mathbf A[u, v] =
+    \begin{cases}
+       0,& \text{if } u, v \in E \\
+       -1,& \text{otherwise}
+    \end{cases}
+\end{align*}
+$$
 
-As Tae Danae Bradley [vividly portrays](https://www.math3ma.com/blog/matrices-probability-graphs), matrices are not just 2D arrays, matrices are *functions on a vector spaces*.
-
-[![](https://uploads-ssl.webflow.com/5b1d427ae0c922e912eda447/5c7ed4bcea0c9faeafe61466_pic1.jpg)](https://www.math3ma.com/blog/matrices-probability-graphs)
-
-Not only do matrices correspond do graphs, this relationship is bidirectional. One way to visualize a graph is a boolean matrix, or real matrix for weighted graphs. This indicates a deep connection to linear algebra, whose implications have not been fully realized. Many algebraic properties are being rediscovered, with fascinating connections to graph theory.
+Just like matrices, we can also think of a graph as a function which carries information from state to state - given a state, it tells us which states are accessible. This correspondence suggests an unrealized connection between graph theory and linear algebra which is still being explored, and promises important applications for signal processing on graphs.
 
 |Geometric | Matrix |
 |------|--------|
 |![](../images/ld_graph_dot.svg)|![](../images/ld_graph_mat.png)|
 
-Both the geometric and matrix interpretations impose a extrinsic perspective on graphs carrying certain advantages and disadvantages. 2D renderings can be visually illuminating, but require [minimizing crossing number](https://en.wikipedia.org/wiki/Crossing_number_(graph_theory)) or nontrivial metrics to make network connectivity accessible to the naked eye.
+Both the geometric and matrix interpretations impose a extrinsic perspective on graphs, each with advantages and disadvantages. 2D renderings can be visually illuminating, but require [minimizing crossing number](https://en.wikipedia.org/wiki/Crossing_number_(graph_theory)) or nontrivial metrics to make network connectivity accessible to the naked eye.
 
-By treating a graph as a matrix, we impose an ordering over all nodes. This is problematic for several reasons. Note also its sparsity, and consider the size of the matrix required to store even small graphs. This is also problematic, but can be overcome with certain optimizations. More on that later.
+Treating a graph as a matrix is problematic for several reasons. , Primarily, we must impose an ordering over all nodes. Note also its sparsity, and consider the size of the matrix required to store even small graphs. While problematic, this can be overcome with certain optimizations. More on that later.
 
 Note the lower diagonal structure of the matrix, indicating there are no cycles, a property which is not immediately obvious from the geometric version. While graph drawing is an active [field of research](http://www.graphdrawing.org/), matrices can often reveal symmetries that are not obvious from a naive graph layout.
 
@@ -261,14 +281,16 @@ Another interesting game that mathematicians like to play is to take iterated ma
 It turns out the very same idea is not just valid for R^2, but can be applied to B^2, Z^2 and has many interesting connections to graph theory and automata.
 
 |DOT Graph|Matrix|
-|---|---|
+|:-------:|:----:|
 |![](../images/pref_graph0.svg)|![](../images/pref_mat0.png)|
 |![](../images/pref_graph1.svg)|![](../images/pref_mat1.png)|
 |![](../images/pref_graph2.svg)|![random_matrix](../images/pref_mat2.png)|
 
 One of the earliest examples of graph computation can be found in Valiant, 1975.
 
+<center>
 <blockquote class="twitter-tweet"><p lang="en" dir="ltr">TIL: CFL parsing can be reduced to boolean matrix multiplication (Valiant, 1975), known to be subcubic (Strassen, 1969), and later proven an asymptotic lower bound (Lee, 1997). This admits efficient GPGPU implementation (Azimov, 2017) in <a href="https://twitter.com/YaccConstructor?ref_src=twsrc%5Etfw">@YaccConstructor</a> <a href="https://t.co/3Vbml0v6b9">https://t.co/3Vbml0v6b9</a></p>&mdash; breandan (@breandan) <a href="https://twitter.com/breandan/status/1277136195118600192?ref_src=twsrc%5Etfw">June 28, 2020</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+</center>
 
 - Finite automata
 - Buchi automata
@@ -285,12 +307,14 @@ Suppose we want to simulate an automata. All of these automata can be evolved us
 </tr>
 <tr>
 <td>
- 
+
+<div markdown="1">
 ![](../images/lin0.svg)
+</div>
 
 </td>
 <td>
-
+<div markdown="1">
 ```
     a  b  c
    ________
@@ -298,109 +322,117 @@ a | 0  0  0
 b | 1  0  0
 c | 0  1  1
 ```
-
+</div>
 </td>
 <td>
-
+<div markdown="1">
 ```
 
 
 1
 0
 0
-```
 
+```
+</div>
 </td>
 <td>
-
+<div markdown="1">
 ```
 
 
 0
 1
 0
-```
 
+```
+</div>
 </td>
 </tr>
 <tr>
 <td> 
- 
+<div markdown="1">
 ![](../images/lin1.svg)
-
+</div>
 </td>
 <td>
-
+<div markdown="1">
 ```
     a  b  c
    ________
 a | 0  0  0
 b | 1  0  0
 c | 0  1  1
-```
 
+```
+</div>
 </td>
 <td>
-
+<div markdown="1">
 ```
 
 
 0
 1
 0
-```
 
+```
+</div>
 </td>
 <td>
-
+<div markdown="1">
 ```
 
 
 0
 0
 1
-```
 
+```
+</div>
 </td>
 </tr>
 <tr>
 <td> 
- 
+<div markdown="1">
 ![](../images/lin2.svg)
-
+</div>
 </td>
 <td>
-
+<div markdown="1">
 ```
     a  b  c
    ________
 a | 0  0  0
 b | 1  0  0
 c | 0  1  1
-```
 
+```
+</div>
 </td>
 <td>
-
+<div markdown="1">
 ```
 
 
 0
 0
 1
-```
 
+```
+</div>
 </td>
 <td>
-
+<div markdown="1">
 ```
 
 
 0
 0
 1
-```
 
+```
+</div>
 </td>
 </tr>
 </table>
@@ -413,12 +445,12 @@ c | 0  1  1
 </tr>
 <tr>
 <td> 
- 
+<div markdown="1">
 ![](../images/dag0.svg)
-
+</div>
 </td>
 <td>
-
+<div markdown="1">
 ```
     a  b  c  d
    ___________
@@ -426,11 +458,12 @@ a | 0  0  0  0
 b | 1  0  0  0
 c | 1  0  0  0
 d | 0  1  1  1
-```
 
+```
+</div>
 </td>
 <td>
-
+<div markdown="1">
 ```
 
 
@@ -438,11 +471,12 @@ d | 0  1  1  1
 0
 0
 0
-```
 
+```
+</div>
 </td>
 <td>
-
+<div markdown="1">
 ```
 
 
@@ -450,18 +484,19 @@ d | 0  1  1  1
 1
 1
 0
-```
 
+```
+</div>
 </td>
 </tr>
 <tr>
 <td> 
- 
+<div markdown="1">
 ![](../images/dag1.svg)
-
+</div>
 </td>
 <td>
-
+<div markdown="1">
 ```
     a  b  c  d
    ___________
@@ -469,11 +504,12 @@ a | 0  0  0  0
 b | 1  0  0  0
 c | 1  0  0  0
 d | 0  1  1  1
-```
 
+```
+</div>
 </td>
 <td>
-
+<div markdown="1">
 ```
 
 
@@ -481,11 +517,12 @@ d | 0  1  1  1
 1
 1
 0
-```
 
+```
+</div>
 </td>
 <td>
-
+<div markdown="1">
 ```
 
 
@@ -493,18 +530,19 @@ d | 0  1  1  1
 0
 0
 1
-```
 
+```
+</div>
 </td>
 </tr>
 <tr>
 <td> 
- 
+<div markdown="1">
 ![](../images/dag2.svg)
-
+</div>
 </td>
 <td>
-
+<div markdown="1">
 ```
     a  b  c  d
    ___________
@@ -512,11 +550,12 @@ a | 0  0  0  0
 b | 1  0  0  0
 c | 1  0  0  0
 d | 0  1  1  1
-```
 
+```
+</div>
 </td>
 <td>
-
+<div markdown="1">
 ```
 
 
@@ -524,11 +563,12 @@ d | 0  1  1  1
 0
 0
 1
-```
 
+```
+</div>
 </td>
 <td>
-
+<div markdown="1">
 ```
 
 
@@ -536,8 +576,9 @@ d | 0  1  1  1
 0
 0
 1
-```
 
+```
+</div>
 </td>
 </tr>
 
@@ -555,12 +596,12 @@ Suppose we have the function `f(a, b) = (a + b) * b` and want to compute `f(2, 3
 </tr>
 <tr>
 <td> 
- 
+<div markdown="1">
 ![](../images/dfg0.svg)
-
+</div>
 </td>
 <td>
-
+<div markdown="1">
 ```
     a  b  +  *
    ___________
@@ -568,11 +609,12 @@ a | 0  0  0  0
 b | 0  0  0  0
 + | 1  1  0  0
 * | 0  1  1  1
-```
 
+```
+</div>
 </td>
 <td>
-
+<div markdown="1">
 ```
 
 
@@ -580,11 +622,12 @@ b | 0  0  0  0
 3
 0
 0
-```
 
+```
+</div>
 </td>
 <td>
-
+<div markdown="1">
 ```
 
 
@@ -592,18 +635,19 @@ b | 0  0  0  0
 0
 5
 3
-```
 
+```
+</div>
 </td>
 </tr>
 <tr>
 <td> 
- 
+<div markdown="1">
 ![](../images/dfg1.svg)
-
+</div>
 </td>
 <td>
-
+<div markdown="1">
 ```
     a  b  +  *
    ___________
@@ -611,11 +655,12 @@ a | 0  0  0  0
 b | 0  0  0  0
 + | 1  1  0  0
 * | 0  1  1  1
-```
 
+```
+</div>
 </td>
 <td>
-
+<div markdown="1">
 ```
 
 
@@ -623,11 +668,12 @@ b | 0  0  0  0
 0
 5
 3
-```
 
+```
+</div>
 </td>
 <td>
-
+<div markdown="1">
 ```
 
 
@@ -635,18 +681,19 @@ b | 0  0  0  0
 0
 0
 15
-```
 
+```
+</div>
 </td>
 </tr>
 <tr>
 <td> 
- 
+<div markdown="1">
 ![](../images/dfg1.svg)
-
+</div>
 </td>
 <td>
-
+<div markdown="1">
 ```
     a  b  +  *
    ___________
@@ -654,11 +701,12 @@ a | 0  0  0  0
 b | 0  0  0  0
 + | 1  1  0  0
 * | 0  1  1  1
-```
 
+```
+</div>
 </td>
 <td>
-
+<div markdown="1">
 ```
 
 
@@ -666,11 +714,12 @@ b | 0  0  0  0
 0
 0
 15
-```
 
+```
+</div>
 </td>
 <td>
-
+<div markdown="1">
 ```
 
 
@@ -678,8 +727,9 @@ b | 0  0  0  0
 0
 0
 15
-```
 
+```
+</div>
 </td>
 </tr>
 

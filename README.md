@@ -5,7 +5,7 @@ A place to store my ideas.
 ## Running
 
 ```bash
-
+jekyll serve
 ```
 
 ## Author
