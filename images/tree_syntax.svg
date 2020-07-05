@@ -14,6 +14,8 @@
     t [label="−" ]
     p [label="+" ]
     d [label="+" ]
+    q [label="x" ]
+    z [label="0" ]
 
 
 
@@ -54,9 +56,9 @@
         </g>
         <!-- z -->
         <g id="node7" class="node">
-            <title>z</title>
+            <title>x</title>
             <ellipse fill="none" stroke="#000000" cx="22.6274" cy="-22.6274" rx="22.7556" ry="22.7556"/>
-            <text text-anchor="middle" x="22.6274" y="-16.6274" font-family="Consolas" font-size="20.00" fill="#000000">z</text>
+            <text text-anchor="middle" x="22.6274" y="-16.6274" font-family="Consolas" font-size="20.00" fill="#000000">x</text>
         </g>
         <!-- m&#45;&gt;z -->
         <g id="edge3" class="edge">
@@ -66,9 +68,9 @@
         </g>
         <!-- q -->
         <g id="node8" class="node">
-            <title>q</title>
+            <title>0</title>
             <ellipse fill="none" stroke="#000000" cx="85.6274" cy="-22.6274" rx="22.7556" ry="22.7556"/>
-            <text text-anchor="middle" x="85.6274" y="-16.6274" font-family="Consolas" font-size="20.00" fill="#000000">q</text>
+            <text text-anchor="middle" x="85.6274" y="-16.6274" font-family="Consolas" font-size="20.00" fill="#000000">0</text>
         </g>
         <!-- m&#45;&gt;q -->
         <g id="edge4" class="edge">
