@@ -24,7 +24,7 @@ digraph G {
      viewBox="0.00 0.00 340.75 98.10" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
     <g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 94.095)">
         <title>G</title>
-        <polygon fill="#ffffff" stroke="transparent" points="-4,4 -4,-94.095 255.7506,-94.095 255.7506,4 -4,4"/>
+        <polygon fill="transparent" stroke="transparent" points="-4,4 -4,-94.095 255.7506,-94.095 255.7506,4 -4,4"/>
         <!-- z -->
         <g id="node1" class="node">
             <title>z</title>

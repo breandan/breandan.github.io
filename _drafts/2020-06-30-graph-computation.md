@@ -4,7 +4,7 @@ title: Computation graphs and graph computation
 
 ---
 
-A carefully edited anthology in which I vindicate my illustrious career as a hype-chasing Hacker News junkie, AI astrologer, and Twitter prognosticator, while debunking my critics in the peanut gallery. I also extoll the virtues of graphs, algebra, types, and the value of these concepts for human-computer interaction. Finally, I share my predictions for the path ahead and what I believe to be the start of an exciting new chapter in the history of computing.
+A carefully edited anthology in which I vindicate my illustrious career as a hype-chasing Hacker News junkie, AI astrologer, and Twitter prognosticator, while debunking my critics in the peanut gallery. I also extoll the virtues of graphs, algebra, types, and the value of these concepts for human-computer interaction. Finally, I share my predictions for the path ahead, which I believe to be the start of an exciting new chapter in the history of computing.
 
 # New decade, new delusions
 
@@ -44,7 +44,7 @@ This year, I predicted the pandemic weeks before the lockdown, exited the market
 As a kid, I was given a book on the history of mathematics. I remember it had some interesting puzzles, including one with [some bridges](https://en.wikipedia.org/wiki/Seven_Bridges_of_K%C3%B6nigsberg) in a town divided by rivers, inhabited by a man called Euler. Which towns had a path crossing each bridge exactly once? Was it possible to tell without checking every path? I remember spending days trying to figure out the answer.
 
 <center>
-<a href="https://en.wikipedia.org/wiki/Seven_Bridges_of_K%C3%B6nigsberg"><img align="center" width="60%" src="https://camo.githubusercontent.com/74d8abc0a363a3e01495de6ccea99828febc07fb/68747470733a2f2f75706c6f61642e77696b696d656469612e6f72672f77696b6970656469612f636f6d6d6f6e732f312f31352f496d6167652d4b6f656e696773626572672532435f4d61705f62795f4d657269616e2d457262656e5f313635322e6a7067"/></a>
+<a href="https://en.wikipedia.org/wiki/Seven_Bridges_of_K%C3%B6nigsberg"><img align="center" width="60%" src="../images/konigsberg_bridges.png"/></a>
 </center>
 
 In the late 90s, my mom and I went to Ireland. I remember visiting Trinity College, and learning about a mathematician called [Hamilton](https://en.wikipedia.org/wiki/William_Rowan_Hamilton) who discovered a famous formula connecting algebra and geometry, and carved it onto a [bridge](https://en.wikipedia.org/wiki/Broom_Bridge). We later visited the bridge, and the tour guide pointed out the stone, which we touched for good luck. The Irish have a [thing](https://en.wikipedia.org/wiki/Poulnabrone_dolmen) for [stones](https://en.wikipedia.org/wiki/Newgrange).
@@ -231,10 +231,12 @@ The λ-calculus can also be represented graphically. I refer the gentle reader t
 
 Graphs have found many interesting applications as reasoning devices in various disciplines:
 
-|Name|Diagram|
+|Diagramming Language|Example|
 |:--:|:-----:|
-|Feynman diagram|<br/><center><img align="center" width="50%" src="https://upload.wikimedia.org/wikipedia/commons/1/1f/Feynmann_Diagram_Gluon_Radiation.svg"/></center>|
-| Category theory |<br/><center><img align="center" width="50%" src="https://upload.wikimedia.org/wikipedia/commons/e/ef/Commutative_diagram_for_morphism.svg"/></center>|
+|[Feynman diagram](http://www-pnp.physics.ox.ac.uk/~barra/teaching/feynman.pdf)|<br/><center><img align="center" width="50%" src="https://upload.wikimedia.org/wikipedia/commons/1/1f/Feynmann_Diagram_Gluon_Radiation.svg"/></center>|
+| [Category theory](https://www.cs.mcgill.ca/~prakash/Pubs/category_theory_notes.pdf) |<br/><center><img align="center" width="50%" src="https://upload.wikimedia.org/wikipedia/commons/e/ef/Commutative_diagram_for_morphism.svg"/></center>|
+| [Penrose notation](https://www.mscs.dal.ca/%7Eselinger/papers/graphical-bib/public/Penrose-applications-of-negative-dimensional-tensors.pdf) |<br/><center><img align="center" width="50%" src="https://enacademic.com/pictures/enwiki/80/Penrose_covariant_derivate.svg"/></center>|
+|  [Tensor network notation](https://www.mscs.dal.ca/%7Eselinger/papers/graphical-bib/public/Penrose-applications-of-negative-dimensional-tensors.pdf) | <br/><center><img align="center" width="50%" src="https://tensornetwork.org/diagrams/tensor_diagrams.png"/></center>|
 
 As Tae Danae Bradley [vividly portrays](https://www.math3ma.com/blog/matrices-probability-graphs), matrices are not just 2D arrays, matrices are *functions on a vector spaces*. This lends a nice visual representation using a bipartite graph.
 
@@ -249,7 +251,7 @@ $$
 \mathbf A \in \mathbb B^{|V|\times|V|} \text{ where } \mathbf A[u, v] =
     \begin{cases}
        0,& \text{if } u, v \in E \\
-       -1,& \text{otherwise}
+       1,& \text{otherwise}
     \end{cases}
 \end{align*}
 $$
@@ -282,9 +284,9 @@ It turns out the very same idea is not just valid for R^2, but can be applied to
 
 |DOT Graph|Matrix|
 |:-------:|:----:|
-|![](../images/pref_graph0.svg)|![](../images/pref_mat0.png)|
-|![](../images/pref_graph1.svg)|![](../images/pref_mat1.png)|
-|![](../images/pref_graph2.svg)|![random_matrix](../images/pref_mat2.png)|
+|<center><img src="../images/pref_graph0.svg"/></center>|<center><img src="../images/pref_mat0.png"/></center>|
+|<center><img src="../images/pref_graph1.svg"/></center>|<center><img src="../images/pref_mat1.png"/></center>|
+|<center><img src="../images/pref_graph2.svg"/></center>|<center><img src="../images/pref_mat2.png"/></center>|
 
 One of the earliest examples of graph computation can be found in Valiant, 1975.
 
@@ -309,7 +311,7 @@ Suppose we want to simulate an automata. All of these automata can be evolved us
 <td>
 
 <div markdown="1">
-![](../images/lin0.svg)
+<center><img src="../images/lin0.svg"/></center>
 </div>
 
 </td>
@@ -352,7 +354,7 @@ c | 0  1  1
 <tr>
 <td> 
 <div markdown="1">
-![](../images/lin1.svg)
+<center><img src="../images/lin1.svg"/></center>
 </div>
 </td>
 <td>
@@ -395,7 +397,7 @@ c | 0  1  1
 <tr>
 <td> 
 <div markdown="1">
-![](../images/lin2.svg)
+<center><img src="../images/lin2.svg"/></center>
 </div>
 </td>
 <td>
@@ -446,7 +448,7 @@ c | 0  1  1
 <tr>
 <td> 
 <div markdown="1">
-![](../images/dag0.svg)
+<center><img src="../images/dag0.svg"/></center>
 </div>
 </td>
 <td>
@@ -492,7 +494,7 @@ d | 0  1  1  1
 <tr>
 <td> 
 <div markdown="1">
-![](../images/dag1.svg)
+<center><img src="../images/dag1.svg"/></center>
 </div>
 </td>
 <td>
@@ -538,7 +540,7 @@ d | 0  1  1  1
 <tr>
 <td> 
 <div markdown="1">
-![](../images/dag2.svg)
+<center><img src="../images/dag2.svg"/></center>
 </div>
 </td>
 <td>
@@ -597,7 +599,7 @@ Suppose we have the function `f(a, b) = (a + b) * b` and want to compute `f(2, 3
 <tr>
 <td> 
 <div markdown="1">
-![](../images/dfg0.svg)
+<center><img src="../images/dfg0.svg"/></center>
 </div>
 </td>
 <td>
@@ -643,7 +645,7 @@ b | 0  0  0  0
 <tr>
 <td> 
 <div markdown="1">
-![](../images/dfg1.svg)
+<center><img src="../images/dfg1.svg"/></center>
 </div>
 </td>
 <td>
@@ -689,7 +691,7 @@ b | 0  0  0  0
 <tr>
 <td> 
 <div markdown="1">
-![](../images/dfg1.svg)
+<center><img src="../images/dfg1.svg"/></center>
 </div>
 </td>
 <td>
@@ -782,7 +784,7 @@ Now we're done. This algorithm works on almost every graph you will ever encount
 
 We can encode a program as a graph.
 
-<blockquote class="twitter-tweet"><p lang="en" dir="ltr">Prediction: In 20 years, most of today&#39;s ISAs (x86, ARM, MIPS) will be virtual or obsolete. Underneath the hood, everything will be sparse matmuls running on a homogeneous silicon mesh. Physical CPUs will be like gasoline engines - marvels of engineering, but far too complicated.</p>&mdash; breandan (@breandan) <a href="https://twitter.com/breandan/status/1278139598942679041?ref_src=twsrc%5Etfw">July 1, 2020</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script> 
+<center><blockquote class="twitter-tweet"><p lang="en" dir="ltr">Prediction: In 20 years, most of today&#39;s ISAs (x86, ARM, MIPS) will be virtual or obsolete. Underneath the hood, everything will be sparse matmuls running on a homogeneous silicon mesh. Physical CPUs will be like gasoline engines - marvels of engineering, but far too complicated.</p>&mdash; breandan (@breandan) <a href="https://twitter.com/breandan/status/1278139598942679041?ref_src=twsrc%5Etfw">July 1, 2020</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script></center>
 
 A lot of the stuff in Graph Representation Learning is motivated by computational constraints. You can't instantiate the adjacency matrix, because it's too large, so you need all kinds of mathematical tricks to sum over or approximate it. But most graphs are sparse and have all kinds of symmetries. Finding the right graph embedding can get you real far...
 
