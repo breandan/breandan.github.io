@@ -4,7 +4,9 @@ title: Computation graphs and graph computation
 
 ---
 
-A carefully edited anthology in which I vindicate my illustrious career as a hype-chasing Hacker News junkie, AI astrologer, and Twitter prognosticator, while debunking my critics in the peanut gallery. I also extoll the virtues of graphs, algebra, types, and the value of these concepts for human-computer interaction. Finally, I share my predictions for the path ahead, which I believe to be the start of an exciting new chapter in the history of computing.
+A carefully edited anthology in which I vindicate my illustrious career as a hype-chasing Hacker News junkie, AI astrologer, and Twitter fortune-teller, while debunking my critics in the peanut gallery. I also extol the virtues of graphs, algebra, types, and the value of these concepts for software engineering. Finally, I share my predictions for the path ahead, which I consider to be the start of an exciting new chapter in the history of computing.
+
+*Note: Use landscape mode for optimal reading experience.*
 
 # New decade, new delusions
 
@@ -98,7 +100,7 @@ Graphs are also used for natural language parsing, including [constituency](http
 <img align="center" width="60%" src="https://upload.wikimedia.org/wikipedia/commons/8/8e/Thistreeisillustratingtherelation%28PSG%29.png"/>
 </center>
 
-Using entity resolution techniques, we can reconstruct logical relations between natural language entities. These relationships can be stored in [knowledge graphs](https://arxiv.org/pdf/2003.02320.pdf), and used for information retrieval and question answering, e.g. on wikis and other web based content management systems. Recent techniques have shown a lot of promise in automatic knowledge base construction (cf. [Reddy et al.](https://www.mitpressjournals.org/doi/pdf/10.1162/tacl_a_00088), 2016).
+Using entity resolution techniques, we can reconstruct logical relations between natural language entities. These relationships can be stored in [knowledge graphs](https://arxiv.org/pdf/2003.02320.pdf), and used for information retrieval and question answering, e.g. on wikis and other web based content management systems. Recent techniques have shown promise in automatic knowledge base construction (cf. [Reddy et al.](https://www.mitpressjournals.org/doi/pdf/10.1162/tacl_a_00088), 2016).
 
 <!--![logical_forms](../images/logical_forms.png) -->
 <center>
@@ -112,9 +114,9 @@ Lo and behold, the key idea behind knowledge graphs is our old friend, types. Kn
 One thing that always fascinated me is the idea of inductively defined languages. Consider a very simple language with the following grammar. The `|`, which we read as "or", is just a shorthand for defining multiple productions on a single line:
 
 ```
-<true> → 1
-<term> → 0 | 10 | ε
-<expr> → <term> | <expr> <term>
+true → 1
+term → 0 | 10 | ε
+expr → term | expr term
 ```
 
 Notice how each non-terminal occurs at most once in any single production. This property guarantees the language is recognizable by a special kind of graph, called a finite state machine. As their name indicates, FSMs contain a finite number of states, with labeled transitions between them:
@@ -128,9 +130,9 @@ Imagine a library desk: you can wait quietly and eventually you will be served. 
 Now suppose we have a slightly more expressive language. In this language , a non-terminal occurs twice inside a single production -- an `<expr>` can be composed of two shorter `<expr>`s:
 
 ```
-<term> → 1 | 0 | x | y
-  <op> → + | - | ·
-<expr> → <term> | <op> <expr> | <expr> <op> <expr>
+term → 1 | 0 | x | y
+  op → + | - | ·
+expr → term | op expr | expr op expr
 ```
 
 This is known as a context-free language (CFL). We can represent strings in this language using a special kind of graph, called a syntax tree. Each time you expand an `<expr>` with a production rule, this generates a rooted subtree on `<op>`, whose leaves are `<expr>`s.
@@ -148,17 +150,17 @@ While syntax trees can be interpreted computationally, they do not actually perf
 T - T | T · 0 | 0 · T | 0 - T | +0 | -1 → 0
 ```
 
-This is known as a recursively enumerable language, or string rewrite system. This particular example produces directed acyclic graphs. Some people say, "all trees are DAGs, but not all DAGs are trees". Growing up in the woods, I prefer to think of DAGs as trees with a gemel:
+This is known as a recursively enumerable language, or string rewrite system. This particular example produces directed acyclic graphs. Some people say, "all trees are DAGs, but not all DAGs are trees". Growing up in the woods, I prefer to think of a DAG a a tree with a [gemel](https://en.wikipedia.org/wiki/Inosculation):
 
 |Rewrite Rule|Deformed Tree|
 |---|----|
 |<center><img align="center" width="100%" src="../images/tree_dag.svg"/></center>|<br/><center><img align="center" width="50%" src="../images/tree_gemel.png"/></center>|
 |<center><img align="center" width="100%" src="../images/tree_dag_minus.svg"/></center>|<br/><br/><center><img align="center" width="50%" src="../images/stump.png"/></center>|
 
-Let us now introduce a new operator, `Dₓ`, and some corresponding rules. In effect, these rules will push `Dₓ` as far towards the leaves as possible, while rewriting terms along the way:
+Let us now introduce a new operator, `Dₓ`, and some corresponding rules. In effect, these rules will push `Dₓ` as far towards the leaves as possible, while rewriting terms along the way. We will also introduce some terminal rewrites:
 
 ```
-(R0)     <term> → Dₓ(<term>)
+(R0)       term → Dₓ(term)
 (R1)      Dₓ(x) → 1                  
 (R2)      Dₓ(y) → 0                  
 (R3)    Dₓ(U+V) → Dₓ(U) + Dₓ(V)      
@@ -170,26 +172,111 @@ Let us now introduce a new operator, `Dₓ`, and some corresponding rules. In ef
 (R9)      Dₓ(0) → 0
 ```
 
-Here, capital letters on the same line must exactly match, e.g. a rule `U + V -> V + U` would replace `x + y` with `y + x`. We assign an ordering `R0`-`R9` for notational convenience, but regardless of the order of application, this system will always produce the same result (proof needed):
+Here, capital letters on the same line must exactly match, e.g. a rule `U + V → V + U` would replace `x + y` with `y + x`. We assign an ordering `R0`-`R9` for notational convenience, but regardless of which order we apply the rules, this system will always produce the same result (proof required):
 
 |Term Confluence|Ottawa-St. Lawrence Confluence|
 |:---:|:---:|
 |<br/><center><img align="center" width="100%" src="../images/confluence_term.svg"/></center>|<br/><center><img align="center" width="75%" src="../images/confluence_river.png"/></center>|
 
-This feature, called [confluence](https://en.wikipedia.org/wiki/Confluence_(abstract_rewriting)), is an important property for rewrite systems. If all strings in a language converge to a form which can be simplified no further, we call such systems *strongly normalizing*.
+This feature, called [confluence](https://en.wikipedia.org/wiki/Confluence_(abstract_rewriting)), is an important property of some rewrite systems. Regardless of the order of application, we arrive at the same result. If all strings in a language converge to a form which can be simplified no further, we call such systems *strongly normalizing*.
 
-Similarly, it is possible to define graphs themselves inductively, using algebraic data types:
+Just like grammars, we can define graphs themselves inductively. As many graph algorithms are recursive, this choice considerably simplifies their implementation. Take one definition for an unlabeled directed graph, proposed by [Erwig](https://web.engr.oregonstate.edu/~erwig/papers/InductiveGraphs_JFP01.pdf) (2001):
 
 ```
-type Node        = Int
-type Adj b       = [(b, Node)]
-type Context a b = (Adj b, Node, a, Adj b)
-type Graph a b   = Empty | Context a b & Graph a b
+vertex  → 0...9 | vertex vertex
+adj     → empty | vertex, adj
+context → ([adj], vertex, [adj])
+graph   → empty | context & graph
 ```
 
+He defines a `graph` in four parts. First, we have a `vertex`, which is simply an integer. Next we have a list of vertices, or *adjacency list*, `adj`. The `context` is a 3-tuple containing a `vertex` and symmetric references to its inbound and outbound neighbors, respectively. Finally, the inductive case: a `graph` is either (1) `empty`, or (2) a `context` and a `graph`.
 
-Graph grammars are grammars on graphs.
-Single/Double pushout
+Let us consider a simple graph implementation in Kotlin. We do not record inbound neighbors, and attempt to define a vertex as a [closed neighborhood](https://en.wikipedia.org/wiki/Neighbourhood_(graph_theory)):
+
+```kotlin
+open class Graph(val vertices: Set<Vertex>) { ... }
+data class Vertex(neighbors: Set<Vertex>): Graph(this + neighbors)
+//                                               ↳ Compile error!
+```
+
+Note the coinductive definition, which causes problems right off the bat. Since `this` is not accessible inside the constructor, we cannot have cycles or closed neighborhoods. Maybe we can come up with a definition which allows cycles and closed neighborhoods by avoiding coinduction:
+
+```kotlin
+class Graph(val vertices: Set<Vertex>) { ... }
+class Vertex(val id: String, val neighbors: Set<Vertex>)
+```
+
+Already, this definition admits a nice k-nearest neighbors implementation:
+
+```kotlin
+tailrec fun Vertex.neighbors(k: Int = 0, vertices: Set<Vertex> =
+                             neighbors + this): Set<Vertex> =
+  if (k == 0 || vertices.neighbors() == vertices) vertices
+  else knn(k - 1, vertices + vertices.neighbors() + this)
+
+fun Set<Vertex>.neighbors() = flatMap { it.neighbors() }.toSet()
+
+// Removes all vertices outside the set
+fun Set<Vertex>.closure() = map { vertex ->
+  Vertex(vertex.id, neighbors.filter { it in this@closure })
+}.toSet()
+
+fun Vertex.neighborhood(k: Int = 0) = Graph(neighbors(k).closure())
+```
+
+But what about cycles? We will need to modify or definition somewhat, in order to accommodate for this case:
+
+```kotlin
+class Graph(val vertices: Set<Vertex>) { ... }
+class Vertex(val id: String, map: (Vertex) -> Set<Vertex>) {
+    val neighbors = map(this).toSet()
+}
+```
+
+Consider the simple case, with a self-loop. To construct a vertex with a self loop, we can call `Vertex("a") { setOf(it) }`.
+
+Let us consider an algorithm called the Weisfeiler-Lehman isomorphism test. My colleague David Bieber has written a nice [blog post](https://davidbieber.com/post/2019-05-10-weisfeiler-lehman-isomorphism-test/) about this. I'll focus on the implementation. First, we need a pooling operator, which will aggregate all neighbors in our neighborhood:
+
+```kotlin
+fun Graph.poolBy(op: Set<Vertex>.() -> Int): Map<Vertex, Int> =
+  nodes.map { it to op(it.neighbors()) }.toMap()
+```
+
+Next, we need a histogram, which just counts a node's neighbors:
+
+```kotlin
+val histogram: Map<Vertex, Int> by lazy { poolBy { size } }
+```
+
+Now we're ready to define the Weisfeiler-Lehman operator, which recursively computes a hash on the histogram for `k` steps.
+
+```kotlin
+tailrec fun wl(k: Int, labels: Map<Vertex, Int>): Map<Vertex, Int> =
+  if (k <= 0) labels
+  else wl(k - 1, poolBy { map { labels[it]!! }.sorted().hashCode() })
+```
+
+The hashcode of the entire graph is the hash code of the WL labels. With one round, we're just comparing the degree historgram. The more rounds we use, the more likely it is to detect a symmetry breaking issue:
+
+```kotlin
+override fun Graph.hashCode(steps: Int = 10) = 
+    wl(steps, histogram).values.sorted().hashCode()
+```
+
+Now we can define a test to detect if one graph is isomorphic to another:
+
+```kotlin
+fun Graph.isIsomorphicTo(that: Graph) =
+  this.nodes.size == that.nodes.size && 
+  this.numOfEdges == that.numOfEdges && 
+  this.hashCode() == that.hashCode()
+```
+
+Now we're done. This algorithm works on almost every graph you will ever encounter. That was easy! For a complete implementation, refer to [this repository](https://github.com/breandan/kaliningraph).
+
+TODO: Graph grammars are grammars on graphs.
+
+TODO: Single/Double pushout
 
 # Graphs, visually
 
@@ -222,13 +309,13 @@ This system is equivalent to a [Turing machine](https://wpmedia.wolfram.com/uplo
 (λx.M) E → M[x := E]  (β-reduction)
 ```
 
-The λ-calculus can also be represented graphically. I refer the gentle reader to these interesting proposals:
+The λ-calculus can also be represented graphically. I refer the gentle reader to these proposals:
 
 * [Graphic lambda calculus](https://arxiv.org/pdf/1305.5786.pdf)
 * [Visual lambda calculus](http://bntr.planet.ee/lambda/work/visual_lambda.pdf)
 * [To Dissect a Mockingbird: A Graphical Notation for the Lambda Calculus](http://dkeenan.com/Lambda/)
 
-Graphs have found many interesting applications as reasoning devices in various disciplines:
+Graphs have also found many interesting applications as reasoning devices in various domains:
 
 |Diagramming Language|Example|
 |:--:|:-----:|
@@ -239,13 +326,13 @@ Graphs have found many interesting applications as reasoning devices in various 
 | [Finite state machines](https://en.wikipedia.org/wiki/Finite-state_machine) | <br/><center><img align="center" width="50%" src="https://upload.wikimedia.org/wikipedia/commons/9/94/DFA_example_multiplies_of_3.svg"/></center> |
 | [Petri networks](https://en.wikipedia.org/wiki/Petri_net) | <br/><center><img align="center" width="50%" src="https://upload.wikimedia.org/wikipedia/commons/d/d7/Animated_Petri_net_commons.gif"/></center> |
 
-As Tae Danae Bradley [vividly portrays](https://www.math3ma.com/blog/matrices-probability-graphs), matrices are not just 2D arrays, matrices are *functions on a vector spaces*. This lends a nice visual representation using a bipartite graph.
+As Tae Danae Bradley [vividly portrays](https://www.math3ma.com/blog/matrices-probability-graphs), matrices are not just 2D arrays, matrices are *functions on vector spaces*. This has a nice visual representation using a bipartite graph:
 
 <center>
 <a href="https://www.math3ma.com/blog/matrices-probability-graphs"><img align="center" width="75%" src="https://uploads-ssl.webflow.com/5b1d427ae0c922e912eda447/5c7ed4bcea0c9faeafe61466_pic1.jpg"/></a>
 </center>
 
-Not only do matrices correspond to graphs, graphs also correspond to matrices.  One way to think of a graph is as a boolean matrix, or real matrix for weighted graphs. Consider an adjacency matrix containing nodes V, and edges E, where:
+Not only do matrices correspond to graphs, graphs also correspond to matrices. One way to think of a graph is just a boolean matrix, or real matrix for weighted graphs. Consider an adjacency matrix containing nodes V, and edges E, where:
 
 $$
 \begin{align*}
@@ -285,7 +372,7 @@ There are various names for this matrix, such as the transition matrix, stochast
 |<center><img src="../images/pref_graph1.svg"/></center>|<center><img src="../images/pref_mat1.png"/></center>|
 |<center><img src="../images/pref_graph2.svg"/></center>|<center><img src="../images/pref_mat2.png"/></center>|
 
-One of the earliest examples of graph computation can be found in [Valiant](http://theory.stanford.edu/~virgi/cs367/papers/valiantcfg.pdf) (1975):
+One early example of graph computation can be found in [Valiant](http://theory.stanford.edu/~virgi/cs367/papers/valiantcfg.pdf) (1975):
 
 <center>
 <blockquote class="twitter-tweet"><p lang="en" dir="ltr">TIL: CFL parsing can be reduced to boolean matrix multiplication (Valiant, 1975), known to be subcubic (Strassen, 1969), and later proven an asymptotic lower bound (Lee, 1997). This admits efficient GPGPU implementation (Azimov, 2017) in <a href="https://twitter.com/YaccConstructor?ref_src=twsrc%5Etfw">@YaccConstructor</a> <a href="https://t.co/3Vbml0v6b9">https://t.co/3Vbml0v6b9</a></p>&mdash; breandan (@breandan) <a href="https://twitter.com/breandan/status/1277136195118600192?ref_src=twsrc%5Etfw">June 28, 2020</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
@@ -742,48 +829,9 @@ b | 0  0  0  0
 
 One issue with efficient representation of graphs is space complexity. Suppose we have a graph with 10<sup>5</sup>=100,000 nodes, but only a single edge. We will need 10<sup>5*2</sup> bits, or about 1 GB to store it in adjacency matrix form, whereas if we use an adjacency list, we will need only ⌈ 2\*log<sub>2</sub>10<sup>5</sup> ⌉ = 34 bits. Most graphs are similarly sparse. But how do you multiply adjacency lists? Unclear. The solution is to use sparse matrices. That was easy.
 
-Another, thornier, problem with graph algorithms is their time complexity. Many interesting problems on graphs are NP-complete, including Hamiltonian paths and subgraph isomorphism. If so, how are we supposed to do any computation if every operation may take nondeterminstic polynomial time? Computer science people are mostly concerned with worst case complexity, which is practically never going to happen. Real world graphs can be solved quickly using approximate algorithms, such as Weisfeiler-Lehman algorithm. My colleague David Bieber has a nice [blog post](https://davidbieber.com/post/2019-05-10-weisfeiler-lehman-isomorphism-test/) about this. I'll focus on the implementation.
+Another, thornier, problem with graph algorithms is their time complexity. Many interesting problems on graphs are NP-complete, including Hamiltonian paths and subgraph isomorphism. If so, how are we supposed to do any computation if every operation may take nondeterminstic polynomial time? Computer science people are mostly concerned with worst case complexity, which rarely ever occurs in practice. Real world isomorphism can be solved quickly using approximate algorithms, such as the one we saw earlier.
 
-First, we need a pooling operator, which aggregates all neighbors on a vertex's ego graph:
-
-```kotlin
-fun <R> poolBy(op: Set<Vertex>.() -> R): Map<Vertex, R> =
-  nodes.map { it to op(it.neighbors()) }.toMap()
-```
-
-Next we need a histogram operator, which simply counts how many neighbors each node has. This is the degree matrix, sparisfied:
-
-```kotlin
-val histogram: Map<Vertex, Int> by lazy { poolBy { size } }
-```
-
-Now we're ready to define the Weisfeiler-Lehman operator, which recursively computes a hash on the histogram for `k` steps.
-
-```kotlin
-tailrec fun wl(k: Int, labels: Map<Vertex, Int>): Map<Vertex, Int> =
-  if (k <= 0) labels
-  else wl(k - 1, poolBy { map { labels[it]!! }.sorted().hashCode() })
-```
-
-The hashcode of the entire graph is the hash code of the WL labels. With one round, we're just comparing the degree historgram. The more rounds we use, the more likely it is to detect a symmetry breaking issue:
-
-```kotlin
-override fun Graph.hashCode(steps: Int = 10) = 
-    wl(steps, histogram).values.sorted().hashCode()
-```
-
-Now we can define an isomorphism test to if one graph is isomorphic to entire graph:
-
-```kotlin
-fun Graph.isIsomorphicTo(that: Graph) =
-  nodes.size == that.nodes.size && 
-  numOfEdges == that.numOfEdges && 
-  hashCode() == that.hashCode()
-```
-
-Now we're done. This algorithm works on almost every graph you will ever encounter. That was easy!
-
-We can encode a program as a graph.
+One issue with computation graphs is that in most programming languages, they are not reified. That is, for a given value, we would like some method which programmatically returned its entire computation graph. We can encode that program as a graph.
 
 <center><blockquote class="twitter-tweet"><p lang="en" dir="ltr">Prediction: In 20 years, most of today&#39;s ISAs (x86, ARM, MIPS) will be virtual or obsolete. Underneath the hood, everything will be sparse matmuls running on a homogeneous silicon mesh. Physical CPUs will be like gasoline engines - marvels of engineering, but far too complicated.</p>&mdash; breandan (@breandan) <a href="https://twitter.com/breandan/status/1278139598942679041?ref_src=twsrc%5Etfw">July 1, 2020</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script></center>
 
@@ -804,7 +852,7 @@ Consider the static case, in which we have all the information available at comp
 ```
      [P]-----------------------------------           } Program
        \           \           \           \
-[S_0]---*---[S_1]---*---[S_2]---*---[...]---*---[S_T] } Memory state
+[S_0]---*---[S_1]---*---[S_2]---*---[...]---*---[S_T] } TM tape
 ```
 
 Since P is fixed throughout execution, to learn P, we need to solve the following minimization:
@@ -818,24 +866,24 @@ What about programs of varying length? It may be the case we want to learn progr
 Now the dynamic case, P might be governed by another program:
 
 ```
-         [Q]-----------------------                   } External 
+         [Q]-----------------------                   } Dynamics
            \           \           \
-    [P_0]---*---[P_1]---*---[...]---*---[P_T-1]       } Program State
+    [P_0]---*---[P_1]---*---[...]---*---[P_T-1]       } Program
        \           \           \           \
-[S_0]---*---[S_1]---*---[S_2]---*---[...]---*---[S_T] } Memory State
+[S_0]---*---[S_1]---*---[S_2]---*---[...]---*---[S_T] } TM tape
 ```
 
 We might also imagine these inputs as being generated by higher order programs.
 
 ```
                      ⋮
-            [R_0]----------                           } World state
+            [R_0]----------                           } World model
                \           \
-        [Q_0]---*---[...]---*---[P_T-2]               } Dynamic inputs
+        [Q_0]---*---[...]---*---[P_T-2]               } Dynamics
            \           \           \
-    [P_0]---*---[P_1]---*---[...]---*---[P_T-1]       } Program State
+    [P_0]---*---[P_1]---*---[...]---*---[P_T-1]       } Program
        \           \           \           \
-[S_0]---*---[S_1]---*---[S_2]---*---[...]---*---[S_T] } Memory State
+[S_0]---*---[S_1]---*---[S_2]---*---[...]---*---[S_T] } TM tape
 ```
 
 There will always be some program, which occurs at the interface of the machine and the real world.
