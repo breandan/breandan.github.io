@@ -121,7 +121,7 @@ Notice how each non-terminal occurs at most once in any single production. This 
 
 |Finite State Machine | Library Courtesy Bell |
 |:------:|:------:|
-|![](../images/fsm_bell.svg)| ![](../images/bell.png)<br/>Please ring the bell **once**<br/> and wait for assistance. |
+|<center><img align="center" width="200%" src="../images/fsm_bell.svg"/></center>| <br/><center><img align="center" width="50%" src="../images/bell.png"/></center><br/>Please ring the bell **once**<br/> and wait for assistance. |
 
 Imagine a library desk: you can wait quietly and eventually you will be served. You can ring the bell once, and wait to be served. Should no one arrive, you may press the bell again and continue waiting. Though you must ne'er ring the bell twice, lest you disturb the patrons and be tossed out.
 
@@ -152,8 +152,8 @@ This is known as a recursively enumerable language, or string rewrite system. Th
 
 |Rewrite Rule|Deformed Tree|
 |---|----|
-|![](../images/tree_dag.svg)|![gemel](../images/tree_gemel.png)|
-|![](../images/tree_dag_minus.svg)|![gemel](../images/stump.png)|
+|<center><img align="center" width="100%" src="../images/tree_dag.svg"/></center>|<br/><center><img align="center" width="50%" src="../images/tree_gemel.png"/></center>|
+|<center><img align="center" width="100%" src="../images/tree_dag_minus.svg"/></center>|<br/><br/><center><img align="center" width="50%" src="../images/stump.png"/></center>|
 
 Let us now introduce a new operator, `Dₓ`, and some corresponding rules. In effect, these rules will push `Dₓ` as far towards the leaves as possible, while rewriting terms along the way:
 
@@ -174,7 +174,7 @@ Here, capital letters on the same line must exactly match, e.g. a rule `U + V ->
 
 |Term Confluence|Ottawa-St. Lawrence Confluence|
 |:---:|:---:|
-|![](../images/confluence_term.svg)|![](../images/confluence_river.png)|
+|<br/><center><img align="center" width="100%" src="../images/confluence_term.svg"/></center>|<br/><center><img align="center" width="75%" src="../images/confluence_river.png"/></center>|
 
 This feature, called [confluence](https://en.wikipedia.org/wiki/Confluence_(abstract_rewriting)), is an important property for rewrite systems. If all strings in a language converge to a form which can be simplified no further, we call such systems *strongly normalizing*.
 
@@ -190,7 +190,6 @@ type Graph a b   = Empty | Context a b & Graph a b
 
 Graph grammars are grammars on graphs.
 Single/Double pushout
-
 
 # Graphs, visually
 
@@ -237,6 +236,8 @@ Graphs have found many interesting applications as reasoning devices in various 
 | [Category theory](https://www.cs.mcgill.ca/~prakash/Pubs/category_theory_notes.pdf) |<br/><center><img align="center" width="50%" src="https://upload.wikimedia.org/wikipedia/commons/e/ef/Commutative_diagram_for_morphism.svg"/></center>|
 | [Penrose notation](https://www.mscs.dal.ca/%7Eselinger/papers/graphical-bib/public/Penrose-applications-of-negative-dimensional-tensors.pdf) |<br/><center><img align="center" width="50%" src="https://enacademic.com/pictures/enwiki/80/Penrose_covariant_derivate.svg"/></center>|
 |  [Tensor network notation](https://www.mscs.dal.ca/%7Eselinger/papers/graphical-bib/public/Penrose-applications-of-negative-dimensional-tensors.pdf) | <br/><center><img align="center" width="50%" src="https://tensornetwork.org/diagrams/tensor_diagrams.png"/></center>|
+| [Finite state machines](https://en.wikipedia.org/wiki/Finite-state_machine) | <br/><center><img align="center" width="50%" src="https://upload.wikimedia.org/wikipedia/commons/9/94/DFA_example_multiplies_of_3.svg"/></center> |
+| [Petri networks](https://en.wikipedia.org/wiki/Petri_net) | <br/><center><img align="center" width="50%" src="https://upload.wikimedia.org/wikipedia/commons/d/d7/Animated_Petri_net_commons.gif"/></center> |
 
 As Tae Danae Bradley [vividly portrays](https://www.math3ma.com/blog/matrices-probability-graphs), matrices are not just 2D arrays, matrices are *functions on a vector spaces*. This lends a nice visual representation using a bipartite graph.
 
@@ -250,8 +251,8 @@ $$
 \begin{align*}
 \mathbf A \in \mathbb B^{|V|\times|V|} \text{ where } \mathbf A[u, v] =
     \begin{cases}
-       0,& \text{if } u, v \in E \\
-       1,& \text{otherwise}
+       1,& \text{if } u, v \in E \\
+       0,& \text{otherwise}
     \end{cases}
 \end{align*}
 $$
@@ -272,15 +273,11 @@ I strongly suspect graphs are not only useful as cognitive aides, but are suitab
 
 # Graphs, computationally
 
-What happens if we define some operators on graphs, such as addition and multiplication? How would we do that, and what does it mean?
+What happens if we define some operators on graphs, such as addition and multiplication? How would we define such operations that, and what does it mean? As we have seen, a directed graph is just a square matrix whose non-zero entries indicate edges between nodes. Just like real matrices in linear algebra, we can add, subtract, multiply and exponentiate them.
 
-Naively, a directed graph is just a square boolean matrix whose values indicate edges between nodes. Just like real matrices in linear algebra, we can add, subtract, multiply and exponentiate them.
+One interesting game mathematicians like to play is taking a square matrix ℝ<sup>K×K</sup> and raising it to a power. There are various tricks for designing the matrix and normalizing the product so it does not explode or vanish. One way to think about this is (MMM)V. Another way is M(M(M(V))), where M is a function on a vector space. This game has many important applications in control theory, dynamical systems and deep learning (RNNs).
 
-One interesting game mathematicians like to play is taking a square matrix ℝ<sup>K×K</sup> and raise it to a power. There are various tricks for designing the matrix and normalizing the product so it does not explode or vanish. This game has many important applications in control theory, dynamical systems and machine learning (RNNs).
-
-Another interesting game that mathematicians like to play is to take iterated matrix-vector products. One way to think about this is MMMV. Another way is M(M(M(V))), where M is a function on a vector space. These are equivalent.
-
-It turns out the very same idea is not just valid over real matrices, but can be applied to boolean and integer matrices and has many interesting connections to graph theory and automata.
+There are various names for this matrix, such as the transition matrix, stochastic matrix, or Markov matrix. We are primarily interested in the deterministic version, whose variables inhabit ℝ<sup>K×K</sup>. It turns out the very same idea is not just valid over real matrices, but can be applied to boolean and integer matrices and has many interesting connections to graph theory and automata.
 
 |DOT Graph|Matrix|
 |:-------:|:----:|
@@ -288,18 +285,20 @@ It turns out the very same idea is not just valid over real matrices, but can be
 |<center><img src="../images/pref_graph1.svg"/></center>|<center><img src="../images/pref_mat1.png"/></center>|
 |<center><img src="../images/pref_graph2.svg"/></center>|<center><img src="../images/pref_mat2.png"/></center>|
 
-One of the earliest examples of graph computation can be found in Valiant, 1975.
+One of the earliest examples of graph computation can be found in [Valiant](http://theory.stanford.edu/~virgi/cs367/papers/valiantcfg.pdf) (1975):
 
 <center>
 <blockquote class="twitter-tweet"><p lang="en" dir="ltr">TIL: CFL parsing can be reduced to boolean matrix multiplication (Valiant, 1975), known to be subcubic (Strassen, 1969), and later proven an asymptotic lower bound (Lee, 1997). This admits efficient GPGPU implementation (Azimov, 2017) in <a href="https://twitter.com/YaccConstructor?ref_src=twsrc%5Etfw">@YaccConstructor</a> <a href="https://t.co/3Vbml0v6b9">https://t.co/3Vbml0v6b9</a></p>&mdash; breandan (@breandan) <a href="https://twitter.com/breandan/status/1277136195118600192?ref_src=twsrc%5Etfw">June 28, 2020</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 </center>
 
-- Finite automata
+This astonishing result suggests that, at least for the context free languages, there is a parsing algorithm which is equivalent to matrix multiplication. Suppose we want to simulate an automata. All of these automata can be evolved using matrix multiplication:
+
+- Pushdown automata
 - Buchi automata
 - Pushdown automata
 - Petri nets
 
-Suppose we want to simulate an automata. All of these automata can be evolved using matrix multiplication!
+We will now show a few examples:
 
 ## Linear chains
 
@@ -440,6 +439,8 @@ c | 0  1  1
 </table>
 
 ## Directed acyclic graphs
+
+Simulating a DFA using a matrix is wasteful, since we only ever inhabit one state at a time. The real benefit of using matrices comes in when simulating nondeterminstic finite automata (NFA). Typical implementations require cloning the NFA when multiple transitions are valid. Instead of cloning the machine, we can simulate the superposition of all states using a single matrix.
 
 <table>
 <tr>
@@ -586,11 +587,11 @@ d | 0  1  1  1
 
 </table>
 
-We encode the last node as a self cycle in order to detect the fixpoint.
+We encode the accept state as a self cycle in order to detect the fixpoint S = MS = MMS, after which we halt execution.
 
 ## Dataflow graphs
 
-Suppose we have the function `f(a, b) = (a + b) * b` and want to compute `f(2, 3)`.
+Suppose we have the function `f(a, b) = (a + b) * b` and want to compute `f(2, 3)`. For operator indices, we will need two tricks. First, all operators will retain their state, i.e. `1`s along all operator diagonals. Second, when applying the operator, we will combine values using the operator instead of performing a sum.
 
 <table>
 <tr>
@@ -609,7 +610,7 @@ Suppose we have the function `f(a, b) = (a + b) * b` and want to compute `f(2, 3
    ___________
 a | 0  0  0  0
 b | 0  0  0  0
-+ | 1  1  0  0
++ | 1  1  1  0
 * | 0  1  1  1
 
 ```
@@ -655,7 +656,7 @@ b | 0  0  0  0
    ___________
 a | 0  0  0  0
 b | 0  0  0  0
-+ | 1  1  0  0
++ | 1  1  1  0
 * | 0  1  1  1
 
 ```
@@ -691,7 +692,7 @@ b | 0  0  0  0
 <tr>
 <td> 
 <div markdown="1">
-<center><img src="../images/dfg1.svg"/></center>
+<center><img src="../images/dfg2.svg"/></center>
 </div>
 </td>
 <td>
@@ -701,7 +702,7 @@ b | 0  0  0  0
    ___________
 a | 0  0  0  0
 b | 0  0  0  0
-+ | 1  1  0  0
++ | 1  1  1  0
 * | 0  1  1  1
 
 ```
@@ -788,52 +789,58 @@ We can encode a program as a graph.
 
 A lot of the stuff in Graph Representation Learning is motivated by computational constraints. You can't instantiate the adjacency matrix, because it's too large, so you need all kinds of mathematical tricks to sum over or approximate it. But most graphs are sparse and have all kinds of symmetries. Finding the right graph embedding can get you real far...
 
-## Graph computation
+## Program synthesis
 
-It turns out graphs are not only useful as data structures, but we can think of the act of computing itself as a graph on a very large state space. Each tick of the program counter corresponds to one matrix multiplication on a long tape.
+It turns out graphs are not only useful as data structures, but we can think of the computation itself as a graph on a binary state space. Each tick of the program counter corresponds to one matrix multiplication on a boolean tape.
 
-Futamura shows us that programs can be decomposed into two inputs, static and dynamic. As a function mapping of inputs to output:
-
-$$
-prog: I_{\text{static}} \times I_{\text{static}} \rightarrow O
-$$
-
-Consider the static case, in which we have all the information available at compile time:
-
-```
-    [P]-----------------
-      \         \       \
-[S_0]--*--[S_1]--*--...--*--[S_T]
-```
-
-We need to solve this equation:
+[Futamura](https://repository.kulib.kyoto-u.ac.jp/dspace/bitstream/2433/103401/1/0482-14.pdf) (1983) shows us that programs can be decomposed into two inputs, static and dynamic. As a function mapping of inputs to output:
 
 $$
-\underset{P}{\text{argmin}}\sum_{i \sim I_{static}}\mathcal L(P^T S^i_0 - S_T)
+P: I_{\text{static}} \times I_{\text{dynamic}} \rightarrow O
 $$
 
-Now the dynamic case:
-
-
-```
-      [In0]-----[In1]--...
-         \         \
-   [P_0]--*--[P_1]--*--...
-      \         \       \
-[S_0]--*--[S_1]--*--...--*--[S_T]
-```
-
-We might also imagine the inputs as being generated by some other program:
+Consider the static case, in which we have all the information available at compile time, we just need to multiply the state P: 𝔹<sup>|S|×|S|</sup> by the vector S until termination:
 
 ```
-         [PG0]----...
-            \  
-      [In0]--*--[In1]--...
-         \         \
-   [P_0]--*--[P_1]--*--...
-      \         \       \
-[S_0]--*--[S_1]--*--...--*--[S_T]
+     [P]-----------------------------------           } Program
+       \           \           \           \
+[S_0]---*---[S_1]---*---[S_2]---*---[...]---*---[S_T] } Memory state
 ```
+
+Since P is fixed throughout execution, to learn P, we need to solve the following minimization:
+
+$$
+\underset{P}{\text{argmin}}\sum_{i \sim I_{static}}\mathcal L(P^T S^i_0, S_T)
+$$
+
+What about programs of varying length? It may be the case we want to learn programs where T varies. The key is, we can choose an upper bound on T, and search for a fixpoint. That is, we halt whenever S<sub>T</sub> = S<sub>T+1</sub>.
+
+Now the dynamic case, P might be governed by another program:
+
+```
+         [Q]-----------------------                   } External 
+           \           \           \
+    [P_0]---*---[P_1]---*---[...]---*---[P_T-1]       } Program State
+       \           \           \           \
+[S_0]---*---[S_1]---*---[S_2]---*---[...]---*---[S_T] } Memory State
+```
+
+We might also imagine these inputs as being generated by higher order programs.
+
+```
+                     ⋮
+            [R_0]----------                           } World state
+               \           \
+        [Q_0]---*---[...]---*---[P_T-2]               } Dynamic inputs
+           \           \           \
+    [P_0]---*---[P_1]---*---[...]---*---[P_T-1]       } Program State
+       \           \           \           \
+[S_0]---*---[S_1]---*---[S_2]---*---[...]---*---[S_T] } Memory State
+```
+
+There will always be some program, which occurs at the interface of the machine and the real world.
+
+One question worth asking is how large does k need to be? If it is very large, this procedure might well be intractable. Time complexity appears to be at least O(Tk<sup>2</sup>).
 
 # References
 
