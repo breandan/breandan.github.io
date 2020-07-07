@@ -364,9 +364,13 @@ Matrices are problematic for other reasons. Primarily, by treating a graph as a 
 
 What happens if we define arithmetic operators on graphs? How could we define and interpret these operations in a meaningful way? As we have seen, one way to represent a directed graph is just a square matrix whose non-zero entries indicate edges between nodes. Just like real matrices in linear algebra, we can add, subtract, multiply and exponentiate them.
 
-One interesting game mathematicians like to play, is to design a square matrix ℝ<sup>K×K</sup> and raise it to a power. There are various tricks for designing the matrix and normalizing the product so it does not explode or vanish. If we then multiply the matrix by a state vector ℝ<sup>K</sup> describing a dynamical system, we are effectively "simulating" the system at discrete time steps. This game has many important applications in control theory, dynamical systems and deep learning (RNNs).
+One interesting game mathematicians like to play, is to design a square matrix ℝ<sup>K×K</sup> and raise it to a power. There are various tricks for designing the matrix and normalizing the product so it does not explode or vanish. If we then multiply the matrix by a state vector ℝ<sup>K</sup>, we are effectively "simulating" the system at discrete time steps. This game has many important applications in control theory, dynamical systems and deep learning (RNNs).
 
-We can think about this as either a matrix product (MM...M)V, or function application M(M(...M(V)...)), where M is a function on a vector space (these two views are equivalent). There are various names for M, such as the transition matrix, stochastic matrix, or Markov matrix. We are primarily interested in the deterministic version, whose variables inhabit ℝ<sup>K×K</sup>. It turns out the very same idea is not just valid over real matrices, but can be generalized to boolean and integer matrices and has many interesting applications to graph theory and automata.
+We can think about this as either a matrix product (MM...M)V, or function application M(M(...M(V)...)), where M is a function on a vector space (these two views are equivalent). There are various names for M, such as the transition matrix, stochastic matrix, or Markov matrix. It turns out the very same idea is not just valid over real matrices, but can be generalized to boolean and integer matrices. We are primarily interested in the deterministic version, whose variables inhabit 𝔹<sup>K×K</sup>.
+
+It turns out that power iteration of a square matrix converges to its the eigenvector. This has important consequences for dynamical systems on networks. Researchers are just beginning to understand how eigenvalues of the adjacency matrix govern long timescale dynamical processes on graphs. In this section, we will explore some examples of dynamical processes on graphs.
+
+We have previously seen an example of graph computation, Weisfeiler-Lehman, and topsort. Three steps of Barabási's preferential attachment algorithm:
 
 |DOT Graph|Matrix|
 |:-------:|:----:|
@@ -374,7 +378,7 @@ We can think about this as either a matrix product (MM...M)V, or function applic
 |<center><img src="../images/pref_graph1.svg"/></center>|<center><img src="../images/pref_mat1.png"/></center>|
 |<center><img src="../images/pref_graph2.svg"/></center>|<center><img src="../images/pref_mat2.png"/></center>|
 
-One early example of graph computation can be found in [Valiant](http://theory.stanford.edu/~virgi/cs367/papers/valiantcfg.pdf) (1975):
+Another early example of graph computation can be found in [Valiant](http://theory.stanford.edu/~virgi/cs367/papers/valiantcfg.pdf) (1975):
 
 <center>
 <blockquote class="twitter-tweet"><p lang="en" dir="ltr">TIL: CFL parsing can be reduced to boolean matrix multiplication (Valiant, 1975), known to be subcubic (Strassen, 1969), and later proven an asymptotic lower bound (Lee, 1997). This admits efficient GPGPU implementation (Azimov, 2017) in <a href="https://twitter.com/YaccConstructor?ref_src=twsrc%5Etfw">@YaccConstructor</a> <a href="https://t.co/3Vbml0v6b9">https://t.co/3Vbml0v6b9</a></p>&mdash; breandan (@breandan) <a href="https://twitter.com/breandan/status/1277136195118600192?ref_src=twsrc%5Etfw">June 28, 2020</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
@@ -390,6 +394,8 @@ This astonishing result suggests that, at least for the context free languages, 
 We now attempt to show a few examples simulating a state machine using matrix multiplication. For illustrative purposes, the state simply holds a vector of binary or integer values, however we can also imagine it carrying other "messages" around the graph in a similar manner, using their corresponding algebras. Here, we will use the boolean algebra, for multiplication:
 
 ## Linear chains
+
+To get started, let's simply iterate through a linked list. We initialize the pointer to the head of the list, and each matmul advances the pointer by a single element. We add an implicit self loop to the final element, and halt whenever we detect a fixpoint.
 
 <table>
 <tr>
