@@ -4,15 +4,19 @@ title: Computation graphs and graph computation
 
 ---
 
-A carefully edited anthology in which I vindicate my illustrious career as a hype-chasing Hacker News junkie, AI astrologer, and Twitter fortune-teller, while debunking my critics in the peanut gallery. I also extol the virtues of graphs, algebra, types, and the value of these concepts for software engineering. Finally, I share my predictions for the path ahead, which I consider to be the start of an exciting new chapter in the history of computing.
+A carefully edited anthology in which I vindicate my illustrious career as a hype-chasing Hacker News junkie, AI astrologer, and Twitter fortune-teller, while debunking my critics in the peanut gallery. I also extol the virtues of graphs, algebra, types, and how these concepts can help us think about software. Finally, I share my predictions for the path ahead, which I consider to be the start of an exciting new chapter in computing history.
+
+TLDR: Research has shown a great many algorithms can be expressed as matrix multiplication, suggesting an unrealized connection between linear algebra and computer science. I speculate that graphs are the missing piece of the puzzle. Graphs are not only useful as cognitive aides, but are suitable data structures for performing a wide variety of computation, particularly on modern parallel architectures. Finally, I propose a computational primitive based on matrix multiplication.
+
+Disclaimer: None of these ideas are mine. Shoulders of giants.
 
 *Note: Use landscape mode for optimal reading experience.*
 
 # New decade, new delusions
 
-Over the last decade, I bet on some strange ideas. A lot of people I looked up to at the time laughed at me. I'll bet they aren't laughing anymore. I ought to thank them one day, because their laughter gave me a lot of motivation. I've said some idiotic things to be sure, but I've also made some laughable predictions which turned out correct. Lesson learned: aim straighter.
+Over the last decade, I bet on some strange ideas. A lot of people I looked up to at the time laughed at me. I'll bet they aren't laughing anymore. I ought to thank them one day, because their laughter gave me a lot of motivation. I've said some idiotic things to be sure, but I've also made some laughable predictions which were correct. Lesson learned: aim straighter.
 
-In 2012, I was in Austin sitting next to an ex-poker player named [Amir](https://twitter.com/amirpc) who was singing Hinton's praises. I poured over his technicolor slides and something must have clicked, because I quit my job in a hurry and launched an educational project using speech recognition and restricted Boltzman machines. It never panned out, but I learned a lot about ASR and Android audio. Still love [that idea](http://breandan.net/2014/02/09/the-end-of-illiteracy/).
+In 2012, I was in Austin sitting next to an ex-poker player named [Amir](https://twitter.com/amirpc) who was singing Hinton's praises. Hypnotized by his technicolor slides, I quit my job in a hurry and started an educational project using speech recognition and restricted Boltzman machines. It never panned out, but I learned a lot about ASR and Android audio. Still love [that idea](http://breandan.net/2014/02/09/the-end-of-illiteracy/).
 
 <center>
 <a href="https://www.cs.toronto.edu/~hinton/csc2535/notes/lec4new.pdf"><img align="center" width="75%" src="../images/rbm.png"/></a>
@@ -235,7 +239,7 @@ class Vertex(val id: String, map: (Vertex) -> Set<Vertex>) {
 
 Consider the simple case, with a self-loop. To construct a vertex with a self loop, we can call `Vertex("a") { setOf(it) }`.
 
-Let us consider an algorithm called the Weisfeiler-Lehman isomorphism test. My colleague David Bieber has written a nice [blog post](https://davidbieber.com/post/2019-05-10-weisfeiler-lehman-isomorphism-test/) about this. I'll focus on the implementation. First, we need a pooling operator, which will aggregate all neighbors in our neighborhood:
+Let us consider an algorithm called the Weisfeiler-Lehman isomorphism test. My colleague David Bieber wrote a [nice piece](https://davidbieber.com/post/2019-05-10-weisfeiler-lehman-isomorphism-test/) on this. I'll focus on the implementation. First, we need a pooling operator, which will aggregate all neighbors in our neighborhood:
 
 ```kotlin
 fun Graph.poolBy(op: Set<Vertex>.() -> Int): Map<Vertex, Int> =
@@ -344,27 +348,25 @@ $$
 \end{align*}
 $$
 
-Just like matrices, we can also think of a graph as a function which carries information from state to state - given a state, it tells us which states are accessible. This correspondence suggests an unrealized connection between graph theory and linear algebra which is still being explored, and promises important applications for signal processing on graphs.
+Just like matrices, we can also think of a graph as a function which carries information from state to state - given a state, it tells us which next states are accessible. This correspondence suggests an unrealized connection between graph theory and linear algebra which is still being explored, and promises important applications for signal processing on graphs.
 
 |Geometric | Matrix |
-|------|--------|
+|:------:|:-------:|
 |![](../images/ld_graph_dot.svg)|![](../images/ld_graph_mat.png)|
 
-Both the geometric and matrix interpretations impose a extrinsic perspective on graphs, each with advantages and disadvantages. 2D renderings can be visually illuminating, but require [minimizing crossing number](https://en.wikipedia.org/wiki/Crossing_number_(graph_theory)) or nontrivial metrics to make network connectivity accessible to the naked eye.
+Note the lower triangular structure of this matrix, indicating there are no cycles, a property which is not immediately obvious from the naïve geometric layout. Iff the vertices of a directed graph can be reordered to produce an adjacency matrix in triangular form, this graph is said to be a directed acyclic graph. Commonly encountered in introductory CS classes, this ordering, called a topological ordering, can also be implemented using [matrix multiplication](https://en.wikipedia.org/wiki/Topological_sorting#Parallel_algorithms) on the adjacency matrix.
 
-Treating a graph as a matrix is problematic for several reasons. , Primarily, we must impose an ordering over all nodes. Note also its sparsity, and consider the size of the matrix required to store even small graphs. While problematic, this can be overcome with certain optimizations. More on that later.
+Both geometric and matrix representations impose a extrinsic perspective on graphs, each with its own advantages and disadvantages. 2D renderings can be visually compelling, but require solving a [minimal crossing number](https://en.wikipedia.org/wiki/Crossing_number_(graph_theory)) or similar minimization to make network connectivity plain to the naked eye. While graph drawing is an active [field of research](http://www.graphdrawing.org/), matrices can often reveal symmetries that are not obvious from a naive graph layout.
 
-Note the lower diagonal structure of the matrix, indicating there are no cycles, a property which is not immediately obvious from the geometric version. While graph drawing is an active [field of research](http://www.graphdrawing.org/), matrices can often reveal symmetries that are not obvious from a naive graph layout.
-
-I strongly suspect graphs are not only useful as cognitive aides, but are suitable data structures for performing a wide variety of computation. Graphs are, in a way, the universal data structure.
+Matrices are problematic for other reasons. Primarily, by treating a graph as a matrix, we impose an ordering over all vertices which is often arbitrary. Note also its sparsity, and consider the size of the matrix required to store even small graphs. While problematic, this can be overcome with certain optimizations. Despite their disadvantages, matrices and are a natural representation choice for many graph algorithms, particularly on modern parallel processing hardware. More on that later.
 
 # Graphs, computationally
 
-What happens if we define some operators on graphs, such as addition and multiplication? How would we define such operations that, and what does it mean? As we have seen, a directed graph is just a square matrix whose non-zero entries indicate edges between nodes. Just like real matrices in linear algebra, we can add, subtract, multiply and exponentiate them.
+What happens if we define arithmetic operators on graphs? How could we define and interpret these operations in a meaningful way? As we have seen, one way to represent a directed graph is just a square matrix whose non-zero entries indicate edges between nodes. Just like real matrices in linear algebra, we can add, subtract, multiply and exponentiate them.
 
-One interesting game mathematicians like to play is taking a square matrix ℝ<sup>K×K</sup> and raising it to a power. There are various tricks for designing the matrix and normalizing the product so it does not explode or vanish. One way to think about this is (MMM)V. Another way is M(M(M(V))), where M is a function on a vector space. This game has many important applications in control theory, dynamical systems and deep learning (RNNs).
+One interesting game mathematicians like to play, is to design a square matrix ℝ<sup>K×K</sup> and raise it to a power. There are various tricks for designing the matrix and normalizing the product so it does not explode or vanish. If we then multiply the matrix by a state vector ℝ<sup>K</sup> describing a dynamical system, we are effectively "simulating" the system at discrete time steps. This game has many important applications in control theory, dynamical systems and deep learning (RNNs).
 
-There are various names for this matrix, such as the transition matrix, stochastic matrix, or Markov matrix. We are primarily interested in the deterministic version, whose variables inhabit ℝ<sup>K×K</sup>. It turns out the very same idea is not just valid over real matrices, but can be applied to boolean and integer matrices and has many interesting connections to graph theory and automata.
+We can think about this as either a matrix product (MM...M)V, or function application M(M(...M(V)...)), where M is a function on a vector space (these two views are equivalent). There are various names for M, such as the transition matrix, stochastic matrix, or Markov matrix. We are primarily interested in the deterministic version, whose variables inhabit ℝ<sup>K×K</sup>. It turns out the very same idea is not just valid over real matrices, but can be generalized to boolean and integer matrices and has many interesting applications to graph theory and automata.
 
 |DOT Graph|Matrix|
 |:-------:|:----:|
@@ -385,7 +387,7 @@ This astonishing result suggests that, at least for the context free languages, 
 - Pushdown automata
 - Petri nets
 
-We will now show a few examples of how to simulate a state machine using matrix multiplication. Here, the state only carries a binary or integer value, but we can also imagine it carrying other "messages" around the graph:
+We now attempt to show a few examples simulating a state machine using matrix multiplication. For illustrative purposes, the state simply holds a vector of binary or integer values, however we can also imagine it carrying other "messages" around the graph in a similar manner, using their corresponding algebras. Here, we will use the boolean algebra, for multiplication:
 
 ## Linear chains
 
@@ -831,7 +833,7 @@ One issue with efficient representation of graphs is space complexity. Suppose w
 
 Another, thornier, problem with graph algorithms is their time complexity. Many interesting problems on graphs are NP-complete, including Hamiltonian paths and subgraph isomorphism. If so, how are we supposed to do any computation if every operation may take nondeterminstic polynomial time? Computer science people are mostly concerned with worst case complexity, which rarely ever occurs in practice. Real world isomorphism can be solved quickly using approximate algorithms, such as the one we saw earlier.
 
-One issue with computation graphs is that in most programming languages, they are not reified. That is, for a given value, we would like some method which programmatically returned its entire computation graph. We can encode that program as a graph.
+One issue with computation graphs is that in most programming languages, they are not reified. That is, for a given value, we would like some method which programmatically returned its provenance, as a computation graph. Which we can encode that program as a graph.
 
 <center><blockquote class="twitter-tweet"><p lang="en" dir="ltr">Prediction: In 20 years, most of today&#39;s ISAs (x86, ARM, MIPS) will be virtual or obsolete. Underneath the hood, everything will be sparse matmuls running on a homogeneous silicon mesh. Physical CPUs will be like gasoline engines - marvels of engineering, but far too complicated.</p>&mdash; breandan (@breandan) <a href="https://twitter.com/breandan/status/1278139598942679041?ref_src=twsrc%5Etfw">July 1, 2020</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script></center>
 
