@@ -47,7 +47,7 @@ This year, I predicted the pandemic weeks before the lockdown, exited the market
 
 # Everything old is new again
 
-As a kid, I was given a book on the history of mathematics. I remember it had some interesting puzzles, including one with [some bridges](https://en.wikipedia.org/wiki/Seven_Bridges_of_K%C3%B6nigsberg) in a town divided by rivers, inhabited by a man called Euler. Which towns had a path crossing each bridge exactly once? Was it possible to tell without checking every path? I remember spending days trying to figure out the answer.
+As a kid, I was given a book on the history of mathematics. I remember it had some interesting puzzles, including one with [some bridges](https://en.wikipedia.org/wiki/Seven_Bridges_of_K%C3%B6nigsberg) in a town divided by rivers, once inhabited by a man called Euler. Was there a tour crossing each bridge exactly once? Was it possible to tell without checking every path? I remember spending days trying to figure out the answer.
 
 <center>
 <a href="https://en.wikipedia.org/wiki/Seven_Bridges_of_K%C3%B6nigsberg"><img align="center" width="60%" src="../images/konigsberg_bridges.png"/></a>
@@ -59,7 +59,7 @@ In the late 90s, my mom and I went to Ireland. I remember visiting Trinity Colle
 <a href="http://www.kurims.kyoto-u.ac.jp/EMIS/classics/Hamilton/PRIAIcos.pdf"><img align="center" width="40%" src="../images/quaternions.jpg"/></a>
 </center>
 
-In 2007, I was applying to college and took the train from Boston to South Bend, Indiana, home of the Fighting Irish. Wandering about, I found a magazine article by a Hungarian mathematician called [Barabási](https://en.wikipedia.org/wiki/Albert-L%C3%A1szl%C3%B3_Barab%C3%A1si) who had some interesting things to say about "[complex networks](https://en.wikipedia.org/wiki/Complex_network)". Later in 2009, while studying in Rochester, I [carpooled](../images/complex_network_seminar.png) with a [nice professor](https://avesis.medeniyet.edu.tr/hasan.guclu), and learned complex networks are found in brains, languages, social networks and many marvelous places.
+In 2007, I was applying to college and took the train from Boston to South Bend, Indiana, home of the Fighting Irish. Wandering about, I picked up a magazine article by a Hungarian mathematician called [Barabási](https://en.wikipedia.org/wiki/Albert-L%C3%A1szl%C3%B3_Barab%C3%A1si) then teaching at Notre Dame, who had some interesting things to say about the emergent structure of [complex networks](https://en.wikipedia.org/wiki/Complex_network). Later in 2009, while studying in Rochester, I [carpooled](../images/complex_network_seminar.png) with a [nice professor](https://avesis.medeniyet.edu.tr/hasan.guclu), and learned complex networks are found in brains, languages, social networks and many marvelous places.
 
 <center>
 <a href="https://barabasi.com/f/226.pdf"><img align="center" width="75%" src="../images/complex_networks.png"/></a>
@@ -71,7 +71,7 @@ Fast forward to 2017. I was lured by the siren song of algorithmic differentiati
 <a href="https://github.com/breandan/kotlingrad#dataflow-graphs"><img align="center" width="75%" src="https://github.com/breandan/kotlingrad/raw/master/samples/src/main/resources/dataflow.svg"/></a>
 </center>
 
-In 2019, I joined a lab with a [nice professor](https://www.cs.mcgill.ca/~jguo/) at McGill applying knowledge graphs to software engineering. Like types, knowledge graphs are an idea from the first wave of AI in the 1960s and 70s which have been revived and studied in light of recent progress in representation learning on graphs. I believe this is an important area of research with a lot of potential. Knowledge and traceability plays an important role in software engineering, and it's the bread-and-butter of a good IDE. The world needs better IDEs if we're ever going to untangle this mess we're in.
+In 2019, I joined a lab with a [nice professor](https://www.cs.mcgill.ca/~jguo/) at McGill applying knowledge graphs to software engineering. Like logical reasoning, knowledge graphs are an idea from the first wave of AI in the 1960s and 70s which have been revived and studied in light of recent progress in multi-relational graphs. I believe this is an important area of research with a lot of potential. Knowledge and traceability plays an important role in software engineering, and it's the bread-and-butter of a good IDE. The world needs better IDEs if we're ever going to untangle this mess we're in.
 
 <center>
 <a href="https://structurizr.com/"><img align="center" width="45%" src="https://raw.githubusercontent.com/cecuesta/structurizr-java/master/docs/images/graphviz-spring-petclinic-components.png"/></a>
@@ -81,7 +81,7 @@ This Spring, I took a fascinating [seminar on Graph Representation Learning](htt
 
 # What are graphs?
 
-Graphs are general-purpose data structures used to represent many data types and procedural phenomena. Consider the following hierarchy of data structures, all of which are graphs with increasing expressiveness:
+Graphs are general-purpose data structures used to represent a variety of data types and procedural phenomena. Unlike most languages, which are highly sequential, graphs are capable of expressing a much richer family of relations between entities. Consider the following hierarchy of data structures, all of which are graphs with increasing expressive power:
 
 - **Sets**: datasets, multisets, posets, alphabets
 - **Sequences**: Lists, strings, arrays, linear function composition
@@ -90,32 +90,31 @@ Graphs are general-purpose data structures used to represent many data types and
 - **Directed graphs**: [State machines](https://en.wikipedia.org/wiki/Finite-state_machine), [λ-calculus](http://dkeenan.com/Lambda/), [the web](https://computersciencewiki.org/index.php/The_web_as_a_directed_graph), [call graphs](https://en.wikipedia.org/wiki/Call_graph), [RNNs](https://en.wikipedia.org/wiki/Recurrent_neural_network)
 - **Hypergraphs**: [Knowledge](https://arxiv.org/pdf/2003.02320.pdf), [Zettelkasten](https://zettelkasten.de/), [categories](https://en.wikipedia.org/wiki/Category_theory), [physics](https://writings.stephenwolfram.com/2020/04/finally-we-may-have-a-path-to-the-fundamental-theory-of-physics-and-its-beautiful/), [hypernetworks](https://openreview.net/pdf?id=rkpACe1lx)
 
-Graphs can be used for encoding mathematical expressions as I show in [Kotlin∇](https://github.com/breandan/kotlingrad), as well as other types of symbolic data, including source code, intermediate representations and markup languages. There are many recent examples of learning graphs for symbolic applications:
+Directed graphs can be used for modeling mathematical expressions as I show in [Kotlin∇](https://github.com/breandan/kotlingrad), as well as other formal languages, including source code, intermediate representations and markup. There are many recent examples of learning directed graphs for neuro-symbolic applications:
 
 * [Deep Learning for Symbolic Mathematics](https://arxiv.org/pdf/1912.01412.pdf), Lample and Charton, 2019.
 * [Discovering Symbolic Models from Deep Learning with Inductive Biases](https://arxiv.org/pdf/2006.11287.pdf), Cranmer et al., 2020.
-* [Symbolic Pregression: Discovering Physical Laws from Raw Distorted Video](https://arxiv.org/pdf/2005.11212.pdf), Udrescu & Tegmark, 2020.
+* [Symbolic Pregression: Discovering Physical Laws from Raw Distorted Video](https://arxiv.org/pdf/2005.11212.pdf) (Udrescu & Tegmark, 2020).
 * [DreamCoder: Growing generalizable, interpretable knowledge with wake-sleep Bayesian program learning](https://arxiv.org/pdf/2006.08381.pdf), Ellis et al., 2020.
 
-Graphs are also used for natural language parsing, including [constituency](https://en.wikipedia.org/wiki/Phrase_structure_grammar) and [dependency grammars](https://en.wikipedia.org/wiki/Dependency_grammar), [link grammars](https://en.wikipedia.org/wiki/Dependency_grammar) and others lexical structures. Research has begun to show many useful applications for semantic parsing in the extraction and representation of human knowledge in large text corpora.
-
+Graphs are also be found in natural language, such as [constituency](https://en.wikipedia.org/wiki/Phrase_structure_grammar), [dependency](https://en.wikipedia.org/wiki/Dependency_grammar), [link](https://en.wikipedia.org/wiki/Link_grammar) and other common grammars. Research has begun to show many practical applications for such grammars in the extraction and organization of human knowledge stored in large text corpora. Those graphs can be further processed into ontological representations for logical reasoning.
 
 <center>
 <img align="center" width="60%" src="https://upload.wikimedia.org/wikipedia/commons/8/8e/Thistreeisillustratingtherelation%28PSG%29.png"/>
 </center>
 
-Using entity resolution techniques, we can reconstruct logical relations between natural language entities. These relationships can be stored in [knowledge graphs](https://arxiv.org/pdf/2003.02320.pdf), and used for information retrieval and question answering, e.g. on wikis and other web based content management systems. Recent techniques have shown promise in automatic knowledge base construction (cf. [Reddy et al.](https://www.mitpressjournals.org/doi/pdf/10.1162/tacl_a_00088), 2016).
+Using coreference resolution and entity alignment techniques, we can reconstruct internally consistent relations between entities, reflecting cross-corpus consensus in natural language datasets. These relationships can be stored in [knowledge graphs](https://arxiv.org/pdf/2003.02320.pdf), and used for information retrieval and question answering, e.g. on wikis and other content management systems. Recent techniques have shown promise in automatic knowledge base construction (cf. [Reddy et al.](https://www.mitpressjournals.org/doi/pdf/10.1162/tacl_a_00088), 2016).
 
 <!--![logical_forms](../images/logical_forms.png) -->
 <center>
 <img align="center" width="75%" src="../images/knowledge_graph.png"/>
 </center>
 
-Lo and behold, the key idea behind knowledge graphs is our old friend, types. Knowledge graphs are graphs whose nodes and edges have a type. We can build index data based on a type, which is useful for information retrieval, and use types to reason about complex queries otherwise difficult to model directly, e.g. "Which companies have a direct flight from a port city to a capital city?"
+Lo and behold, the key idea behind knowledge graphs is our old friend, types. Knowledge graphs are multi-relational graphs whose nodes and edges possess a type. Two entities can be related by multiple types, and each type can relate many pairs of entities. We can index an entity based on its type for knowledge retrieval, and use types to reason about compound queries, e.g. "Which `company` has a direct `flight` from a `port city` to a `capital city`?", which would otherwise be difficult to model explicitly without a type system.
 
 # Graphs, inductively
 
-One thing that always fascinated me is the idea of inductively defined languages. Consider a very simple language with the following grammar. The `|`, which we read as "or", is just a shorthand for defining multiple productions on a single line:
+One thing that always fascinated me is the idea of inductively defined languages, also known as recursive, or structural induction. Consider a very simple language which accepts strings of the form `0`, `1`, `100`, `101`, `1001`, `1010`, et cetera, but rejects `011`, `110`, `1011`, or any string containing `11`. The `→` symbol indicates a "production". The `|` symbol, which we read as "or", is just a shorthand for defining multiple productions on a single line:
 
 ```
 true → 1
@@ -123,15 +122,15 @@ term → 0 | 10 | ε
 expr → term | expr term
 ```
 
-Notice how each non-terminal occurs at most once in any single production. This property guarantees the language is recognizable by a special kind of graph, called a finite state machine. As their name indicates, FSMs contain a finite number of states, with labeled transitions between them:
+We have two sets of productions, ones which can be expanded, called "nonterminals", and ones which can be expanded no further, called "terminals". Notice how each non-terminal occurs at most once in any single production. This property guarantees the language is recognizable by a special kind of graph, called a finite state machine. As their name indicates, FSMs contain a finite number of states, with labeled transitions between them:
 
 |Finite State Machine | Library Courtesy Bell |
 |:------:|:------:|
 |<center><img align="center" width="200%" src="../images/fsm_bell.svg"/></center>| <br/><center><img align="center" width="50%" src="../images/bell.png"/></center><br/>Please ring the bell **once**<br/> and wait for assistance. |
 
-Imagine a library desk: you can wait quietly and eventually you will be served. You can ring the bell once, and wait to be served. Should no one arrive, you may press the bell again and continue waiting. Though you must ne'er ring the bell twice, lest you disturb the patrons and be tossed out.
+Imagine a library desk: you can wait quietly and eventually you will be served. You can ring the bell once, and wait quietly to be served. Should no one arrive after some time, you may press the bell again and continue waiting. Though you must never ring the bell twice, lest you disturb the patrons and be tossed out.
 
-Now suppose we have a slightly more expressive language. In this language , a non-terminal occurs twice inside a single production -- an `<expr>` can be composed of two shorter `<expr>`s:
+Now suppose we have a slightly more expressive language which accepts well-formed arithmetic expressions with up to two variables, in either infix or unary operator notation. In this language, a non-terminal occurs twice inside a single production -- an `<expr>` can be composed of two shorter `<expr>`s:
 
 ```
 term → 1 | 0 | x | y
@@ -139,22 +138,23 @@ term → 1 | 0 | x | y
 expr → term | op expr | expr op expr
 ```
 
-This is known as a context-free language (CFL). We can represent strings in this language using a special kind of graph, called a syntax tree. Each time you expand an `<expr>` with a production rule, this generates a rooted subtree on `<op>`, whose leaves are `<expr>`s.
+This is known as a context-free language (CFL). We can represent strings in this language using a special kind of graph, called a syntax tree. Each time we expand an `<expr>` with a production rule, this generates a rooted subtree on `<op>`, whose branch(es) are `<expr>`s. Typically, syntax trees are inverted, with branches extending downwards and leaves on the bottom:
 
 |Syntax Tree| Peach Tree|
 |-----------|-----------|
 |![](../images/tree_syntax.svg)|![](../images/tree_peach.png)|
  
-While syntax trees can be interpreted computationally, they do not actually perform computation. To do so, we will need to introduce some new rules. Instead of just allowing strings on the right, suppose we also allow strings to the left, and applying a rule can reduce the string:
+While syntax trees can be interpreted computationally, they do not actually perform computation until evaluated. To evaluate a syntax tree, we will need to introduce some new rules. Instead of just allowing terminals to occur on the right hand side of a grammar production, suppose we also allow terminals on the left, and applying a rule can reduce the size of a string in our language. Here, we use capital letters on the same line to indicate an exact match, e.g. a rule `U + V → V + U` would replace `x + y` with `y + x`:
 
 ```
-                                  T + T → +T
-                T + 1 | 1 + T | +1 | -0 → 1
-                  T + 0 | 0 + T | T - 0 → T
-T - T | T · 0 | 0 · T | 0 - T | +0 | -1 → 0
+                                         E + E → +E
+                                         E · E → ·E
+                  E + 1 | 1 + E | +1 | -0 | ·1 → 1
+                         E + 0 | 0 + E | E - 0 → E
+  E - E | E · 0 | 0 · E | 0 - E | +0 | -1 | ·0 → 0
 ```
 
-This is known as a recursively enumerable language, or string rewrite system. This particular example produces directed acyclic graphs. Some people say, "all trees are DAGs, but not all DAGs are trees". Growing up in the woods, I prefer to think of a DAG a a tree with a [gemel](https://en.wikipedia.org/wiki/Inosculation):
+This is known as a recursively enumerable language, or string rewrite system. This particular example produces directed acyclic graphs, which we can think of as grafting or pruning the branches of a tree. If we must combine two identical expressions, why evaluate them twice? If we need to multiply an expression by `0`, why evaluate it at all? Some say, "all trees are DAGs, but not all DAGs are trees". Growing up in the woods, I prefer to think of a DAG as a tree with a [gemel](https://en.wikipedia.org/wiki/Inosculation):
 
 |Rewrite Rule|Deformed Tree|
 |---|----|
@@ -176,24 +176,24 @@ Let us now introduce a new operator, `Dₓ`, and some corresponding rules. In ef
 (R9)      Dₓ(0) → 0
 ```
 
-Here, capital letters on the same line must exactly match, e.g. a rule `U + V → V + U` would replace `x + y` with `y + x`. We assign an ordering `R0`-`R9` for notational convenience, but regardless of which order we apply the rules, this system will always produce the same result (proof required):
+Although we assign an ordering `R0`-`R9` for notational convenience,  an initial string when given to this system will always converge to the same result, no matter the order in which we perform the substitutions (proof required):
 
 |Term Confluence|Ottawa-St. Lawrence Confluence|
 |:---:|:---:|
 |<br/><center><img align="center" width="100%" src="../images/confluence_term.svg"/></center>|<br/><center><img align="center" width="75%" src="../images/confluence_river.png"/></center>|
 
-This feature, called [confluence](https://en.wikipedia.org/wiki/Confluence_(abstract_rewriting)), is an important property of some rewrite systems. Regardless of the order of application, we arrive at the same result. If all strings in a language converge to a form which can be simplified no further, we call such systems *strongly normalizing*.
+This feature, called [confluence](https://en.wikipedia.org/wiki/Confluence_(abstract_rewriting)), is an important property of some rewrite systems: regardless of the substitution order, we will always arrive at the same result. If all strings in a language converge to a form which can be simplified no further, we call such systems *strongly normalizing*.
 
-Just like grammars, we can define graphs themselves inductively. As many graph algorithms are recursive, this choice considerably simplifies their implementation. Take one definition for an unlabeled directed graph, proposed by [Erwig](https://web.engr.oregonstate.edu/~erwig/papers/InductiveGraphs_JFP01.pdf) (2001):
+Just like grammars, we can define graphs themselves inductively. As many graph algorithms are recursive, this choice considerably simplifies their implementation. Take one definition for an unlabeled directed graph, proposed by [Erwig](https://web.engr.oregonstate.edu/~erwig/papers/InductiveGraphs_JFP01.pdf) (2001). Here, the notation `list → [item]` is a shorthand for `list → item list`, where `item` is some terminal, and `list` is just a list of `item`s:
 
 ```
-vertex  → 0...9 | vertex vertex
-adj     → empty | vertex, adj
-context → ([adj], vertex, [adj])
+vertex  → int
+adj     → [vertex]
+context → (adj, vertex, adj)
 graph   → empty | context & graph
 ```
 
-He defines a `graph` in four parts. First, we have a `vertex`, which is simply an integer. Next we have a list of vertices, or *adjacency list*, `adj`. The `context` is a 3-tuple containing a `vertex` and symmetric references to its inbound and outbound neighbors, respectively. Finally, the inductive case: a `graph` is either (1) `empty`, or (2) a `context` and a `graph`.
+He defines a `graph` in four parts. First, we have a `vertex`, which is simply an integer. Next we have a list of vertices, `adj`, called an adjacency list. The `context` is a 3-tuple containing a `vertex` and symmetric references to its inbound and outbound neighbors, respectively. Finally, the inductive case: a `graph` is either (1) `empty`, or (2) a `context` and a `graph`.
 
 Let us consider a simple graph implementation in Kotlin. We do not record inbound neighbors, and attempt to define a vertex as a [closed neighborhood](https://en.wikipedia.org/wiki/Neighbourhood_(graph_theory)):
 
@@ -203,11 +203,11 @@ data class Vertex(neighbors: Set<Vertex>): Graph(this + neighbors)
 //                                               ↳ Compile error!
 ```
 
-Note the coinductive definition, which causes problems right off the bat. Since `this` is not accessible inside the constructor, we cannot have cycles or closed neighborhoods. Maybe we can come up with a definition which allows cycles and closed neighborhoods by avoiding coinduction:
+Note the coinductive definition, which creates problems right off the bat. Since `this` is not accessible inside the constructor, we cannot have cycles or closed neighborhoods. Maybe we can come up with a definition which allows cycles and closed neighborhoods by avoiding coinduction:
 
 ```kotlin
 class Graph(val vertices: Set<Vertex>) { ... }
-class Vertex(val id: String, val neighbors: Set<Vertex>)
+class Vertex(val neighbors: Set<Vertex>)
 ```
 
 Already, this definition admits a nice k-nearest neighbors implementation:
@@ -222,37 +222,37 @@ fun Set<Vertex>.neighbors() = flatMap { it.neighbors() }.toSet()
 
 // Removes all vertices outside the set
 fun Set<Vertex>.closure() = map { vertex ->
-  Vertex(vertex.id, neighbors.filter { it in this@closure })
+  Vertex(neighbors.filter { it in this@closure })
 }.toSet()
 
 fun Vertex.neighborhood(k: Int = 0) = Graph(neighbors(k).closure())
 ```
 
-But what about cycles? We will need to modify or definition somewhat, in order to accommodate for this case:
+But what about cycles? To support cycles, we will need to modify our definition slightly, to delay edge creation until after construction:
 
 ```kotlin
 class Graph(val vertices: Set<Vertex>) { ... }
-class Vertex(val id: String, map: (Vertex) -> Set<Vertex>) {
+class Vertex(map: (Vertex) -> Set<Vertex>) {
     val neighbors = map(this).toSet()
 }
 ```
 
-Consider the simple case, with a self-loop. To construct a vertex with a self loop, we can call `Vertex("a") { setOf(it) }`.
+We can now call `Vertex() { setOf(it) }` to create a vertex with a self-loop.
 
-Let us consider an algorithm called the Weisfeiler-Lehman isomorphism test. My colleague David Bieber wrote a [nice piece](https://davidbieber.com/post/2019-05-10-weisfeiler-lehman-isomorphism-test/) on this. I'll focus on the implementation. First, we need a pooling operator, which will aggregate all neighbors in our neighborhood:
+Let us consider an algorithm called the Weisfeiler-Lehman isomorphism test, which my colleague David Bieber wrote a [nice piece](https://davidbieber.com/post/2019-05-10-weisfeiler-lehman-isomorphism-test/) about. I'll focus on the implementation. First, we need a pooling operator, which will aggregate all neighbors in our neighborhood using some summary statistic:
 
 ```kotlin
-fun Graph.poolBy(op: Set<Vertex>.() -> Int): Map<Vertex, Int> =
-  nodes.map { it to op(it.neighbors()) }.toMap()
+fun Graph.poolBy(stat: Set<Vertex>.() -> Int): Map<Vertex, Int> =
+  nodes.map { it to stat(it.neighbors()) }.toMap()
 ```
 
-Next, we need a histogram, which just counts a node's neighbors:
+Next, we'll need a histogram, which counts each node's neighborhood:
 
 ```kotlin
 val histogram: Map<Vertex, Int> by lazy { poolBy { size } }
 ```
 
-Now we're ready to define the Weisfeiler-Lehman operator, which recursively computes a hash on the histogram for `k` steps.
+Now we're ready to define the [Weisfeiler-Lehman operator](http://www.jmlr.org/papers/volume12/shervashidze11a/shervashidze11a.pdf#page=6), which recursively computes a hash on the histogram for `k` rounds.
 
 ```kotlin
 tailrec fun wl(k: Int, labels: Map<Vertex, Int>): Map<Vertex, Int> =
@@ -260,11 +260,11 @@ tailrec fun wl(k: Int, labels: Map<Vertex, Int>): Map<Vertex, Int> =
   else wl(k - 1, poolBy { map { labels[it]!! }.sorted().hashCode() })
 ```
 
-The hashcode of the entire graph is the hash code of the WL labels. With one round, we're just comparing the degree historgram. The more rounds we use, the more likely it is to detect a symmetry breaking issue:
+We compute the hash hashcode of the entire graph by hashing the multiset of WL labels. With one round, we're just comparing the degree historgram. The more rounds we add, the more likely we are to detect a symmetry breaking hashcode:
 
 ```kotlin
-override fun Graph.hashCode(steps: Int = 10) = 
-    wl(steps, histogram).values.sorted().hashCode()
+override fun Graph.hashCode(rounds: Int = 10) = 
+    wl(rounds, histogram).values.sorted().hashCode()
 ```
 
 Now we can define a test to detect if one graph is isomorphic to another:
@@ -329,6 +329,7 @@ Graphs have also found many interesting applications as reasoning devices in var
 |  [Tensor network notation](https://www.mscs.dal.ca/%7Eselinger/papers/graphical-bib/public/Penrose-applications-of-negative-dimensional-tensors.pdf) | <br/><center><img align="center" width="50%" src="https://tensornetwork.org/diagrams/tensor_diagrams.png"/></center>|
 | [Finite state machines](https://en.wikipedia.org/wiki/Finite-state_machine) | <br/><center><img align="center" width="50%" src="https://upload.wikimedia.org/wikipedia/commons/9/94/DFA_example_multiplies_of_3.svg"/></center> |
 | [Petri networks](https://en.wikipedia.org/wiki/Petri_net) | <br/><center><img align="center" width="50%" src="https://upload.wikimedia.org/wikipedia/commons/d/d7/Animated_Petri_net_commons.gif"/></center> |
+| [Proof networks](https://en.wikipedia.org/wiki/Proof_net) | <br/><center><img align="center" width="50%" src="https://www.researchgate.net/profile/Marco_Solieri/publication/311737880/figure/fig7/AS:501886778576905@1496670540685/Example-a-mMELL-proof-net-left-and-two-simple-mixed-nets-that-belong-to-its-expansion.png"/></center> |
 
 As Tae Danae Bradley [vividly portrays](https://www.math3ma.com/blog/matrices-probability-graphs), matrices are not just 2D arrays, matrices are *functions on vector spaces*. This has a nice visual representation using a bipartite graph:
 
