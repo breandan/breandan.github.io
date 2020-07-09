@@ -8,9 +8,7 @@ A carefully edited anthology in which I vindicate my illustrious career as a hyp
 
 TLDR: Research has shown a great many algorithms can be expressed as matrix multiplication, suggesting an unrealized connection between linear algebra and computer science. I speculate that graphs are the missing piece of the puzzle. Graphs are not only useful as cognitive aides, but are suitable data structures for performing a wide variety of computation, particularly on modern parallel architectures. Finally, I propose a computational primitive based on matrix multiplication.
 
-Disclaimer: None of these ideas are mine. Shoulders of giants.
-
-*Note: Use landscape mode for optimal reading experience.*
+*n.b.: None of these ideas are mine. Shoulders of giants. Use landscape mode for optimal reading experience.*
 
 # New decade, new delusions
 
@@ -59,7 +57,7 @@ In the late 90s, my mom and I went to Ireland. I remember visiting Trinity Colle
 <a href="http://www.kurims.kyoto-u.ac.jp/EMIS/classics/Hamilton/PRIAIcos.pdf"><img align="center" width="40%" src="../images/quaternions.jpg"/></a>
 </center>
 
-In 2007, I was applying to college and took the train from Boston to South Bend, Indiana, home of the Fighting Irish. Wandering about, I picked up a magazine article by a Hungarian mathematician called [Barabási](https://en.wikipedia.org/wiki/Albert-L%C3%A1szl%C3%B3_Barab%C3%A1si) then teaching at Notre Dame, who had some interesting things to say about the emergent structure of [complex networks](https://en.wikipedia.org/wiki/Complex_network). Later in 2009, while studying in Rochester, I [carpooled](../images/complex_network_seminar.png) with a [nice professor](https://avesis.medeniyet.edu.tr/hasan.guclu), and learned complex networks are found in brains, languages, social networks and many marvelous places.
+In 2007, I was applying to college and took the train from Boston to South Bend, Indiana, home of the Fighting Irish. Wandering about, I picked up a magazine article by a Hungarian mathematician called [Barabási](https://en.wikipedia.org/wiki/Albert-L%C3%A1szl%C3%B3_Barab%C3%A1si) then at Notre Dame, who had some interesting things to say about [complex networks](https://en.wikipedia.org/wiki/Complex_network). Later in 2009, while studying in Rochester, I [carpooled](../images/complex_network_seminar.png) with a [nice professor](https://avesis.medeniyet.edu.tr/hasan.guclu), and learned complex networks are found in brains, languages, social networks and many marvelous places.
 
 <center>
 <a href="https://barabasi.com/f/226.pdf"><img align="center" width="75%" src="../images/complex_networks.png"/></a>
@@ -71,7 +69,7 @@ Fast forward to 2017. I was lured by the siren song of algorithmic differentiati
 <a href="https://github.com/breandan/kotlingrad#dataflow-graphs"><img align="center" width="75%" src="https://github.com/breandan/kotlingrad/raw/master/samples/src/main/resources/dataflow.svg"/></a>
 </center>
 
-In 2019, I joined a lab with a [nice professor](https://www.cs.mcgill.ca/~jguo/) at McGill applying knowledge graphs to software engineering. Like logical reasoning, knowledge graphs are an idea from the first wave of AI in the 1960s and 70s which have been revived and studied in light of recent progress in multi-relational graphs. I believe this is an important area of research with a lot of potential. Knowledge and traceability plays an important role in software engineering, and it's the bread-and-butter of a good IDE. The world needs better IDEs if we're ever going to untangle this mess we're in.
+In 2019, I joined a lab with a [nice professor](https://www.cs.mcgill.ca/~jguo/) at McGill applying knowledge graphs to software engineering. Like logical reasoning, knowledge graphs are an idea from the first wave of AI in the 1960s and 70s which have been revived and studied in light of recent progress in the field. I believe this is an important area of research with a lot of potential. Knowledge and traceability plays an important role in software engineering, and it's the bread-and-butter of a good IDE. The world needs better IDEs if we're ever going to untangle this mess we're in.
 
 <center>
 <a href="https://structurizr.com/"><img align="center" width="45%" src="https://raw.githubusercontent.com/cecuesta/structurizr-java/master/docs/images/graphviz-spring-petclinic-components.png"/></a>
@@ -112,9 +110,13 @@ Using coreference resolution and entity alignment techniques, we can reconstruct
 
 Lo and behold, the key idea behind knowledge graphs is our old friend, types. Knowledge graphs are multi-relational graphs whose nodes and edges possess a type. Two entities can be related by multiple types, and each type can relate many pairs of entities. We can index an entity based on its type for knowledge retrieval, and use types to reason about compound queries, e.g. "Which `company` has a direct `flight` from a `port city` to a `capital city`?", which would otherwise be difficult to model explicitly without a type system.
 
-# Graphs, inductively
+# Induction introduction!
 
-One thing that always fascinated me is the idea of inductively defined languages, also known as recursive, or structural induction. Consider a very simple language which accepts strings of the form `0`, `1`, `100`, `101`, `1001`, `1010`, et cetera, but rejects `011`, `110`, `1011`, or any string containing `11`. The `→` symbol indicates a "production". The `|` symbol, which we read as "or", is just a shorthand for defining multiple productions on a single line:
+One thing that always fascinated me is the idea of inductively defined languages, also known as recursive, or structural induction. If you are already comfortable with induction, feel free to skim or skip to the next section.
+
+## Regular languages
+
+Consider a very simple language which accepts strings of the form `0`, `1`, `100`, `101`, `1001`, `1010`, et cetera, but rejects `011`, `110`, `1011`, or any string containing `11`. The `→` symbol indicates a "production". The `|` symbol, which we read as "or", is just a shorthand for defining multiple productions on a single line:
 
 ```
 true → 1
@@ -129,6 +131,8 @@ We have two sets of productions, ones which can be expanded, called "nonterminal
 |<center><img align="center" width="200%" src="../images/fsm_bell.svg"/></center>| <br/><center><img align="center" width="50%" src="../images/bell.png"/></center><br/>Please ring the bell **once**<br/> and wait for assistance. |
 
 Imagine a library desk: you can wait quietly and eventually you will be served. You can ring the bell once, and wait quietly to be served. Should no one arrive after some time, you may press the bell again and continue waiting. Though you must never ring the bell twice, lest you disturb the patrons and be tossed out.
+
+## Arithmetic
 
 Now suppose we have a slightly more expressive language which accepts well-formed arithmetic expressions with up to two variables, in either infix or unary operator notation. In this language, a non-terminal occurs twice inside a single production -- an `<expr>` can be composed of two shorter `<expr>`s:
 
@@ -164,16 +168,16 @@ This is known as a recursively enumerable language, or string rewrite system. Th
 Let us now introduce a new operator, `Dₓ`, and some corresponding rules. In effect, these rules will push `Dₓ` as far towards the leaves as possible, while rewriting terms along the way. We will also introduce some terminal rewrites:
 
 ```
-(R0)       term → Dₓ(term)
-(R1)      Dₓ(x) → 1                  
-(R2)      Dₓ(y) → 0                  
-(R3)    Dₓ(U+V) → Dₓ(U) + Dₓ(V)      
-(R4)    Dₓ(U·V) → U·Dₓ(V) + Dₓ(U)·V  
-(R5)     Dₓ(+U) → +Dₓ(U)
-(R6)     Dₓ(-U) → -Dₓ(U)
-(R7)     Dₓ(·U) → +U·Dₓ(U)
-(R8)      Dₓ(1) → 0
-(R9)      Dₓ(0) → 0
+[R0]       term → Dₓ(term)
+[R1]      Dₓ(x) → 1                  
+[R2]      Dₓ(y) → 0                  
+[R3]    Dₓ(U+V) → Dₓ(U) + Dₓ(V)      
+[R4]    Dₓ(U·V) → U·Dₓ(V) + Dₓ(U)·V  
+[R5]     Dₓ(+U) → +Dₓ(U)
+[R6]     Dₓ(-U) → -Dₓ(U)
+[R7]     Dₓ(·U) → +U·Dₓ(U)
+[R8]      Dₓ(1) → 0
+[R9]      Dₓ(0) → 0
 ```
 
 Although we assign an ordering `R0`-`R9` for notational convenience,  an initial string when given to this system will always converge to the same result, no matter the order in which we perform the substitutions (proof required):
@@ -183,6 +187,69 @@ Although we assign an ordering `R0`-`R9` for notational convenience,  an initial
 |<br/><center><img align="center" width="100%" src="../images/confluence_term.svg"/></center>|<br/><center><img align="center" width="75%" src="../images/confluence_river.png"/></center>|
 
 This feature, called [confluence](https://en.wikipedia.org/wiki/Confluence_(abstract_rewriting)), is an important property of some rewrite systems: regardless of the substitution order, we will always arrive at the same result. If all strings in a language converge to a form which can be simplified no further, we call such systems *strongly normalizing*.
+
+## λ-calculus
+
+Consider a language which has the following grammar:
+
+```
+expr → var | func | appl
+func → (λ var.expr)
+appl → (expr expr)
+```
+
+To evaluate an `expr` in this language, we will need a single substition rule. The notation `M[x → E]`, [is read as](https://groups.csail.mit.edu/mac/users/gjs/6.945/readings/Steele-MIT-April-2017.pdf#page=44) "within `expr`, `var` becomes `val`":
+
+```
+(λ var.expr) val → (expr[var → val])
+```
+
+For example, applying the above rule to the expression `(λy.y z) 1` yields `(λy.1 z)`. With this seemingly trivial addition, our language is now powerful enough to encode any computable function! This language is known as the pure untyped λ-calculus.
+
+While grammatically compact, computation in the λ-calculus is not particularly terse. In order to perform any computation using this system, we will need a way to encode values. For example, we can encode the boolean algebra like so:
+
+```
+[R1]           λx.λy.x = T     "true"
+[R2]           λx.λy.y = F     "false"
+[R3]       λp.λq.p q p = &     "and"
+[R4]       λp.λq.p p q = |     "or"
+[R5]    λp.λa.λb.p b a = !     "not"
+```
+
+To evaluate a boolean expression `!T`, we will first need to encode it as a λ-expression, then we can evaluate it using the λ-calculus as follows:
+
+```
+  (           !          ) T
+→ (λp.λa.λb.    p     b a) T   [R5]
+→ (   λa.λb.    T     b a)     [p → T]
+→ (   λa.λb.(λx.λy.x) b a)     [R1]
+→ (   λa.λb.(   λy.b)   a)     [x → b]
+→ (   λa.λb.(   λy.b)    )     [y → a]
+→ (   λa.λb.b            )     [y →  ]
+→ (   F                  )     [R2]
+```
+
+## Cellular automata
+
+Consider the [elementary cellular automata](https://en.wikipedia.org/wiki/Elementary_cellular_automaton), which consists of a one dimensional array, and a 3-cell rewrite system. There are 2<sup>2<sup>3</sup></sup>=256 possible for rewriting the tape. It turns out even in this simple space, there are remarkable automata. Consider the following rewrite system:
+
+<center>
+<img align="center" src="../images/ca_rule%20110.png"/>
+</center>
+
+<!--![](https://en.wikipedia.org/wiki/Cellular_automaton#/media/File:One-d-cellular-automate-rule-30.gif)-->
+
+<!--We can represent this using graphs:-->
+
+<!--![image](../images/ca_rule30.png)-->
+
+<!--| current pattern           | `111` | `110` | `101` | `100` | `011` | `010` | `001` | `000` |-->
+<!--|:-------------------------:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:----:|-->
+<!--| new pattern | ` 0 `  | ` 1 `  | ` 1 `  | ` 0 `  | ` 1 ` | ` 1 `  | ` 1 `  | ` 0 `  |-->
+
+This system is also equivalent to a [Turing machine](https://wpmedia.wolfram.com/uploads/sites/13/2018/02/15-1-1.pdf). Although not a particularly efficient one, we could encode any computable function by encoding it as a cellular automata, and mechanically applying the rules until fixpoint termination.
+
+## Graphs, inductively
 
 Just like grammars, we can define graphs themselves inductively. As many graph algorithms are recursive, this choice considerably simplifies their implementation. Take one definition for an unlabeled directed graph, proposed by [Erwig](https://web.engr.oregonstate.edu/~erwig/papers/InductiveGraphs_JFP01.pdf) (2001). Here, the notation `list → [item]` is a shorthand for `list → item list`, where `item` is some terminal, and `list` is just a list of `item`s:
 
@@ -260,7 +327,7 @@ tailrec fun wl(k: Int, labels: Map<Vertex, Int>): Map<Vertex, Int> =
   else wl(k - 1, poolBy { map { labels[it]!! }.sorted().hashCode() })
 ```
 
-We compute the hash hashcode of the entire graph by hashing the multiset of WL labels. With one round, we're just comparing the degree historgram. The more rounds we add, the more likely we are to detect a symmetry breaking hashcode:
+We compute the hashcode of the entire graph by hashing the multiset of WL labels. With one round, we're just comparing the degree histogram. The more rounds we add, the more likely we are to detect a symmetry breaker:
 
 ```kotlin
 override fun Graph.hashCode(rounds: Int = 10) = 
@@ -276,48 +343,13 @@ fun Graph.isIsomorphicTo(that: Graph) =
   this.hashCode() == that.hashCode()
 ```
 
-Now we're done. This algorithm works on almost every graph you will ever encounter. That was easy! For a complete implementation, refer to [this repository](https://github.com/breandan/kaliningraph).
+Now we're done. This algorithm works on almost every graph you will ever encounter. That was easy! For a complete implementation of `Graph`, refer to [this repository](https://github.com/breandan/kaliningraph).
 
 TODO: Graph grammars are grammars on graphs.
 
 TODO: Single/Double pushout
 
 # Graphs, visually
-
-Consider the [elementary cellular automata](https://en.wikipedia.org/wiki/Elementary_cellular_automaton), which consists of a one dimensional array, and a 3-cell rewrite grammar. There are 2<sup>2<sup>3</sup></sup>=256 rules for rewriting the tape. It turns out even in this simple space, there are remarkable automata. Consider the following rewrite system, which can be represented graphically:
-
-<center>
-<img align="center" src="../images/ca_rule%20110.png"/>
-</center>
-
-<!--![](https://en.wikipedia.org/wiki/Cellular_automaton#/media/File:One-d-cellular-automate-rule-30.gif)-->
-
-<!--We can represent this using graphs:-->
-
-<!--![image](../images/ca_rule30.png)-->
-
-
-
-<!--| current pattern           | `111` | `110` | `101` | `100` | `011` | `010` | `001` | `000` |-->
-<!--|:-------------------------:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:----:|-->
-<!--| new pattern | ` 0 `  | ` 1 `  | ` 1 `  | ` 0 `  | ` 1 ` | ` 1 `  | ` 1 `  | ` 0 `  |-->
-
-
-This system is equivalent to a [Turing machine](https://wpmedia.wolfram.com/uploads/sites/13/2018/02/15-1-1.pdf). Consider the λ-calculus, another Turing complete system. It consists of the following rules:
-
-```
-<expr>   → <name> | <func> | <appl>
-<func>   → λ <name>.<expr>
-<appl>   → <expr><expr>
-λx.M[x]  → λy.M[y]    (α-conversion)
-(λx.M) E → M[x := E]  (β-reduction)
-```
-
-The λ-calculus can also be represented graphically. I refer the gentle reader to these proposals:
-
-* [Graphic lambda calculus](https://arxiv.org/pdf/1305.5786.pdf)
-* [Visual lambda calculus](http://bntr.planet.ee/lambda/work/visual_lambda.pdf)
-* [To Dissect a Mockingbird: A Graphical Notation for the Lambda Calculus](http://dkeenan.com/Lambda/)
 
 Graphs have also found many interesting applications as reasoning devices in various domains:
 
@@ -330,6 +362,12 @@ Graphs have also found many interesting applications as reasoning devices in var
 | [Finite state machines](https://en.wikipedia.org/wiki/Finite-state_machine) | <br/><center><img align="center" width="50%" src="https://upload.wikimedia.org/wikipedia/commons/9/94/DFA_example_multiplies_of_3.svg"/></center> |
 | [Petri networks](https://en.wikipedia.org/wiki/Petri_net) | <br/><center><img align="center" width="50%" src="https://upload.wikimedia.org/wikipedia/commons/d/d7/Animated_Petri_net_commons.gif"/></center> |
 | [Proof networks](https://en.wikipedia.org/wiki/Proof_net) | <br/><center><img align="center" width="50%" src="https://www.researchgate.net/profile/Marco_Solieri/publication/311737880/figure/fig7/AS:501886778576905@1496670540685/Example-a-mMELL-proof-net-left-and-two-simple-mixed-nets-that-belong-to-its-expansion.png"/></center> |
+
+The λ-calculus can also be interpreted graphically. I refer the gentle reader to the following proposals:
+
+* [Graphic lambda calculus](https://arxiv.org/pdf/1305.5786.pdf)
+* [Visual lambda calculus](http://bntr.planet.ee/lambda/work/visual_lambda.pdf)
+* [To Dissect a Mockingbird: A Graphical Notation for the Lambda Calculus](http://dkeenan.com/Lambda/)
 
 As Tae Danae Bradley [vividly portrays](https://www.math3ma.com/blog/matrices-probability-graphs), matrices are not just 2D arrays, matrices are *functions on vector spaces*. This has a nice visual representation using a bipartite graph:
 
