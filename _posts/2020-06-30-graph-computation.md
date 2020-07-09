@@ -233,7 +233,7 @@ We have now reached a terminal, and can recurse no further. Unlike its typed cou
 
 ## Cellular automata
 
-Consider the [elementary cellular automata](https://en.wikipedia.org/wiki/Elementary_cellular_automaton), which consists of a one dimensional array, and a 3-cell rewrite system. There are 2<sup>2<sup>3</sup></sup>=256 possible for rewriting the tape. It turns out even in this simple space, there are remarkable automata. Consider the following rewrite system:
+Consider the [elementary cellular automata](https://en.wikipedia.org/wiki/Elementary_cellular_automaton), which consists of a one dimensional array, and a 3-cell rewrite system. There are 2<sup>2<sup>3</sup></sup>=256 possible rules for rewriting the tape. It turns out even in this tiny space, there are remarkable automata. Consider the following rewrite system:
 
 <center>
 <img align="center" src="../images/ca_rule%20110.png"/>
@@ -249,7 +249,7 @@ Consider the [elementary cellular automata](https://en.wikipedia.org/wiki/Elemen
 <!--|:-------------------------:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:----:|-->
 <!--| new pattern | ` 0 `  | ` 1 `  | ` 1 `  | ` 0 `  | ` 1 ` | ` 1 `  | ` 1 `  | ` 0 `  |-->
 
-This system is also equivalent to a [Turing machine](https://wpmedia.wolfram.com/uploads/sites/13/2018/02/15-1-1.pdf). Although not a particularly efficient one, we could encode any computable function by encoding it as a cellular automata, and mechanically applying the rules until fixpoint termination.
+This system is also equivalent to a [Turing machine](https://wpmedia.wolfram.com/uploads/sites/13/2018/02/15-1-1.pdf). Although not a particularly efficient one, we could encode any computable function as this automata, and mechanically applying the rules until fixpoint termination.
 
 ## Graphs, inductively
 
@@ -474,7 +474,18 @@ This astonishing result suggests that, at least for the context free languages, 
 - Pushdown automata
 - Petri nets
 
-We now attempt to show a few examples simulating a state machine using matrix multiplication. For illustrative purposes, the state simply holds a vector of binary or integer values, however we can also imagine it carrying other "messages" around the graph in a similar manner, using their corresponding algebras. Here, we will use the boolean algebra, for multiplication:
+We now attempt to show a few examples simulating a state machine using matrix multiplication. For illustrative purposes, the state simply holds a vector of binary or integer values, however we can also imagine it carrying other "messages" around the graph in a similar manner, using their corresponding algebras. Here, we will use the boolean algebra for matrix multiplication, where `+` corresponds to `∨`, and `*` corresponds to `∧`:
+
+```
+┌───┬───┬─────┬─────┐
+│ x │ y │ x*y │ x+y │            Boolean Matrix Multiplication 
+├───┼───┼─────┼─────┤  ┌─       ─┐   ┌─ ─┐   ┌─                     ─┐
+│ 0 │ 0 │  0  │  0  │  │ a  b  c │   │ j │   │ a * j + b * k + c * l │
+│ 0 │ 1 │  0  │  1  │  │ d  e  f │ * │ k │ = │ d * j + e * k + f * l │
+│ 1 │ 0 │  0  │  1  │  │ g  h  i │   │ l │   │ g * j + h * k + i * l │
+│ 1 │ 1 │  1  │  1  │  └─       ─┘   └─ ─┘   └─                     ─┘
+└───┴───┴─────┴─────┘ 
+```
 
 ## Linear chains
 
@@ -500,6 +511,7 @@ To get started, let's simply iterate through a linked list. We initialize the po
 a | 0  0  0
 b | 1  0  0
 c | 0  1  1
+
 ```
 </div>
 </td>
