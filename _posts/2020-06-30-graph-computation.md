@@ -4,9 +4,9 @@ title: Computation graphs and graph computation
 
 ---
 
-A carefully edited anthology in which I vindicate my illustrious career as a hype-chasing Hacker News junkie, AI astrologer, and Twitter fortune-teller, while debunking my critics in the peanut gallery. I also extol the virtues of graphs, algebra, types, and how these concepts can help us think about software. Finally, I share my predictions for the path ahead, which I consider to be the start of an exciting new chapter in computing history.
+A carefully edited anthology in which I vindicate my illustrious career as a hype-chasing Hacker News junkie, AI astrologer, and Twitter fortune-teller, while debunking my imaginary critics in the peanut gallery. I also extol the virtues of graphs, algebra, types, and how these concepts can help us think about software. Finally, I share my predictions for the path ahead, which I consider to be the start of an exciting new chapter in computing history.
 
-TLDR: Research has shown a great many algorithms can be expressed as matrix multiplication, suggesting an unrealized connection between linear algebra and computer science. I speculate that graphs are the missing piece of the puzzle. Graphs are not only useful as cognitive aides, but are suitable data structures for performing a wide variety of computation, particularly on modern parallel architectures. Finally, I propose a computational primitive based on matrix multiplication.
+TLDR: Research has shown a great many algorithms can be expressed as matrix multiplication, suggesting an unrealized connection between linear algebra and computer science. I speculate that graphs are the missing piece of the puzzle. Graphs are not only useful as cognitive aides, but are suitable data structures for performing a wide variety of computation, particularly on modern parallel processing architectures. Finally, I propose a computational primitive based on matrix multiplication, bridging graphs and computation.
 
 *n.b.: None of these ideas are mine. Shoulders of giants. Use landscape mode for optimal reading experience.*
 
@@ -112,11 +112,11 @@ Lo and behold, the key idea behind knowledge graphs is our old friend, types. Kn
 
 # Induction introduction!
 
-One thing that always fascinated me is the idea of inductively defined languages, also known as recursive, or structural induction. If you are already comfortable with induction, feel free to skim or skip to the next section.
+In this section, we will review some ideas from Chomskyan linguistics, including structural induction, rewriting systems and λ-calculus. If you are already familiar with these ideas, feel free to skim or skip to the next section.
 
 ## Regular languages
 
-Consider a very simple language which accepts strings of the form `0`, `1`, `100`, `101`, `1001`, `1010`, et cetera, but rejects `011`, `110`, `1011`, or any string containing `11`. The `→` symbol indicates a "production". The `|` symbol, which we read as "or", is just a shorthand for defining multiple productions on a single line:
+One thing that always fascinated me is the idea of inductively defined languages, also known as recursive, or structural induction. Consider a very simple language which accepts strings of the form `0`, `1`, `100`, `101`, `1001`, `1010`, et cetera, but rejects `011`, `110`, `1011`, or any string containing `11`. The `→` symbol indicates a "production". The `|` symbol, which we read as "or", is just a shorthand for defining multiple productions on a single line:
 
 ```
 true → 1
@@ -142,7 +142,7 @@ term → 1 | 0 | x | y
 expr → term | op expr | expr op expr
 ```
 
-This is known as a context-free language (CFL). We can represent strings in this language using a special kind of graph, called a syntax tree. Each time we expand an `<expr>` with a production rule, this generates a rooted subtree on `<op>`, whose branch(es) are `<expr>`s. Typically, syntax trees are inverted, with branches extending downwards and leaves on the bottom:
+This is known as a context-free language (CFL). We can represent strings in this language using a special kind of graph, called a syntax tree. Each time we expand an `<expr>` with a production rule, this generates a rooted subtree on `<op>`, whose branch(es) are `<expr>`s. Typically, syntax trees are inverted, with branches extending downwards, like so:
 
 |Syntax Tree| Peach Tree|
 |-----------|-----------|
@@ -186,7 +186,7 @@ Although we assign an ordering `R0`-`R9` for notational convenience,  an initial
 |:---:|:---:|
 |<br/><center><img align="center" width="100%" src="../images/confluence_term.svg"/></center>|<br/><center><img align="center" width="75%" src="../images/confluence_river.png"/></center>|
 
-This feature, called [confluence](https://en.wikipedia.org/wiki/Confluence_(abstract_rewriting)), is an important property of some rewrite systems: regardless of the substitution order, we will always arrive at the same result. If all strings in a language converge to a form which can be simplified no further, we call such systems *strongly normalizing*.
+This feature, called [confluence](https://en.wikipedia.org/wiki/Confluence_(abstract_rewriting)), is an important property of some rewrite systems: regardless of the substitution order, we will always arrive at the same result. If all strings in a language reduce to a form which can be simplified no further, we call such systems *strongly normalizing*, or *terminating*. If a rewriting system is both confluent and terminating it is said to be convergent.
 
 ## λ-calculus
 
@@ -209,25 +209,27 @@ For example, applying the above rule to the expression `(λy.y z) 1` yields `(λ
 While grammatically compact, computation in the λ-calculus is not particularly terse. In order to perform any computation using this system, we will need a way to encode values. For example, we can encode the boolean algebra like so:
 
 ```
-[R1]           λx.λy.x = T     "true"
-[R2]           λx.λy.y = F     "false"
-[R3]       λp.λq.p q p = &     "and"
-[R4]       λp.λq.p p q = |     "or"
-[R5]    λp.λa.λb.p b a = !     "not"
+[D1]           λx.λy.x = T     "true"
+[D2]           λx.λy.y = F     "false"
+[D3]       λp.λq.p q p = &     "and"
+[D4]       λp.λq.p p q = |     "or"
+[D5]    λp.λa.λb.p b a = !     "not"
 ```
 
-To evaluate a boolean expression `!T`, we will first need to encode it as a λ-expression, then we can evaluate it using the λ-calculus as follows:
+To evaluate a boolean expression `!T`, we will first need to encode it as a λ-expression. Then, we can evaluate it using the λ-calculus as follows:
 
 ```
   (           !          ) T
-→ (λp.λa.λb.    p     b a) T   [R5]
+→ (λp.λa.λb.    p     b a) T   [D5]
 → (   λa.λb.    T     b a)     [p → T]
-→ (   λa.λb.(λx.λy.x) b a)     [R1]
+→ (   λa.λb.(λx.λy.x) b a)     [D1]
 → (   λa.λb.(   λy.b)   a)     [x → b]
 → (   λa.λb.(   λy.b)    )     [y → a]
 → (   λa.λb.b            )     [y →  ]
-→ (   F                  )     [R2]
+→ (   F                  )     [D2]
 ```
+
+We have now reached a terminal, and can recurse no further. Unlike its typed cousin, the untyped λ-calculus not strongly normalizing and thus not guaranteed to converge. If it were convergent, it would not be Turing complete.
 
 ## Cellular automata
 
@@ -260,7 +262,34 @@ context → (adj, vertex, adj)
 graph   → empty | context & graph
 ```
 
-He defines a `graph` in four parts. First, we have a `vertex`, which is simply an integer. Next we have a list of vertices, `adj`, called an adjacency list. The `context` is a 3-tuple containing a `vertex` and symmetric references to its inbound and outbound neighbors, respectively. Finally, the inductive case: a `graph` is either (1) `empty`, or (2) a `context` and a `graph`.
+Erwig defines a `graph` in four parts. First, we have a `vertex`, which is simply an integer. Next we have a list of vertices, `adj`, called an adjacency list. The `context` is a 3-tuple containing a `vertex` and symmetric references to its inbound and outbound neighbors, respectively. Finally, we have the inductive case: a `graph` is either (1) `empty`, or (2) a `context` and a `graph`.
+
+<table>
+<tr>
+<td> <center><b>String</b></center> </td> <td><center><b><center>Graph</center></b></center></td>
+</tr>
+<tr>
+
+<td>
+<div markdown="1">
+```
+
+    ([3],       4, [1, 3])  &
+    ([1, 2, 4], 3, [4]   )  &
+    ([1],       2, [1, 3])  &
+    ([2, 4],    1, [2, 3])
+
+```
+</div>
+</td>
+<td>
+<div markdown="1">
+<center><img src="../images/erwig.svg" width="60%"/></center>
+</div>
+</td>
+</tr>
+</table>
+
 
 Let us consider a simple graph implementation in Kotlin. We do not record inbound neighbors, and attempt to define a vertex as a [closed neighborhood](https://en.wikipedia.org/wiki/Neighbourhood_(graph_theory)):
 
@@ -295,7 +324,7 @@ fun Set<Vertex>.closure() = map { vertex ->
 fun Vertex.neighborhood(k: Int = 0) = Graph(neighbors(k).closure())
 ```
 
-But what about cycles? To support cycles, we will need to modify our definition slightly, to delay edge creation until after construction:
+But what about cycles? To support cycles, we will need to modify our definition slightly, to delay edge instantiation until after construction:
 
 ```kotlin
 class Graph(val vertices: Set<Vertex>) { ... }
@@ -309,8 +338,8 @@ We can now call `Vertex() { setOf(it) }` to create a vertex with a self-loop.
 Let us consider an algorithm called the Weisfeiler-Lehman isomorphism test, which my colleague David Bieber wrote a [nice piece](https://davidbieber.com/post/2019-05-10-weisfeiler-lehman-isomorphism-test/) about. I'll focus on the implementation. First, we need a pooling operator, which will aggregate all neighbors in our neighborhood using some summary statistic:
 
 ```kotlin
-fun Graph.poolBy(stat: Set<Vertex>.() -> Int): Map<Vertex, Int> =
-  nodes.map { it to stat(it.neighbors()) }.toMap()
+fun Graph.poolBy(statistic: Set<Vertex>.() -> Int): Map<Vertex, Int> =
+  nodes.map { it to statistic(it.neighbors()) }.toMap()
 ```
 
 Next, we'll need a histogram, which counts each node's neighborhood:
@@ -334,7 +363,7 @@ override fun Graph.hashCode(rounds: Int = 10) =
     wl(rounds, histogram).values.sorted().hashCode()
 ```
 
-Now we can define a test to detect if one graph is isomorphic to another:
+Finally, we can define a test to detect if one graph is isomorphic to another:
 
 ```kotlin
 fun Graph.isIsomorphicTo(that: Graph) =
@@ -343,7 +372,7 @@ fun Graph.isIsomorphicTo(that: Graph) =
   this.hashCode() == that.hashCode()
 ```
 
-Now we're done. This algorithm works on almost every graph you will ever encounter. That was easy! For a complete implementation of `Graph`, refer to [this repository](https://github.com/breandan/kaliningraph).
+That's it! This algorithm works on almost every graph you will ever encounter. For a complete implementation of `Graph`, refer to [this repository](https://github.com/breandan/kaliningraph).
 
 TODO: Graph grammars are grammars on graphs.
 
@@ -389,9 +418,24 @@ $$
 
 Just like matrices, we can also think of a graph as a function which carries information from state to state - given a state, it tells us which next states are accessible. This correspondence suggests an unrealized connection between graph theory and linear algebra which is still being explored, and promises important applications for signal processing on graphs.
 
-|Geometric | Matrix |
-|:------:|:-------:|
-|![](../images/ld_graph_dot.svg)|![](../images/ld_graph_mat.png)|
+
+<table>
+<tr>
+<td> <center><b>Geometric</b></center> </td> <td><center><b><center>Matrix</center></b></center></td>
+</tr>
+<tr>
+<td>
+<div markdown="1">
+<center><img src="../images/ld_graph_dot.svg" /></center>
+</div>
+</td>
+<td>
+<div markdown="1">
+<center><img src="../images/ld_graph_mat.png" /></center>
+</div>
+</td>
+</tr>
+</table>
 
 Note the lower triangular structure of this matrix, indicating there are no cycles, a property which is not immediately obvious from the naïve geometric layout. Iff the vertices of a directed graph can be reordered to produce an adjacency matrix in triangular form, this graph is said to be a directed acyclic graph. Commonly encountered in introductory CS classes, this ordering, called a topological ordering, can also be implemented using [matrix multiplication](https://en.wikipedia.org/wiki/Topological_sorting#Parallel_algorithms) on the adjacency matrix.
 
@@ -438,7 +482,7 @@ To get started, let's simply iterate through a linked list. We initialize the po
 
 <table>
 <tr>
-<td> <b>Graph</b> </td> <td> <b>Matrix</b> </td> <td> <b>S</b> </td><td> <b>S'</b> </td>
+<td><center><b>Graph</b></center></td> <td><center><b>Matrix</b></center></td> <td><center><b>S</b></center></td><td><center><b>S'</b></center></td>
 </tr>
 <tr>
 <td>
@@ -578,7 +622,7 @@ Simulating a DFA using a matrix is wasteful, since we only ever inhabit one stat
 
 <table>
 <tr>
-<td> <b>Graph</b> </td> <td> <b>Matrix</b> </td> <td> <b>S</b> </td><td> <b>S'</b> </td>
+<td><center><b>Graph</b></center></td> <td><center><b>Matrix</b></center></td> <td><center><b>S</b></center></td><td><center><b>S'</b></center></td>
 </tr>
 <tr>
 <td> 
@@ -729,7 +773,7 @@ Suppose we have the function `f(a, b) = (a + b) * b` and want to compute `f(2, 3
 
 <table>
 <tr>
-<td> <b>Graph</b> </td> <td> <b>Matrix</b> </td> <td> <b>S</b> </td><td> <b>S'</b> </td>
+<td><center><b>Graph</b></center></td> <td><center><b>Matrix</b></center></td> <td><center><b>S</b></center></td><td><center><b>S'</b></center></td>
 </tr>
 <tr>
 <td> 
@@ -888,7 +932,7 @@ A lot of the stuff in Graph Representation Learning is motivated by computationa
 
 It turns out graphs are not only useful as data structures, but we can think of the computation itself as a graph on a binary state space. Each tick of the clock corresponds to one matrix multiplication on a boolean tape.
 
-[Futamura](https://repository.kulib.kyoto-u.ac.jp/dspace/bitstream/2433/103401/1/0482-14.pdf) (1983) shows us that programs can be decomposed into two inputs, static and dynamic. As a function mapping of inputs to output:
+[Futamura](https://repository.kulib.kyoto-u.ac.jp/dspace/bitstream/2433/103401/1/0482-14.pdf) (1983) shows us that programs can be decomposed into two inputs, static and dynamic. This can be viewed as a function mapping inputs to output:
 
 $$
 P: I_{\text{static}} \times I_{\text{dynamic}} \rightarrow O
@@ -956,7 +1000,7 @@ More recent work, including that of [Lample et al.](https://arxiv.org/pdf/1912.0
 
 ![](https://raw.githubusercontent.com/quark0/darts/master/img/darts.png)
 
-In the last year, a number of interesting reults in differentiable architecture search started to emerge. [DARTS](https://arxiv.org/pdf/1806.09055.pdf) (Liu et al., 2019) proposes to use directly use gradient to search through the space of directed graphs. The authors first perform a continuous relaxation of the discrete graph, by reweighting the output of each each potential value by a hyperparameter, optimizing over the space of operations, then discretizing the output graph.
+In the last year, a number of interesting reults in differentiable architecture search started to emerge. [DARTS](https://arxiv.org/pdf/1806.09055.pdf) (Liu et al., 2019) proposes to use gradient to search through the space of directed graphs. The authors first perform a continuous relaxation of the discrete graph, by reweighting the output of each each potential value by a hyperparameter, optimizing over the space of operations, then discretizing the output graph.
 
 [![](../images/solar_lezma.png)](https://youtu.be/rwBbYhOAnPo?t=28272)
 
@@ -966,7 +1010,7 @@ Solar-Lezma calls this latter approach, "program extraction", where the network 
 <blockquote class="twitter-tweet"><p lang="en" dir="ltr">&quot;Can neural networks be made to reason?&quot; Conversation with Ian Goodfellow (<a href="https://twitter.com/goodfellow_ian?ref_src=twsrc%5Etfw">@goodfellow_ian</a>). Full version: <a href="https://t.co/3MYC8jWjwl">https://t.co/3MYC8jWjwl</a> <a href="https://t.co/tGcDwgZPA1">pic.twitter.com/tGcDwgZPA1</a></p>&mdash; Lex Fridman (@lexfridman) <a href="https://twitter.com/lexfridman/status/1130501145548513280?ref_src=twsrc%5Etfw">May 20, 2019</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script> 
 </center>
 
-A less charitable interpretation is that Goodfellow is simply using an metaphor to explain deep learning to lay audience, but I prefer to think he is communicating something important about the value of thinking about stacked nonlinear function approximators as computational primitives in a chain of function compositions.
+A less charitable interpretation is that Goodfellow is simply using an metaphor to explain deep learning to lay audience, but I prefer to think he is communicating something deeper about the role of stacked nonlinear function approximators as computational primitives in a chain of function compositions.
 
 # References
 
