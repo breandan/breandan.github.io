@@ -180,7 +180,7 @@ Let us now introduce a new operator, `Dₓ`, and some corresponding rules. In ef
 [R9]      Dₓ(0) → 0
 ```
 
-Although we assign an ordering `R0`-`R9` for notational convenience,  an initial string when given to this system will always converge to the same result, no matter the order in which we perform the substitutions (proof required):
+Although we assign an ordering `R0`-`R9` for notational convenience, an initial string, once given to this system, will always converge to the same result, no matter the order in which we perform the substitutions (proof required):
 
 |Term Confluence|Ottawa-St. Lawrence Confluence|
 |:---:|:---:|
@@ -198,7 +198,7 @@ func → (λ var.expr)
 appl → (expr expr)
 ```
 
-To evaluate an `expr` in this language, we will need a single substition rule. The notation `M[x → E]`, [is read as](https://groups.csail.mit.edu/mac/users/gjs/6.945/readings/Steele-MIT-April-2017.pdf#page=44) "within `expr`, `var` becomes `val`":
+To evaluate an `expr` in this language, we will need a single substition rule. The notation `expr[var → val]`, [is read as](https://groups.csail.mit.edu/mac/users/gjs/6.945/readings/Steele-MIT-April-2017.pdf#page=44), "within `expr`, `var` becomes `val`":
 
 ```
 (λ var.expr) val → (expr[var → val])
@@ -233,7 +233,7 @@ We have now reached a terminal, and can recurse no further. Unlike its typed cou
 
 ## Cellular automata
 
-Consider the [elementary cellular automata](https://en.wikipedia.org/wiki/Elementary_cellular_automaton), which consists of a one dimensional array, and a 3-cell rewrite system. There are 2<sup>2<sup>3</sup></sup>=256 possible rules for rewriting the tape. It turns out even in this tiny space, there are remarkable automata. Consider the following rewrite system:
+Consider the [elementary cellular automata](https://en.wikipedia.org/wiki/Elementary_cellular_automaton), which consists of a one dimensional array, and a 3-cell rewrite system. There are 2<sup>2<sup>3</sup></sup>=256 possible rules for rewriting the tape. It turns out even in this tiny space, there are remarkable automata. Consider the following rewrite system, known as [Rule 110](https://en.wikipedia.org/wiki/Rule_110):
 
 <center>
 <img align="center" src="../images/ca_rule%20110.png"/>
@@ -245,11 +245,11 @@ Consider the [elementary cellular automata](https://en.wikipedia.org/wiki/Elemen
 
 <!--![image](../images/ca_rule30.png)-->
 
-<!--| current pattern           | `111` | `110` | `101` | `100` | `011` | `010` | `001` | `000` |-->
-<!--|:-------------------------:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:----:|-->
-<!--| new pattern | ` 0 `  | ` 1 `  | ` 1 `  | ` 0 `  | ` 1 ` | ` 1 `  | ` 1 `  | ` 0 `  |-->
+| current pattern           | `111` | `110` | `101` | `100` | `011` | `010` | `001` | `000` |
+|:-------------------------:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:----:|
+| new pattern | ` 0 `  | ` 1 `  | ` 1 `  | ` 0 `  | ` 1 ` | ` 1 `  | ` 1 `  | ` 0 `  |
 
-This system is also equivalent to a [Turing machine](https://wpmedia.wolfram.com/uploads/sites/13/2018/02/15-1-1.pdf). Although not a particularly efficient one, we could encode any computable function as this automata, and mechanically applying the rules until fixpoint termination.
+We can implement this by scanning the tape and replacing any cells matching the centermost element in the first row with the second row's value. This system is known to be [Turing complete](https://wpmedia.wolfram.com/uploads/sites/13/2018/02/15-1-1.pdf). Disregarding efficiency, we could encode any computable function as an initial state and mechanically apply Rule 110 until fixpoint termination to simulate a TM.
 
 ## Graphs, inductively
 
@@ -449,7 +449,7 @@ What happens if we define arithmetic operators on graphs? How could we define an
 
 One interesting game mathematicians like to play, is to design a square matrix ℝ<sup>K×K</sup> and raise it to a power. There are various tricks for designing the matrix and normalizing the product so it does not explode or vanish. If we then multiply the matrix by a state vector ℝ<sup>K</sup>, we are effectively "simulating" the system at discrete time steps. This game has many important applications in control theory, dynamical systems and deep learning (RNNs).
 
-We can think about this as either a matrix product (MM...M)V, or function application M(M(...M(V)...)), where M is a function on a vector space (these two views are equivalent). There are various names for M, such as the transition matrix, stochastic matrix, or Markov matrix. It turns out the very same idea is not just valid over real matrices, but can be generalized to boolean and integer matrices. We are primarily interested in the deterministic version, whose variables inhabit 𝔹<sup>K×K</sup>.
+We can think about this as either a matrix product (MM...M)V, or function application M(M(...M(V)...)), where M is a function on a vector space (these two views are equivalent). There are various names for M, such as the [transition matrix](https://ieeexplore.ieee.org/stamp/stamp.jsp?arnumber=1086510&casa_token=KuNTtlFssrQAAAAA:-WcymDKB8OVo6gh1TKM0363R2dgvhi9XeuV5bLPI2yI1WtX0VlvPUAW5QoyhaBjdVfo8rA4HmA&tag=1), stochastic matrix, or Markov matrix. It turns out the very same idea is not just valid over real matrices, but can be generalized to boolean and integer matrices. We are primarily interested in the deterministic version, whose variables inhabit 𝔹<sup>K×K</sup>.
 
 It turns out that power iteration of a square matrix converges to its the eigenvector. This has important consequences for dynamical systems on networks. Researchers are just beginning to understand how eigenvalues of the adjacency matrix govern long timescale dynamical processes on graphs. In this section, we will explore some examples of dynamical processes on graphs.
 
@@ -467,12 +467,12 @@ Another early example of graph computation can be found in [Valiant](http://theo
 <blockquote class="twitter-tweet"><p lang="en" dir="ltr">TIL: CFL parsing can be reduced to boolean matrix multiplication (Valiant, 1975), known to be subcubic (Strassen, 1969), and later proven an asymptotic lower bound (Lee, 1997). This admits efficient GPGPU implementation (Azimov, 2017) in <a href="https://twitter.com/YaccConstructor?ref_src=twsrc%5Etfw">@YaccConstructor</a> <a href="https://t.co/3Vbml0v6b9">https://t.co/3Vbml0v6b9</a></p>&mdash; breandan (@breandan) <a href="https://twitter.com/breandan/status/1277136195118600192?ref_src=twsrc%5Etfw">June 28, 2020</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 </center>
 
-This astonishing result suggests that, at least for the context free languages, there is a parsing algorithm which is equivalent to matrix multiplication. Suppose we want to simulate an automata. All of these automata can be evolved using matrix multiplication:
+This astonishing result suggests that, at least for the context free languages, there is a parsing algorithm which is equivalent to matrix multiplication. For example, all of the following automata can be simulated using matrix multiplication:
 
-- Pushdown automata
-- Buchi automata
-- Pushdown automata
-- Petri nets
+- [Pushdown automata](https://en.wikipedia.org/wiki/Pushdown_automaton)
+- [Buchi automata](https://en.wikipedia.org/wiki/B%C3%BCchi_automaton)
+- [Mealy machines](https://en.wikipedia.org/wiki/Mealy_machine)
+- [Petri nets](https://en.wikipedia.org/wiki/Petri_net)
 
 We now attempt to show a few examples simulating a state machine using matrix multiplication. For illustrative purposes, the state simply holds a vector of binary or integer values, however we can also imagine it carrying other "messages" around the graph in a similar manner, using their corresponding algebras. Here, we will use the boolean algebra for matrix multiplication, where `+` corresponds to `∨`, and `*` corresponds to `∧`:
 
@@ -1004,7 +1004,7 @@ $$
 \underset{P}{\text{argmin}}\sum_{i \sim I_{static}}\mathcal L(P^t S^i_0, S_t)
 $$
 
-One issue with this formulation is we must rely on a loss function over S<sub>t</sub>, which is often too sparse and generalizes poorly. It may be the case that many interesting program synthesis problems have optimal substructure, so we should be making "progress" towards a goal state, and can define a loss over intermediate states. This needs to be explored in more depth.
+One issue with this formulation is we must rely on a loss function over S<sub>t</sub>, which is often too sparse and generalizes poorly. It may be the case that many interesting program synthesis problems have [optimal substructure](https://en.wikipedia.org/wiki/Optimal_substructure), so we should be making "progress" towards a goal state, and can define a loss over intermediate states. This needs to be explored in more depth.
 
 Some, including [Gaunt et al.](https://arxiv.org/pdf/1608.04428.pdf) (2016), have shown gradient is not very effective, as the space of boolean circuits is littered with islands which have zero gradient. Their representation is also relative complex -- effectively, they are trying to learn a recursively enumerable language using something like a [Neural Turing Machine](https://arxiv.org/pdf/1410.5401.pdf) (Graves et al., 2014).
 
