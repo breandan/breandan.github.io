@@ -324,6 +324,26 @@ fun Set<Vertex>.closure() = map { vertex ->
 fun Vertex.neighborhood(k: Int = 0) = Graph(neighbors(k).closure())
 ```
 
+We can also define the adjacency and degree matrices:
+
+```
+val Graph.degree by lazy {
+  Mat(vertices.size, vertices.size).also { deg ->
+    V.forEach { v -> deg[v, v] = v.neighbors.size }
+  }
+}
+
+val Graph.adjacency by lazy {
+  Mat(vertices.size, vertices.size).also { adj ->
+    vertices.forEach { v -> 
+      v.neighbors.forEach { n -> adj[v, n] = 1 } 
+    }
+  }
+}
+
+val Graph.laplacian by lazy { degree - adjacency }
+```
+
 But what about cycles? To support cycles, we will need to modify our definition slightly, to delay edge instantiation until after construction:
 
 ```kotlin
@@ -378,7 +398,7 @@ TODO: Graph grammars are grammars on graphs.
 
 TODO: Single/Double pushout
 
-# Graphs, visually
+# Graph DSLs
 
 Graphs have also found many interesting applications as reasoning devices in various domains:
 
@@ -445,13 +465,47 @@ Matrices are problematic for other reasons. Primarily, by treating a graph as a 
 
 # Graphs, computationally
 
-What happens if we define arithmetic operators on graphs? How could we define and interpret these operations in a meaningful way? As we have seen, one way to represent a directed graph is just a square matrix whose non-zero entries indicate edges between nodes. Just like real matrices in linear algebra, we can add, subtract, multiply and exponentiate them.
+What happens if we take a square matrix ℝ<sup>K×K</sup> and raise it to a power? Which kinds of matrices converge? How can we analyze their asymptotics? This is a very fertile line of inquiry which has occupied engineers for the better part of the last century, with important applications in control theory, physical simulation and deep learning (RNNs). Linear algebra gives us a number of tricks for designing the matrix and normalizing the product to promote convergence, since systems which explode or vanish are not very interesting.
 
-One interesting game mathematicians like to play, is to design a square matrix ℝ<sup>K×K</sup> and raise it to a power. There are various tricks for designing the matrix and normalizing the product so it does not explode or vanish. If we then multiply the matrix by a state vector ℝ<sup>K</sup>, we are effectively "simulating" the system at discrete time steps. This game has many important applications in control theory, dynamical systems and deep learning (RNNs).
+One way to interpret this is as follows: each time we multiply a matrix by a vector ℝ<sup>K</sup>, we are effectively simulating a dynamic system at discrete time steps. This method is known as the [power](https://en.wikipedia.org/wiki/Power_iteration) or [Krylov](http://www.mathnet.ru/links/ebf56bfe7abf0fa06968059ace96e215/im5215.pdf) method in linear algebra. Essentially, we are searching for fixed points, or eigenvectors, which are these islands of stability in our dynamical system. If we initialize our state at such a point, the system will send us straight back to where we started.
 
-We can think about this as either a matrix product (MM...M)V, or function application M(M(...M(V)...)), where M is a function on a vector space (these two views are equivalent). There are various names for M, such as the [transition matrix](https://ieeexplore.ieee.org/stamp/stamp.jsp?arnumber=1086510&casa_token=KuNTtlFssrQAAAAA:-WcymDKB8OVo6gh1TKM0363R2dgvhi9XeuV5bLPI2yI1WtX0VlvPUAW5QoyhaBjdVfo8rA4HmA&tag=1), stochastic matrix, or Markov matrix. It turns out the very same idea is not just valid over real matrices, but can be generalized to boolean and integer matrices. We are primarily interested in the deterministic version, whose variables inhabit 𝔹<sup>K×K</sup>.
+First, let's get some definitions out of the way.
 
-It turns out that power iteration of a square matrix converges to its the eigenvector. This has important consequences for dynamical systems on networks. Researchers are just beginning to understand how eigenvalues of the adjacency matrix govern long timescale dynamical processes on graphs. In this section, we will explore some examples of dynamical processes on graphs.
+```
+  𝔹 → True | False
+  ℕ → 0 | ... | 9
+  ℤ → ℕ | ℕℤ | -ℤ
+  ℝ → ℤ.ℤ
+  T → 𝔹 | ℕ | ℤ | ℝ
+vec → [Tⁿ]
+mat → [[Tⁿ]ⁿ]
+```
+
+We can think of the Krylov method as either a matrix-matrix product:
+
+```
+mmp → mat | mat * mat 
+mvp → (mmp) * vec
+```
+
+Or a matrix-vector product:
+
+```
+mvp → mat * vec | (mvp) * mat
+```
+
+Or some kind of recurrence relation:
+
+```
+fun → (mat * vec) / ‖ mat * vec ‖
+rec → fun vec | (rec vec)
+```
+
+Save their computational complexity, these three views are basically equivalent.
+
+Krylov methods are not just valid on real matrices, but can be generalized to boolean and integer matrices. We are primarily interested in the deterministic version, whose variables inhabit 𝔹<sup>K×K</sup>. There are various names for M, such as the [transition matrix](https://ieeexplore.ieee.org/stamp/stamp.jsp?arnumber=1086510&casa_token=KuNTtlFssrQAAAAA:-WcymDKB8OVo6gh1TKM0363R2dgvhi9XeuV5bLPI2yI1WtX0VlvPUAW5QoyhaBjdVfo8rA4HmA&tag=1), stochastic matrix, or Markov matrix.
+
+The Krylov methods have important applications for studying dynamical systems on networks. Researchers are just beginning to understand how eigenvalues of the Laplacian affect the asymptotic behavior of dynamical processes on graphs. In this section, we will explore some examples of dynamical processes on graphs.
 
 We have previously seen an example of graph computation, Weisfeiler-Lehman, and topsort. Three steps of Barabási's preferential attachment algorithm:
 
@@ -474,7 +528,9 @@ This astonishing result suggests that, at least for the context free languages, 
 - [Mealy machines](https://en.wikipedia.org/wiki/Mealy_machine)
 - [Petri nets](https://en.wikipedia.org/wiki/Petri_net)
 
-We now attempt to show a few examples simulating a state machine using matrix multiplication. For illustrative purposes, the state simply holds a vector of binary or integer values, however we can also imagine it carrying other "messages" around the graph in a similar manner, using their corresponding algebras. Here, we will use the boolean algebra for matrix multiplication, where `+` corresponds to `∨`, and `*` corresponds to `∧`:
+What happens if we define arithmetic operators on graphs? How might we define and interpret these operations in a meaningful way? As we have seen, one way to represent a directed graph is just a square matrix whose non-zero entries indicate edges between nodes. Just like real matrices in linear algebra, we can add, subtract, multiply and exponentiate them.
+
+We now attempt to show a few examples simulating a state machine using the Krylov method. For illustrative purposes, the state simply holds a vector of binary or integer values, however we can also imagine it carrying other "messages" around the graph in a similar manner, using their corresponding algebras. Here, we will use the boolean algebra for matrix multiplication, where `+` corresponds to `∨`, and `*` corresponds to `∧`:
 
 ```
 ┌───┬───┬─────┬─────┐
