@@ -317,16 +317,15 @@ tailrec fun Vertex.neighbors(k: Int = 0, vertices: Set<Vertex> =
 fun Set<Vertex>.neighbors() = flatMap { it.neighbors() }.toSet()
 
 // Removes all vertices outside the set
-fun Set<Vertex>.closure() = map { vertex ->
-  Vertex(neighbors.filter { it in this@closure })
-}.toSet()
+fun Set<Vertex>.closure(): Set<Vertex> =
+  map { vertex -> Vertex(neighbors.filter { it in this }) }.toSet()
 
 fun Vertex.neighborhood(k: Int = 0) = Graph(neighbors(k).closure())
 ```
 
 We can also define the adjacency and degree matrices:
 
-```
+```kotlin
 val Graph.degree by lazy {
   Mat(vertices.size, vertices.size).also { deg ->
     V.forEach { v -> deg[v, v] = v.neighbors.size }
