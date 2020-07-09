@@ -478,12 +478,12 @@ We now attempt to show a few examples simulating a state machine using matrix mu
 
 ```
 ┌───┬───┬─────┬─────┐
-│ x │ y │ x*y │ x+y │            Boolean Matrix Multiplication 
-├───┼───┼─────┼─────┤  ┌─       ─┐   ┌─ ─┐   ┌─                     ─┐
-│ 0 │ 0 │  0  │  0  │  │ a  b  c │   │ j │   │ a * j + b * k + c * l │
-│ 0 │ 1 │  0  │  1  │  │ d  e  f │ * │ k │ = │ d * j + e * k + f * l │
-│ 1 │ 0 │  0  │  1  │  │ g  h  i │   │ l │   │ g * j + h * k + i * l │
-│ 1 │ 1 │  1  │  1  │  └─       ─┘   └─ ─┘   └─                     ─┘
+│ x │ y │ x*y │ x+y │        Boolean Matrix Multiplication 
+├───┼───┼─────┼─────┤ ┌─       ─┐ ┌─ ─┐ ┌─                     ─┐
+│ 0 │ 0 │  0  │  0  │ │ a  b  c │ │ j │ │ a * j + b * k + c * l │
+│ 0 │ 1 │  0  │  1  │ │ d  e  f │*│ k │=│ d * j + e * k + f * l │
+│ 1 │ 0 │  0  │  1  │ │ g  h  i │ │ l │ │ g * j + h * k + i * l │
+│ 1 │ 1 │  1  │  1  │ └─       ─┘ └─ ─┘ └─                     ─┘
 └───┴───┴─────┴─────┘ 
 ```
 
