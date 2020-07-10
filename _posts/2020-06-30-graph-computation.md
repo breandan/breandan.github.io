@@ -14,7 +14,7 @@ TLDR: Research has shown a great many algorithms can be expressed as matrix mult
 
 Over the last decade, I bet on some strange ideas. A lot of people I looked up to at the time laughed at me. I'll bet they aren't laughing anymore. I ought to thank them one day, because their laughter gave me a lot of motivation. I've said some idiotic things to be sure, but I've also made some laughable predictions which were correct. Lesson learned: aim straighter.
 
-In 2012, I was in Austin sitting next to an ex-poker player named [Amir](https://twitter.com/amirpc) who was singing Hinton's praises. Hypnotized by his technicolor slides, I quit my job in a hurry and started an educational project using speech recognition and restricted Boltzman machines. It never panned out, but I learned a lot about ASR and Android audio. Still love [that idea](http://breandan.net/2014/02/09/the-end-of-illiteracy/).
+In 2012, I was in Austin sitting next to an ex-poker player named [Amir](https://twitter.com/amirpc) who was singing Hinton's praises. Hypnotized by his technicolor slides, I quit my job in a hurry and started an educational project using speech recognition and restricted Boltzmann machines. It never panned out, but I learned a lot about ASR and Android audio. Still love [that idea](http://breandan.net/2014/02/09/the-end-of-illiteracy/).
 
 <center>
 <a href="https://www.cs.toronto.edu/~hinton/csc2535/notes/lec4new.pdf"><img align="center" width="75%" src="../images/rbm.png"/></a>
@@ -39,7 +39,7 @@ In 2018, I correctly predicted Microsoft would acquire GitHub to mine code. Why 
 <img align="center" width="75%" src="../images/microsoft_github_aquisition.png"/></a>
 </center>
 
-But to heck with everything I've said! If I had just one idea to share with these ML people, it would be types. Beat that drum as loud as I could. Types are the best tool we know for synthetic reasoning. If you want to build provably correct systems that scale on real world applications, types are the answer. Not everyone is convinced yet, but mark my words, [types](https://github.com/tensorflow/tensorflow/issues/12345) are [coming](https://docs.python.org/3.9/whatsnew/3.9.html#pep-585-builtin-generic-types). Whoever figures out how to connect types and learning will be the next Barbara Liskov or Frances Allen.
+But to heck with everything I've said! If I had just one idea to share with these ML people, it would be types. Beat that drum as loud as I could. Types are the best tool we know for synthetic reasoning. If you want to build provably correct systems that scale on real-world applications, types are the answer. Not everyone is convinced yet, but mark my words, [types](https://github.com/tensorflow/tensorflow/issues/12345) are [coming](https://docs.python.org/3.9/whatsnew/3.9.html#pep-585-builtin-generic-types). Whoever figures out how to connect types and learning will be the next Barbara Liskov or Frances Allen.
 
 This year, I predicted the pandemic weeks before the lockdown, exited the market, and turned down a job at Google. Some people called me crazy. Now I'm going all-in on some new ideas (none of which are mine). I'm making some big bets and some will be wrong, but I see the very same spark of genius in them. Hang on to your hats, because if I'm right, these ideas are going to shake the foundations of modern computing.
 
@@ -148,7 +148,7 @@ This is known as a context-free language (CFL). We can represent strings in this
 |-----------|-----------|
 |![](../images/tree_syntax.svg)|![](../images/tree_peach.png)|
  
-While syntax trees can be interpreted computationally, they do not actually perform computation until evaluated. To evaluate a syntax tree, we will need to introduce some new rules. Instead of just allowing terminals to occur on the right hand side of a grammar production, suppose we also allow terminals on the left, and applying a rule can reduce the size of a string in our language. Here, we use capital letters on the same line to indicate an exact match, e.g. a rule `U + V → V + U` would replace `x + y` with `y + x`:
+While syntax trees can be interpreted computationally, they do not actually perform computation until evaluated. To evaluate a syntax tree, we will need to introduce some new rules. Instead of just allowing terminals to occur on the right-hand side of a grammar production, suppose we also allow terminals on the left, and applying a rule can reduce the size of a string in our language. Here, we use capital letters on the same line to indicate an exact match, e.g. a rule `U + V → V + U` would replace `x + y` with `y + x`:
 
 ```
                                          E + E → +E
@@ -469,8 +469,8 @@ One way to interpret this is as follows: each time we multiply a matrix by a vec
 
 <details>
   <summary>Krylov Method</summary>
-There exists in St. Petersburg a naval research facility, known as the Krylov Shipbuilding Research Institute, which houses the world's <a href="https://krylov-centre.ru/en/experimental/base-doccamers/">largest hydraulic pressure tank</a>. Capable of simulating in excess of 20,000 PSI, the DK-1000 is used to test deepwater submersible vessels. Before inserting your <a href="https://fivedeeps.com/home/technology/sub/">personal submarine</a> for pressure testing, you may wish to perform a finite element analysis to ensure hull integrity. Instabilities in the stiffness matrix may produce disappointing results.
-<img src="http://krylov-centre.ru/rus/images/exp_base/base-doccamers/base-doccamers-big-eng.jpg"/>
+<center><img src="http://krylov-centre.ru/rus/images/exp_base/base-doccamers/base-doccamers-big-eng.jpg" width="50%"/></center>
+<p align="justify"> There exists in St. Petersburg a naval research facility, known as the Krylov Shipbuilding Research Institute, which houses the world's <a href="https://krylov-centre.ru/en/experimental/base-doccamers/">largest hydraulic pressure tank</a>. Capable of simulating in excess of 20,000 PSI, the DK-1000 is used to test deepwater submersible vessels. Before inserting your <a href="https://fivedeeps.com/home/technology/sub/">personal submarine</a> for pressure testing, you may wish to perform a finite element analysis to ensure hull integrity. Instabilities in the stiffness matrix may produce disappointing results.</p>
 </details>
 
 $$
@@ -561,7 +561,7 @@ Krylov methods are not just applicable to real matrices, but can be used to anal
 
 The Krylov methods have important applications for studying dynamical systems on networks. Researchers are just beginning to understand how eigenvalues of the Laplacian affect the asymptotic behavior of dynamical processes on graphs. In this section, we will explore some examples of dynamical processes on graphs.
 
-We have previously seen an example of graph computation, Weisfeiler-Lehman, and topsort. Three steps of Barabási's preferential attachment algorithm:
+We have previously seen an example of graph computation, Weisfeiler-Lehman, and topsort. Three steps of Barabási's [preferential attachment algorithm](https://en.wikipedia.org/wiki/Preferential_attachment):
 
 |DOT Graph|Matrix|
 |:-------:|:----:|
@@ -575,16 +575,16 @@ Another early example of graph computation can be found in [Valiant](http://theo
 <blockquote class="twitter-tweet"><p lang="en" dir="ltr">TIL: CFL parsing can be reduced to boolean matrix multiplication (Valiant, 1975), known to be subcubic (Strassen, 1969), and later proven an asymptotic lower bound (Lee, 1997). This admits efficient GPGPU implementation (Azimov, 2017) in <a href="https://twitter.com/YaccConstructor?ref_src=twsrc%5Etfw">@YaccConstructor</a> <a href="https://t.co/3Vbml0v6b9">https://t.co/3Vbml0v6b9</a></p>&mdash; breandan (@breandan) <a href="https://twitter.com/breandan/status/1277136195118600192?ref_src=twsrc%5Etfw">June 28, 2020</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 </center>
 
-This astonishing result suggests that, at least for context free and less powerful languages, there is a parsing algorithm which is equivalent to matrix multiplication. For example, all of the following automata can be simulated using matrix multiplication:
+This astonishing result suggests that, at least for context-free and less powerful languages, there is a parsing algorithm which is equivalent to matrix multiplication. For example, all of the following automata can be simulated using matrix multiplication:
 
 - [Pushdown automata](https://en.wikipedia.org/wiki/Pushdown_automaton)
 - [Buchi automata](https://en.wikipedia.org/wiki/B%C3%BCchi_automaton)
 - [Mealy machines](https://en.wikipedia.org/wiki/Mealy_machine)
 - [Petri nets](https://en.wikipedia.org/wiki/Petri_net)
 
-What happens if we define arithmetic operators on graphs? How might we define and interpret these operations in a meaningful way? As we have seen, one way to represent a directed graph is just a square matrix whose non-zero entries indicate edges between nodes. Just like real matrices in linear algebra, we can add, subtract, multiply and exponentiate them.
+What happens if we define arithmetic operators on graphs? How might we define and interpret these operations? As we have seen, one way to represent a directed graph is just a square matrix whose non-zero entries indicate edges between nodes. Just like real matrices in linear algebra, we can add, subtract, multiply and exponentiate them.
 
-We now attempt to show a few examples simulating a state machine using the Krylov method. For illustrative purposes, the state simply holds a vector of binary or integer values, however we can also imagine it carrying other "messages" around the graph in a similar manner, using their corresponding algebras. Here, we will use the boolean algebra for matrix multiplication, where `+` corresponds to `∨`, and `*` corresponds to `∧`:
+We will now show a few examples simulating a state machine using the Krylov method. For illustrative purposes, the state simply holds a vector of binary or integer values, however we can also imagine it carrying other "messages" around the graph in a similar manner, using another algebra. Here, we will use the boolean algebra for matrix multiplication, where `+` corresponds to `∨`, and `*` corresponds to `∧`:
 
 ```
 ┌───┬───┬─────┬─────┐
@@ -599,7 +599,7 @@ We now attempt to show a few examples simulating a state machine using the Krylo
 
 ## Linear chains
 
-To get started, let's simply iterate through a linked list. We initialize the pointer to the head of the list, and each matmul advances the pointer by a single element. We add an implicit self loop to the final element, and halt whenever we detect a fixpoint.
+To get started, let's iterate through a linked list. We initialize the pointer to the head of the list, and each matmul advances the pointer by a single element. We add an implicit self loop to the final element, and halt whenever we detect a fixpoint.
 
 <table>
 <tr>
@@ -1118,7 +1118,7 @@ One issue with this formulation is we must rely on a loss over $$S_t$$, which is
 
 Some, including [Gaunt et al.](https://arxiv.org/pdf/1608.04428.pdf) (2016), have shown gradient is not very effective, as the space of boolean circuits is littered with islands which have zero gradient. Their representation is also relative complex -- effectively, they are trying to learn a recursively enumerable language using something like a [Neural Turing Machine](https://arxiv.org/pdf/1410.5401.pdf) (Graves et al., 2014).
 
-More recent work, including that of [Lample et al.](https://arxiv.org/pdf/1912.01412.pdf) (2019), have demonstrated Transformers are capable of learning programs, where the program belongs to a much simpler class of context free languages. This space is often much more tractable to search and generate synthetic training data, and appears to be well within the reach of modern language models.
+More recent work, including that of [Lample et al.](https://arxiv.org/pdf/1912.01412.pdf) (2019), have demonstrated Transformers are capable of learning programs, where the program belongs to a much simpler class of context-free languages. This space is often much more tractable to search and generate synthetic training data, and appears to be well within the reach of modern language models.
 
 ![](https://raw.githubusercontent.com/quark0/darts/master/img/darts.png)
 
@@ -1132,7 +1132,7 @@ Solar-Lezma calls this latter approach, "program extraction", where the network 
 <blockquote class="twitter-tweet"><p lang="en" dir="ltr">&quot;Can neural networks be made to reason?&quot; Conversation with Ian Goodfellow (<a href="https://twitter.com/goodfellow_ian?ref_src=twsrc%5Etfw">@goodfellow_ian</a>). Full version: <a href="https://t.co/3MYC8jWjwl">https://t.co/3MYC8jWjwl</a> <a href="https://t.co/tGcDwgZPA1">pic.twitter.com/tGcDwgZPA1</a></p>&mdash; Lex Fridman (@lexfridman) <a href="https://twitter.com/lexfridman/status/1130501145548513280?ref_src=twsrc%5Etfw">May 20, 2019</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script> 
 </center>
 
-A less charitable interpretation is that Goodfellow is simply using an metaphor to explain deep learning to lay audience, but I prefer to think he is communicating something deeper about the role of stacked nonlinear function approximators as computational primitives in a chain of function compositions.
+A less charitable interpretation is that Goodfellow is simply using a metaphor to explain deep learning to lay audience, but I prefer to think he is communicating something deeper about the role of stacked nonlinear function approximators as computational primitives in a chain of function compositions.
 
 # References
 
