@@ -75,7 +75,7 @@ In 2019, I joined a lab with a [nice professor](https://www.cs.mcgill.ca/~jguo/)
 <a href="https://structurizr.com/"><img align="center" width="45%" src="https://raw.githubusercontent.com/cecuesta/structurizr-java/master/docs/images/graphviz-spring-petclinic-components.png"/></a>
 </center>
 
-This Spring, I took a fascinating [seminar on Graph Representation Learning](https://cs.mcgill.ca/~wlh/comp766/index.html). A lot of delightful graph theory had been worked out over the preceding decade. [PageRank](https://en.wikipedia.org/wiki/PageRank) turned into power iteration. People made lots of interesting connections to linear algebra, including Weisfeiler-Lehman graph kernels, graph Laplacians and spectral graph theory. There are some elegant mathematics for representing graphs, and choosing the right representation can be very powerful. More on that later.
+This Spring, I took a fascinating [seminar on Graph Representation Learning](https://cs.mcgill.ca/~wlh/comp766/index.html). A lot of delightful graph theory had been worked out over the preceding decade. [PageRank](https://en.wikipedia.org/wiki/PageRank) turned into power iteration. People made lots of interesting connections to linear algebra, including Weisfeiler-Lehman graph kernels, graph Laplacians, Krylov methods, and spectral graph theory. There are some elegant mathematics for representing graphs, and choosing the right representation can be very powerful. More on that later.
 
 # What are graphs?
 
@@ -124,7 +124,7 @@ term → 0 | 10 | ε
 expr → term | expr term
 ```
 
-We have two sets of productions, ones which can be expanded, called "nonterminals", and ones which can be expanded no further, called "terminals". Notice how each non-terminal occurs at most once in any single production. This property guarantees the language is recognizable by a special kind of graph, called a finite state machine. As their name indicates, FSMs contain a finite number of states, with labeled transitions between them:
+We have two sets of productions, those which can be expanded, called "nonterminals", and those which can be expanded no further, called "terminals". Notice how each non-terminal occurs at most once in any single production. This property guarantees the language is recognizable by a special kind of graph, called a finite state machine. As their name indicates, FSMs contain a finite number of states, with labeled transitions between them:
 
 |Finite State Machine | Library Courtesy Bell |
 |:------:|:------:|
@@ -180,13 +180,13 @@ Let us now introduce a new operator, `Dₓ`, and some corresponding rules. In ef
 [R9]      Dₓ(0) → 0
 ```
 
-Although we assign an ordering `R0`-`R9` for notational convenience, an initial string, once given to this system, will always converge to the same result, no matter the order in which we perform the substitutions (proof required):
+Although we assign an ordering `R0`-`R9` for notational convenience, an initial string, once given to this system, will always converge to the same result, no matter in which order we perform the substitutions (proof required):
 
 |Term Confluence|Ottawa-St. Lawrence Confluence|
 |:---:|:---:|
 |<br/><center><img align="center" width="100%" src="../images/confluence_term.svg"/></center>|<br/><center><img align="center" width="75%" src="../images/confluence_river.png"/></center>|
 
-This feature, called [confluence](https://en.wikipedia.org/wiki/Confluence_(abstract_rewriting)), is an important property of some rewrite systems: regardless of the substitution order, we will always arrive at the same result. If all strings in a language reduce to a form which can be simplified no further, we call such systems *strongly normalizing*, or *terminating*. If a rewriting system is both confluent and terminating it is said to be convergent.
+This feature, called [confluence](https://en.wikipedia.org/wiki/Confluence_(abstract_rewriting)), is an important property of some rewrite systems: regardless of the substitution order, we will always arrive at the same result. If all strings in a language reduce to a form which can be simplified no further, we call such systems *strongly normalizing*, or *terminating*. If a rewriting system is both confluent and terminating it is said to be *convergent*.
 
 ## λ-calculus
 
@@ -198,7 +198,7 @@ func → (λ var.expr)
 appl → (expr expr)
 ```
 
-To evaluate an `expr` in this language, we will need a single substition rule. The notation `expr[var → val]`, [is read as](https://groups.csail.mit.edu/mac/users/gjs/6.945/readings/Steele-MIT-April-2017.pdf#page=44), "within `expr`, `var` becomes `val`":
+To evaluate an `expr` in this language, we will need a single substitution rule. The notation `expr[var → val]`, [is read as](https://groups.csail.mit.edu/mac/users/gjs/6.945/readings/Steele-MIT-April-2017.pdf#page=44), "within `expr`, `var` becomes `val`":
 
 ```
 (λ var.expr) val → (expr[var → val])
@@ -437,7 +437,6 @@ $$
 
 Just like matrices, we can also think of a graph as a function which carries information from state to state - given a state, it tells us which next states are accessible. This correspondence suggests an unrealized connection between graph theory and linear algebra which is still being explored, and promises important applications for signal processing on graphs.
 
-
 <table>
 <tr>
 <td> <center><b>Geometric</b></center> </td> <td><center><b><center>Matrix</center></b></center></td>
@@ -464,9 +463,23 @@ Matrices are problematic for other reasons. Primarily, by treating a graph as a 
 
 # Graphs, computationally
 
-What happens if we take a square matrix ℝ<sup>K×K</sup> and raise it to a power? Which kinds of matrices converge? How can we analyze their asymptotics? This is a very fertile line of inquiry which has occupied engineers for the better part of the last century, with important applications in control theory, physical simulation and deep learning (RNNs). Linear algebra gives us a number of tricks for designing the matrix and normalizing the product to promote convergence, since systems which explode or vanish are not very interesting.
+What happens if we take a square matrix $$\mathbb{R}^{n\times n}$$ and raise it to a power? Which kinds of matrices converge? How can we analyze their asymptotics? This is a very fertile line of inquiry which has occupied engineers for the better part of the last century, with important applications in control theory, physical simulation and deep learning (RNNs). Linear algebra gives us a number of tricks for designing the matrix and normalizing the product to promote convergence, since systems which explode or vanish are not very interesting.
 
-One way to interpret this is as follows: each time we multiply a matrix by a vector ℝ<sup>K</sup>, we are effectively simulating a dynamic system at discrete time steps. This method is known as the [power](https://en.wikipedia.org/wiki/Power_iteration) or [Krylov](http://www.mathnet.ru/links/ebf56bfe7abf0fa06968059ace96e215/im5215.pdf) method in linear algebra. Essentially, we are searching for fixed points, or eigenvectors, which are these islands of stability in our dynamical system. If we initialize our state at such a point, the system will send us straight back to where we started.
+One way to interpret this is as follows: each time we multiply a matrix by a vector $$\mathbb{R}^{n}$$, we are effectively simulating a dynamical system at discrete time steps. This method is known as [power iteration](https://cs.mcgill.ca/~wlh/comp766/files/chapter1_draft_mar29.pdf#page=11) or the [Krylov method](http://www.mathnet.ru/links/ebf56bfe7abf0fa06968059ace96e215/im5215.pdf) in linear algebra. In the limit, we are seeking fixpoints, or eigenvectors, which are these islands of stability in our dynamical system. If we initialize our state at such a point, the transition matrix will send us straight back to where we started.
+
+$$
+f(x, y) = \begin{bmatrix}
+\frac{cos(x+2*y)}{x} & 0 \\ 0 & \frac{sin(x-2*y)}{y}
+\end{bmatrix} *
+\begin{bmatrix}x\\y\end{bmatrix} =
+\begin{bmatrix}cos(x+2*y)\\sin(x-2*y)\end{bmatrix}
+$$
+
+
+<!--https://www.wolframalpha.com/input/?i=%7B%7Bcos%28x%2B2*y%29%2Fx%7D%2C+0%7D%2C+%7B0%2C%7Bsin%28x-2*y%29%2Fy%7D%7D+eigenvalues-->
+<center><img src="../images/vector_field.png" width="63%"/></center>
+
+We are looking for fixpoints where $$f(x, y) = f\circ f(x, y)$$, indicating the trajectory has terminated. Such points describe the asymptotic behavior of our function.
 
 First, let's get some definitions out of the way.
 
@@ -482,27 +495,64 @@ mat → [[Tⁿ]ⁿ]
 
 We can think of the Krylov method as either a matrix-matrix product:
 
+
+<table>
+<tr>
+<td> <center><b>Grammar</b></center> </td> <td><center><b><center>Example</center></b></center></td>
+</tr>
+<tr>
+
+<td>
+<div markdown="1">
 ```
-mmp → mat | mat * mat 
+mmp → mat | mat * mat
 mvp → (mmp) * vec
 ```
+</div>
+</td>
+<td>
+<div markdown="1">
+$$(MM)V, (MMM)V, \ldots$$
+</div>
+</td>
+</tr>
+<tr>
 
-Or a matrix-vector product:
-
+<td>
+<div markdown="1">
 ```
+
 mvp → mat * vec | (mvp) * mat
 ```
+</div>
+</td>
+<td>
+<div markdown="1">
+$$M(MV), M(M(MV)), \ldots$$
+</div>
+</td>
+</tr>
+<tr>
 
-Or some kind of recurrence relation:
-
+<td>
+<div markdown="1">
 ```
 fun → (mat * vec) / ‖ mat * vec ‖
 rec → fun vec | (rec vec)
 ```
+</div>
+</td>
+<td>
+<div markdown="1">
+$$\frac{Ab}{\|Ab\|}, \frac{A\frac{Ab}{\|Ab\|}}{\|A\frac{Ab}{\|Ab\|}\|}, \frac{A\frac{A\frac{Ab}{\|Ab\|}}{\|A\frac{Ab}{\|Ab\|}\|}}{\|A\frac{A\frac{Ab}{\|Ab\|}}{\|A\frac{Ab}{\|Ab\|}\|}\|}, \ldots$$
+</div>
+</td>
+</tr>
+</table>
 
-Save their computational complexity, these three views are basically equivalent.
+Computational complexity aside, these three views are basically equivalent.
 
-Krylov methods are not just valid on real matrices, but can be generalized to boolean and integer matrices. We are primarily interested in the deterministic version, whose variables inhabit 𝔹<sup>K×K</sup>. There are various names for M, such as the [transition matrix](https://ieeexplore.ieee.org/stamp/stamp.jsp?arnumber=1086510&casa_token=KuNTtlFssrQAAAAA:-WcymDKB8OVo6gh1TKM0363R2dgvhi9XeuV5bLPI2yI1WtX0VlvPUAW5QoyhaBjdVfo8rA4HmA&tag=1), stochastic matrix, or Markov matrix.
+Krylov methods are not just applicable to real matrices, but can be used to analyze boolean and integer matrices. There are various names for M, such as the [transition matrix](https://ieeexplore.ieee.org/stamp/stamp.jsp?arnumber=1086510&casa_token=KuNTtlFssrQAAAAA:-WcymDKB8OVo6gh1TKM0363R2dgvhi9XeuV5bLPI2yI1WtX0VlvPUAW5QoyhaBjdVfo8rA4HmA&tag=1), stochastic matrix, or Markov matrix. We are primarily interested in the deterministic version, whose variables inhabit $$\mathbb{B}^{n\times n}$$.
 
 The Krylov methods have important applications for studying dynamical systems on networks. Researchers are just beginning to understand how eigenvalues of the Laplacian affect the asymptotic behavior of dynamical processes on graphs. In this section, we will explore some examples of dynamical processes on graphs.
 
@@ -520,7 +570,7 @@ Another early example of graph computation can be found in [Valiant](http://theo
 <blockquote class="twitter-tweet"><p lang="en" dir="ltr">TIL: CFL parsing can be reduced to boolean matrix multiplication (Valiant, 1975), known to be subcubic (Strassen, 1969), and later proven an asymptotic lower bound (Lee, 1997). This admits efficient GPGPU implementation (Azimov, 2017) in <a href="https://twitter.com/YaccConstructor?ref_src=twsrc%5Etfw">@YaccConstructor</a> <a href="https://t.co/3Vbml0v6b9">https://t.co/3Vbml0v6b9</a></p>&mdash; breandan (@breandan) <a href="https://twitter.com/breandan/status/1277136195118600192?ref_src=twsrc%5Etfw">June 28, 2020</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 </center>
 
-This astonishing result suggests that, at least for the context free languages, there is a parsing algorithm which is equivalent to matrix multiplication. For example, all of the following automata can be simulated using matrix multiplication:
+This astonishing result suggests that, at least for context free and less powerful languages, there is a parsing algorithm which is equivalent to matrix multiplication. For example, all of the following automata can be simulated using matrix multiplication:
 
 - [Pushdown automata](https://en.wikipedia.org/wiki/Pushdown_automaton)
 - [Buchi automata](https://en.wikipedia.org/wiki/B%C3%BCchi_automaton)
@@ -832,7 +882,7 @@ d │ 0  1  1  1
 
 </table>
 
-We encode the accept state as a self cycle in order to detect the fixpoint S = MS = MMS, after which we halt execution.
+We encode the accept state as a self cycle in order to detect the fixpoint $$S = MS = MMS$$, after which we halt execution.
 
 ## Dataflow graphs
 
@@ -985,7 +1035,7 @@ b │ 0  0  0  0
 
 # Graphs, efficiently
 
-One issue with efficient representation of graphs is space complexity. Suppose we have a graph with 10<sup>5</sup>=100,000 nodes, but only a single edge. We will need 10<sup>5*2</sup> bits, or about 1 GB to store it in adjacency matrix form, whereas if we use an adjacency list, we will need only ⌈ 2\*log<sub>2</sub>10<sup>5</sup> ⌉ = 34 bits. Most graphs are similarly sparse. But how do you multiply adjacency lists? Unclear. The solution is to use sparse matrices. That was easy.
+One issue with efficient representation of graphs is space complexity. Suppose we have a graph with $$10^5=100,000$$ nodes, but only a single edge. We will need $$10^{5\times 2}$$ bits, or about 1 GB to store it in adjacency matrix form, whereas if we use an adjacency list, we will need only $$\lceil 2\log_2 10^5 \rceil = 34$$ bits. Most graphs are similarly sparse. But how do you multiply adjacency lists? Unclear. The solution is to use sparse matrices. That was easy.
 
 Another, thornier, problem with graph algorithms is their time complexity. Many interesting problems on graphs are NP-complete, including Hamiltonian paths and subgraph isomorphism. If so, how are we supposed to do any computation if every operation may take nondeterminstic polynomial time? Computer science people are mostly concerned with worst case complexity, which rarely ever occurs in practice. Real world isomorphism can be solved quickly using approximate algorithms, such as the one we saw earlier.
 
@@ -1037,9 +1087,9 @@ We might also imagine these inputs as being generated by higher order programs.
 [S₀]───*───[S₁]───*───[S₂]───*───[..]───*───[Sₜ] } TM tape
 ```
 
-What about programs of varying length? It may be the case we want to learn programs where t varies. The key is, we can choose an upper bound on t, and search for a fixpoint. That is, we halt whenever S<sub>t</sub> = S<sub>t+1</sub>.
+What about programs of varying length? It may be the case we want to learn programs where t varies. The key is, we can choose an upper bound on t, and search for a fixpoint. That is, we halt whenever $$S_t = S_{t+1}$$.
 
-There will always be some program, at the interface of the machine and the real world, which must be approximated. One question worth asking is how large does k need to be in order to do so? If it is very large, this procedure might well be intractable. Time complexity appears to be at least O(tk<sup>2</sup>), using Strassen.
+There will always be some program, at the interface of the machine and the real world, which must be approximated. One question worth asking is how large does k need to be in order to do so? If it is very large, this procedure might well be intractable. Time complexity appears to be at least $$\mathcal{O}(tk^2)$$, using Strassen.
 
 # Program synthesis
 
@@ -1059,7 +1109,7 @@ $$
 \underset{P}{\text{argmin}}\sum_{i \sim I_{static}}\mathcal L(P^t S^i_0, S_t)
 $$
 
-One issue with this formulation is we must rely on a loss function over S<sub>t</sub>, which is often too sparse and generalizes poorly. It may be the case that many interesting program synthesis problems have [optimal substructure](https://en.wikipedia.org/wiki/Optimal_substructure), so we should be making "progress" towards a goal state, and can define a loss over intermediate states. This needs to be explored in more depth.
+One issue with this formulation is we must rely on a loss over $$S_t$$, which is often too sparse and generalizes poorly. It may be the case that many interesting program synthesis problems have [optimal substructure](https://en.wikipedia.org/wiki/Optimal_substructure), so we should be making "progress" towards a goal state, and can define a loss over intermediate states. This needs to be explored in more depth.
 
 Some, including [Gaunt et al.](https://arxiv.org/pdf/1608.04428.pdf) (2016), have shown gradient is not very effective, as the space of boolean circuits is littered with islands which have zero gradient. Their representation is also relative complex -- effectively, they are trying to learn a recursively enumerable language using something like a [Neural Turing Machine](https://arxiv.org/pdf/1410.5401.pdf) (Graves et al., 2014).
 
