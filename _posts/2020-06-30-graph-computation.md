@@ -79,7 +79,7 @@ This Spring, I took a fascinating [seminar on Graph Representation Learning](htt
 
 # What are graphs?
 
-Graphs are general-purpose data structures used to represent a variety of data types and procedural phenomena. Unlike most languages, which are highly sequential, graphs are capable of expressing a much richer family of relations between entities. Consider the following hierarchy of data structures, all of which are graphs with increasing expressive power:
+Graphs are general-purpose data structures used to represent a variety of data types and procedural phenomena. Unlike most sequential languages, graphs are capable of expressing a much richer family of relations between entities. Consider the following hierarchy of data structures, all of which are graphs with increasing expressive power:
 
 - **Sets**: datasets, multisets, posets, alphabets
 - **Sequences**: Lists, strings, arrays, linear function composition
@@ -88,7 +88,7 @@ Graphs are general-purpose data structures used to represent a variety of data t
 - **Directed graphs**: [State machines](https://en.wikipedia.org/wiki/Finite-state_machine), [λ-calculus](http://dkeenan.com/Lambda/), [the web](https://computersciencewiki.org/index.php/The_web_as_a_directed_graph), [call graphs](https://en.wikipedia.org/wiki/Call_graph), [RNNs](https://en.wikipedia.org/wiki/Recurrent_neural_network)
 - **Hypergraphs**: [Knowledge](https://arxiv.org/pdf/2003.02320.pdf), [Zettelkasten](https://zettelkasten.de/), [categories](https://en.wikipedia.org/wiki/Category_theory), [physics](https://writings.stephenwolfram.com/2020/04/finally-we-may-have-a-path-to-the-fundamental-theory-of-physics-and-its-beautiful/), [hypernetworks](https://openreview.net/pdf?id=rkpACe1lx)
 
-Directed graphs can be used for modeling mathematical expressions as I show in [Kotlin∇](https://github.com/breandan/kotlingrad), as well as other formal languages, including source code, intermediate representations and markup. There are many recent examples of learning directed graphs for neuro-symbolic applications:
+Directed graphs can be used to model mathematical expressions as I show in [Kotlin∇](https://github.com/breandan/kotlingrad), as well as other formal languages, including source code, intermediate representations and markup. There are many recent examples of learning directed graphs for neuro-symbolic applications:
 
 * [Deep Learning for Symbolic Mathematics](https://arxiv.org/pdf/1912.01412.pdf), Lample and Charton, 2019.
 * [Discovering Symbolic Models from Deep Learning with Inductive Biases](https://arxiv.org/pdf/2006.11287.pdf), Cranmer et al., 2020.
@@ -105,7 +105,7 @@ Using coreference resolution and entity alignment techniques, we can reconstruct
 
 <!--![logical_forms](../images/logical_forms.png) -->
 <center>
-<img align="center" width="75%" src="../images/knowledge_graph.png"/>
+<a href="https://arxiv.org/pdf/2003.02320.pdf"><img align="center" width="75%" src="../images/knowledge_graph.png"/></a>
 </center>
 
 Lo and behold, the key idea behind knowledge graphs is our old friend, types. Knowledge graphs are multi-relational graphs whose nodes and edges possess a type. Two entities can be related by multiple types, and each type can relate many pairs of entities. We can index an entity based on its type for knowledge retrieval, and use types to reason about compound queries, e.g. "Which `company` has a direct `flight` from a `port city` to a `capital city`?", which would otherwise be difficult to model explicitly without a type system.
@@ -410,6 +410,7 @@ Graphs have also found many interesting applications as reasoning devices in var
 | [Finite state machines](https://en.wikipedia.org/wiki/Finite-state_machine) | <br/><center><img align="center" width="50%" src="https://upload.wikimedia.org/wikipedia/commons/9/94/DFA_example_multiplies_of_3.svg"/></center> |
 | [Petri networks](https://en.wikipedia.org/wiki/Petri_net) | <br/><center><img align="center" width="50%" src="https://upload.wikimedia.org/wikipedia/commons/d/d7/Animated_Petri_net_commons.gif"/></center> |
 | [Proof networks](https://en.wikipedia.org/wiki/Proof_net) | <br/><center><img align="center" width="50%" src="https://www.researchgate.net/profile/Marco_Solieri/publication/311737880/figure/fig7/AS:501886778576905@1496670540685/Example-a-mMELL-proof-net-left-and-two-simple-mixed-nets-that-belong-to-its-expansion.png"/></center> |
+| [Causal graphs](https://en.wikipedia.org/wiki/Causal_graph) | <br/><center><img align="center" width="50%" src="https://upload.wikimedia.org/wikipedia/commons/e/ea/College_notID.png"/></center> |
 
 The λ-calculus can also be interpreted graphically. I refer the gentle reader to the following proposals:
 
@@ -557,7 +558,7 @@ $$\frac{Ab}{\|Ab\|}, \frac{A\frac{Ab}{\|Ab\|}}{\|A\frac{Ab}{\|Ab\|}\|}, \frac{A\
 
 Computational complexity aside, these three views are basically equivalent.
 
-Krylov methods are not just applicable to real matrices, but can be used to analyze boolean and integer matrices. There are various names for M, such as the [transition matrix](https://ieeexplore.ieee.org/stamp/stamp.jsp?arnumber=1086510&casa_token=KuNTtlFssrQAAAAA:-WcymDKB8OVo6gh1TKM0363R2dgvhi9XeuV5bLPI2yI1WtX0VlvPUAW5QoyhaBjdVfo8rA4HmA&tag=1), stochastic matrix, or Markov matrix. We are primarily interested in the deterministic version, whose variables inhabit $$\mathbb{B}^{n\times n}$$.
+Such methods are not just applicable to real matrices, but can be used to analyze boolean and integer matrices. These are sometimes called [transition](https://ieeexplore.ieee.org/stamp/stamp.jsp?arnumber=1086510&casa_token=KuNTtlFssrQAAAAA:-WcymDKB8OVo6gh1TKM0363R2dgvhi9XeuV5bLPI2yI1WtX0VlvPUAW5QoyhaBjdVfo8rA4HmA&tag=1), stochastic, or Markov matrices. We are primarily interested in the deterministic version, whose variables inhabit $$\mathbb{B}^{n\times n}$$.
 
 The Krylov methods have important applications for studying dynamical systems on networks. Researchers are just beginning to understand how eigenvalues of the Laplacian affect the asymptotic behavior of dynamical processes on graphs. In this section, we will explore some examples of dynamical processes on graphs.
 
@@ -599,7 +600,7 @@ We will now show a few examples simulating a state machine using the Krylov meth
 
 ## Linear chains
 
-To get started, let's iterate through a linked list. We initialize the pointer to the head of the list, and each matmul advances the pointer by a single element. We add an implicit self loop to the final element, and halt whenever we detect a fixpoint.
+Let's iterate through a linked list. We will initialize the pointer to the head of the list, and use multiplication to advance the pointer by a single element. We add an implicit self loop to the final element, and halt whenever we detect a fixpoint.
 
 <table>
 <tr>
@@ -740,7 +741,7 @@ c │ 0  1  1
 
 ## Directed acyclic graphs
 
-Simulating a DFA using a matrix is wasteful, since we only ever inhabit one state at a time. The real benefit of using matrices comes in when simulating nondeterminstic finite automata (NFA). Typical implementations require cloning the NFA when multiple transitions are valid. Instead of cloning the machine, we can simulate the superposition of all states using a single matrix.
+Simulating a DFA using a matrix can be wasteful, since we only ever inhabit one state at a time. The real benefit of using matrices comes when simulating nondeterminstic finite automata (NFA). Typical implementations require cloning the NFA when multiple transitions are valid. Instead of cloning the machine, we can simulate the superposition of all states using a single matrix.
 
 <table>
 <tr>
@@ -1088,13 +1089,13 @@ We might also imagine these inputs as being generated by higher order programs.
         [Q₀]───*───[..]───*───[Pₜ₋₂]              } Dynamics
           ╲          ╲          ╲
     [P₀]───*───[P₁]───*───[..]───*───[Pₜ₋₁]       } Program
-       ╲         ╲          ╲          ╲
+      ╲          ╲          ╲          ╲
 [S₀]───*───[S₁]───*───[S₂]───*───[..]───*───[Sₜ]  } TM tape
 ```
 
 What about programs of varying length? It may be the case we want to learn programs where t varies. The key is, we can choose an upper bound on t, and search for a fixpoint. That is, we halt whenever $$S_t = S_{t+1}$$.
 
-There will always be some program, at the interface of the machine and the real world, which must be approximated. One question worth asking is how large does k need to be in order to do so? If it is very large, this procedure might well be intractable. Time complexity appears to be at least $$\mathcal{O}(tk^2)$$, using Strassen.
+There will always be some program, at the interface of the machine and the real world, which must be approximated. One question worth asking is how large does k need to be in order to do so? If it is very large, this procedure might well be intractable. Time complexity appears to be at worst $$\mathcal{O}(tn^2)$$, using Strassen, although considerably better if S is sparse.
 
 # Program synthesis
 
@@ -1120,11 +1121,11 @@ Some, including [Gaunt et al.](https://arxiv.org/pdf/1608.04428.pdf) (2016), hav
 
 More recent work, including that of [Lample et al.](https://arxiv.org/pdf/1912.01412.pdf) (2019), have demonstrated Transformers are capable of learning programs, where the program belongs to a much simpler class of context-free languages. This space is often much more tractable to search and generate synthetic training data, and appears to be well within the reach of modern language models.
 
-![](https://raw.githubusercontent.com/quark0/darts/master/img/darts.png)
+<center><img src="https://raw.githubusercontent.com/quark0/darts/master/img/darts.png" width="60%"/></center>
 
 In the last year, a number of interesting reults in differentiable architecture search started to emerge. [DARTS](https://arxiv.org/pdf/1806.09055.pdf) (Liu et al., 2019) proposes to use gradient to search through the space of directed graphs. The authors first perform a continuous relaxation of the discrete graph, by reweighting the output of each each potential value by a hyperparameter, optimizing over the space of operations, then discretizing the output graph.
 
-[![](../images/solar_lezma.png)](https://youtu.be/rwBbYhOAnPo?t=28272)
+<center><a href="https://youtu.be/rwBbYhOAnPo?t=28272"><img src="../images/solar_lezma.png" width="70%"/></a></center>
 
 Solar-Lezma calls this latter approach, "program extraction", where the network implicitly or explicitly parameterizes the function, which after training, can be decoded into a symbolic expression. This also aligns with Goodfellow's notion of deep networks as programs, where each step performs a certain "step" of computation.
 
