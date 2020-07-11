@@ -148,7 +148,7 @@ Regular languages can also model nested repetition. Consider a slightly more com
 
    t → ε | 0
    a → 10 | a 10
-   b → 0 | b 01 | b 0
+   b → 0 | b 01 | b 0 ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎
 
 ```
 </div>
