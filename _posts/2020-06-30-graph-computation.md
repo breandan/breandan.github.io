@@ -114,9 +114,9 @@ Lo and behold, the key idea behind knowledge graphs is our old friend, types. Kn
 
 # Induction introduction!
 
-In this section, we will review some ideas from Chomskyan linguistics, including structural induction, rewriting systems and λ-calculus. If you are already familiar with these ideas, feel free to skim or skip to the next section.
+In this section, we will review some important concepts from [Chomskyan linguistics](https://en.wikipedia.org/wiki/Chomsky_hierarchy), including structural induction, string rewrite systems, λ-calculus and cellular automata. We will see how each has an interesting connection to graphs. If you are already familiar with these ideas, feel free to skim them or skip to the next section.
 
-## Regular languages
+## [Regular languages](#regular-languages)
 
 One thing that always fascinated me is the idea of inductively defined languages, also known as recursive, or structural induction. Consider a very simple language which accepts strings of the form `0`, `1`, `100`, `101`, `1001`, `1010`, et cetera, but rejects `011`, `110`, `1011`, or any string containing `11`. The `→` symbol indicates a "production". The `|` symbol, which we read as "or", is just a shorthand for defining multiple productions on a single line:
 
@@ -126,7 +126,7 @@ term → 0 | 10 | ε
 expr → term | expr term
 ```
 
-We have two sets of productions, those which can be expanded, called "nonterminals", and those which can be expanded no further, called "terminals". Notice how each non-terminal occurs at most once in any single production. This property guarantees the language is recognizable by a special kind of graph, called a finite state machine. As their name indicates, FSMs contain a finite number of states, with labeled transitions between them:
+We have two sets of productions, those which can be expanded, called "nonterminals", and those which can be expanded no further, called "terminals". Notice how each non-terminal occurs at most once in any single production. This property guarantees the language is recognizable by a special kind of graph, called a finite state machine. As their name suggests, FSMs contain a finite set of states, with labeled transitions between them:
 
 |Finite Automaton | Library Courtesy Bell |
 |:------:|:------:|
@@ -161,11 +161,11 @@ Regular languages can also model nested repetition. Consider a slightly more com
 </tr>
 </table>
 
-Note here, a single state may have multiple transitions on the same symbol. Called a nondeterminsic finite automata (NFA), this machine is no more powerful than a DFA, but may require far fewer states to recognize the same language. One way to implement an NFA is to fork the entire state whenever such a transition occurs, and simulate the superposition of all states. More on that later.
+Note here, a single state may have multiple transitions on the same symbol. Called a nondeterminsic finite automata (NFA), this machine can occupy multiple states simulatneously. While no more powerful than their determinstic cousins, NFAs often requires far fewer states to recognize the same language. One way to implement an NFA is to simulate the superposition of all states, by cloning the machine whenever such a transition occurs. More on that later.
 
 ## Arithmetic
 
-Now suppose we have a slightly more expressive language which accepts well-formed arithmetic expressions with up to two variables, in either infix or unary operator notation. In this language, a non-terminal occurs twice inside a single production -- an `expr` can be composed of two shorter `expr`s:
+Now suppose we have a slightly more expressive language which accepts well-formed arithmetic expressions with up to two variables, in either infix or unary prefix form. In this language, a non-terminal may occur twice inside a single production -- an `expr` can be composed of two sub`expr`s:
 
 ```
 term → 1 | 0 | x | y
@@ -219,7 +219,7 @@ Although we assign an ordering `R0`-`R9` for notational convenience, an initial 
 
 This feature, called [confluence](https://en.wikipedia.org/wiki/Confluence_(abstract_rewriting)), is an important property of some rewrite systems: regardless of the substitution order, we will always arrive at the same result. If all strings in a language reduce to a form which can be simplified no further, we call such systems *strongly normalizing*, or *terminating*. If a rewriting system is both confluent and terminating it is said to be *convergent*.
 
-## λ-calculus
+## [λ-calculus](#λ-calculus)
 
 So far, the languages we have seen are capable of generating and simplifying arithmetic expressions, but cannot by themselves perform arithmetic, since they cannot encode arbitrary numbers. We will now consider a language which can:
 
@@ -287,17 +287,17 @@ $$
 a_i^{(t)} = \sum_j s(j)a_{i-j}^{(i-j)} \mod 2
 $$
 
-This operation, which might remind us of a [certain operation](https://en.wikipedia.org/wiki/Convolution#Discrete_convolution) from digital signal processing. We read $$f * g$$ as "$$f$$ convolved by $$g$$":
+This might remind us of a certain operation from digital signal processing, called a [discrete convolution](https://en.wikipedia.org/wiki/Convolution#Discrete_convolution). We read $$f * g$$ as "$$f$$ convolved by $$g$$":
 
 $$
 (f * g)[n] = \sum_{m=-\infty}^{\infty} f[m]g[n-m]
 $$
 
-Here $$f$$ is our state and $$g$$ is called a "kernel". This system is known to be [Turing complete](https://wpmedia.wolfram.com/uploads/sites/13/2018/02/15-1-1.pdf). Disregarding efficiency, we could encode any computable function as an initial state and mechanically apply Rule 110 to simulate a TM.
+Here $$f$$ is our state and $$g$$ is called a "kernel". Similar to the λ-calculus, this system also is [known to be universal](https://wpmedia.wolfram.com/uploads/sites/13/2018/02/15-1-1.pdf). Disregarding efficiency, we could encode any computable function as an initial state and mechanically apply Rule 110 to simulate a TM, λ-calculus, or any other TC system.
 
-## Graphs, inductively
+# Graphs, inductively
 
-Just like grammars, we can define graphs themselves inductively. As many graph algorithms are recursive, this choice considerably simplifies their implementation. Take one definition for an unlabeled directed graph, proposed by [Erwig](https://web.engr.oregonstate.edu/~erwig/papers/InductiveGraphs_JFP01.pdf) (2001). Here, the notation `list → [item]` is a shorthand for `list → item list`, where `item` is some terminal, and `list` is just a list of `item`s:
+Just like grammars, we can define graphs themselves inductively. As many graph algorithms are recursive, this choice considerably simplifies their implementation. Take one definition of an unlabeled directed graph, proposed by [Erwig](https://web.engr.oregonstate.edu/~erwig/papers/InductiveGraphs_JFP01.pdf) (2001). Here, the notation `list → [item]` is a shorthand for `list → item list`, where `item` is some terminal, and `list` is just a list of `item`s:
 
 ```
 vertex  → int
@@ -367,18 +367,18 @@ fun Set<Vertex>.closure(): Set<Vertex> =
 fun Vertex.neighborhood(k: Int = 0) = Graph(neighbors(k).closure())
 ```
 
-We can also define the adjacency and degree matrices:
+We can also define the [adjacency](https://en.wikipedia.org/wiki/Adjacency_matrix), [degree](https://en.wikipedia.org/wiki/Degree_matrix), and [Laplacian](https://en.wikipedia.org/wiki/Laplacian_matrix) matrices like so:
 
 ```kotlin
-val Graph.degree = Mat(vertices.size, vertices.size).also { deg ->
-  V.forEach { v -> deg[v, v] = v.neighbors.size }
-}
-
 val Graph.adjacency = Mat(vertices.size, vertices.size).also { adj ->
   vertices.forEach { v -> v.neighbors.forEach { n -> adj[v, n] = 1 } }
 }
 
-val Graph.laplacian by lazy { degree - adjacency }
+val Graph.degree = Mat(vertices.size, vertices.size).also { deg ->
+  V.forEach { v -> deg[v, v] = v.neighbors.size }
+}
+
+val Graph.laplacian = degree - adjacency
 ```
 
 But what about cycles? To support cycles, we will need to modify our definition slightly, to delay edge instantiation until after construction:
@@ -392,7 +392,7 @@ class Vertex(map: (Vertex) -> Set<Vertex>) {
 
 We can now call `Vertex() { setOf(it) }` to create a vertex with a self-loop.
 
-Let us consider an algorithm called the Weisfeiler-Lehman isomorphism test, which my colleague David Bieber wrote a [nice piece](https://davidbieber.com/post/2019-05-10-weisfeiler-lehman-isomorphism-test/) about. I'll focus on the implementation. First, we need a pooling operator, which will aggregate all neighbors in our neighborhood using some summary statistic:
+Let us consider an algorithm called the Weisfeiler-Lehman isomorphism test, on which my colleague David Bieber has written a [nice piece](https://davidbieber.com/post/2019-05-10-weisfeiler-lehman-isomorphism-test/). I'll focus on the implementation. First, we need a pooling operator, which will aggregate all neighbors in our neighborhood using some summary statistic:
 
 ```kotlin
 fun Graph.poolBy(statistic: Set<Vertex>.() -> Int): Map<Vertex, Int> =
@@ -435,31 +435,29 @@ TODO: Graph grammars are grammars on graphs.
 
 TODO: Single/Double pushout
 
-# Graph languages
+# [Graph languages](#graph-languages)
 
-Graphs have also found many interesting applications as reasoning devices in various domains:
+Approximately 20% of the human cerebral cortex is devoted to [visual processing](https://en.wikipedia.org/wiki/Occipital_lobe). By using visual representations, language designers can tap into powerful pattern matching abilities which are often underutilized by linear symbolic writing systems. Graphs are powerful communication and reasoning devices which have found many interesting applications various domain-specific languages:
 
-## Graph DSLs
-
-|Diagramming Language|Example|
+|Language|Example|
 |:------------------:|:-----:|
-| [Finite state machines](https://en.wikipedia.org/wiki/Finite-state_machine) | <br/><center><img align="center" width="50%" src="https://upload.wikimedia.org/wikipedia/commons/9/94/DFA_example_multiplies_of_3.svg"/></center> |
-|  [Tensor network notation](https://www.mscs.dal.ca/%7Eselinger/papers/graphical-bib/public/Penrose-applications-of-negative-dimensional-tensors.pdf) | <br/><center><img align="center" width="50%" src="https://tensornetwork.org/diagrams/tensor_diagrams.png"/></center>|
+| [Finite automata](https://en.wikipedia.org/wiki/Finite-state_machine) | <br/><center><img align="center" width="50%" src="https://upload.wikimedia.org/wikipedia/commons/9/94/DFA_example_multiplies_of_3.svg"/></center> |
+|  [Tensor network](https://www.mscs.dal.ca/%7Eselinger/papers/graphical-bib/public/Penrose-applications-of-negative-dimensional-tensors.pdf) | <br/><center><img align="center" width="50%" src="https://tensornetwork.org/diagrams/tensor_diagrams.png"/></center>|
 | [Causal graphs](https://en.wikipedia.org/wiki/Causal_graph) | <br/><center><img align="center" width="50%" src="https://upload.wikimedia.org/wikipedia/commons/e/ea/College_notID.png"/></center> |
 | [Category theory](https://www.cs.mcgill.ca/~prakash/Pubs/category_theory_notes.pdf) |<br/><center><img align="center" width="50%" src="https://upload.wikimedia.org/wikipedia/commons/e/ef/Commutative_diagram_for_morphism.svg"/></center>|
 | [Penrose notation](https://www.mscs.dal.ca/%7Eselinger/papers/graphical-bib/public/Penrose-applications-of-negative-dimensional-tensors.pdf) |<br/><center><img align="center" width="50%" src="https://enacademic.com/pictures/enwiki/80/Penrose_covariant_derivate.svg"/></center>|
+|[Feynman diagrams](http://www-pnp.physics.ox.ac.uk/~barra/teaching/feynman.pdf)|<br/><center><img align="center" width="50%" src="https://upload.wikimedia.org/wikipedia/commons/1/1f/Feynmann_Diagram_Gluon_Radiation.svg"/></center>|
 
-<!--|[Feynman diagram](http://www-pnp.physics.ox.ac.uk/~barra/teaching/feynman.pdf)|<br/><center><img align="center" width="50%" src="https://upload.wikimedia.org/wikipedia/commons/1/1f/Feynmann_Diagram_Gluon_Radiation.svg"/></center>|-->
 <!--| [Petri networks](https://en.wikipedia.org/wiki/Petri_net) | <br/><center><img align="center" width="50%" src="https://upload.wikimedia.org/wikipedia/commons/d/d7/Animated_Petri_net_commons.gif"/></center> |-->
 <!--| [Proof networks](https://en.wikipedia.org/wiki/Proof_net) | <br/><center><img align="center" width="50%" src="https://www.researchgate.net/profile/Marco_Solieri/publication/311737880/figure/fig7/AS:501886778576905@1496670540685/Example-a-mMELL-proof-net-left-and-two-simple-mixed-nets-that-belong-to-its-expansion.png"/></center> |-->
 
-The λ-calculus can also be interpreted graphically. I refer the gentle reader to the following proposals:
+The λ-calculus, which we saw [earlier](#λ-calculus), can also be interpreted graphically. I refer the gentle reader to the following proposals:
 
 * [Graphic lambda calculus](https://arxiv.org/pdf/1305.5786.pdf)
 * [Visual lambda calculus](http://bntr.planet.ee/lambda/work/visual_lambda.pdf)
 * [To Dissect a Mockingbird: A Graphical Notation for the Lambda Calculus](http://dkeenan.com/Lambda/)
 
-As Tae Danae Bradley [vividly portrays](https://www.math3ma.com/blog/matrices-probability-graphs), matrices are not just 2D arrays, matrices are *functions on vector spaces*. This has a nice visual representation using a bipartite graph:
+As Tae Danae Bradley [vividly portrays](https://www.math3ma.com/blog/matrices-probability-graphs), we can think of a matrix as not just a 2D array, but a *function on a vector space*. This perspective has a nice visual representation using a bipartite graph:
 
 <center>
 <a href="https://www.math3ma.com/blog/matrices-probability-graphs"><img align="center" width="75%" src="https://uploads-ssl.webflow.com/5b1d427ae0c922e912eda447/5c7ed4bcea0c9faeafe61466_pic1.jpg"/></a>
@@ -496,15 +494,15 @@ $$
 </tr>
 </table>
 
-Note the lower triangular structure of the adjacency matrix, indicating it contains no cycles, a property which is not immediately obvious from the naïve geometric layout. Iff the vertices of a directed graph can be reordered to produce an adjacency matrix in triangular form, this graph is said to be a directed acyclic graph. Called a topological ordering, this can be implemented using [matrix multiplication](https://en.wikipedia.org/wiki/Topological_sorting#Parallel_algorithms) on the adjacency matrix.
+Note the lower triangular structure of the adjacency matrix, indicating it contains no cycles, a property which is not immediately obvious from the naïve geometric layout. Whenever a graph has a triangular adjacency matrix, this graph is called a directed acyclic graph. Called a topological ordering, this can be implemented by [multiplying](https://en.wikipedia.org/wiki/Topological_sorting#Parallel_algorithms) the adjacency matrix.
 
 Both the geometric and matrix representations impose a extrinsic perspective on graphs, each with their own advantages and disadvantages. 2D renderings can be visually compelling, but require solving a [minimal crossing number](https://en.wikipedia.org/wiki/Crossing_number_(graph_theory)) or similar minimization to make network connectivity plain to the naked eye. While graph drawing is an active [field of research](http://www.graphdrawing.org/), matrices can often reveal symmetries that are not obvious from a naive graph layout.
 
-Matrices are problematic for other reasons. Primarily, by treating a graph as a matrix, we impose an ordering over all vertices which is often arbitrary. Note also its sparsity, and consider the size of the matrix required to store even small graphs. While problematic, this can be overcome with certain optimizations. Despite their disadvantages, matrices and are a natural representation choice for many graph algorithms, particularly on modern parallel processing hardware. More on that later.
+Matrices are problematic for some reasons. Primarily, by treating a graph as a matrix, we impose an ordering over all vertices which is often arbitrary. Note also its sparsity, and consider the size of the matrix required to store even small graphs. While problematic, this can be overcome with [certain optimizations](https://en.wikipedia.org/wiki/Sparse_matrix). Despite their disadvantages, matrices and are a natural representation choice for many graph algorithms, particularly on modern parallel processing hardware.
 
 <center><a href="https://epubs.siam.org/doi/book/10.1137/1.9780898719918"><img src="../images/graph_linear_algebra.png" width="60%"/></a></center>
 
-Just like matrices, we can also think of a graph as a function which carries information from state to state - given a state, it tells us which next states are reachable. Recent work in graph theory has revealed a fascinating duality between [graphs and linear algebra](https://epubs.siam.org/doi/book/10.1137/1.9780898719918), holding many important insights for dynamical processes on graphs.
+Just like matrices, we can also think of a graph as a function on a state space, which carries information from state to state - given a state or set of states, it tells us which next states are reachable. Recent work in graph theory has revealed a fascinating duality between [graphs and linear algebra](https://epubs.siam.org/doi/book/10.1137/1.9780898719918), holding many important insights for dynamical processes on graphs.
 
 # Graphs, computationally
 
@@ -784,9 +782,9 @@ c │ 0  1  1
 
 ## Directed acyclic graphs
 
-Simulating a DFA using a matrix can be inefficient, since we only ever inhabit one state at a time. The real benefit of using matrices comes when simulating nondeterminstic finite automata (NFA). 
+Simulating a DFA using a matrix can be inefficient, since we only ever inhabit one state at a time. The real benefit of using matrices comes when simulating nondeterminstic finite automata, [seen earlier](#regular-languages). 
 
-Formally, an NFA is a 5-tuple $$\langle Q, \Sigma, \Delta, q_0, F \rangle$$, where $$Q$$ is a finite set of states, $$\Sigma$$ is the alphabet, $$\Delta :Q\times (\Sigma \cup \{\epsilon \})\rightarrow P(Q)$$ is the transition function, $$q_0 \in Q$$ is the initial state and $$F \subseteq Q$$ are the terminal states. An NFA can be represented as a directed graph whose adjacency matrix is defined by the transition function, with edge labels representing symbols from the alphabet and binary node labels indicating whether the node is a terminal or nonterminal state.
+Formally, an NFA is a 5-tuple $$\langle Q, \Sigma, \Delta, q_0, F \rangle$$, where $$Q$$ is a finite set of states, $$\Sigma$$ is the alphabet, $$\Delta :Q\times (\Sigma \cup \{\epsilon \})\rightarrow P(Q)$$ is the transition function, $$q_0 \in Q$$ is the initial state and $$F \subseteq Q$$ are the terminal states. An NFA can be represented as a labeled transition system, or directed graph whose adjacency matrix is defined by the transition function, with edge labels representing symbols from the alphabet and self-loops for each terminal state.
 
 Typical implementations require cloning the NFA when multiple transitions are valid. Instead of cloning the machine, we can simulate the superposition of all states using a single matrix.
 
