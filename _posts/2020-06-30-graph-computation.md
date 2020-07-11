@@ -161,12 +161,11 @@ Regular languages can also model nested repetition. Consider a slightly more com
 </tr>
 </table>
 
-Note here, a single state may have multiple transitions on the same symbol. This is called a nondeterminsic finite automata, which is no more expressive than DFA, but may require far fewer states to recognize the same language, but requires some extra steps to efficiently simulate. More on that later.
-
+Note here, a single state may have multiple transitions on the same symbol. Called a nondeterminsic finite automata (NFA), this machine is no more powerful than a DFA, but may require far fewer states to recognize the same language. One way to implement an NFA is to fork the entire state whenever such a transition occurs, and simulate the superposition of all states. More on that later.
 
 ## Arithmetic
 
-Now suppose we have a slightly more expressive language which accepts well-formed arithmetic expressions with up to two variables, in either infix or unary operator notation. In this language, a non-terminal occurs twice inside a single production -- an `<expr>` can be composed of two shorter `<expr>`s:
+Now suppose we have a slightly more expressive language which accepts well-formed arithmetic expressions with up to two variables, in either infix or unary operator notation. In this language, a non-terminal occurs twice inside a single production -- an `expr` can be composed of two shorter `expr`s:
 
 ```
 term → 1 | 0 | x | y
@@ -174,13 +173,13 @@ term → 1 | 0 | x | y
 expr → term | op expr | expr op expr
 ```
 
-This is known as a context-free language (CFL). We can represent strings in this language using a special kind of graph, called a syntax tree. Each time we expand an `<expr>` with a production rule, this generates a rooted subtree on `<op>`, whose branch(es) are `<expr>`s. Typically, syntax trees are inverted, with branches extending downwards, like so:
+This is known as a context-free language (CFL). We can represent strings in this language using a special kind of graph, called a syntax tree. Each time we expand an `expr` with a production rule, this generates a rooted subtree on `op`, whose branch(es) are `expr`s. Typically, syntax trees are inverted, with branches extending downwards, like so:
 
 |Syntax Tree| Peach Tree|
 |:---:|:---:|
 |<center><img align="center" width="80%" src="../images/tree_syntax.svg"/></center>|<center><img align="center" width="75%" src="../images/tree_peach.png"/></center>|
 
-While syntax trees can be interpreted computationally, they do not actually perform computation until evaluated. To evaluate a syntax tree, we will need to introduce some new rules. Instead of just allowing terminals to occur on the right-hand side of a grammar production, suppose we also allow terminals on the left, and applying a rule can reduce the size of a string in our language. Here, we use capital letters on the same line to indicate an exact match, e.g. a rule `U + V → V + U` would replace `x + y` with `y + x`:
+While syntax trees can be interpreted computationally, they do not actually perform computation unless evaluated. To (partially) evaluate a syntax tree, we will now to introduce some pattern matching rules. Instead of just allowing terminals to occur on the right-hand side of a production, suppose we also allow terminals on the left, and applying a rule can shrink a string in our language. Here, we use capital letters on the same line to indicate an exact match, e.g. a rule `U + V → V + U` would replace `x + y` with `y + x`:
 
 ```
                                          E + E → +E
@@ -190,7 +189,7 @@ While syntax trees can be interpreted computationally, they do not actually perf
   E - E | E · 0 | 0 · E | 0 - E | +0 | -1 | ·0 → 0
 ```
 
-This is known as a recursively enumerable language, or string rewrite system. This particular example produces directed acyclic graphs, which we can think of as grafting or pruning the branches of a tree. If we must combine two identical expressions, why evaluate them twice? If we need to multiply an expression by `0`, why evaluate it at all? Some say, "all trees are DAGs, but not all DAGs are trees". Growing up in the woods, I prefer to think of a DAG as a tree with a [gemel](https://en.wikipedia.org/wiki/Inosculation):
+This is known as a context sensitive language, or string rewrite system. This particular example produces directed acyclic graphs, which we can think of as grafting or pruning the branches of a tree. If we must add two identical expressions, why evaluate them twice? If we need to multiply an expression by `0`, why evaluate it at all? Some say, "all trees are DAGs, but not all DAGs are trees". Growing up in the woods, I prefer to think of a DAG as a tree with a [gemel](https://en.wikipedia.org/wiki/Inosculation):
 
 |Rewrite Rule|Deformed Tree|
 |---|----|
@@ -222,7 +221,7 @@ This feature, called [confluence](https://en.wikipedia.org/wiki/Confluence_(abst
 
 ## λ-calculus
 
-So far, the languages we have seen are capable of generating arithmetic expressions, but cannot by themselves perform arithmetic, since we cannot bind variables to values. We will now consider a language which can:
+So far, the languages we have seen are capable of generating and simplifying arithmetic expressions, but cannot by themselves perform arithmetic, since they cannot encode arbitrary numbers. We will now consider a language which can:
 
 ```
 expr → var | func | appl
@@ -230,15 +229,15 @@ func → (λ var.expr)
 appl → (expr expr)
 ```
 
-To evaluate an `expr` in this language, we need a single substitution rule. The notation `expr[var → val]`, [we read as](https://groups.csail.mit.edu/mac/users/gjs/6.945/readings/Steele-MIT-April-2017.pdf#page=44), "within `expr`, `var` becomes `val`":
+To evaluate a `expr` in this language, we need a single substitution rule. The notation `expr[var → val]`, [we read as](https://groups.csail.mit.edu/mac/users/gjs/6.945/readings/Steele-MIT-April-2017.pdf#page=44), "within `expr`, `var` becomes `val`":
 
 ```
 (λ var.expr) val → (expr[var → val])
 ```
 
-For example, applying the above rule to the expression `(λy.y z) 1` yields `(λy.1 z)`. With this seemingly trivial addition, our language is now powerful enough to encode any computable function! This language is known as the pure untyped λ-calculus.
+For example, applying the above rule to the expression `(λy.y z) 1` yields `(λy.1 z)`. With this seemingly trivial addition, our language is now powerful enough to encode any computable function! Known as the pure λ-calculus, this system is equivalent to an idealized computer with infinite memory.
 
-While grammatically compact, computation in this system is not particularly terse. In order to perform any computation using this system, we will need a way to encode values. For example, we can encode the boolean algebra like so:
+While grammatically compact, computation in the λ-calculus is not particularly terse. In order to perform any computation, we will need a way to encode values. For example, we can encode the boolean algebra like so:
 
 ```
 [D1]           λx.λy.x = T     "true"
@@ -261,11 +260,11 @@ To evaluate a boolean expression `!T`, we will first need to encode it as a λ-e
 → (   F                  )     [D2]
 ```
 
-We have now reached a terminal, and can recurse no further. Unlike its typed cousin, the untyped λ-calculus not strongly normalizing and thus not guaranteed to converge. If it were convergent, it would not be Turing complete.
+We have now reached a terminal, and can recurse no further. Unlike its typed cousin, the untyped λ-calculus *not* strongly normalizing and thus not guaranteed to converge. If it were convergent, it would not be Turing complete.
 
 ## Cellular automata
 
-Consider the [elementary cellular automata](https://en.wikipedia.org/wiki/Elementary_cellular_automaton), which consists of a one dimensional array, and a 3-cell rewrite system. There are $$2^{{2^3}} = 256$$ possible rules for rewriting the tape. It turns out even in this tiny space, there are remarkable automata. Consider the following rewrite system, known as [Rule 110](https://en.wikipedia.org/wiki/Rule_110):
+Consider the [elementary cellular automata](https://en.wikipedia.org/wiki/Elementary_cellular_automaton), which consists of a one dimensional array, and a 3-cell rewrite system. There are $$2^{2^3} = 256$$ possible rules for rewriting the tape. It turns out even in this tiny space, there are remarkable automata. Consider the following rewrite system, known as [Rule 110](https://en.wikipedia.org/wiki/Rule_110):
 
 <center>
 <img align="center" src="../images/ca_rule%20110.png"/>
@@ -279,9 +278,22 @@ Consider the [elementary cellular automata](https://en.wikipedia.org/wiki/Elemen
 
 | current pattern           | `111` | `110` | `101` | `100` | `011` | `010` | `001` | `000` |
 |:-------------------------:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:----:|
-| new pattern | ` 0 `  | ` 1 `  | ` 1 `  | ` 0 `  | ` 1 ` | ` 1 `  | ` 1 `  | ` 0 `  |
+| next pattern | ` 0 `  | ` 1 `  | ` 1 `  | ` 0 `  | ` 1 ` | ` 1 `  | ` 1 `  | ` 0 `  |
 
-We can implement this by scanning the tape and replacing any cells matching the centermost element in the first row with the second row's value. This system is known to be [Turing complete](https://wpmedia.wolfram.com/uploads/sites/13/2018/02/15-1-1.pdf). Disregarding efficiency, we could encode any computable function as an initial state and mechanically apply Rule 110 until fixpoint termination to simulate a TM.
+
+To implement this machine, we can slide over the state and replace the centermost cell in any matching substring with the second row's value. [Robinson](http://wpmedia.wolfram.com/uploads/sites/13/2018/02/01-1-15.pdf) (1987) defines an ECA inductively, using a recurrence relation:
+
+$$
+a_i^{(t)} = \sum_j s(j)a_{i-j}^{(i-j)} \mod 2
+$$
+
+This operation, which might remind us of a [certain operation](https://en.wikipedia.org/wiki/Convolution#Discrete_convolution) from digital signal processing. We read $$f * g$$ as "$$f$$ convolved by $$g$$":
+
+$$
+(f * g)[n] = \sum_{m=-\infty}^{\infty} f[m]g[n-m]
+$$
+
+Here $$f$$ is our state and $$g$$ is called a "kernel". This system is known to be [Turing complete](https://wpmedia.wolfram.com/uploads/sites/13/2018/02/15-1-1.pdf). Disregarding efficiency, we could encode any computable function as an initial state and mechanically apply Rule 110 to simulate a TM.
 
 ## Graphs, inductively
 
