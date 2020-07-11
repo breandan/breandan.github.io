@@ -128,13 +128,13 @@ expr → term | expr term
 
 We have two sets of productions, those which can be expanded, called "nonterminals", and those which can be expanded no further, called "terminals". Notice how each non-terminal occurs at most once in any single production. This property guarantees the language is recognizable by a special kind of graph, called a finite state machine. As their name indicates, FSMs contain a finite number of states, with labeled transitions between them:
 
-|Finite State Machine | Library Courtesy Bell |
+|Finite Automaton | Library Courtesy Bell |
 |:------:|:------:|
 |<center><img align="center" width="200%" src="../images/fsm_bell.svg"/></center>| <br/><center><img align="center" width="50%" src="../images/bell.png"/></center><br/>Please ring the bell **once**<br/> and wait for assistance. |
 
 Imagine a library desk: you can wait quietly and eventually you will be served. You can ring the bell once, and wait quietly to be served. Should no one arrive after some time, you may press the bell again and continue waiting. Though you must never ring the bell twice, lest you disturb the patrons and be tossed out.
 
-Regular languages can also model repetition and nesting. Consider a slightly more complicated language, given by the regular expression `(0(01)*)*(10)*`.
+Regular languages can also model nested repetition. Consider a slightly more complicated language, given by the regular expression `(0(01)*)*(10)*`. The `*`, or Kleene star,  means, "accept zero or more of the previous token".
 
 <table>
 <tr>
@@ -146,22 +146,22 @@ Regular languages can also model repetition and nesting. Consider a slightly mor
 <div markdown="1">
 ```
 
-t → ε | 0
-a → 10 | a10
-b → 0 | b01 | b0
+   t → ε | 0
+   a → 10 | a 10
+   b → 0 | b 01 | b 0
 
 ```
 </div>
 </td>
 <td>
 <div markdown="1">
-<center><img src="../images/nfa.svg" width="70%"/></center>
+<center><img src="../images/nfa.svg" width="80%"/></center>
 </div>
 </td>
 </tr>
 </table>
 
-Note here, a single state may have multiple transitions on the same symbol. This is called a nondeterminsic finite automata, which for some languages, may have far fewer states than would be require if using a determinstic machine, but requires some extra steps to efficiently simulate. More on that later.
+Note here, a single state may have multiple transitions on the same symbol. This is called a nondeterminsic finite automata, which is no more expressive than DFA, but may require far fewer states to recognize the same language, but requires some extra steps to efficiently simulate. More on that later.
 
 
 ## Arithmetic
