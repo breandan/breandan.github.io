@@ -90,12 +90,14 @@ Graphs are general-purpose data structures used to represent a variety of data t
 
 Directed graphs can be used to model mathematical expressions as I show in [Kotlin∇](https://github.com/breandan/kotlingrad), as well as other formal languages, including source code, intermediate representations and markup. There are many recent examples of learning directed graphs for neuro-symbolic applications:
 
+* [Learning to Represent Programs with Graphs](https://arxiv.org/pdf/1711.00740.pdf), Allamanis et al., 2018
 * [Deep Learning for Symbolic Mathematics](https://arxiv.org/pdf/1912.01412.pdf), Lample and Charton, 2019.
 * [Discovering Symbolic Models from Deep Learning with Inductive Biases](https://arxiv.org/pdf/2006.11287.pdf), Cranmer et al., 2020.
 * [Symbolic Pregression: Discovering Physical Laws from Raw Distorted Video](https://arxiv.org/pdf/2005.11212.pdf) (Udrescu & Tegmark, 2020).
 * [DreamCoder: Growing generalizable, interpretable knowledge with wake-sleep Bayesian program learning](https://arxiv.org/pdf/2006.08381.pdf), Ellis et al., 2020.
+* [Strong Generalization and Efficiency in Neural Programs](https://arxiv.org/abs/2007.03629), Li et al., 2020.
 
-Graphs are also be found in natural language, such as [constituency](https://en.wikipedia.org/wiki/Phrase_structure_grammar), [dependency](https://en.wikipedia.org/wiki/Dependency_grammar), [link](https://en.wikipedia.org/wiki/Link_grammar) and other common grammars. Research has begun to show many practical applications for such grammars in the extraction and organization of human knowledge stored in large text corpora. Those graphs can be further processed into ontological representations for logical reasoning.
+The field of natural language has also developed a rich set of graph-based representations, such as [constituency](https://en.wikipedia.org/wiki/Phrase_structure_grammar), [dependency](https://en.wikipedia.org/wiki/Dependency_grammar), [link](https://en.wikipedia.org/wiki/Link_grammar) and other and other typed attribute grammars which can be used to reason about syntactic and semantic relations between natural language entities. Research has begun to show many practical applications for such grammars in the extraction and organization of human knowledge stored in large text corpora. Those graphs can be further processed into ontological representations for logical reasoning.
 
 <center>
 <img align="center" width="60%" src="https://upload.wikimedia.org/wikipedia/commons/8/8e/Thistreeisillustratingtherelation%28PSG%29.png"/>
@@ -132,6 +134,35 @@ We have two sets of productions, those which can be expanded, called "nontermina
 
 Imagine a library desk: you can wait quietly and eventually you will be served. You can ring the bell once, and wait quietly to be served. Should no one arrive after some time, you may press the bell again and continue waiting. Though you must never ring the bell twice, lest you disturb the patrons and be tossed out.
 
+Regular languages can also model repetition and nesting. Consider a slightly more complicated language, given by the regular expression `(0(01)*)*(10)*`.
+
+<table>
+<tr>
+<td> <center><b>Backaus-Naur Grammar</b></center> </td> <td><center><b><center>Nondeterminstic Finite Automaton</center></b></center></td>
+</tr>
+<tr>
+
+<td>
+<div markdown="1">
+```
+
+t → ε | 0
+a → 10 | a10
+b → 0 | b01 | b0
+
+```
+</div>
+</td>
+<td>
+<div markdown="1">
+<center><img src="../images/nfa.svg" width="60%"/></center>
+</div>
+</td>
+</tr>
+</table>
+
+Note here, a single state may have multiple transitions on the same symbol. This is called a nondeterminsic finite state machine, which for some languages, may have far fewer states than would be require if using a determinstic machine, but requires some extra steps to efficiently simulate.
+
 ## Arithmetic
 
 Now suppose we have a slightly more expressive language which accepts well-formed arithmetic expressions with up to two variables, in either infix or unary operator notation. In this language, a non-terminal occurs twice inside a single production -- an `<expr>` can be composed of two shorter `<expr>`s:
@@ -145,9 +176,9 @@ expr → term | op expr | expr op expr
 This is known as a context-free language (CFL). We can represent strings in this language using a special kind of graph, called a syntax tree. Each time we expand an `<expr>` with a production rule, this generates a rooted subtree on `<op>`, whose branch(es) are `<expr>`s. Typically, syntax trees are inverted, with branches extending downwards, like so:
 
 |Syntax Tree| Peach Tree|
-|-----------|-----------|
-|![](../images/tree_syntax.svg)|![](../images/tree_peach.png)|
- 
+|:---:|:---:|
+|<center><img align="center" width="80%" src="../images/tree_syntax.svg"/></center>|<center><img align="center" width="75%" src="../images/tree_peach.png"/></center>|
+
 While syntax trees can be interpreted computationally, they do not actually perform computation until evaluated. To evaluate a syntax tree, we will need to introduce some new rules. Instead of just allowing terminals to occur on the right-hand side of a grammar production, suppose we also allow terminals on the left, and applying a rule can reduce the size of a string in our language. Here, we use capital letters on the same line to indicate an exact match, e.g. a rule `U + V → V + U` would replace `x + y` with `y + x`:
 
 ```
@@ -190,7 +221,7 @@ This feature, called [confluence](https://en.wikipedia.org/wiki/Confluence_(abst
 
 ## λ-calculus
 
-Consider a language which has the following grammar:
+So far, the languages we have seen are capable of generating arithmetic expressions, but cannot by themselves perform arithmetic, since we cannot bind variables to values. We will now consider a language which has the following grammar:
 
 ```
 expr → var | func | appl
@@ -206,7 +237,7 @@ To evaluate an `expr` in this language, we will need a single substitution rule.
 
 For example, applying the above rule to the expression `(λy.y z) 1` yields `(λy.1 z)`. With this seemingly trivial addition, our language is now powerful enough to encode any computable function! This language is known as the pure untyped λ-calculus.
 
-While grammatically compact, computation in the λ-calculus is not particularly terse. In order to perform any computation using this system, we will need a way to encode values. For example, we can encode the boolean algebra like so:
+While grammatically compact, computation in this system is not particularly terse. In order to perform any computation using this system, we will need a way to encode values. For example, we can encode the boolean algebra like so:
 
 ```
 [D1]           λx.λy.x = T     "true"
@@ -233,7 +264,7 @@ We have now reached a terminal, and can recurse no further. Unlike its typed cou
 
 ## Cellular automata
 
-Consider the [elementary cellular automata](https://en.wikipedia.org/wiki/Elementary_cellular_automaton), which consists of a one dimensional array, and a 3-cell rewrite system. There are 2<sup>2<sup>3</sup></sup>=256 possible rules for rewriting the tape. It turns out even in this tiny space, there are remarkable automata. Consider the following rewrite system, known as [Rule 110](https://en.wikipedia.org/wiki/Rule_110):
+Consider the [elementary cellular automata](https://en.wikipedia.org/wiki/Elementary_cellular_automaton), which consists of a one dimensional array, and a 3-cell rewrite system. There are $$2^{{2^3}} = 256$$ possible rules for rewriting the tape. It turns out even in this tiny space, there are remarkable automata. Consider the following rewrite system, known as [Rule 110](https://en.wikipedia.org/wiki/Rule_110):
 
 <center>
 <img align="center" src="../images/ca_rule%20110.png"/>
@@ -402,7 +433,7 @@ TODO: Single/Double pushout
 Graphs have also found many interesting applications as reasoning devices in various domains:
 
 |Diagramming Language|Example|
-|:--:|:-----:|
+|:------------------:|:-----:|
 |[Feynman diagram](http://www-pnp.physics.ox.ac.uk/~barra/teaching/feynman.pdf)|<br/><center><img align="center" width="50%" src="https://upload.wikimedia.org/wikipedia/commons/1/1f/Feynmann_Diagram_Gluon_Radiation.svg"/></center>|
 | [Category theory](https://www.cs.mcgill.ca/~prakash/Pubs/category_theory_notes.pdf) |<br/><center><img align="center" width="50%" src="https://upload.wikimedia.org/wikipedia/commons/e/ef/Commutative_diagram_for_morphism.svg"/></center>|
 | [Penrose notation](https://www.mscs.dal.ca/%7Eselinger/papers/graphical-bib/public/Penrose-applications-of-negative-dimensional-tensors.pdf) |<br/><center><img align="center" width="50%" src="https://enacademic.com/pictures/enwiki/80/Penrose_covariant_derivate.svg"/></center>|
@@ -471,15 +502,15 @@ One way to interpret this is as follows: each time we multiply a matrix by a vec
 <details>
   <summary>Krylov Method</summary>
 <center><img src="http://krylov-centre.ru/rus/images/exp_base/base-doccamers/base-doccamers-big-eng.jpg" width="50%"/></center>
-<p align="justify"> There exists in St. Petersburg a naval research facility, known as the Krylov Shipbuilding Research Institute, which houses the world's <a href="https://krylov-centre.ru/en/experimental/base-doccamers/">largest hydraulic pressure tank</a>. Capable of simulating in excess of 20,000 PSI, the DK-1000 is used to test deepwater submersible vessels. Before inserting your <a href="https://fivedeeps.com/home/technology/sub/">personal submarine</a> for pressure testing, you may wish to perform a finite element analysis to ensure hull integrity. Instabilities in the stiffness matrix may produce disappointing results.</p>
+<p align="justify"> There exists in St. Petersburg a naval research facility, known as the Krylov Shipbuilding Research Institute, which houses the world's largest <a href="https://krylov-centre.ru/en/experimental/base-doccamers/">full ocean depth hydraulic pressure tank</a>. Capable of simulating in excess of 20,000 PSI, the DK-1000 is used to test deepwater submersible vessels. Before inserting your <a href="https://fivedeeps.com/home/technology/sub/">personal submarine</a> for pressure testing, you may wish to perform a finite element analysis to ensure hull integrity. Instabilities in the stiffness matrix may produce disappointing results.</p>
 </details>
 
 $$
 f(x, y) = \begin{bmatrix}
-\frac{cos(x+2*y)}{x} & 0 \\ 0 & \frac{sin(x-2*y)}{y}
+\frac{cos(x+2y)}{x} & 0 \\ 0 & \frac{sin(x-2y)}{y}
 \end{bmatrix} *
 \begin{bmatrix}x\\y\end{bmatrix} =
-\begin{bmatrix}cos(x+2*y)\\sin(x-2*y)\end{bmatrix}
+\begin{bmatrix}cos(x+2y)\\sin(x-2y)\end{bmatrix}
 $$
 
 <!--https://www.wolframalpha.com/input/?i=%7B%7Bcos%28x%2B2*y%29%2Fx%7D%2C+0%7D%2C+%7B0%2C%7Bsin%28x-2*y%29%2Fy%7D%7D+eigenvalues-->
@@ -500,7 +531,6 @@ mat → [[Tⁿ]ⁿ]
 ```
 
 We can think of the Krylov method as either a matrix-matrix product:
-
 
 <table>
 <tr>
@@ -558,9 +588,9 @@ $$\frac{Ab}{\|Ab\|}, \frac{A\frac{Ab}{\|Ab\|}}{\|A\frac{Ab}{\|Ab\|}\|}, \frac{A\
 
 Computational complexity aside, these three views are basically equivalent.
 
-Such methods are not just applicable to real matrices, but can be used to analyze boolean and integer matrices. These are sometimes called [transition](https://ieeexplore.ieee.org/stamp/stamp.jsp?arnumber=1086510&casa_token=KuNTtlFssrQAAAAA:-WcymDKB8OVo6gh1TKM0363R2dgvhi9XeuV5bLPI2yI1WtX0VlvPUAW5QoyhaBjdVfo8rA4HmA&tag=1), stochastic, or Markov matrices. We are primarily interested in the deterministic version, whose variables inhabit $$\mathbb{B}^{n\times n}$$.
+Such methods are not just applicable to real matrices, but can be used to analyze boolean and integer matrices. These are sometimes called [transition](https://ieeexplore.ieee.org/document/1086510), [stochastic or Markov](https://en.wikipedia.org/wiki/Stochastic_matrix) matrices. We are primarily interested in the deterministic version, whose variables inhabit $$\mathbb{B}^{n\times n}$$.
 
-The Krylov methods have important applications for studying dynamical systems on networks. Researchers are just beginning to understand how eigenvalues of the Laplacian affect the asymptotic behavior of dynamical processes on graphs. In this section, we will explore some examples of dynamical processes on graphs.
+The Krylov methods have important applications for studying dynamical systems on networks. Researchers are just beginning to understand how eigenvalues of the Laplacian affect the asymptotic behavior of dynamical processes on graphs. In this section, we will explore some examples of dynamical processes on simple graphs.
 
 We have previously seen an example of graph computation, Weisfeiler-Lehman, and topsort. Three steps of Barabási's [preferential attachment algorithm](https://en.wikipedia.org/wiki/Preferential_attachment):
 
@@ -576,7 +606,7 @@ Another early example of graph computation can be found in [Valiant](http://theo
 <blockquote class="twitter-tweet"><p lang="en" dir="ltr">TIL: CFL parsing can be reduced to boolean matrix multiplication (Valiant, 1975), known to be subcubic (Strassen, 1969), and later proven an asymptotic lower bound (Lee, 1997). This admits efficient GPGPU implementation (Azimov, 2017) in <a href="https://twitter.com/YaccConstructor?ref_src=twsrc%5Etfw">@YaccConstructor</a> <a href="https://t.co/3Vbml0v6b9">https://t.co/3Vbml0v6b9</a></p>&mdash; breandan (@breandan) <a href="https://twitter.com/breandan/status/1277136195118600192?ref_src=twsrc%5Etfw">June 28, 2020</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 </center>
 
-This astonishing result suggests that, at least for context-free and less powerful languages, there is a parsing algorithm which is equivalent to matrix multiplication. For example, all of the following automata can be simulated using matrix multiplication:
+This astonishing result suggests that, at least for context-free languages and their subsets, there is a parsing algorithm which is equivalent to matrix multiplication. For example, all of the following automata can be simulated using matrix multiplication:
 
 - [Pushdown automata](https://en.wikipedia.org/wiki/Pushdown_automaton)
 - [Buchi automata](https://en.wikipedia.org/wiki/B%C3%BCchi_automaton)
@@ -585,17 +615,17 @@ This astonishing result suggests that, at least for context-free and less powerf
 
 What happens if we define arithmetic operators on graphs? How might we define and interpret these operations? As we have seen, one way to represent a directed graph is just a square matrix whose non-zero entries indicate edges between nodes. Just like real matrices in linear algebra, we can add, subtract, multiply and exponentiate them.
 
-We will now show a few examples simulating a state machine using the Krylov method. For illustrative purposes, the state simply holds a vector of binary or integer values, however we can also imagine it carrying other "messages" around the graph in a similar manner, using another algebra. Here, we will use the boolean algebra for matrix multiplication, where `+` corresponds to `∨`, and `*` corresponds to `∧`:
+We will now show a few examples simulating a state machine using the Krylov method. For illustrative purposes, the state simply holds a vector of binary or integer values, however we can also imagine it carrying other "messages" around the graph in a similar manner, using another algebra. Here, we will use the boolean algebra for matrix multiplication, where `+` corresponds to logical disjunction (`∨`), and `*` corresponds to logical conjunction (`∧`):
 
 ```
 ┌───┬───┬─────┬─────┐
-│ x │ y │ x*y │ x+y │        Boolean Matrix Multiplication 
+│ x │ y │ x*y │ x+y │        Boolean Matrix Multiplication
 ├───┼───┼─────┼─────┤ ┌─       ─┐ ┌─ ─┐ ┌─                     ─┐
 │ 0 │ 0 │  0  │  0  │ │ a  b  c │ │ j │ │ a * j + b * k + c * l │
 │ 0 │ 1 │  0  │  1  │ │ d  e  f │*│ k │=│ d * j + e * k + f * l │
 │ 1 │ 0 │  0  │  1  │ │ g  h  i │ │ l │ │ g * j + h * k + i * l │
 │ 1 │ 1 │  1  │  1  │ └─       ─┘ └─ ─┘ └─                     ─┘
-└───┴───┴─────┴─────┘ 
+└───┴───┴─────┴─────┘
 ```
 
 ## Linear chains
@@ -741,7 +771,7 @@ c │ 0  1  1
 
 ## Directed acyclic graphs
 
-Simulating a DFA using a matrix can be wasteful, since we only ever inhabit one state at a time. The real benefit of using matrices comes when simulating nondeterminstic finite automata (NFA). Typical implementations require cloning the NFA when multiple transitions are valid. Instead of cloning the machine, we can simulate the superposition of all states using a single matrix.
+Simulating a DFA using a matrix can be inefficient, since we only ever inhabit one state at a time. The real benefit of using matrices comes when simulating nondeterminstic finite automata (NFA). Typical implementations require cloning the NFA when multiple transitions are valid. Instead of cloning the machine, we can simulate the superposition of all states using a single matrix.
 
 <table>
 <tr>
@@ -888,7 +918,7 @@ d │ 0  1  1  1
 
 </table>
 
-We encode the accept state as a self cycle in order to detect the fixpoint $$S = MS = MMS$$, after which we halt execution.
+We encode the accept state as a self cycle in order to detect the fixpoint $$S_{t+1} = S_{t}$$, after which we halt execution.
 
 ## Dataflow graphs
 
@@ -1041,11 +1071,19 @@ b │ 0  0  0  0
 
 # Graphs, efficiently
 
-One issue with efficient representation of graphs is space complexity. Suppose we have a graph with $$10^5=100,000$$ nodes, but only a single edge. We will need $$10^{5\times 2}$$ bits, or about 1 GB to store it in adjacency matrix form, whereas if we use an adjacency list, we will need only $$\lceil 2\log_2 10^5 \rceil = 34$$ bits. Most graphs are similarly sparse. But how do you multiply adjacency lists? Unclear. The solution is to use sparse matrices. That was easy.
+Due to their well-studied theoretical properties, graphs are suitable data structures for a wide variety of problems. Finding a reduction to a known graph problem can save years of development effort, but many graph algorithms are also challenging to implement efficiently. Suboptimal graph algorithms have been reimplemented in dozens of libraries and compiler frameworks. Why have they remained out of reach in settings where they would be appropriate, when they could have been implemented once?
 
-Another, thornier, problem with graph algorithms is their time complexity. Many interesting problems on graphs are NP-complete, including Hamiltonian paths and subgraph isomorphism. If so, how are we supposed to do any computation if every operation may take nondeterminstic polynomial time? Computer science people are mostly concerned with worst case complexity, which rarely ever occurs in practice. Real world isomorphism can be solved quickly using approximate algorithms, such as the one we saw earlier.
+One issue with efficient representation of graphs is their space complexity. Suppose we have a graph with $$10^5=100,000$$ nodes, but only a single edge. We will need $$10^{5\times 2}$$ bits, or about 1 GB to store its adjacency matrix, where an equivalent adjacency list would only consume $$\lceil 2\log_2 10^5 \rceil = 34$$ bits. Most graphs are similarly sparse. But how do you multiply adjacency lists? One solution that has emerged is to use [sparse matrices](https://en.wikipedia.org/wiki/Sparse_matrix), which are spatially more compact and can be accelerated on modern parallel processing architectures.
 
-One issue with computation graphs is that in most programming languages, they are not reified. That is, for a given value, we would like some method which programmatically returned its provenance, as a computation graph. Which we can encode that program as a graph.
+<center><a href="http://faculty.cse.tamu.edu/davis/suitesparse.html"><img src="http://faculty.cse.tamu.edu/davis/suitesparse_files/SuiteSparse_logo.jpg" width="60%"></a></center>
+
+Another, thornier, problem with graph algorithms is their time complexity. Many interesting problems on graphs are NP-complete, including [Hamiltonian path](https://en.wikipedia.org/wiki/Hamiltonian_path) detection, [TSP](https://en.wikipedia.org/wiki/Travelling_salesman_problem) and [subgraph isomorphism](https://en.wikipedia.org/wiki/Subgraph_isomorphism_problem). However many of those problems have approximate solutions which are often good enough. But even if correctness is a hard constraint, CS theory is primarily concerned with worst case complexity, which seldom or rarely occurs in practice. Naturally occuring instances can often be solved quickly using SAT or SMT solvers.
+
+Suppose we wish to access the computation graph of a program from within the program itself. How could we accomplish that? We need a way to "reify" the graph (i.e. make it available at runtime), so that given a variable, we have some method (e.g. `y.graph()`) which programmatically returned its [transitive closure](https://en.wikipedia.org/wiki/Transitive_closure), including upstream and downstream nodes. Doing this efficiently is important, as depending on the scope and granularity, this graph can expand very quickly.
+
+<center><img src="https://raw.githubusercontent.com/breandan/kotlingrad/master/samples/src/main/resources/lr_batch_loss_graph.svg" width="60%"/></center>
+
+Thanks to metaprogramming techniques in differentiable and probabilistic programming DSLs, this capability is becoming increasingly commonplace. These usually work by recording all operations (e.g. using operator overloading) in some intermediate data structure (e.g. stack, queue, AST, DAG). At periodic intervals, they may generate an "intermediate representation" with some optimizations (e.g. constant propagation, common subexpression elimination) and possibly specializing these operations it to a secondary architecture (e.g. CUDA, webasm) for optimized execution.
 
 <center><blockquote class="twitter-tweet"><p lang="en" dir="ltr">Prediction: In 20 years, most of today&#39;s ISAs (x86, ARM, MIPS) will be virtual or obsolete. Underneath the hood, everything will be sparse matmuls running on a homogeneous silicon mesh. Physical CPUs will be like gasoline engines - marvels of engineering, but far too complicated.</p>&mdash; breandan (@breandan) <a href="https://twitter.com/breandan/status/1278139598942679041?ref_src=twsrc%5Etfw">July 1, 2020</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script></center>
 
@@ -1119,7 +1157,7 @@ One issue with this formulation is we must rely on a loss over $$S_t$$, which is
 
 Some, including [Gaunt et al.](https://arxiv.org/pdf/1608.04428.pdf) (2016), have shown gradient is not very effective, as the space of boolean circuits is littered with islands which have zero gradient. Their representation is also relative complex -- effectively, they are trying to learn a recursively enumerable language using something like a [Neural Turing Machine](https://arxiv.org/pdf/1410.5401.pdf) (Graves et al., 2014).
 
-More recent work, including that of [Lample et al.](https://arxiv.org/pdf/1912.01412.pdf) (2019), have demonstrated Transformers are capable of learning programs, where the program belongs to a much simpler class of context-free languages. This space is often much more tractable to search and generate synthetic training data, and appears to be well within the reach of modern language models.
+More recent work, including that of [Lample et al.](https://arxiv.org/pdf/1912.01412.pdf) (2019), have demonstrated Transformers are capable of learning programs which belong to the class of context-free languages. This space is often much more tractable to search and generate synthetic training data, and appears to be well within the reach of modern language models.
 
 <center><img src="https://raw.githubusercontent.com/quark0/darts/master/img/darts.png" width="60%"/></center>
 
@@ -1133,7 +1171,7 @@ Solar-Lezma calls this latter approach, "program extraction", where the network 
 <blockquote class="twitter-tweet"><p lang="en" dir="ltr">&quot;Can neural networks be made to reason?&quot; Conversation with Ian Goodfellow (<a href="https://twitter.com/goodfellow_ian?ref_src=twsrc%5Etfw">@goodfellow_ian</a>). Full version: <a href="https://t.co/3MYC8jWjwl">https://t.co/3MYC8jWjwl</a> <a href="https://t.co/tGcDwgZPA1">pic.twitter.com/tGcDwgZPA1</a></p>&mdash; Lex Fridman (@lexfridman) <a href="https://twitter.com/lexfridman/status/1130501145548513280?ref_src=twsrc%5Etfw">May 20, 2019</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script> 
 </center>
 
-A less charitable interpretation is that Goodfellow is simply using a metaphor to explain deep learning to lay audience, but I prefer to think he is communicating something deeper about the role of stacked nonlinear function approximators as computational primitives in a chain of function compositions.
+A less charitable interpretation is that Goodfellow is simply using a metaphor to explain deep learning to lay audience, but I prefer to think he is communicating something deeper about the role of recurrent nonlinear function approximators as computational primitives for logical reasoning.
 
 # References
 
