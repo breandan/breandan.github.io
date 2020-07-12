@@ -69,7 +69,7 @@ Fast forward to 2017. I was lured by the siren song of algorithmic differentiati
 <a href="https://github.com/breandan/kotlingrad#dataflow-graphs"><img align="center" width="75%" src="https://github.com/breandan/kotlingrad/raw/master/samples/src/main/resources/dataflow.svg"/></a>
 </center>
 
-In 2019, I joined a lab with a [nice professor](https://www.cs.mcgill.ca/~jguo/) at McGill applying knowledge graphs to software engineering. Like logical reasoning, knowledge graphs are an idea from the first wave of AI in the 1960s and 70s which have been revived and studied in light of recent progress in the field. I believe this is an important area of research with a lot of potential. Knowledge and traceability plays an important role in software engineering, and it's the bread-and-butter of a good IDE. The world needs better IDEs if we're ever going to untangle this mess we're in.
+In 2019, I joined a lab with a [nice professor](https://www.cs.mcgill.ca/~jguo/) at McGill applying knowledge graphs to software engineering. Like logical reasoning, knowledge graphs are an idea from the first wave of AI in the 1960s and 70s which have been revived and studied in light of recent progress in the field. I believe this is an important area of research with a lot of potential. Knowledge and traceability plays an big role in software engineering, and it's the bread-and-butter of a good IDE. The world needs better IDEs if we're ever going to untangle this mess we're in.
 
 <center>
 <a href="https://structurizr.com/"><img align="center" width="45%" src="https://raw.githubusercontent.com/cecuesta/structurizr-java/master/docs/images/graphviz-spring-petclinic-components.png"/></a>
@@ -162,7 +162,7 @@ Regular languages can also model nested repetition. Consider a slightly more com
 </tr>
 </table>
 
-Note here, a single state may have multiple transitions on the same symbol. Called a nondeterminsic finite automata (NFA), this machine can occupy multiple states simulatneously. While no more powerful than their determinstic cousins, NFAs often requires far fewer states to recognize the same language. One way to implement an NFA is to simulate the superposition of all states, by cloning the machine whenever such a transition occurs. More on that later.
+Note here, a single state may have multiple transitions on the same symbol. Called a nondeterminsic finite automata (NFA), this machine can occupy multiple states simultaneously. While no more powerful than their determinstic cousins, NFAs often require far fewer states to recognize the same language. One way to implement an NFA is to simulate the superposition of all states, by cloning the machine whenever such a transition occurs. More on that later.
 
 ## Arithmetic
 
@@ -180,7 +180,7 @@ This is known as a context-free language (CFL). We can represent strings in this
 |:---:|:---:|
 |<center><img align="center" width="80%" src="../images/tree_syntax.svg"/></center>|<center><img align="center" width="75%" src="../images/tree_peach.png"/></center>|
 
-While syntax trees can be interpreted computationally, they do not actually perform computation unless evaluated. To (partially) evaluate a syntax tree, we will now to introduce some pattern matching rules. Instead of just allowing terminals to occur on the right-hand side of a production, suppose we also allow terminals on the left, and applying a rule can shrink a string in our language. Here, we use capital letters on the same line to indicate an exact match, e.g. a rule `U + V → V + U` would replace `x + y` with `y + x`:
+While syntax trees can be interpreted computationally, they do not actually perform computation unless evaluated. To (partially) evaluate a syntax tree, we will now introduce some pattern matching rules. Instead of just allowing terminals to occur on the right-hand side of a production, suppose we also allow terminals on the left, and applying a rule can shrink a string in our language. Here, we use capital letters on the same line to indicate an exact match, e.g. a rule `U + V → V + U` would replace `x + y` with `y + x`:
 
 ```
                                          E + E → +E
@@ -261,7 +261,7 @@ To evaluate a boolean expression `!T`, we will first need to encode it as a λ-e
 → (   F                  )     [D2]
 ```
 
-We have now reached a terminal, and can recurse no further. Unlike its typed cousin, the untyped λ-calculus *not* strongly normalizing and thus not guaranteed to converge. If it were convergent, it would not be Turing complete.
+We have now reached a terminal, and can recurse no further. Unlike its typed cousin, the untyped λ-calculus is *not* strongly normalizing and thus not guaranteed to converge. If it were convergent, it would not be Turing complete.
 
 ## Cellular automata
 
@@ -460,7 +460,7 @@ The λ-calculus, which we saw [earlier](#λ-calculus), can also be interpreted g
 * [Visual lambda calculus](http://bntr.planet.ee/lambda/work/visual_lambda.pdf)
 * [To Dissect a Mockingbird: A Graphical Notation for the Lambda Calculus](http://dkeenan.com/Lambda/)
 
-As Tae Danae Bradley [vividly portrays](https://www.math3ma.com/blog/matrices-probability-graphs) in her writing, we can think of a matrix as not just a two-dimensional array, but a *function on a vector space*. This perspective has a nice visual representation using a bipartite graph:
+As Tae Danae Bradley [vividly portrays](https://www.math3ma.com/blog/matrices-probability-graphs) in her writing, we can think of a matrix as not just a two-dimensional array, but a *function on a vector space*. This perspective can be depicted using a bipartite graph:
 
 <center>
 <a href="https://www.math3ma.com/blog/matrices-probability-graphs"><img align="center" width="75%" src="https://uploads-ssl.webflow.com/5b1d427ae0c922e912eda447/5c7ed4bcea0c9faeafe61466_pic1.jpg"/></a>
@@ -499,19 +499,19 @@ $$
 
 Note the lower triangular structure of the adjacency matrix, indicating it contains no cycles, a property which is not immediately obvious from the naïve geometric layout. Any graph whose adjacency matrix can be reordered into triangular form is a [directed acyclic graph](https://en.wikipedia.org/wiki/Directed_acyclic_graph). Called a topological ordering, this algorithm can be implemented by [repeatedly squaring](https://en.wikipedia.org/wiki/Topological_sorting#Parallel_algorithms) the adjacency matrix.
 
-Both the geometric and matrix representations impose a extrinsic perspective on graphs, each with their own advantages and disadvantages. 2D renderings can be visually compelling, but require solving a [minimal crossing number](https://en.wikipedia.org/wiki/Crossing_number_(graph_theory)) or similar optimization to make connectivity plain to the naked eye. While graph drawing is an active [field of research](http://www.graphdrawing.org/), matrices can often reveal symmetries that are not obvious from a naïve graph layout (and vis versa)
+Both the geometric and matrix representations impose an extrinsic perspective on graphs, each with their own advantages and disadvantages. 2D renderings can be visually compelling, but require solving a [minimal crossing number](https://en.wikipedia.org/wiki/Crossing_number_(graph_theory)) or similar optimization to make connectivity plain to the naked eye. While graph drawing is an active [field of research](http://www.graphdrawing.org/), matrices can often reveal symmetries that are not obvious from a naïve graph layout (and vis versa)
 
 Matrices are problematic for some reasons. Primarily, treating a graph as a matrix imposes an ordering over all vertices which is often arbitrary. Note also its sparsity, and consider the size of the matrix required to store even small graphs. While problematic, this can be overcome with [certain optimizations](https://en.wikipedia.org/wiki/Sparse_matrix). Despite these issues, matrices and are a natural representation choice for many graph algorithms, particularly on modern parallel processing hardware.
 
 <center><a href="https://epubs.siam.org/doi/book/10.1137/1.9780898719918"><img src="../images/graph_linear_algebra.png" width="60%"/></a></center>
 
-Just like matrices, we can also think of a graph as a function on a state space, which carries information from one state to the next - given a state or set of states, the graph tells us reachability. Recent work in graph theory has revealed a fascinating duality between [graphs and linear algebra](https://epubs.siam.org/doi/book/10.1137/1.9780898719918), holding many important insights for dynamical processes on graphs.
+Just like matrices, we can also think of a graph as a function on a state space, which carries information from one state to the next - given a state or set of states, the graph tells us which other states are reachable. Recent work in graph theory has revealed a fascinating duality between [graphs and linear algebra](https://epubs.siam.org/doi/book/10.1137/1.9780898719918), holding many important insights for dynamical processes on graphs.
 
 # Graphs, computationally
 
 What happens if we take a square matrix $$\mathbb{R}^{n\times n}$$ and raise it to a power? Which kinds of matrices converge? How can we analyze their asymptotics? This is a very fertile line of inquiry which has occupied engineers for the better part of the last century, with important applications in control theory, physical simulation and deep learning (RNNs). Linear algebra gives us a number of tricks for designing the matrix and normalizing the product to promote convergence, since systems which explode or vanish are not very interesting.
 
-One way to interpret this is as follows: each time we multiply a matrix by a vector $$\mathbb{R}^{n}$$, we are effectively simulating a dynamical system at discrete time steps. This method is known as [power iteration](https://cs.mcgill.ca/~wlh/comp766/files/chapter1_draft_mar29.pdf#page=11) or Krylov method in linear algebra. In the limit, we are seeking fixpoints, or eigenvectors, which are these islands of stability in our dynamical system. If we initialize our state at such a point, the transition matrix will send us straight back to where we started.
+One way to interpret this is as follows: each time we multiply a matrix by a vector $$\mathbb{R}^{n}$$, we are effectively simulating a dynamical system at discrete time steps. This method is known as [power iteration](https://cs.mcgill.ca/~wlh/comp766/files/chapter1_draft_mar29.pdf#page=11) or the Krylov method in linear algebra. In the limit, we are seeking fixpoints, or eigenvectors, which are these islands of stability in our dynamical system. If we initialize our state at such a point, the transition matrix will send us straight back to where we started.
 
 $$
 f(x, y) = \begin{bmatrix}
@@ -524,7 +524,7 @@ $$
 <!--https://www.wolframalpha.com/input/?i=%7B%7Bcos%28x%2B2*y%29%2Fx%7D%2C+0%7D%2C+%7B0%2C%7Bsin%28x-2*y%29%2Fy%7D%7D+eigenvalues-->
 <center><img src="../images/vector_field.png" width="63%"/></center>
 
-We are looking for fixpoints where $$f(x, y) = f\circ f(x, y)$$, indicating the trajectory has terminated. Such points describe the asymptotic behavior of our function.
+Locating a fixed point where $$f(x, y) = f\circ f(x, y)$$, indicates the trajectory has terminated. Such points describe the asymptotic behavior of our function.
 
 First, let's get some definitions out of the way.
 
@@ -611,7 +611,7 @@ $$
 
 Such methods are not just applicable to real matrices, but can be used to analyze boolean and integer matrices. These are sometimes called [transition](https://ieeexplore.ieee.org/document/1086510), [stochastic or Markov](https://en.wikipedia.org/wiki/Stochastic_matrix) matrices. We are primarily interested in the deterministic version, whose variables inhabit $$\mathbb{B}^{n\times n}$$.
 
-The Krylov methods have important applications for studying dynamical systems on networks. Researchers are just beginning to understand how eigenvalues of the Laplacian affect the asymptotic behavior of dynamical processes on graphs. In this section, we will explore some examples of dynamical processes on graphs.
+The Krylov methods have important applications for studying dynamical systems and signal processing on networks. Researchers are just beginning to understand how eigenvalues of the Laplacian affect the asymptotic behavior of dynamical processes on graphs. In this section, we will explore some examples of dynamical processes on graphs.
 
 <!--Three steps of Barabási's [preferential attachment algorithm](https://en.wikipedia.org/wiki/Preferential_attachment):-->
 
@@ -1210,7 +1210,7 @@ While a naïve proof is a trivial extension of the Church-Turing thesis, a const
 <blockquote class="twitter-tweet"><p lang="en" dir="ltr">n.b. Not saying anything about the workload, just the architecture - Software 1.0 may still be the dominant paradigm. I&#39;m saying there is a binary translation from load/store/jump/branch instructions to sparse BLAS primitives which imposes no constraints on the programming model.</p>&mdash; breandan (@breandan) <a href="https://twitter.com/breandan/status/1278156002240716800?ref_src=twsrc%5Etfw">July 1, 2020</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script> 
 </center>
 
-The second major hurdle is to develop a binary recompiler which translates vector programs into optimized matrix primitives with real datatypes, e.g. `Int`, `Float16`, `Float32`, and run that program on a optimized SIMD architecture. This will be a major engineering undertaking in the next two decades as the world transitions to GPGPU and graph computing. Program induction will become an key step in the compilation process and getting these graphs to run quickly.
+The second major hurdle is to develop a binary recompiler which translates vector programs into optimized matrix primitives with real datatypes, e.g. `Int`, `Float16`, `Float32`, and run that program on an optimized SIMD architecture. This will be a major engineering undertaking in the next two decades as the world transitions to GPGPU and graph computing. Program induction will become an key step in the compilation process and getting these graphs to run quickly.
 
 The third and final hurdle is to develop robust compiler toolchain for matrix programs, including a transpiler that returns human-readable matrix programs. This will require fundamental progress in program synthesis and most likely consume the better half of the next century to fully deploy.
 
