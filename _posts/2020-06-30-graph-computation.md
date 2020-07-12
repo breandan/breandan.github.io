@@ -88,7 +88,7 @@ Graphs are general-purpose data structures used to represent a variety of data t
 - **Directed graphs**: [State machines](https://en.wikipedia.org/wiki/Finite-state_machine), [λ-calculus](http://dkeenan.com/Lambda/), [the web](https://computersciencewiki.org/index.php/The_web_as_a_directed_graph), [call graphs](https://en.wikipedia.org/wiki/Call_graph), [RNNs](https://en.wikipedia.org/wiki/Recurrent_neural_network)
 - **Hypergraphs**: [Knowledge](https://arxiv.org/pdf/2003.02320.pdf), [Zettelkasten](https://zettelkasten.de/), [categories](https://en.wikipedia.org/wiki/Category_theory), [physics](https://writings.stephenwolfram.com/2020/04/finally-we-may-have-a-path-to-the-fundamental-theory-of-physics-and-its-beautiful/), [hypernetworks](https://openreview.net/pdf?id=rkpACe1lx)
 
-Directed graphs can be used to model mathematical expressions as I show in [Kotlin∇](https://github.com/breandan/kotlingrad), as well as other formal languages, including source code, intermediate representations and markup. There are many recent examples of learning directed graphs for neuro-symbolic applications:
+Directed graphs can be used to model mathematical expressions, as we saw in [Kotlin∇](https://github.com/breandan/kotlingrad), as well as other formal languages, including source code, intermediate representations and binary artifacts. Not only have graphs been used to model language, many recent examples have shown that trees and graphs can be "grown" anew for various applications, such as program synthesis, mathematical deduction and physical simulation. Recent neuro-symbolic applications have shown promising early results in this graph synthesis:
 
 * [Learning to Represent Programs with Graphs](https://arxiv.org/pdf/1711.00740.pdf), Allamanis et al., 2018
 * [Deep Learning for Symbolic Mathematics](https://arxiv.org/pdf/1912.01412.pdf), Lample and Charton, 2019.
@@ -98,13 +98,13 @@ Directed graphs can be used to model mathematical expressions as I show in [Kotl
 * [Strong Generalization and Efficiency in Neural Programs](https://arxiv.org/abs/2007.03629), Li et al., 2020.
 * [Neural Execution of Graph Algorithms](https://arxiv.org/pdf/1910.10593.pdf), Veličković et al. (2020)
 
-The field of natural language has also developed a rich set of graph-based representations, such as [constituency](https://en.wikipedia.org/wiki/Phrase_structure_grammar), [dependency](https://en.wikipedia.org/wiki/Dependency_grammar), [link](https://en.wikipedia.org/wiki/Link_grammar) and other and other typed attribute grammars which can be used to reason about syntactic and semantic relations between natural language entities. Research has begun to show many practical applications for such grammars in the extraction and organization of human knowledge stored in large text corpora. Those graphs can be further processed into ontological representations for logical reasoning.
+The field of natural language has also developed a rich set of graph-based representations, such as [constituency](https://en.wikipedia.org/wiki/Phrase_structure_grammar), [dependency](https://en.wikipedia.org/wiki/Dependency_grammar), [link](https://en.wikipedia.org/wiki/Link_grammar) and other and other typed attribute grammars which can be used to reason about syntactic and semantic relations between natural language entities. Research has begun to show many practical applications for such grammars in the extraction and organization of human knowledge stored in large text corpora. Those graphs can be further processed into ontologies for logical reasoning.
 
 <center>
 <img align="center" width="60%" src="https://upload.wikimedia.org/wikipedia/commons/8/8e/Thistreeisillustratingtherelation%28PSG%29.png"/>
 </center>
 
-Using coreference resolution and entity alignment techniques, we can reconstruct internally consistent relations between entities, reflecting cross-corpus consensus in natural language datasets. These relationships can be stored in [knowledge graphs](https://arxiv.org/pdf/2003.02320.pdf), and used for information retrieval and question answering, e.g. on wikis and other content management systems. Recent techniques have shown promise in automatic knowledge base construction (cf. [Reddy et al.](https://www.mitpressjournals.org/doi/pdf/10.1162/tacl_a_00088), 2016).
+Using coreference resolution and entity alignment techniques, we can reconstruct internally consistent relations between entities, which capture cross-corpus consensus in natural language datasets. When stored in [knowledge graphs](https://arxiv.org/pdf/2003.02320.pdf), these relations can be used for information retrieval and question answering, e.g. on wikis and other content management systems. Recent techniques have shown promise in automatic knowledge base construction (cf. [Reddy et al.](https://www.mitpressjournals.org/doi/pdf/10.1162/tacl_a_00088), 2016).
 
 <!--![logical_forms](../images/logical_forms.png) -->
 <center>
@@ -119,7 +119,7 @@ In this section, we will review some important concepts from [Chomskyan linguist
 
 ## [Regular languages](#regular-languages)
 
-One thing that always fascinated me is the idea of inductively defined languages, also known as recursive, or structural induction. Consider a very simple language which accepts strings of the form `0`, `1`, `100`, `101`, `1001`, `1010`, et cetera, but rejects `011`, `110`, `1011`, or any string containing `11`. The `→` symbol indicates a "production". The `|` symbol, which we read as "or", is just a shorthand for defining multiple productions on a single line:
+One thing that always fascinated me is the idea of inductively defined languages, also known as recursive, or structural induction. Consider a very simple language which accepts strings of the form `0`, `1`, `100`, `101`, `1001`, `1010`, et cetera, but rejects `011`, `110`, `1011`, or any string containing `11`. The `→` symbol denotes a "production". The `|` symbol, which we read as "or", is just a shorthand for defining multiple productions on a single line:
 
 ```
 true → 1
@@ -135,7 +135,7 @@ We have two sets of productions, those which can be expanded, called "nontermina
 
 Imagine a library desk: you can wait quietly and eventually you will be served. You can ring the bell once, and wait quietly to be served. Should no one arrive after some time, you may press the bell again and continue waiting. Though you must never ring the bell twice, lest you disturb the patrons and be tossed out.
 
-Regular languages can also model nested repetition. Consider a slightly more complicated language, given by the regular expression `(0(01)*)*(10)*`. The `*`, or Kleene star,  means, "accept zero or more of the previous token".
+Regular languages can also model nested repetition. Consider a slightly more complicated language, given by the regular expression `(0(01)*)*(10)*`. The `*`, or [Kleene star](https://en.wikipedia.org/wiki/Kleene_star), means, "accept zero or more of the previous token".
 
 <table>
 <tr>
@@ -261,11 +261,21 @@ To evaluate a boolean expression `!T`, we will first need to encode it as a λ-e
 → (   F                  )     [D2]
 ```
 
-We have now reached a terminal, and can recurse no further. Unlike its typed cousin, the untyped λ-calculus is *not* strongly normalizing and thus not guaranteed to converge. If it were convergent, it would not be Turing complete.
+We have reached a terminal, and can recurse no further. This particular program is decidable. What about others? Let us consider an undecidable example:
+
+```
+(λg.(λx.g (x x)) (λx.g (x x))) f
+    (λx.f (x x)) (λx.f (x x))                  [g → f]
+        f (λx.f (x x))(λx.f (x x))             [f → λx.f(x x)]
+        f     f (λx.f (x x))(λx.f (x x))       [f → λx.f(x x)]
+        f     f     f (λx.f (x x))(λx.f (x x)) [f → λx.f(x x)]
+```
+
+This pattern is [Curry's (1930)](https://doi.org/10.2307%2F2370619) famous fixed point combinator and the cornerstone of recursion, called Y. Unlike its typed cousin, the untyped λ-calculus is *not* strongly normalizing and thus not guaranteed to converge. Were it convergent, it would not be Turing-complete. This [hard choice](http://www.cts.cuni.cz/~kurka/decid1.pdf) between decidability and universality is one which all computational languages must make.
 
 ## Cellular automata
 
-Consider the [elementary cellular automata](https://en.wikipedia.org/wiki/Elementary_cellular_automaton), which consists of a one dimensional array, and a 3-cell rewrite system. There are $$2^{2^3} = 256$$ possible rules for rewriting the tape. It turns out even in this tiny space, there are remarkable automata. Consider the following rewrite system, known as [Rule 110](https://en.wikipedia.org/wiki/Rule_110):
+The [elementary cellular automata](https://en.wikipedia.org/wiki/Elementary_cellular_automaton), which consists of a one dimensional array, and a 3-cell is another string rewrite system. Note there are $$2^{2^3} = 256$$ possible rules for rewriting the tape. It turns out even in this tiny space, there exist remarkable automata. Consider the following rewrite system, known as [Rule 110](https://en.wikipedia.org/wiki/Rule_110):
 
 <center>
 <img align="center" src="../images/ca_rule%20110.png"/>
@@ -294,7 +304,7 @@ $$
 (f * g)[n] = \sum_{m=-\infty}^{\infty} f[m]g[n-m]
 $$
 
-Here $$f$$ is our state and $$g$$ is called a "kernel". Similar to the λ-calculus, this system also is [known to be universal](https://wpmedia.wolfram.com/uploads/sites/13/2018/02/15-1-1.pdf). Disregarding efficiency, we could encode any computable function as an initial state and mechanically apply Rule 110 to simulate a TM, λ-calculus, or any other TC system.
+Here $$f$$ is our state and $$g$$ is called a "kernel". Similar to the λ-calculus, this system also is [known to be universal](https://wpmedia.wolfram.com/uploads/sites/13/2018/02/15-1-1.pdf). Disregarding efficiency, we could encode any computable function as an initial state and mechanically apply Rule 110 to simulate a TM, λ-calculus, or any other TC system for that matter.
 
 # Graphs, inductively
 
@@ -1112,7 +1122,7 @@ With the advent of modern metaprogramming languages like PyTorch and TensorFlow,
 
 <center><blockquote class="twitter-tweet"><p lang="en" dir="ltr">This <a href="https://twitter.com/hashtag/GraphBLAS?src=hash&amp;ref_src=twsrc%5Etfw">#GraphBLAS</a> stuff is super exciting. Most graph algorithms can be expressed as linear algebra. Sparse matrix SIMD-backed graph algorithms lets us process orders-of-magnitude larger graphs. Similar to AD tools like Theano et al., this will give a huge boost to network science.</p>&mdash; breandan (@breandan) <a href="https://twitter.com/breandan/status/1277505360127983618?ref_src=twsrc%5Etfw">June 29, 2020</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script></center>
 
-Recent work in linear algebra and sparse matrix representations for graphs shows us how to treat many recursive graph algorithms as pure matrix arithmetic, with the associated benefits of GPU acceleration. These same techniques can also be used to execute general purpose programs as graphs. We are just beginning to explore this direction, and more work will be needed to understand how to transform programs into graphs.
+Recent work in linear algebra and sparse matrix representations for graphs shows us how to treat many recursive graph algorithms as pure matrix arithmetic, with the associated benefits of GPU acceleration. These same techniques can also be used to execute general-purpose programs as graphs. We are just beginning to explore this direction, and more work will be needed to understand how to transform arbitrary programs into graphs.
 
 A lot of the stuff in Graph Representation Learning is motivated by computational constraints. You can't instantiate the adjacency matrix, because it's too large, so you need all kinds of mathematical tricks to sum over or approximate it. But most graphs are sparse and have all kinds of symmetries. Finding the right graph embedding can get you real far...
 
