@@ -440,7 +440,7 @@ TODO: Single/Double pushout
 
 # [Graph languages](#graph-languages)
 
-Approximately 20% of the human cerebral cortex is devoted to [visual processing](https://en.wikipedia.org/wiki/Occipital_lobe). By using visual representations, language designers can tap into powerful pattern matching abilities which are often underutilized by linear symbolic writing systems. Graphs are one such example which has found many applications as reasoning and communication devices in various domain-specific languages:
+Approximately 20% of the human cerebral cortex is devoted to [visual processing](https://en.wikipedia.org/wiki/Occipital_lobe). By using visual representations, language designers can tap into powerful pattern matching abilities which are often underutilized by linear symbolic writing systems. Graphs are one such example which have found many applications as reasoning and communication devices in various domain-specific languages:
 
 |Language|Example|
 |:------------------:|:-----:|
@@ -497,15 +497,15 @@ $$
 </tr>
 </table>
 
-Note the lower triangular structure of the adjacency matrix, indicating it contains no cycles, a property which is not immediately obvious from the naïve geometric layout. Any graph whose adjacency matrix can be reordered into a triangular adjacency matrix is a [directed acyclic graph](https://en.wikipedia.org/wiki/Directed_acyclic_graph). Called a topological ordering, this algorithm can be implemented by [repeatedly squaring](https://en.wikipedia.org/wiki/Topological_sorting#Parallel_algorithms) the adjacency matrix.
+Note the lower triangular structure of the adjacency matrix, indicating it contains no cycles, a property which is not immediately obvious from the naïve geometric layout. Any graph whose adjacency matrix can be reordered into triangular form is a [directed acyclic graph](https://en.wikipedia.org/wiki/Directed_acyclic_graph). Called a topological ordering, this algorithm can be implemented by [repeatedly squaring](https://en.wikipedia.org/wiki/Topological_sorting#Parallel_algorithms) the adjacency matrix.
 
-Both the geometric and matrix representations impose a extrinsic perspective on graphs, each with their own advantages and disadvantages. 2D renderings can be visually compelling, but require solving a [minimal crossing number](https://en.wikipedia.org/wiki/Crossing_number_(graph_theory)) or similar minimization to make network connectivity plain to the naked eye. While graph drawing is an active [field of research](http://www.graphdrawing.org/), matrices can often reveal symmetries that are not obvious from a naïve graph layout.
+Both the geometric and matrix representations impose a extrinsic perspective on graphs, each with their own advantages and disadvantages. 2D renderings can be visually compelling, but require solving a [minimal crossing number](https://en.wikipedia.org/wiki/Crossing_number_(graph_theory)) or similar optimization to make connectivity plain to the naked eye. While graph drawing is an active [field of research](http://www.graphdrawing.org/), matrices can often reveal symmetries that are not obvious from a naïve graph layout (and vis versa)
 
-Matrices are problematic for some reasons. Primarily, by treating a graph as a matrix, we impose an ordering over all vertices which is often arbitrary. Note also its sparsity, and consider the size of the matrix required to store even small graphs. While problematic, this can be overcome with [certain optimizations](https://en.wikipedia.org/wiki/Sparse_matrix). Despite their disadvantages, matrices and are a natural representation choice for many graph algorithms, particularly on modern parallel processing hardware.
+Matrices are problematic for some reasons. Primarily, treating a graph as a matrix imposes an ordering over all vertices which is often arbitrary. Note also its sparsity, and consider the size of the matrix required to store even small graphs. While problematic, this can be overcome with [certain optimizations](https://en.wikipedia.org/wiki/Sparse_matrix). Despite these issues, matrices and are a natural representation choice for many graph algorithms, particularly on modern parallel processing hardware.
 
 <center><a href="https://epubs.siam.org/doi/book/10.1137/1.9780898719918"><img src="../images/graph_linear_algebra.png" width="60%"/></a></center>
 
-Just like matrices, we can also think of a graph as a function on a state space, which carries information from one state to the next - given a state or set of states, it tells us which states are reachable. Recent work in graph theory has revealed a fascinating duality between [graphs and linear algebra](https://epubs.siam.org/doi/book/10.1137/1.9780898719918), holding many important insights for dynamical processes on graphs.
+Just like matrices, we can also think of a graph as a function on a state space, which carries information from one state to the next - given a state or set of states, the graph tells us reachability. Recent work in graph theory has revealed a fascinating duality between [graphs and linear algebra](https://epubs.siam.org/doi/book/10.1137/1.9780898719918), holding many important insights for dynamical processes on graphs.
 
 # Graphs, computationally
 
@@ -543,7 +543,8 @@ We can think of the Krylov method as either a matrix-matrix or matrix-vector pro
 <details>
   <summary>Krylov Method</summary>
 <center><img src="http://krylov-centre.ru/rus/images/exp_base/base-doccamers/base-doccamers-big-eng.jpg" width="50%"/></center>
-<p align="justify"> There exists in St. Petersburg a naval research facility, known as the Krylov Shipbuilding Research Institute, which houses the world's largest <a href="https://krylov-centre.ru/en/experimental/base-doccamers/">full ocean depth hydraulic pressure tank</a>. Capable of simulating in excess of 20,000 PSI, the DK-1000 is used to test deepwater submersible vessels. At such pressure, even water itself undergoes slightly compression. Before inserting your <a href="https://fivedeeps.com/home/technology/sub/">personal submarine</a>, you may wish to perform a finite element analysis to check hull integrity. Instabilities in the stiffness matrix may produce disappointing results.</p>
+<p align="justify"> There exists in St. Petersburg a naval research facility, known as the Krylov Shipbuilding Research Institute, which houses the world's largest <a href="https://krylov-centre.ru/en/experimental/base-doccamers/">full ocean depth hydraulic pressure tank</a>. Capable of simulating in excess of 20,000 PSI, the DK-1000 is used to test deepwater submersible vessels. At such pressure, even water itself undergoes ~5% compression. Before inserting your <a href="https://fivedeeps.com/home/technology/sub/">personal submarine</a>, you may wish to perform a finite element analysis to check hull integrity. Instabilities in the stiffness matrix may produce disappointing results.</p>
+<center><img src="../images/water_density.svg"/></center>
 </details>
 
 <table>
@@ -1093,9 +1094,6 @@ b │ 0  0  0  0
 
 </table>
 
-
-<center><blockquote class="twitter-tweet"><p lang="en" dir="ltr">Prediction: In 20 years, most of today&#39;s ISAs (x86, ARM, MIPS) will be virtual or obsolete. Underneath the hood, everything will be sparse matmuls running on a homogeneous silicon mesh. Physical CPUs will be like gasoline engines - marvels of engineering, but far too complicated.</p>&mdash; breandan (@breandan) <a href="https://twitter.com/breandan/status/1278139598942679041?ref_src=twsrc%5Etfw">July 1, 2020</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script></center>
-
 # Graphs, efficiently
 
 Due to their well-studied algebraic properties, graphs are suitable data structures for a wide variety of problems. Finding a reduction to a known graph problem can save years of effort, but many graph algorithms can be challenging to implement efficiently. Suboptimal graph algorithms have been reimplemented in dozens of libraries and compiler frameworks. Why have efficient graph-based algorithms remained out of reach for so long, and what has changed?
@@ -1184,9 +1182,9 @@ $$
 
 One issue with this formulation is we must rely on a loss over $$S_t$$, which is often too sparse and generalizes poorly. It may be the case that many interesting program synthesis problems have [optimal substructure](https://en.wikipedia.org/wiki/Optimal_substructure), so we should be making "progress" towards a goal state, and can define a loss over intermediate states. This needs to be explored in more depth.
 
-Some, including [Gaunt et al., (2016)](https://arxiv.org/pdf/1608.04428.pdf), have shown gradient is not very effective, as the space of boolean circuits is littered with islands which have zero gradient. Their representation is also relative complex -- effectively, they are trying to learn a recursively enumerable language using something like a [Neural Turing Machine](https://arxiv.org/pdf/1410.5401.pdf) (Graves et al., 2014).
+Some, including [Gaunt et al., (2016)](https://arxiv.org/pdf/1608.04428.pdf), have shown gradient is not very effective, as the space of boolean circuits is littered with islands which have zero gradient. However their representation is also relatively complex -- effectively, they are trying to learn a recursively enumerable language using something like a [Neural Turing Machine](https://arxiv.org/pdf/1410.5401.pdf) (Graves et al., 2014).
 
-More recent work, including that of [Lample et al., (2019)](https://arxiv.org/pdf/1912.01412.pdf), have demonstrated Transformers are capable of learning programs which belong to the class of context-free languages. This space is often much more tractable to search and generate synthetic training data, and appears to be well within the reach of modern language models.
+More recent work, including that of [Lample et al., (2019)](https://arxiv.org/pdf/1912.01412.pdf), have demonstrated Transformers are capable of learning programs which belong to the class of context-free languages. This space is often much more tractable to search through and generate synthetic training data. Furthermore, this ability appears to be well within the reach of modern language models, such as [pointer networks](https://arxiv.org/abs/1506.03134) and [transformers](https://arxiv.org/pdf/1706.03762.pdf).
 
 <center><img src="https://raw.githubusercontent.com/quark0/darts/master/img/darts.png" width="60%"/></center>
 
@@ -1202,19 +1200,19 @@ Solar-Lezma calls this latter approach, "program extraction", where the network 
 
 A less charitable interpretation is that Goodfellow is simply using a metaphor to explain deep learning to lay audience, but I prefer to think he is communicating something deeper about the role of recurrent nonlinear function approximators as computational primitives for logical reasoning.
 
-# Next steps
+# Roadmap to graph computation
 
-Much work lies ahead for the interested reader. Before we can claim to have a unification of linear algebra and computer science, at least three technical hurdles will need to be cleared. First is theoretical: we will need show that matrix arithmetic is universal. Second is a practical: we will need to show a proof-of-concept that it works by binary recompilation. Third is demonstrating usability: we must show it is not only practical but usable, by improving the development toolchain.
+Much work lies ahead for the interested reader. Before we can claim to have a unification of graph linear algebra and computer science, at least three technical hurdles will need to be cleared. First is theoretical: we will need show that binary matrix arithmetic is universal. Second is practical: we will need to show a proof-of-concept via binary recompilation. Third is usable: we must develop a robust toolchain for compiling and introspecting a wide variety of graph programs.
 
-While a naïve proof is a trivial extension of the Church-Turing thesis, a constructive proof which takes hardware constraints into consideration is needed. Given some universal language $$\mathcal L$$, and a program implementing a boolean vector function $$\mathcal V: \mathbb B^i \rightarrow \mathbb B^o \in \mathcal L$$, we must derive a transformation $$\mathcal T_\mathcal L: \mathcal V \rightarrow \mathcal M$$, which maps $$\mathcal P$$ to a boolean matrix function $$\mathcal M: \mathbb B^{j \times k} \times \mathbb B^{l\times m}$$. To be practical, that transformation should preserve asymptotic complexity $$\mathcal O(\mathcal M) \lt \mathcal O(\mathcal V)$$, i.e., be no worse than a constant factor in space or time.
+While a naïve proof is a trivial extension of the Church-Turing thesis, a constructive proof taking hardware constraints into consideration is needed. Given some universal language $$\mathcal L$$, and a program implementing a boolean vector function $$\mathcal V: \mathbb B^i \rightarrow \mathbb B^o \in \mathcal L$$, we must derive a transformation $$\mathcal T_\mathcal L: \mathcal V \rightarrow \mathcal M$$, which maps $$\mathcal P$$ to a boolean matrix function $$\mathcal M: \mathbb B^{j \times k} \times \mathbb B^{l\times m}$$, while preserving asymptotic complexity $$\mathcal O(\mathcal M) \lt \mathcal O(\mathcal V)$$, i.e. which is no worse than a constant factor in space or time. Clearly, the identity function $$\mathcal I(\mathcal V)$$ is a valid candidate for $$\mathcal T_{\mathcal L}$$. But as recent GPGPU research has shown, we can do much better.
 
-Clearly, the identity function $$\mathcal I(\mathcal V)$$ is a valid candidate for $$\mathcal T_{\mathcal L}$$, but for a large family of functions $$P \in \mathcal T_{\mathcal L}$$, we can do much better as recent GPGPU research has shown.
-
+<center>
 <blockquote class="twitter-tweet"><p lang="en" dir="ltr">n.b. Not saying anything about the workload, just the architecture - Software 1.0 may still be the dominant paradigm. I&#39;m saying there is a binary translation from load/store/jump/branch instructions to sparse BLAS primitives which imposes no constraints on the programming model.</p>&mdash; breandan (@breandan) <a href="https://twitter.com/breandan/status/1278156002240716800?ref_src=twsrc%5Etfw">July 1, 2020</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script> 
+</center>
 
-The second major hurdle is to develop a binary recompiler which translates vector programs into optimized matrix primitives with real datatypes, e.g. `Int`, `Float16`, `Float32`, and running that program on a optimized SIMD architecture. This will be a major engineering undertaking in the next two decades as the world transitions to graph computing. Program induction will be an key step in the compilation process in getting these graphs to run quickly.
+The second major hurdle is to develop a binary recompiler which translates vector programs into optimized matrix primitives with real datatypes, e.g. `Int`, `Float16`, `Float32`, and run that program on a optimized SIMD architecture. This will be a major engineering undertaking in the next two decades as the world transitions to GPGPU and graph computing. Program induction will become an key step in the compilation process and getting these graphs to run quickly.
 
-The third and final hurdle is to develop a transpiler that returns human-readable matrix programs. This will require fundamental progress in program synthesis and most likely consume the better half of the next century to fully deploy.
+The third and final hurdle is to develop robust compiler toolchain for matrix programs, including a transpiler that returns human-readable matrix programs. This will require fundamental progress in program synthesis and most likely consume the better half of the next century to fully deploy.
 
 # References
 
