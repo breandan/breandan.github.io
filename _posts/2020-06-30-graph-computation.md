@@ -188,7 +188,7 @@ While syntax trees can be interpreted computationally, they do not actually perf
   E - E | E · 0 | 0 · E | 0 - E | +0 | -1 | ·0 → 0
 ```
 
-This is known as a context sensitive language, or string rewrite system. This particular example produces directed acyclic graphs, which we can think of as grafting or pruning the branches of a tree. If we must add two identical expressions, why evaluate them twice? If we need to multiply an expression by `0`, why evaluate it at all? Some say, "all trees are DAGs, but not all DAGs are trees". Growing up in the woods, I prefer to think of a DAG as a tree with a [gemel](https://en.wikipedia.org/wiki/Inosculation):
+If we must add two identical expressions, why evaluate them twice? If we need to multiply an expression by `0`, why evaluate it at all? Instead, we will try to simplify these patterns, whenever we encounter them. This is known as a context sensitive language, or string rewrite system, which we can think of this as grafting or pruning the branches of a tree. Some say, "all trees are DAGs, but not all DAGs are trees". I prefer to think of a DAG as a tree with a [gemel](https://en.wikipedia.org/wiki/Inosculation):
 
 |Rewrite Rule|Deformed Tree|
 |---|----|
@@ -284,7 +284,7 @@ The λ-calculus, can also be interpreted graphically. I refer the curious reader
 
 ## Cellular automata
 
-The [elementary cellular automata](https://en.wikipedia.org/wiki/Elementary_cellular_automaton), is another string rewrite system consisting of a one dimensional binary array, and a 3-cell grammar. Note there are $$2^{2^3} = 256$$ possible rules for rewriting the tape. It turns out even in this tiny space, there exist remarkable automata. Consider the following rewrite system, known as [Rule 110](https://en.wikipedia.org/wiki/Rule_110):
+The [elementary cellular automata](https://en.wikipedia.org/wiki/Elementary_cellular_automaton), is another string rewrite system consisting of a one dimensional binary array, and a 3-cell grammar. Note there are $$2^{2^3} = 256$$ possible rules for rewriting the tape. It turns out even in this tiny space, there exist remarkable automata. Consider the following rewrite system:
 
 <center>
 <img align="center" src="../images/ca_rule%20110.png"/>
@@ -524,7 +524,7 @@ Matrices are problematic for some reasons. Primarily, treating a graph as a matr
 
 <center><a href="https://epubs.siam.org/doi/book/10.1137/1.9780898719918"><img src="../images/graph_linear_algebra.png" width="60%"/></a></center>
 
-Just like matrices, we can also think of a graph as a function on a state space, which carries information from one state to the next - given a state or set of states, the graph tells us which other states are reachable. Recent work in graph theory has revealed a fascinating duality between [graphs and linear algebra](https://epubs.siam.org/doi/book/10.1137/1.9780898719918), holding many important insights for dynamical processes on graphs.
+Just like matrices, we can also think of a graph as a function, or [transition system](https://en.wikipedia.org/wiki/Transition_system), which carries information from one state to the next - given a state or set of states, the graph tells us which other states are reachable. Recent work in graph theory has revealed a fascinating duality between [graphs and linear algebra](https://epubs.siam.org/doi/book/10.1137/1.9780898719918), holding many important insights for dynamical processes on graphs.
 
 # Graphs, computationally
 
@@ -620,7 +620,7 @@ $$\frac{Mv}{\|Mv\|}, \frac{M\frac{Mv}{\|Mv\|}}{\|M\frac{Mv}{\|Mv\|}\|}, \frac{M\
 </tr>
 </table>
 
-Regrouping the order of matrix multiplication offers various computational benefits, and adding normalization prevents singularities from emerging. Many forms of normalization have been developed with various [strengths and disadvantages](https://cs.mcgill.ca/~wlh/comp766/files/chapter2_draft_mar29.pdf). This sequence forms the so-called [Krylov matrix](http://www.mathnet.ru/links/701af3446efa9590ab957fb2d9b5ddd5/im5215.pdf) (Krylov, 1931):
+Regrouping the order of matrix multiplication offers various computational benefits, and adding normalization prevents singularities from emerging. [Alternate normalization schemes](https://cs.mcgill.ca/~wlh/comp766/files/chapter2_draft_mar29.pdf) have been developed for various applications in graphs. This sequence forms the so-called [Krylov matrix](http://www.mathnet.ru/links/701af3446efa9590ab957fb2d9b5ddd5/im5215.pdf) (Krylov, 1931):
 
 $$
 K_{i} = \begin{bmatrix}v & Mv & M^{2}v & \cdots & M^{i-1}v \end{bmatrix}
@@ -643,7 +643,7 @@ The Krylov methods have important applications for studying [dynamical systems](
 <blockquote class="twitter-tweet"><p lang="en" dir="ltr">TIL: CFL parsing can be reduced to boolean matrix multiplication (Valiant, 1975), known to be subcubic (Strassen, 1969), and later proven an asymptotic lower bound (Lee, 1997). This admits efficient GPGPU implementation (Azimov, 2017) in <a href="https://twitter.com/YaccConstructor?ref_src=twsrc%5Etfw">@YaccConstructor</a> <a href="https://t.co/3Vbml0v6b9">https://t.co/3Vbml0v6b9</a></p>&mdash; breandan (@breandan) <a href="https://twitter.com/breandan/status/1277136195118600192?ref_src=twsrc%5Etfw">June 28, 2020</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 </center>
 
-Yet another example of graph computation can be found in Reps et al. (2016), who use fixed point methods on inductively defined boolean matrix expressions for abstract interpretation, e.g. to simulate control flow and determine which states are reachable from some initial configuration:
+Yet another example of graph computation can be found in [Reps et al. (2016)](https://research.cs.wisc.edu/wpis/papers/popl16.pdf), who show that boolean matrix algebra can be used for [abstract interpretation](https://en.wikipedia.org/wiki/Abstract_interpretation). By representing control flow graphs as boolean matrix expressions, they show we can apply root-finding methods like [Newton's method](https://en.wikipedia.org/wiki/Newton%27s_method) (first observed by [Esparza et al. (2010)](https://www7.in.tum.de/um/bibdb/luttenbe/newtProgAn.pdf)) to dataflow analysis, e.g. to determine which states are reachable from some starting configuration by computing their transitive closure:
 
 <center><blockquote class="twitter-tweet"><p lang="en" dir="ltr">Newton&#39;s method has some amazing applications for program analysis. Reps et al. (2016) show a mapping between control flow graphs and boolean matrix expressions. Graph reachability amounts to finding fixed points of a semiring equation. What a goldmine! <a href="https://t.co/BFCZiJ1b6n">https://t.co/BFCZiJ1b6n</a> <a href="https://t.co/Jd86bEXiIu">pic.twitter.com/Jd86bEXiIu</a></p>&mdash; breandan (@breandan) <a href="https://twitter.com/breandan/status/1282160392228286466?ref_src=twsrc%5Etfw">July 12, 2020</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script></center>
 
@@ -811,9 +811,9 @@ c │ 0  1  1
 
 Simulating a DFA using a matrix can be inefficient, since we only ever inhabit one state at a time. The real benefit of using matrices comes when simulating nondeterminstic finite automata, [seen earlier](#regular-languages). 
 
-Formally, an NFA is a 5-tuple $$\langle Q, \Sigma, \Delta, q_0, F \rangle$$, where $$Q$$ is a finite set of states, $$\Sigma$$ is the alphabet, $$\Delta :Q\times (\Sigma \cup \{\epsilon \})\rightarrow P(Q)$$ is the transition function, $$q_0 \in Q$$ is the initial state and $$F \subseteq Q$$ are the terminal states. An NFA can be represented as a labeled transition system, or directed graph whose adjacency matrix is defined by the transition function, with edge labels representing symbols from the alphabet and self-loops for each terminal state.
+Formally, an NFA is a 5-tuple $$\langle Q, \Sigma, \Delta, q_0, F \rangle$$, where $$Q$$ is a finite set of states, $$\Sigma$$ is the alphabet, $$\Delta :Q\times (\Sigma \cup \{\epsilon \})\rightarrow P(Q)$$ is the transition function, $$q_0 \in Q$$ is the initial state and $$F \subseteq Q$$ are the terminal states. An NFA can be represented as a [labeled transition system](https://www.cs.mcgill.ca/~prakash/Talks/lecture1.pdf), or directed graph whose adjacency matrix is defined by the transition function, with edge labels representing symbols from the alphabet and self-loops for each terminal state, both omitted for brevity.
 
-Typical implementations require cloning the NFA when multiple transitions are valid. Instead of cloning the machine, we can simulate the superposition of all states using a single matrix:
+Typical implementations require cloning the NFA when multiple transitions are valid. Instead of cloning the machine, we can simulate the superposition of all states using a single vector:
 
 <table>
 <tr>
@@ -1136,21 +1136,21 @@ With the advent of modern metaprogramming in languages like PyTorch and TensorFl
 
 <center><blockquote class="twitter-tweet"><p lang="en" dir="ltr">This <a href="https://twitter.com/hashtag/GraphBLAS?src=hash&amp;ref_src=twsrc%5Etfw">#GraphBLAS</a> stuff is super exciting. Most graph algorithms can be expressed as linear algebra. Sparse matrix SIMD-backed graph algorithms lets us process orders-of-magnitude larger graphs. Similar to AD tools like Theano et al., this will give a huge boost to network science.</p>&mdash; breandan (@breandan) <a href="https://twitter.com/breandan/status/1277505360127983618?ref_src=twsrc%5Etfw">June 29, 2020</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script></center>
 
-Recent work in linear algebra and sparse matrix representations for graphs shows us how to treat many recursive graph algorithms as pure matrix arithmetic, with the associated benefits of GPU acceleration. These same techniques can also be used to execute general-purpose programs as graphs. We are just beginning to explore this direction, and more work will be needed to understand how to transform arbitrary programs into graphs.
+Recent work in linear algebra and sparse matrix representations for graphs [shows us](https://doi.org/10.1137/1.9780898719918.ch5) how to treat many recursive graph algorithms as pure matrix arithmetic, thus benefiting from SIMD acceleration. Researchers are just beginning to explore how these techniques can be used to transform general-purpose programs into graphs. We anticipate this effort will require further engineering to develop an efficient encoder, but there is no fundamental obstacle for a common graph-based execution scheme.
 
 <!--A lot of the stuff in Graph Representation Learning is motivated by computational constraints. You can't instantiate the adjacency matrix, because it's too large, so you need all kinds of mathematical tricks to sum over or approximate it. But most graphs are sparse and have all kinds of symmetries. Finding the right graph embedding can get you real far...-->
 
 # Programs as graphs
 
-It turns out graphs are not only useful as data structures, but we can think of the computation itself as a graph on a binary state space. Each tick of the clock corresponds to one matrix multiplication on a boolean tape.
+Graphs are not only useful as data structures for representing programs, but we can think of the act of computation itself as traversing a graph on a binary state space. Each tick of the clock corresponds to one matrix multiplication on a boolean tape.
 
-[Futamura (1983)](https://repository.kulib.kyoto-u.ac.jp/dspace/bitstream/2433/103401/1/0482-14.pdf)  shows us that programs can be decomposed into two inputs, static and dynamic. This can be viewed as a function mapping inputs to output:
+[Futamura (1983)](https://repository.kulib.kyoto-u.ac.jp/dspace/bitstream/2433/103401/1/0482-14.pdf) shows us that programs can be decomposed into two inputs: static and dynamic. While long considered a theoretical distinction, [partial evaluation](https://en.wikipedia.org/wiki/Partial_evaluation) has been successfully operationalized in several [general purpose](https://dl.acm.org/doi/10.1145/3062341.3062381) and [domain-specific](https://compilers.cs.uni-saarland.de/papers/gpce15.pdf) languages. 
 
 $$
 P: I_{\text{static}} \times I_{\text{dynamic}} \rightarrow O
 $$
 
-Consider the static case, in which we have all the information available at compile time, we just need to multiply the state P: 𝔹<sup>|S|×|S|</sup> by the vector S until termination:
+Programs can be viewed as simply functions mapping inputs to output, and executing the program amounts to running a matrix dynamical system to completion. Consider the static case, in which we have all the information available at compile time, we just need to multiply the state $$\mathcal P: \mathbb B^{\lvert S\rvert \times \lvert S\rvert}$$ by the vector $$\mathcal S$$ until termination:
 
 ```
     [P]────────────────────────────────           } Program
@@ -1158,8 +1158,7 @@ Consider the static case, in which we have all the information available at comp
 [S₀]───*───[S₁]───*───[S₂]───*───[..]───*───[Sₜ]  } TM tape
 ```
 
-
-Now the dynamic case, P might be governed by another program:
+Now consider the dynamic case, where the matrix $$P$$ at each time step might be governed by another program:
 
 ```
         [Q]─────────────────────                  } Dynamics
@@ -1169,7 +1168,7 @@ Now the dynamic case, P might be governed by another program:
 [S₀]───*───[S₁]───*───[S₂]───*───[..]───*───[Sₜ]  } TM tape
 ```
 
-We might also imagine these inputs as being generated by higher order programs.
+We might also imagine the dynamic inputs as being generated by successively higher order programs, parts of which may be elsewhere in memory.
 
 ```
                      ⋮
@@ -1228,15 +1227,15 @@ A less charitable interpretation is that Goodfellow is simply using a metaphor t
 
 Much work lies ahead for the interested reader. Before we can claim to have a unification of graph linear algebra and computer science, at least three technical hurdles will need to be cleared. First is theoretical: we will need show that binary matrix arithmetic is universal. Second is practical: we will need to show a proof-of-concept via binary recompilation. Third is usable: we must develop a robust toolchain for compiling and introspecting a wide variety of graph programs.
 
-While a naïve proof is a trivial extension of the Church-Turing thesis, a constructive proof taking hardware constraints into consideration is needed. Given some universal language $$\mathcal L$$, and a program implementing a boolean vector function $$\mathcal V: \mathbb B^i \rightarrow \mathbb B^o \in \mathcal L$$, we must derive a transformation $$\mathcal T_\mathcal L: \mathcal V \rightarrow \mathcal M$$, which maps $$\mathcal P$$ to a boolean matrix function $$\mathcal M: \mathbb B^{j \times k} \times \mathbb B^{l\times m}$$, while preserving asymptotic complexity $$\mathcal O(\mathcal M) \lt \mathcal O(\mathcal V)$$, i.e. which is no worse than a constant factor in space or time. Clearly, the identity function $$\mathcal I(\mathcal V)$$ is a valid candidate for $$\mathcal T_{\mathcal L}$$. But as recent GPGPU research has shown, we can do much better.
+While a naïve proof is a trivial extension of the Church-Turing thesis, a constructive proof taking physics into consideration is needed. Given some universal language $$\mathcal L$$, and a program implementing a boolean vector function $$\mathcal V: \mathbb B^i \rightarrow \mathbb B^o \in \mathcal L$$, we must derive a transformation $$\mathcal T_\mathcal L: \mathcal V \rightarrow \mathcal M$$, which maps $$\mathcal P$$ to a boolean matrix function $$\mathcal M: \mathbb B^{j \times k} \times \mathbb B^{l\times m}$$, while preserving asymptotic complexity $$\mathcal O(\mathcal M) \lt \mathcal O(\mathcal V)$$, i.e. which is no worse than a constant factor in space or time. Clearly, the identity function $$\mathcal I(\mathcal V)$$ is a valid candidate for $$\mathcal T_{\mathcal L}$$. But as recent GPGPU research has shown, we can do much better.
 
 <center>
 <blockquote class="twitter-tweet"><p lang="en" dir="ltr">n.b. Not saying anything about the workload, just the architecture - Software 1.0 may still be the dominant paradigm. I&#39;m saying there is a binary translation from load/store/jump/branch instructions to sparse BLAS primitives which imposes no constraints on the programming model.</p>&mdash; breandan (@breandan) <a href="https://twitter.com/breandan/status/1278156002240716800?ref_src=twsrc%5Etfw">July 1, 2020</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script> 
 </center>
 
-The second major hurdle is to develop a binary recompiler which translates vector programs into optimized matrix primitives with real datatypes, e.g. `Int`, `Float16`, `Float32`, and run that program on an optimized SIMD architecture. This will be a major engineering undertaking in the next two decades as the world transitions to GPGPU and graph computing. Program induction will become an key step in the compilation process and getting these graphs to run quickly.
+The second major hurdle to graph computation is developing a binary recompiler which translates programs into optimized BLAS instructions. The resulting program will eventually need to demonstrate performant execution across a variety of heterogenously-typed programs, e.g. `Int`, `Float16`, `Float32`, and physical SIMD devices. Developing the infrastructure for such a recompiler will be a major engineering undertaking in the next two decades as the world transitions to graph computing. Program induction will likely be a key step to accelerating these graphs on physical hardware.
 
-The third and final hurdle is to develop robust compiler toolchain for matrix programs, including a transpiler that returns human-readable matrix programs. This will require fundamental progress in program synthesis and most likely consume the better half of the next century to fully deploy.
+The third and final hurdle is to develop a robust compiler toolchain for graph computation. At some point, users will be able to feed a short program into a source-to-source transpiler and have the program slightly rewritten with semantics preserving guarantees. This will require fundamental progress in abstract interpretation, programming tools, runtime instrumentation, as well as shape-safe libraries and frameworks. Ultimately, we hypothesize users will opt for a more declarative programming style with resource-aware and type-directed constraints. This final step will require fundamental progress in program induction and consume the better half of the next century to gain wider adoption.
 
 # References
 
