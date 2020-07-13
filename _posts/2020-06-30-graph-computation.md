@@ -28,7 +28,7 @@ In 2017, I started writing a book on the ethics of automation and [predicted](ht
 <a href="https://colah.github.io/posts/2015-09-NN-Types-FP/"><img align="center" width="75%" src="../images/diff_prog.png"/></a>
 </center>
 
-In 2017, I witnessed the birth of differentiable programming, which I stole from Chris Olah and turned into a [master's thesis](https://github.com/breandan/kotlingrad/blob/master/latex/thesis/thesis.pdf). Had a lot of trouble convincing people that programs could be made differentiable, but look at the proceedings of any machine learning conference today and you'll find dozens of papers on differentiable sorting and rendering and simulation. Don't thank me, thank Chris and the Theano guys.
+In 2017, I witnessed the birth of [differentiable programming](https://colah.github.io/posts/2015-09-NN-Types-FP/), which I stole from Chris Olah and turned into a [master's thesis](https://github.com/breandan/kotlingrad/blob/master/latex/thesis/thesis.pdf). Had a lot of trouble convincing people that programs could be made differentiable, but look at the proceedings of any machine learning conference today and you'll find dozens of papers on differentiable sorting and rendering and simulation. Don't thank me, thank Chris and the Theano guys.
 
 In 2018, I correctly predicted Microsoft would acquire GitHub to mine code. Why MS and not Google? I'll bet they tried, but Google's leadership had fantasies of AGI and besides JetBrains, MS were the only ones who gave a damn about developers. Now ML4SE is a thriving [research area](https://ml4se.github.io/) and showing up in [real](https://github.com/JetBrains-Research/DeepBugsPlugin) [products](https://devblogs.microsoft.com/visualstudio/ai-assisted-intellisense-for-your-teams-codebase/), much to the chagrin of those who believed ML was a fad. I suspect their hype filter blinded them to the value those tools provide.
 
@@ -75,11 +75,11 @@ In 2019, I joined a lab with a [nice professor](https://www.cs.mcgill.ca/~jguo/)
 <a href="https://structurizr.com/"><img align="center" width="45%" src="https://raw.githubusercontent.com/cecuesta/structurizr-java/master/docs/images/graphviz-spring-petclinic-components.png"/></a>
 </center>
 
-This Spring, I took a fascinating [seminar on Graph Representation Learning](https://cs.mcgill.ca/~wlh/comp766/index.html). A lot of delightful graph theory had been worked out over the preceding decade. [PageRank](https://en.wikipedia.org/wiki/PageRank) turned into power iteration. People made lots of interesting connections to linear algebra, including Weisfeiler-Lehman graph kernels, graph Laplacians, Krylov methods, and spectral graph theory. There are some elegant mathematics for representing graphs, and choosing the right representation can be very powerful. More on that later.
+This Spring, I took a fascinating seminar on [Graph Representation Learning](https://cs.mcgill.ca/~wlh/comp766/index.html). A lot of delightful graph theory has been worked out over the last decade. [PageRank](https://en.wikipedia.org/wiki/PageRank) turned into power iteration. People have discovered many interesting connections to linear algebra, including Weisfeiler-Lehman graph kernels, graph Laplacians, Krylov methods, and spectral graph theory. These ideas have deepened our understanding of graph signal processing and its applications for learning and program analysis. More on that [later](#synthesis).
 
 # What are graphs?
 
-Graphs are general-purpose data structures used to represent a variety of data types and procedural phenomena. Unlike most sequential languages, graphs are capable of expressing a much richer family of relations between entities. Consider the following hierarchy of data structures, all of which are graphs with increasing expressive power:
+Graphs are general-purpose data structures used to represent a variety of data types and procedural phenomena. Unlike most sequential languages, graphs are capable of expressing a much richer family of relations between entities, and are a natural fit for many problems in computer science, physics, biology and mathematics. Consider the following hierarchy of data structures, all of which are graphs with increasing expressive power:
 
 - **Sets**: datasets, multisets, posets, alphabets
 - **Sequences**: Lists, strings, arrays, linear function composition
@@ -88,7 +88,7 @@ Graphs are general-purpose data structures used to represent a variety of data t
 - **Directed graphs**: [State machines](https://en.wikipedia.org/wiki/Finite-state_machine), [λ-calculus](http://dkeenan.com/Lambda/), [the web](https://computersciencewiki.org/index.php/The_web_as_a_directed_graph), [call graphs](https://en.wikipedia.org/wiki/Call_graph), [RNNs](https://en.wikipedia.org/wiki/Recurrent_neural_network)
 - **Hypergraphs**: [Knowledge](https://arxiv.org/pdf/2003.02320.pdf), [Zettelkasten](https://zettelkasten.de/), [categories](https://en.wikipedia.org/wiki/Category_theory), [physics](https://writings.stephenwolfram.com/2020/04/finally-we-may-have-a-path-to-the-fundamental-theory-of-physics-and-its-beautiful/), [hypernetworks](https://openreview.net/pdf?id=rkpACe1lx)
 
-Directed graphs can be used to model mathematical expressions, as we saw in [Kotlin∇](https://github.com/breandan/kotlingrad), as well as other formal languages, including source code, intermediate representations and binary artifacts. Not only have graphs been used to model language, many recent examples have shown that trees and graphs can be "grown" anew for various applications, such as program synthesis, mathematical deduction and physical simulation. Recent neuro-symbolic applications have shown promising early results in this graph synthesis:
+As we realized in [Kotlin∇](https://github.com/breandan/kotlingrad), directed graphs can be used to model mathematical expressions, as well as other formal languages, including source code, intermediate representations and binary artifacts. Not only can graphs be used to describe extant human knowledge, many recent examples have shown that machines can "grow" trees and graphs for various applications, such as program synthesis, mathematical deduction and physical simulation. Recent neuro-symbolic applications have shown promising early results in graph synthesis:
 
 * [Learning to Represent Programs with Graphs](https://arxiv.org/pdf/1711.00740.pdf), Allamanis et al., 2018
 * [Deep Learning for Symbolic Mathematics](https://arxiv.org/pdf/1912.01412.pdf), Lample and Charton, 2019.
@@ -98,7 +98,7 @@ Directed graphs can be used to model mathematical expressions, as we saw in [Kot
 * [Strong Generalization and Efficiency in Neural Programs](https://arxiv.org/abs/2007.03629), Li et al., 2020.
 * [Neural Execution of Graph Algorithms](https://arxiv.org/pdf/1910.10593.pdf), Veličković et al. (2020)
 
-The field of natural language has also developed a rich set of graph-based representations, such as [constituency](https://en.wikipedia.org/wiki/Phrase_structure_grammar), [dependency](https://en.wikipedia.org/wiki/Dependency_grammar), [link](https://en.wikipedia.org/wiki/Link_grammar) and other and other typed attribute grammars which can be used to reason about syntactic and semantic relations between natural language entities. Research has begun to show many practical applications for such grammars in the extraction and organization of human knowledge stored in large text corpora. Those graphs can be further processed into ontologies for logical reasoning.
+The field of natural language processing has also developed a rich set of graph-based representations, such as [constituency](https://en.wikipedia.org/wiki/Phrase_structure_grammar), [dependency](https://en.wikipedia.org/wiki/Dependency_grammar), [link](https://en.wikipedia.org/wiki/Link_grammar) and other and other typed attribute grammars which can be used to reason about syntactic and semantic relations between natural language entities. Research has begun to show many practical applications for such grammars in the extraction and organization of human knowledge stored in large text corpora. Those graphs can be further processed into ontologies for logical reasoning.
 
 <center>
 <img align="center" width="60%" src="https://upload.wikimedia.org/wikipedia/commons/8/8e/Thistreeisillustratingtherelation%28PSG%29.png"/>
@@ -127,7 +127,7 @@ term → 0 | 10 | ε
 expr → term | expr term
 ```
 
-We have two sets of productions, those which can be expanded, called "nonterminals", and those which can be expanded no further, called "terminals". Notice how each non-terminal occurs at most once in any single production. This property guarantees the language is recognizable by a special kind of graph, called a finite state machine. As their name suggests, FSMs contain a finite set of states, with labeled transitions between them:
+We have two sets of productions, those which can be expanded, called "nonterminals", and those which can be expanded no further, called "terminals". Notice how each non-terminal occurs at most once in any single production. This property guarantees the language is recognizable by a special kind of graph, called a [finite state machine](https://en.wikipedia.org/wiki/Finite-state_machine). As their name suggests, FSMs contain a finite set of states, with labeled transitions between them:
 
 |Finite Automaton | Library Courtesy Bell |
 |:------:|:------:|
@@ -162,7 +162,7 @@ Regular languages can also model nested repetition. Consider a slightly more com
 </tr>
 </table>
 
-Note here, a single state may have multiple transitions on the same symbol. Called a nondeterminsic finite automata (NFA), this machine can occupy multiple states simultaneously. While no more powerful than their determinstic cousins, NFAs often require far fewer states to recognize the same language. One way to implement an NFA is to simulate the superposition of all states, by cloning the machine whenever such a transition occurs. More on that later.
+Here, a single state may have multiple transitions on the same symbol. Called a [nondeterminsic finite automaton](https://en.wikipedia.org/wiki/Nondeterministic_finite_automaton) (NFA), this machine can occupy multiple states simultaneously. While no more powerful than their determinstic cousins, NFAs often require far fewer states to recognize the same language. One way to implement an NFA is to simulate the superposition of all states, by cloning the machine whenever such a transition occurs. More on that [later](#nfa).
 
 ## Arithmetic
 
@@ -271,11 +271,11 @@ We have reached a terminal, and can recurse no further. This particular program 
         f     f     f (λx.f (x x))(λx.f (x x)) [f → λx.f(x x)]
 ```
 
-This pattern is [Curry's (1930)](https://doi.org/10.2307%2F2370619) famous fixed point combinator and the cornerstone of recursion, called Y. Unlike its typed cousin, the untyped λ-calculus is *not* strongly normalizing and thus not guaranteed to converge. Were it convergent, it would not be Turing-complete. This [hard choice](http://www.cts.cuni.cz/~kurka/decid1.pdf) between decidability and universality is one which all computational languages must make.
+This pattern is [Curry's (1930)](https://doi.org/10.2307%2F2370619) famous fixed point combinator and the cornerstone of recursion, called Y. Unlike its typed cousin, the untyped λ-calculus is *not* strongly normalizing and thus not guaranteed to converge. Were it convergent, it would not be Turing-complete. This [hard choice](http://www.cts.cuni.cz/~kurka/decid1.pdf) between decidability and universality is one which no computational language can escape.
 
 ## Cellular automata
 
-The [elementary cellular automata](https://en.wikipedia.org/wiki/Elementary_cellular_automaton), which consists of a one dimensional array, and a 3-cell is another string rewrite system. Note there are $$2^{2^3} = 256$$ possible rules for rewriting the tape. It turns out even in this tiny space, there exist remarkable automata. Consider the following rewrite system, known as [Rule 110](https://en.wikipedia.org/wiki/Rule_110):
+The [elementary cellular automata](https://en.wikipedia.org/wiki/Elementary_cellular_automaton), is another string rewrite system consisting of a one dimensional binary array, and a 3-cell grammar. Note there are $$2^{2^3} = 256$$ possible rules for rewriting the tape. It turns out even in this tiny space, there exist remarkable automata. Consider the following rewrite system, known as [Rule 110](https://en.wikipedia.org/wiki/Rule_110):
 
 <center>
 <img align="center" src="../images/ca_rule%20110.png"/>
@@ -292,7 +292,7 @@ The [elementary cellular automata](https://en.wikipedia.org/wiki/Elementary_cell
 | next pattern | ` 0 `  | ` 1 `  | ` 1 `  | ` 0 `  | ` 1 ` | ` 1 `  | ` 1 `  | ` 0 `  |
 
 
-To implement this machine, we can slide over the state and replace the centermost cell in any matching substring with the second row's value. [Robinson (1987)](http://wpmedia.wolfram.com/uploads/sites/13/2018/02/01-1-15.pdf) defines an ECA inductively, using a recurrence relation:
+We can think of this machine as sliding over the tape, replace the centermost cell in each matching substring with the second value. Following [Robinson (1987)](http://wpmedia.wolfram.com/uploads/sites/13/2018/02/01-1-15.pdf), we can also define an ECA inductively, using a recurrence relation:
 
 $$
 a_i^{(t)} = \sum_j s(j)a_{i-j}^{(i-j)} \mod 2
@@ -306,7 +306,7 @@ $$
 
 Here $$f$$ is our state and $$g$$ is called a "kernel". Similar to the λ-calculus, this system also is [known to be universal](https://wpmedia.wolfram.com/uploads/sites/13/2018/02/15-1-1.pdf). Disregarding efficiency, we could encode any computable function as an initial state and mechanically apply Rule 110 to simulate a TM, λ-calculus, or any other TC system for that matter.
 
-# Graphs, inductively
+# [Graphs, inductively](#inductive)
 
 Just like grammars, we can define graphs themselves inductively. As many graph algorithms are recursive, this choice considerably simplifies their implementation. Take one definition of an unlabeled directed graph, proposed by [Erwig (2001)](https://web.engr.oregonstate.edu/~erwig/papers/InductiveGraphs_JFP01.pdf). Here, the notation `list → [item]` is a shorthand for `list → item list`, where `item` is some terminal, and `list` is just a list of `item`s:
 
@@ -317,7 +317,7 @@ context → (adj, vertex, adj)
 graph   → empty | context & graph
 ```
 
-Erwig defines a `graph` in four parts. First, we have a `vertex`, which is simply an integer. Next we have a list of vertices, `adj`, called an adjacency list. The `context` is a 3-tuple containing a `vertex` and symmetric references to its inbound and outbound neighbors, respectively. Finally, we have the inductive case: a `graph` is either (1) `empty`, or (2) a `context` and a `graph`.
+Erwig defines a `graph` in four parts. First, we have a `vertex`, which is simply an integer. Next we have a list of vertices, `adj`, called an [adjacency list](https://en.wikipedia.org/wiki/Adjacency_list). The `context` is a 3-tuple containing a `vertex` and symmetric references to its inbound and outbound neighbors, respectively. Finally, we have the inductive case: a `graph` is either (1) `empty`, or (2) a `context` and a `graph`.
 
 <table>
 <tr>
@@ -346,7 +346,7 @@ Erwig defines a `graph` in four parts. First, we have a `vertex`, which is simpl
 </table>
 
 
-Let us consider a simple graph implementation in Kotlin. We do not record inbound neighbors, and attempt to define a vertex as a [closed neighborhood](https://en.wikipedia.org/wiki/Neighbourhood_(graph_theory)):
+Let us consider a directed graph implementation in [Kotlin](https://kotlinlang.org/). We do not store inbound neighbors, and attempt to define a vertex as a [closed neighborhood](https://en.wikipedia.org/wiki/Neighbourhood_(graph_theory)):
 
 ```kotlin
 open class Graph(val vertices: Set<Vertex>) { ... }
@@ -442,11 +442,11 @@ fun Graph.isIsomorphicTo(that: Graph) =
   this.hashCode() == that.hashCode()
 ```
 
-That's it! This algorithm works on almost every graph you will ever encounter in the wild. For a complete implementation of `Graph`, please refer to [this repository](https://github.com/breandan/kaliningraph).
+This algorithm works on almost every graph you will ever encounter in the wild. For a complete implementation of `Graph` and other inductive graph algorithms, such as Barabási's [preferential attachment algorithm](https://en.wikipedia.org/wiki/Preferential_attachment), check out [Kaliningraph](https://github.com/breandan/kaliningraph).
 
-TODO: Graph grammars are grammars on graphs.
+<!--TODO: Graph grammars are grammars on graphs.-->
 
-TODO: Single/Double pushout
+<!--TODO: Single/Double pushout-->
 
 # [Graph languages](#graph-languages)
 
@@ -519,7 +519,7 @@ Just like matrices, we can also think of a graph as a function on a state space,
 
 # Graphs, computationally
 
-What happens if we take a square matrix $$\mathbb{R}^{n\times n}$$ and raise it to a power? Which kinds of matrices converge? How can we analyze their asymptotics? This is a very fertile line of inquiry which has occupied engineers for the better part of the last century, with important applications in control theory, physical simulation and deep learning (RNNs). Linear algebra gives us a number of tricks for designing the matrix and normalizing the product to promote convergence, since systems which explode or vanish are not very interesting.
+What happens if we take a square matrix $$\mathbb{R}^{n\times n}$$ and raise it to a power? Which kinds of matrices converge and what are their asymptotics? This is a very fertile line of inquiry which has occupied engineers for the better part of the last century, with important applications in control theory, physical simulation and deep learning (RNNs). Linear algebra gives us a number of tricks for designing the matrix and normalizing the product to promote convergence, as systems which explode or vanish are not very interesting.
 
 One way to interpret this is as follows: each time we multiply a matrix by a vector $$\mathbb{R}^{n}$$, we are effectively simulating a dynamical system at discrete time steps. This method is known as [power iteration](https://cs.mcgill.ca/~wlh/comp766/files/chapter1_draft_mar29.pdf#page=11) or the Krylov method in linear algebra. In the limit, we are seeking fixpoints, or eigenvectors, which are these islands of stability in our dynamical system. If we initialize our state at such a point, the transition matrix will send us straight back to where we started.
 
@@ -554,7 +554,7 @@ We can think of the Krylov method as either a matrix-matrix or matrix-vector pro
   <summary>Krylov Method</summary>
 <center><img src="http://krylov-centre.ru/rus/images/exp_base/base-doccamers/base-doccamers-big-eng.jpg" width="50%"/></center>
 <p align="justify"> There exists in St. Petersburg a naval research facility, known as the Krylov Shipbuilding Research Institute, which houses the world's largest <a href="https://krylov-centre.ru/en/experimental/base-doccamers/">full ocean depth hydraulic pressure tank</a>. Capable of simulating in excess of 20,000 PSI, the DK-1000 is used to test deepwater submersible vessels. At such pressure, even water itself undergoes ~5% compression. Before inserting your <a href="https://fivedeeps.com/home/technology/sub/">personal submarine</a>, you may wish to perform a finite element analysis to check hull integrity. Instabilities in the stiffness matrix may produce disappointing results.</p>
-<center><img src="../images/water_density.svg"/></center>
+<center><a href="https://www.wolframalpha.com/input/?i=water+density+vs+pressure+at+20+deg+c"><img src="../images/water_density.svg"/></a></center>
 </details>
 
 <table>
@@ -611,17 +611,15 @@ $$\frac{Mv}{\|Mv\|}, \frac{M\frac{Mv}{\|Mv\|}}{\|M\frac{Mv}{\|Mv\|}\|}, \frac{M\
 </tr>
 </table>
 
-Regrouping the order of matrix multiplication offers various computational benefits, and adding normalization prevents singularities from emerging. Many forms of normalization have been developed for graphs with various [strengths and disadvantages](https://cs.mcgill.ca/~wlh/comp766/files/chapter2_draft_mar29.pdf).
-
-This sequence forms the so-called [Krylov matrix](http://www.mathnet.ru/links/701af3446efa9590ab957fb2d9b5ddd5/im5215.pdf) (Krylov, 1931):
+Regrouping the order of matrix multiplication offers various computational benefits, and adding normalization prevents singularities from emerging. Many forms of normalization have been developed with various [strengths and disadvantages](https://cs.mcgill.ca/~wlh/comp766/files/chapter2_draft_mar29.pdf). This sequence forms the so-called [Krylov matrix](http://www.mathnet.ru/links/701af3446efa9590ab957fb2d9b5ddd5/im5215.pdf) (Krylov, 1931):
 
 $$
 K_{i} = \begin{bmatrix}v & Mv & M^{2}v & \cdots & M^{i-1}v \end{bmatrix}
 $$
 
-Such methods are not just applicable to real matrices, but can be used to analyze boolean and integer matrices. These are sometimes called [transition](https://ieeexplore.ieee.org/document/1086510), [stochastic or Markov](https://en.wikipedia.org/wiki/Stochastic_matrix) matrices. We are primarily interested in the deterministic version, whose variables inhabit $$\mathbb{B}^{n\times n}$$.
+Such methods are not just applicable to real matrices, but can be used to analyze boolean and integer matrices, and by extension, directed graphs. These are sometimes called [transition](https://ieeexplore.ieee.org/document/1086510), [stochastic or Markov](https://en.wikipedia.org/wiki/Stochastic_matrix) matrices. We are primarily interested in the deterministic version, whose variables inhabit $$\mathbb{B}^{n\times n}$$.
 
-The Krylov methods have important applications for studying dynamical systems and signal processing on networks. Researchers are just beginning to understand how eigenvalues of the Laplacian affect the asymptotic behavior of dynamical processes on graphs. In this section, we will explore some examples of dynamical processes on graphs.
+The Krylov methods have important applications for studying [dynamical systems](https://en.wikipedia.org/wiki/Graph_dynamical_system) and [graph signal processing](https://arxiv.org/pdf/1712.00468.pdf). Researchers are just beginning to understand how eigenvalues of the graph Laplacian affect the asymptotic behavior of dynamical processes on graphs. We have already seen one example of these in the [WL algorithm](#weisfeiler-lehman). Another example of graph computation can be found in [Valiant (1975)](http://theory.stanford.edu/~virgi/cs367/papers/valiantcfg.pdf), who shows a CFL parsing algorithm which is equivalent to matrix multiplication.
 
 <!--Three steps of Barabási's [preferential attachment algorithm](https://en.wikipedia.org/wiki/Preferential_attachment):-->
 
@@ -631,22 +629,22 @@ The Krylov methods have important applications for studying dynamical systems an
 <!--|<center><img src="../images/pref_graph1.svg"/></center>|<center><img src="../images/pref_mat1.png"/></center>|-->
 <!--|<center><img src="../images/pref_graph2.svg"/></center>|<center><img src="../images/pref_mat2.png"/></center>|-->
 
-We have seen one example of graph computation in the [WL algorithm](#weisfeiler-lehman). Another example of graph computation can be found in [Valiant (1975)](http://theory.stanford.edu/~virgi/cs367/papers/valiantcfg.pdf):
 
 <center>
 <blockquote class="twitter-tweet"><p lang="en" dir="ltr">TIL: CFL parsing can be reduced to boolean matrix multiplication (Valiant, 1975), known to be subcubic (Strassen, 1969), and later proven an asymptotic lower bound (Lee, 1997). This admits efficient GPGPU implementation (Azimov, 2017) in <a href="https://twitter.com/YaccConstructor?ref_src=twsrc%5Etfw">@YaccConstructor</a> <a href="https://t.co/3Vbml0v6b9">https://t.co/3Vbml0v6b9</a></p>&mdash; breandan (@breandan) <a href="https://twitter.com/breandan/status/1277136195118600192?ref_src=twsrc%5Etfw">June 28, 2020</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 </center>
 
-This astonishing result suggests that, at least for context-free languages and their subsets, there is a parsing algorithm which is equivalent to matrix multiplication. For example, all of the following automata can be simulated using matrix multiplication:
+Yet another example of graph computation can be found in Reps et al. (2016), who use fixed point methods on inductively defined boolean matrix expressions for abstract interpretation, e.g. to simulate control flow and determine which states are reachable from some initial configuration:
 
-- [Pushdown automata](https://en.wikipedia.org/wiki/Pushdown_automaton)
-- [Buchi automata](https://en.wikipedia.org/wiki/B%C3%BCchi_automaton)
-- [Mealy machines](https://en.wikipedia.org/wiki/Mealy_machine)
-- [Petri nets](https://en.wikipedia.org/wiki/Petri_net)
+<center><blockquote class="twitter-tweet"><p lang="en" dir="ltr">Newton&#39;s method has some amazing applications for program analysis. Reps et al. (2016) show a mapping between control flow graphs and boolean matrix expressions. Graph reachability amounts to finding fixed points of a semiring equation. What a goldmine! <a href="https://t.co/BFCZiJ1b6n">https://t.co/BFCZiJ1b6n</a> <a href="https://t.co/Jd86bEXiIu">pic.twitter.com/Jd86bEXiIu</a></p>&mdash; breandan (@breandan) <a href="https://twitter.com/breandan/status/1282160392228286466?ref_src=twsrc%5Etfw">July 12, 2020</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script></center>
 
-What happens if we define arithmetic operators on graphs? How might we define and interpret these operations? As we have seen, one way to represent a directed graph is just a square matrix whose non-zero entries indicate edges between nodes. Just like real matrices in linear algebra, we can add, subtract, multiply and exponentiate them.
+We could spend all day listing various matrix algorithms for graph computation. Certainly, far better writers have done them justice. Instead, let's just give some simple examples of dynamical processes on graphs.
 
-We will now show a few examples simulating a state machine using the Krylov method. For illustrative purposes, the state simply holds a vector of binary or integer values, however we can also imagine it carrying other "messages" around the graph in a similar manner, using another algebra. Here, we will use the boolean algebra for matrix multiplication, where `+` corresponds to logical disjunction (`∨`), and `*` corresponds to logical conjunction (`∧`):
+# Examples
+
+What happens if we define arithmetic operations on graphs? How could we define these operations in a way that allows us to perform computation? As we [already saw](#graph-languages), one way to represent a directed graph is just a square matrix whose non-zero entries indicate edges between nodes. Just like real matrices in linear algebra, we can add, subtract, multiply and exponentiate them.
+
+We will now show a few examples simulating a state machine using the Krylov method. For illustrative purposes, the state simply holds a vector of binary or integer values, although we can imagine it carrying other "messages" around the graph in a similar manner, using another algebra. Here, we will use the boolean algebra for matrix multiplication, where `+` corresponds to logical disjunction (`∨`), and `*` corresponds to logical conjunction (`∧`):
 
 ```
 ┌───┬───┬─────┬─────┐
@@ -800,13 +798,13 @@ c │ 0  1  1
 </tr>
 </table>
 
-## Directed acyclic graphs
+## [Directed acyclic graphs](#nfa)
 
 Simulating a DFA using a matrix can be inefficient, since we only ever inhabit one state at a time. The real benefit of using matrices comes when simulating nondeterminstic finite automata, [seen earlier](#regular-languages). 
 
 Formally, an NFA is a 5-tuple $$\langle Q, \Sigma, \Delta, q_0, F \rangle$$, where $$Q$$ is a finite set of states, $$\Sigma$$ is the alphabet, $$\Delta :Q\times (\Sigma \cup \{\epsilon \})\rightarrow P(Q)$$ is the transition function, $$q_0 \in Q$$ is the initial state and $$F \subseteq Q$$ are the terminal states. An NFA can be represented as a labeled transition system, or directed graph whose adjacency matrix is defined by the transition function, with edge labels representing symbols from the alphabet and self-loops for each terminal state.
 
-Typical implementations require cloning the NFA when multiple transitions are valid. Instead of cloning the machine, we can simulate the superposition of all states using a single matrix.
+Typical implementations require cloning the NFA when multiple transitions are valid. Instead of cloning the machine, we can simulate the superposition of all states using a single matrix:
 
 <table>
 <tr>
@@ -1104,7 +1102,7 @@ b │ 0  0  0  0
 
 </table>
 
-# Graphs, efficiently
+# [Graphs, efficiently](#efficiently)
 
 Due to their well-studied algebraic properties, graphs are suitable data structures for a wide variety of problems. Finding a reduction to a known graph problem can save years of effort, but many graph algorithms can be challenging to implement efficiently. Suboptimal graph algorithms have been reimplemented in dozens of libraries and compiler frameworks. Why have efficient graph-based algorithms remained out of reach for so long, and what has changed?
 
@@ -1113,6 +1111,13 @@ One issue with efficient representation of graphs is their space complexity. Sup
 <center><a href="http://faculty.cse.tamu.edu/davis/suitesparse.html"><img src="http://faculty.cse.tamu.edu/davis/suitesparse_files/SuiteSparse_logo.jpg" width="60%"></a></center>
 
 Perhaps the more significant barrier to widespread adoption of graph algorithms is their time complexity. Many interesting problems on graphs are NP-complete, including [Hamiltonian path](https://en.wikipedia.org/wiki/Hamiltonian_path) detection, [TSP](https://en.wikipedia.org/wiki/Travelling_salesman_problem) and [subgraph isomorphism](https://en.wikipedia.org/wiki/Subgraph_isomorphism_problem). However many of those problems have approximate solutions which are often good enough. But even if correctness is a hard constraint, CS theory is primarily concerned with worst case complexity, which seldom or rarely occurs in practice. Naturally occuring instances can often be solved quickly using SAT or SMT solvers.
+
+Most graph algorithms are implemented using object oriented programming or algebraic data types as we [saw previously](#inductive). While conceptually simple, this approach is frequently computationally inefficient. Ideally, we would like to have high level API, backed by a pure BLAS implementation for optimized execution on GPUs or SIMD-capable hardware. For example, all of the following automata can be greatly accelerated using matrix arithmetic on modern hardware:
+
+- [Pushdown automata](https://en.wikipedia.org/wiki/Pushdown_automaton)
+- [Buchi automata](https://en.wikipedia.org/wiki/B%C3%BCchi_automaton)
+- [Mealy machines](https://en.wikipedia.org/wiki/Mealy_machine)
+- [Petri nets](https://en.wikipedia.org/wiki/Petri_net)
 
 Suppose we want to access the computation graph of a program from within the program itself. How could we accomplish that? We need a way to "reify" the graph (i.e. make it available at runtime), so that given any variable, we have some method (e.g. `y.graph()`) which programmatically returns its [transitive closure](https://en.wikipedia.org/wiki/Transitive_closure), including upstream and downstream nodes. Depending on scope and granularity, this graph can expand very quickly, so efficiency is key.
 
@@ -1124,7 +1129,7 @@ With the advent of modern metaprogramming languages like PyTorch and TensorFlow,
 
 Recent work in linear algebra and sparse matrix representations for graphs shows us how to treat many recursive graph algorithms as pure matrix arithmetic, with the associated benefits of GPU acceleration. These same techniques can also be used to execute general-purpose programs as graphs. We are just beginning to explore this direction, and more work will be needed to understand how to transform arbitrary programs into graphs.
 
-A lot of the stuff in Graph Representation Learning is motivated by computational constraints. You can't instantiate the adjacency matrix, because it's too large, so you need all kinds of mathematical tricks to sum over or approximate it. But most graphs are sparse and have all kinds of symmetries. Finding the right graph embedding can get you real far...
+<!--A lot of the stuff in Graph Representation Learning is motivated by computational constraints. You can't instantiate the adjacency matrix, because it's too large, so you need all kinds of mathematical tricks to sum over or approximate it. But most graphs are sparse and have all kinds of symmetries. Finding the right graph embedding can get you real far...-->
 
 # Programs as graphs
 
@@ -1172,7 +1177,7 @@ What about programs of varying length? It may be the case we want to learn progr
 
 There will always be some program, at the interface of the machine and the real world, which must be approximated. One question worth asking is how large does k need to be in order to do so? If it is very large, this procedure might well be intractable. Time complexity appears to be at worst $$\mathcal{O}(tn^2)$$, using Strassen, although considerably better if S is sparse.
 
-# Program synthesis
+# [Program synthesis](#synthesis)
 
 Many people have asked me, "Why should developers care about automatic differentiation?" Yes, we can use it for building machine learning systems. Yes, it has specialized applications in robotics and physical simulation. But does it really matter for software engineers?
 
