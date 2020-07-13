@@ -115,7 +115,7 @@ Lo and behold, the key idea behind knowledge graphs is our old friend, types. Kn
 
 # Induction introduction!
 
-In this section, we will review some important concepts from [Chomskyan linguistics](https://en.wikipedia.org/wiki/Chomsky_hierarchy), including structural induction, string rewrite systems, λ-calculus and cellular automata. We will see how each of these ideas shares an interesting connection to graphs. If you are already familiar with these ideas, feel free to skim them or skip to the next section.
+In this section, we will review some important concepts from [Chomskyan linguistics](https://en.wikipedia.org/wiki/Chomsky_hierarchy), including structural induction, finite automata, string rewrite systems, and λ-calculus. We will see how each of these ideas shares an interesting connection to graphs. If you are already familiar with these ideas, feel free to skim them or skip to the next section.
 
 ## [Regular languages](#regular-languages)
 
@@ -273,6 +273,17 @@ We have reached a terminal, and can recurse no further. This particular program 
 
 This pattern is [Curry's (1930)](https://doi.org/10.2307%2F2370619) famous fixed point combinator and the cornerstone of recursion, called Y. Unlike its typed cousin, the untyped λ-calculus is *not* strongly normalizing and thus not guaranteed to converge. Were it convergent, it would not be Turing-complete. This [hard choice](http://www.cts.cuni.cz/~kurka/decid1.pdf) between decidability and universality is one which no computational language can escape.
 
+<center>
+<a href="http://bntr.planet.ee/lambda/work/visual_lambda.pdf"><img align="center" width="75%" src="../images/graphical_lambda_calculus.png"/></a>
+</center>
+
+
+The λ-calculus, can also be interpreted graphically. I refer the curious reader to some promising proposals which have attempted to formalize this perspective:
+
+* [Visual lambda calculus](http://bntr.planet.ee/lambda/work/visual_lambda.pdf) (Massalõgin, 2008)
+* [Graphic lambda calculus](https://arxiv.org/pdf/1305.5786.pdf) (Buliga, 2013)
+* [A Graphical Notation for the Lambda Calculus](http://dkeenan.com/Lambda/) (Kennan, 1996)
+
 ## Cellular automata
 
 The [elementary cellular automata](https://en.wikipedia.org/wiki/Elementary_cellular_automaton), is another string rewrite system consisting of a one dimensional binary array, and a 3-cell grammar. Note there are $$2^{2^3} = 256$$ possible rules for rewriting the tape. It turns out even in this tiny space, there exist remarkable automata. Consider the following rewrite system, known as [Rule 110](https://en.wikipedia.org/wiki/Rule_110):
@@ -292,7 +303,7 @@ The [elementary cellular automata](https://en.wikipedia.org/wiki/Elementary_cell
 | next pattern | ` 0 `  | ` 1 `  | ` 1 `  | ` 0 `  | ` 1 ` | ` 1 `  | ` 1 `  | ` 0 `  |
 
 
-We can think of this machine as sliding over the tape, replace the centermost cell in each matching substring with the second value. Following [Robinson (1987)](http://wpmedia.wolfram.com/uploads/sites/13/2018/02/01-1-15.pdf), we can also define an ECA inductively, using a recurrence relation:
+We can think of this machine as sliding over the tape, replacing the centermost cell in each matching substring with the second value. Following [Robinson (1987)](http://wpmedia.wolfram.com/uploads/sites/13/2018/02/01-1-15.pdf), we can also define an ECA inductively, using a recurrence relation:
 
 $$
 a_i^{(t)} = \sum_j s(j)a_{i-j}^{(i-j)} \mod 2
@@ -305,6 +316,12 @@ $$
 $$
 
 Here $$f$$ is our state and $$g$$ is called a "kernel". Similar to the λ-calculus, this system also is [known to be universal](https://wpmedia.wolfram.com/uploads/sites/13/2018/02/15-1-1.pdf). Disregarding efficiency, we could encode any computable function as an initial state and mechanically apply Rule 110 to simulate a TM, λ-calculus, or any other TC system for that matter.
+
+<center>
+<a href="https://www.wolframphysics.org/technical-introduction/equivalence-and-computation-in-our-models/correspondence-with-other-systems/#p-385"><img align="center" width="75%" src="../images/graph_ca.png"/></a>
+</center>
+
+Cellular automata can also be [interpreted](https://www.wolframphysics.org/technical-introduction/equivalence-and-computation-in-our-models/correspondence-with-other-systems/#p-385) as a [graph rewriting system](https://en.wikipedia.org/wiki/Graph_rewriting), although the benefits of this perspective are not as clear. Unlike string rewriting, graph substitution is much more difficult to implement efficiently, as pattern matching amounts to [subgraph isomorphism](https://en.wikipedia.org/wiki/Subgraph_isomorphism_problem), which is NP-complete. While there are [some optimizations](https://arxiv.org/pdf/1906.05170.pdf) to mitigate this problem, graph grammars do not appear to confer any additional computational benefits. Nevertheless, it is conceptually interesting.
 
 # [Graphs, inductively](#inductive)
 
@@ -450,7 +467,7 @@ This algorithm works on almost every graph you will ever encounter in the wild. 
 
 # [Graph languages](#graph-languages)
 
-Approximately 20% of the human cerebral cortex is devoted to [visual processing](https://en.wikipedia.org/wiki/Occipital_lobe). By using visual representations, language designers can tap into powerful pattern matching abilities which are often underutilized by linear symbolic writing systems. Graphs are one such example which have found many applications as reasoning and communication devices in various domain-specific languages:
+Approximately 20% of the human cerebral cortex is devoted to [visual processing](https://en.wikipedia.org/wiki/Occipital_lobe). By using visual representations, language designers can tap into powerful pattern matching abilities which are often underutilized by linear symbolic writing systems. Graphs are one such example which have found many applications as reasoning and communication devices in various [domain-specific languages](https://web.engr.oregonstate.edu/~erwig/papers/VLSemantics_JVLC98.pdf):
 
 |Language|Example|
 |:------------------:|:-----:|
@@ -463,12 +480,6 @@ Approximately 20% of the human cerebral cortex is devoted to [visual processing]
 
 <!--| [Petri networks](https://en.wikipedia.org/wiki/Petri_net) | <br/><center><img align="center" width="50%" src="https://upload.wikimedia.org/wikipedia/commons/d/d7/Animated_Petri_net_commons.gif"/></center> |-->
 <!--| [Proof networks](https://en.wikipedia.org/wiki/Proof_net) | <br/><center><img align="center" width="50%" src="https://www.researchgate.net/profile/Marco_Solieri/publication/311737880/figure/fig7/AS:501886778576905@1496670540685/Example-a-mMELL-proof-net-left-and-two-simple-mixed-nets-that-belong-to-its-expansion.png"/></center> |-->
-
-The λ-calculus, which we saw [earlier](#λ-calculus), can also be interpreted graphically. I refer the curious reader to some promising proposals:
-
-* [Graphic lambda calculus](https://arxiv.org/pdf/1305.5786.pdf)
-* [Visual lambda calculus](http://bntr.planet.ee/lambda/work/visual_lambda.pdf)
-* [To Dissect a Mockingbird: A Graphical Notation for the Lambda Calculus](http://dkeenan.com/Lambda/)
 
 As Tae Danae Bradley [vividly portrays](https://www.math3ma.com/blog/matrices-probability-graphs) in her writing, we can think of a matrix as not just a two-dimensional array, but a *function on a vector space*. This perspective can be depicted using a bipartite graph:
 
@@ -509,7 +520,7 @@ $$
 
 Note the lower triangular structure of the adjacency matrix, indicating it contains no cycles, a property which is not immediately obvious from the naïve geometric layout. Any graph whose adjacency matrix can be reordered into triangular form is a [directed acyclic graph](https://en.wikipedia.org/wiki/Directed_acyclic_graph). Called a topological ordering, this algorithm can be implemented by [repeatedly squaring](https://en.wikipedia.org/wiki/Topological_sorting#Parallel_algorithms) the adjacency matrix.
 
-Both the geometric and matrix representations impose an extrinsic perspective on graphs, each with their own advantages and disadvantages. 2D renderings can be visually compelling, but require solving a [minimal crossing number](https://en.wikipedia.org/wiki/Crossing_number_(graph_theory)) or similar optimization to make connectivity plain to the naked eye. While graph drawing is an active [field of research](http://www.graphdrawing.org/), matrices can often reveal symmetries that are not obvious from a naïve graph layout (and vis versa)
+Both the geometric and matrix representations impose an extrinsic perspective on graphs, each with their own advantages and drawbacks. 2D renderings can be visually compelling, but require solving a [minimal crossing number](https://en.wikipedia.org/wiki/Crossing_number_(graph_theory)) or similar optimization to make connectivity plain to the naked eye. While graph drawing is an active [field of research](http://www.graphdrawing.org/), matrices can often reveal symmetries that are not obvious from a naïve graph layout (and vis versa)
 
 Matrices are problematic for some reasons. Primarily, treating a graph as a matrix imposes an ordering over all vertices which is often arbitrary. Note also its sparsity, and consider the size of the matrix required to store even small graphs. While problematic, this can be overcome with [certain optimizations](https://en.wikipedia.org/wiki/Sparse_matrix). Despite these issues, matrices and are a natural representation choice for many graph algorithms, particularly on modern parallel processing hardware.
 
@@ -1110,7 +1121,7 @@ One issue with efficient representation of graphs is their space complexity. Sup
 
 <center><a href="http://faculty.cse.tamu.edu/davis/suitesparse.html"><img src="http://faculty.cse.tamu.edu/davis/suitesparse_files/SuiteSparse_logo.jpg" width="60%"></a></center>
 
-Perhaps the more significant barrier to widespread adoption of graph algorithms is their time complexity. Many interesting problems on graphs are NP-complete, including [Hamiltonian path](https://en.wikipedia.org/wiki/Hamiltonian_path) detection, [TSP](https://en.wikipedia.org/wiki/Travelling_salesman_problem) and [subgraph isomorphism](https://en.wikipedia.org/wiki/Subgraph_isomorphism_problem). However many of those problems have approximate solutions which are often good enough. But even if correctness is a hard constraint, CS theory is primarily concerned with worst case complexity, which seldom or rarely occurs in practice. Naturally occuring instances can often be solved quickly using SAT or SMT solvers.
+Perhaps the more significant barrier to widespread adoption of graph algorithms is their time complexity. Many interesting problems on graphs are NP-complete, including [Hamiltonian path](https://en.wikipedia.org/wiki/Hamiltonian_path) detection, [TSP](https://en.wikipedia.org/wiki/Travelling_salesman_problem) and [subgraph isomorphism](https://en.wikipedia.org/wiki/Subgraph_isomorphism_problem). However many of those problems have approximate solutions which are often good enough. But even if correctness is a hard constraint, CS theory is primarily concerned with worst case complexity, which seldom or rarely occurs in practice. Natural instances can often be solved quickly using SAT or SMT solvers.
 
 Most graph algorithms are implemented using object oriented programming or algebraic data types as we [saw previously](#inductive). While conceptually simple, this approach is frequently computationally inefficient. Ideally, we would like to have high level API, backed by a pure BLAS implementation for optimized execution on GPUs or SIMD-capable hardware. For example, all of the following automata can be greatly accelerated using matrix arithmetic on modern hardware:
 
