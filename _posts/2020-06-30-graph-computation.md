@@ -160,7 +160,7 @@ Regular languages can also model nested repetition. Consider a slightly more com
 </tr>
 </table>
 
-Here, a single state may have multiple transitions on the same symbol. Called a [nondeterminsic finite automaton](https://en.wikipedia.org/wiki/Nondeterministic_finite_automaton) (NFA), this machine can occupy multiple states simultaneously. While no more powerful than their determinstic cousins, NFAs often require far fewer states to recognize the same language. One way to implement an NFA is to simulate the superposition of all states, by cloning the machine whenever such a transition occurs. More on that [later](#nfa).
+Here, a single state may have multiple transitions on the same symbol. Called a [nondeterminsic finite automaton](https://en.wikipedia.org/wiki/Nondeterministic_finite_automaton) (NFA), this machine can occupy multiple states simultaneously. While no more powerful than their determinstic cousins, NFAs often require far fewer states to recognize the same language. One way to implement an NFA is to simulate the superposition of all states, by cloning the machine whenever such a transition occurs. More on that [later](#directed-acyclic-graphs).
 
 ## Arithmetic
 
@@ -301,19 +301,19 @@ The [elementary cellular automata](https://en.wikipedia.org/wiki/Elementary_cell
 | next pattern | ` 0 `  | ` 1 `  | ` 1 `  | ` 0 `  | ` 1 ` | ` 1 `  | ` 1 `  | ` 0 `  |
 
 
-We can think of this machine as sliding over the tape, replacing the centermost cell in each matching substring with the second value. Following [Robinson (1987)](http://wpmedia.wolfram.com/uploads/sites/13/2018/02/01-1-15.pdf), we can also define an ECA inductively, using a recurrence relation:
+We can think of this machine as sliding over the tape, and replacing the centermost cell in each matching substring with the second value. Depending on the initial state the rewrite pattern, these machines can produce many visually interesting patterns, and some have spent a great deal of effort [cataloguing](https://en.wikipedia.org/wiki/A_New_Kind_of_Science) families of CA and their behavior. Following [Robinson (1987)](http://wpmedia.wolfram.com/uploads/sites/13/2018/02/01-1-15.pdf), we can also define an ECA inductively, using a recurrence relation:
 
 $$
 a_i^{(t)} = \sum_j s(j)a_{i-j}^{(i-j)} \mod 2
 $$
 
-This might remind us of a certain operation from digital signal processing, called a [discrete convolution](https://en.wikipedia.org/wiki/Convolution#Discrete_convolution). We read $$f * g$$ as "$$f$$ convolved by $$g$$":
+This characterization might remind us of a certain operation from digital signal processing, called a [discrete convolution](https://en.wikipedia.org/wiki/Convolution#Discrete_convolution). We read $$f * g$$ as "$$f$$ convolved by $$g$$":
 
 $$
 (f * g)[n] = \sum_{m=-\infty}^{\infty} f[m]g[n-m]
 $$
 
-Here $$f$$ is our state and $$g$$ is called a "kernel". Similar to the λ-calculus, this system also is [known to be universal](https://wpmedia.wolfram.com/uploads/sites/13/2018/02/15-1-1.pdf). Disregarding efficiency, we could encode any computable function as an initial state and mechanically apply Rule 110 to simulate a TM, λ-calculus, or any other TC system for that matter.
+Here $$f$$ is our state and $$g$$ is called a "kernel". Similar to the λ-calculus, this language also is [known to be universal](https://wpmedia.wolfram.com/uploads/sites/13/2018/02/15-1-1.pdf). Disregarding efficiency, we could encode any computable function as an initial state and mechanically apply [Rule 110](https://en.wikipedia.org/wiki/Rule_110) to simulate a TM, λ-calculus, or any other TC system for that matter.
 
 <center>
 <a href="https://www.wolframphysics.org/technical-introduction/equivalence-and-computation-in-our-models/correspondence-with-other-systems/#p-385"><img align="center" width="75%" src="../images/graph_ca.png"/></a>
@@ -369,7 +369,7 @@ data class Vertex(neighbors: Set<Vertex>): Graph(this + neighbors)
 //                                               ↳ Compile error!
 ```
 
-Note the coinductive definition, which creates problems right off the bat. Since `this` is not accessible inside the constructor, we cannot have cycles or closed neighborhoods unless we delay edge instantiation until after construction:
+Note the coinductive definition, which creates problems right off the bat. Since `this` is not accessible inside the constructor, we cannot have cycles or closed neighborhoods, unless we delay edge instantiation until after construction:
 
 ```kotlin
 class Graph(val vertices: Set<Vertex>) { ... }
@@ -378,7 +378,7 @@ class Vertex(map: (Vertex) -> Set<Vertex>) {
 }
 ```
 
-We can now call `Vertex() { setOf(it) }` to create a vertex with a self-loop. This definition admits a nice k-nearest neighbors implementation:
+We can now call `Vertex() { setOf(it) }` to create loops and closed neighborhoods. This definition admits a nice k-nearest neighbors implementation, allowing us to compute the k-hop [transitive closure](https://en.wikipedia.org/wiki/Transitive_closure) of a vertex or set of vertices:
 
 ```kotlin
 tailrec fun Vertex.neighbors(k: Int = 0, vertices: Set<Vertex> =
@@ -409,7 +409,9 @@ val Graph.degree = Mat(vertices.size, vertices.size).also { deg ->
 val Graph.laplacian = degree - adjacency
 ```
 
-## [Weisfeiler-Lehman](#weisfeiler-lehman)
+We will have more to stay about these matrices and their applications [later](#graphs-computationally), but these structures have important applications in [algebraic](https://en.wikipedia.org/wiki/Algebraic_graph_theory) and [spectral](https://en.wikipedia.org/wiki/Spectral_graph_theory) graph theory.
+
+## Weisfeiler-Lehman
 
 Let us consider an algorithm called the Weisfeiler-Lehman isomorphism test, on which my colleague David Bieber has written a [nice piece](https://davidbieber.com/post/2019-05-10-weisfeiler-lehman-isomorphism-test/). I'll focus on its implementation. First, we need a pooling operator, which will aggregate all neighbors in a node's neighborhood using some summary statistic:
 
@@ -448,13 +450,13 @@ fun Graph.isIsomorphicTo(that: Graph) =
   this.hashCode() == that.hashCode()
 ```
 
-This algorithm works on almost every graph you will ever encounter in the wild. For a complete implementation of `Graph` and other inductive graph algorithms, such as Barabási's [preferential attachment algorithm](https://en.wikipedia.org/wiki/Preferential_attachment), check out [Kaliningraph](https://github.com/breandan/kaliningraph).
+This algorithm works on most every graph you will ever encounter in the wild. For a complete implementation of `Graph` and other inductive graph algorithms, such as Barabási's [preferential attachment algorithm](https://en.wikipedia.org/wiki/Preferential_attachment), check out [Kaliningraph](https://github.com/breandan/kaliningraph).
 
 <!--TODO: Graph grammars are grammars on graphs.-->
 
 <!--TODO: Single/Double pushout-->
 
-# [Graph languages](#graph-languages)
+# Graph languages
 
 Approximately 20% of the human cerebral cortex is devoted to [visual processing](https://en.wikipedia.org/wiki/Occipital_lobe). By using visual representations, language designers can tap into powerful pattern matching abilities which are often underutilized by linear symbolic writing systems. Graphs are one such example which have found many applications as reasoning and communication devices in various [domain-specific languages](https://web.engr.oregonstate.edu/~erwig/papers/VLSemantics_JVLC98.pdf):
 
@@ -798,7 +800,7 @@ c │ 0  1  1
 </tr>
 </table>
 
-## [Directed acyclic graphs](#nfa)
+## [Nondeterminstic finite automata](#nfa)
 
 Simulating a DFA using a matrix can be inefficient, since we only ever inhabit one state at a time. The real benefit of using matrices comes when simulating nondeterminstic finite automata, [seen earlier](#regular-languages). 
 
@@ -1119,15 +1121,15 @@ Most graph algorithms are implemented using object oriented programming or algeb
 - [Mealy machines](https://en.wikipedia.org/wiki/Mealy_machine)
 - [Petri nets](https://en.wikipedia.org/wiki/Petri_net)
 
-Suppose we want to access the computation graph of a program from within the program itself. How could we accomplish that? We need a way to "reify" the graph (i.e. make it available at runtime), so that given any variable, we have some method (e.g. `y.graph()`) which programmatically returns its [transitive closure](https://en.wikipedia.org/wiki/Transitive_closure), including upstream and downstream nodes. Depending on scope and granularity, this graph can expand very quickly, so efficiency is key.
+Suppose we want to access the computation graph of a program from within the program itself. How could we accomplish that? We need a way to "reify" the graph (i.e. make it available at runtime), so that given any variable `y`, we have some method `y.graph()` which programmatically returns its [transitive closure](https://en.wikipedia.org/wiki/Transitive_closure), including upstream and downstream nodes. Depending on scope and granularity, this graph can expand very quickly, so efficiency is key.
 
 <center><a href="https://github.com/breandan/kotlingrad#dataflow-graphs"><img src="https://raw.githubusercontent.com/breandan/kotlingrad/master/samples/src/main/resources/lr_batch_loss_graph.svg" width="60%"/></a></center>
 
-With the advent of modern metaprogramming in languages like PyTorch and TensorFlow, such graphs are available to introspect at runtime. By tracing all operations (e.g. using operator overloading) on an intermediate data structure (e.g. stack, AST, or DAG), these DSLs are able to backpropogate error through a computation graph. At periodic intervals, they may perform certain optimizations (e.g. constant propagation, common subexpression elimination) and emit an intermediate language (e.g. CUDA, webasm) for optimized execution on special hardware, such as a GPU.
+With the advent of metaprogramming in domain specific languages like [TensorFlow](https://www.tensorflow.org/api_docs/python/tf/Graph) and [MetaOCaml](https://en.wikipedia.org/wiki/OCaml#MetaOCaml), such graphs are available to introspect at runtime. By tracing all operations (e.g. using operator overloading) on an intermediate data structure (e.g. stack, AST, or DAG), these DSLs are able to embed a programming language in another language. At periodic intervals, they may perform certain optimizations (e.g. constant propagation, common subexpression elimination) and emit an intermediate language (e.g. CUDA, webasm) for optimized execution on special hardware, such as a GPU.
 
 <center><blockquote class="twitter-tweet"><p lang="en" dir="ltr">This <a href="https://twitter.com/hashtag/GraphBLAS?src=hash&amp;ref_src=twsrc%5Etfw">#GraphBLAS</a> stuff is super exciting. Most graph algorithms can be expressed as linear algebra. Sparse matrix SIMD-backed graph algorithms lets us process orders-of-magnitude larger graphs. Similar to AD tools like Theano et al., this will give a huge boost to network science.</p>&mdash; breandan (@breandan) <a href="https://twitter.com/breandan/status/1277505360127983618?ref_src=twsrc%5Etfw">June 29, 2020</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script></center>
 
-Recent work in linear algebra and sparse matrix representations for graphs [shows us](https://doi.org/10.1137/1.9780898719918.ch5) how to treat many recursive graph algorithms as pure matrix arithmetic, thus benefiting from SIMD acceleration. Researchers are just beginning to explore how these techniques can be used to transform general-purpose programs into graphs. We anticipate this effort will require further engineering to develop an efficient encoder, but there is no fundamental obstacle for a common graph-based execution scheme.
+Recent work in linear algebra and sparse matrix representations for graphs [shows us](https://doi.org/10.1137/1.9780898719918.ch5) how to treat many recursive graph algorithms as pure matrix arithmetic, thus benefiting from SIMD acceleration. Researchers are just beginning to explore how these techniques can be used to [transform general-purpose programs](https://en.wikipedia.org/wiki/General-purpose_computing_on_graphics_processing_units) into graphs. We [anticipate](#roadmap) this effort will require further engineering to develop an efficient encoder, but see no fundamental obstacle for a common graph-based execution scheme.
 
 <!--A lot of the stuff in Graph Representation Learning is motivated by computational constraints. You can't instantiate the adjacency matrix, because it's too large, so you need all kinds of mathematical tricks to sum over or approximate it. But most graphs are sparse and have all kinds of symmetries. Finding the right graph embedding can get you real far...-->
 
@@ -1159,7 +1161,7 @@ Now consider the dynamic case, where the matrix $$\mathbf P$$ at each time step 
 [S₀]───*───[S₁]───*───[S₂]───*───[..]───*───[Sₜ]  } TM tape
 ```
 
-We might also imagine the dynamic inputs as being generated by successively higher order programs, parts of which may be elsewhere in memory.
+We might also imagine the dynamic inputs as being generated by successively higher order programs. Parts of these may be stored elsewhere in memory.
 
 ```
                      ⋮
@@ -1172,7 +1174,7 @@ We might also imagine the dynamic inputs as being generated by successively high
 [S₀]───*───[S₁]───*───[S₂]───*───[..]───*───[Sₜ]  } TM tape
 ```
 
-What about programs of varying length? It may be the case we want to learn programs where t varies. The key is, we can choose an upper bound on t, and search for a fixpoint. That is, we halt whenever $$S_t = S_{t+1}$$.
+What about programs of varying length? It may be the case we want to learn programs where $$t$$ varies. The key is, we can choose an upper bound on $$t$$, and search for fixed points, whenever $$S_t = S_{t+1}$$.
 
 There will always be some program, at the interface of the machine and the real world, which must be approximated. One question worth asking is how large does $$\lvert S\rvert$$ need to be in order to do so? If it is very large, this procedure might well be intractable. Time complexity appears to be at worst $$\mathcal{O}(tn^2.37)$$, using [CW matmuls](https://en.wikipedia.org/wiki/Coppersmith%E2%80%93Winograd_algorithm), although considerably better if $$\mathbf P$$ is sparse.
 
@@ -1214,7 +1216,7 @@ Solar-Lezma calls this latter approach, "program extraction", where the network 
 
 A less charitable interpretation is that Goodfellow is simply using a metaphor to explain deep learning to lay audience, but I prefer to think he is communicating something deeper about the role of recurrent nonlinear function approximators as computational primitives for logical reasoning.
 
-# Roadmap to graph computation
+# [Roadmap to graph computation](#roadmap)
 
 Much work lies ahead for the interested reader. Before we can claim to have a unification of graph linear algebra and computer science, at least three technical hurdles will need to be cleared. First is theoretical: we will need show that binary matrix arithmetic is universal. Second is practical: we will need to show a proof-of-concept via binary recompilation. Third is usable: we must develop a robust toolchain for compiling and introspecting a wide variety of graph programs.
 
