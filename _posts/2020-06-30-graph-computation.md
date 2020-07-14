@@ -117,7 +117,7 @@ In this section, we will review some important concepts from [Chomskyan linguist
 
 ## [Regular languages](#regular-languages)
 
-One thing that always fascinated me is the idea of inductively defined languages, also known as recursive, or structural induction. Consider a very simple language which accepts strings of the form `0`, `1`, `100`, `101`, `1001`, `1010`, et cetera, but rejects `011`, `110`, `1011`, or any string containing `11`. The `→` symbol denotes a "production". The `|` symbol, which we read as "or", is just a shorthand for defining multiple productions on a single line:
+One thing that always fascinated me is the idea of inductively defined languages, also known as recursive, or structural induction. Consider a very simple language which accepts strings of the form `0`, `1`, `100`, `101`, `1001`, `1010`, et cetera, but rejects `011`, `110`, `1011`, or any string containing `11`. The `→` symbol denotes a "production". The `|` symbol, which we read as "or", is just shorthand for defining multiple productions on a single line:
 
 ```
 true → 1
@@ -284,7 +284,7 @@ The λ-calculus, can also be interpreted graphically. I refer the curious reader
 
 ## Cellular automata
 
-The [elementary cellular automata](https://en.wikipedia.org/wiki/Elementary_cellular_automaton), is another string rewrite system consisting of a one dimensional binary array, and a 3-cell grammar. Note there are $$2^{2^3} = 256$$ possible rules for rewriting the tape. It turns out even in this tiny space, there exist remarkable automata. Consider the following rewrite system:
+The [elementary cellular automata](https://en.wikipedia.org/wiki/Elementary_cellular_automaton) is another string rewrite system consisting of a one dimensional binary array, and a 3-cell grammar. Note there are $$2^{2^3} = 256$$ possible rules for rewriting the tape. It turns out even in this tiny space, there exist remarkable automata. Consider the following rewrite system:
 
 <center>
 <img align="center" src="../images/ca_rule%20110.png"/>
@@ -323,7 +323,7 @@ Cellular automata can also be [interpreted](https://www.wolframphysics.org/techn
 
 # [Graphs, inductively](#inductive)
 
-Just like grammars, we can define graphs themselves inductively. As many graph algorithms are recursive, this choice considerably simplifies their implementation. Take one definition of an unlabeled directed graph, proposed by [Erwig (2001)](https://web.engr.oregonstate.edu/~erwig/papers/InductiveGraphs_JFP01.pdf). Here, the notation `list → [item]` is a shorthand for `list → item list`, where `item` is some terminal, and `list` is just a list of `item`s:
+Just like grammars, we can define graphs themselves inductively. As many graph algorithms are recursive, this choice considerably simplifies their implementation. Take one definition of an unlabeled directed graph, proposed by [Erwig (2001)](https://web.engr.oregonstate.edu/~erwig/papers/InductiveGraphs_JFP01.pdf). Here, the notation `list → [item]` is shorthand for `list → item list`, where `item` is some terminal, and `list` is just a list of `item`s:
 
 ```
 vertex  → int
@@ -369,14 +369,16 @@ data class Vertex(neighbors: Set<Vertex>): Graph(this + neighbors)
 //                                               ↳ Compile error!
 ```
 
-Note the coinductive definition, which creates problems right off the bat. Since `this` is not accessible inside the constructor, we cannot have cycles or closed neighborhoods. Maybe we can come up with a definition which allows cycles and closed neighborhoods by avoiding coinduction:
+Note the coinductive definition, which creates problems right off the bat. Since `this` is not accessible inside the constructor, we cannot have cycles or closed neighborhoods unless we delay edge instantiation until after construction:
 
 ```kotlin
 class Graph(val vertices: Set<Vertex>) { ... }
-class Vertex(val neighbors: Set<Vertex>)
+class Vertex(map: (Vertex) -> Set<Vertex>) {
+    val neighbors = map(this).toSet()
+}
 ```
 
-Already, this definition admits a nice k-nearest neighbors implementation:
+We can now call `Vertex() { setOf(it) }` to create a vertex with a self-loop. This definition admits a nice k-nearest neighbors implementation:
 
 ```kotlin
 tailrec fun Vertex.neighbors(k: Int = 0, vertices: Set<Vertex> =
@@ -407,16 +409,6 @@ val Graph.degree = Mat(vertices.size, vertices.size).also { deg ->
 val Graph.laplacian = degree - adjacency
 ```
 
-But what about cycles? To support cycles, we will need to modify our definition slightly, to delay edge instantiation until after construction:
-
-```kotlin
-class Graph(val vertices: Set<Vertex>) { ... }
-class Vertex(map: (Vertex) -> Set<Vertex>) {
-    val neighbors = map(this).toSet()
-}
-```
-
-We can now call `Vertex() { setOf(it) }` to create a vertex with a self-loop.
 
 ## [Weisfeiler-Lehman](#weisfeiler-lehman)
 
@@ -1142,7 +1134,7 @@ Recent work in linear algebra and sparse matrix representations for graphs [show
 
 # Programs as graphs
 
-Graphs are not only useful as data structures for representing programs, but we can think of the act of computation itself as traversing a graph on a binary state space. Each tick of the clock corresponds to one matrix multiplication on a boolean tape.
+Graphs are not only useful as data structures for representing programs, but we can think of the act of computation itself as traversing a graph on a binary configuration space. Each tick of the clock corresponds to one matrix multiplication on a boolean tape.
 
 [Futamura (1983)](https://repository.kulib.kyoto-u.ac.jp/dspace/bitstream/2433/103401/1/0482-14.pdf) shows us that programs can be decomposed into two inputs: static and dynamic. While long considered a theoretical distinction, [partial evaluation](https://en.wikipedia.org/wiki/Partial_evaluation) has been successfully operationalized in several [general purpose](https://dl.acm.org/doi/10.1145/3062341.3062381) and [domain-specific](https://compilers.cs.uni-saarland.de/papers/gpce15.pdf) languages. 
 
@@ -1207,11 +1199,11 @@ One issue with this formulation is we must rely on a loss over $$S_t$$, which is
 
 Some, including [Gaunt et al., (2016)](https://arxiv.org/pdf/1608.04428.pdf), have shown gradient is not very effective, as the space of boolean circuits is littered with islands which have zero gradient. However their representation is also relatively complex -- effectively, they are trying to learn a recursively enumerable language using something like a [Neural Turing Machine](https://arxiv.org/pdf/1410.5401.pdf) (Graves et al., 2014).
 
-More recent work, including that of [Lample et al., (2019)](https://arxiv.org/pdf/1912.01412.pdf), have demonstrated Transformers are capable of learning programs which belong to the class of context-free languages. This space is often much more tractable to search through and generate synthetic training data. Furthermore, this ability appears to be well within the reach of modern language models, such as [pointer networks](https://arxiv.org/abs/1506.03134) and [transformers](https://arxiv.org/pdf/1706.03762.pdf).
+More recent work, including that of [Lample et al., (2019)](https://arxiv.org/pdf/1912.01412.pdf), demonstrated gradient is effective for learning programs belonging to the class of context-free languages. This space is often much more tractable to search through and generate synthetic training data. Furthermore, this appears to be well within the reach of modern language models, such as [pointer networks](https://arxiv.org/abs/1506.03134) and [transformers](https://arxiv.org/pdf/1706.03762.pdf).
 
 <center><img src="https://raw.githubusercontent.com/quark0/darts/master/img/darts.png" width="60%"/></center>
 
-In the last year, a number of interesting reults in differentiable architecture search started to emerge. [DARTS](https://arxiv.org/pdf/1806.09055.pdf) (Liu et al., 2019) proposes to use gradient to search through the space of directed graphs. The authors first perform a continuous relaxation of the discrete graph, by reweighting the output of each each potential value by a hyperparameter, optimizing over the space of operations, then discretizing the output graph.
+In the last year, a number of interesting reults in differentiable architecture search started to emerge. [DARTS](https://arxiv.org/pdf/1806.09055.pdf) (Liu et al., 2019) proposes to use gradient to search through the space of directed graphs. The authors first perform a continuous relaxation of the discrete graph, by reweighting the output of each each potential edge by a hyperparameter, optimizing over the space of operations using gradient descent, then taking a softmax to discretize the output graph.
 
 <center><a href="https://youtu.be/rwBbYhOAnPo?t=28272"><img src="../images/solar_lezma.png" width="70%"/></a></center>
 
