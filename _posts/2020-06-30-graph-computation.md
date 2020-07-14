@@ -409,7 +409,6 @@ val Graph.degree = Mat(vertices.size, vertices.size).also { deg ->
 val Graph.laplacian = degree - adjacency
 ```
 
-
 ## [Weisfeiler-Lehman](#weisfeiler-lehman)
 
 Let us consider an algorithm called the Weisfeiler-Lehman isomorphism test, on which my colleague David Bieber has written a [nice piece](https://davidbieber.com/post/2019-05-10-weisfeiler-lehman-isomorphism-test/). I'll focus on its implementation. First, we need a pooling operator, which will aggregate all neighbors in a node's neighborhood using some summary statistic:
@@ -520,7 +519,7 @@ Just like matrices, we can also think of a graph as a function, or [transition s
 
 # Graphs, computationally
 
-What happens if we take a square matrix $$\mathbb{R}^{n\times n}$$ and raise it to a power? Which kinds of matrices converge and what are their asymptotics? This is a very fertile line of inquiry which has occupied engineers for the better part of the last century, with important applications in control theory, physical simulation and deep learning (RNNs). Linear algebra gives us a number of tricks for designing the matrix and normalizing the product to promote convergence, as systems which explode or vanish are not very interesting.
+What happens when we take a square matrix $$\mathbb{R}^{n\times n}$$ and raise it to a power? Which kinds of matrices converge and what are their asymptotics? This is a very fertile line of inquiry which has occupied engineers for the better part of the last century, with important applications in control theory, physical simulation and deep learning (RNNs). Linear algebra gives us a number of tricks for designing the matrix and normalizing the product to promote convergence, as systems which explode or vanish are not very interesting.
 
 One way to interpret this is as follows: each time we multiply a matrix by a vector $$\mathbb{R}^{n}$$, we are effectively simulating a dynamical system at discrete time steps. This method is known as [power iteration](https://cs.mcgill.ca/~wlh/comp766/files/chapter1_draft_mar29.pdf#page=11) or the Krylov method in linear algebra. In the limit, we are seeking fixpoints, or eigenvectors, which are these islands of stability in our dynamical system. If we initialize our state at such a point, the transition matrix will send us straight back to where we started.
 
@@ -620,7 +619,7 @@ $$
 
 Such methods are not just applicable to real matrices, but can be used to analyze boolean and integer matrices, and by extension, directed graphs. These are sometimes called [transition](https://ieeexplore.ieee.org/document/1086510), [stochastic or Markov](https://en.wikipedia.org/wiki/Stochastic_matrix) matrices. We are primarily interested in the deterministic version, whose variables inhabit $$\mathbb{B}^{n\times n}$$.
 
-The Krylov methods have important applications for studying [dynamical systems](https://en.wikipedia.org/wiki/Graph_dynamical_system) and [graph signal processing](https://arxiv.org/pdf/1712.00468.pdf). Researchers are just beginning to understand how eigenvalues of the graph Laplacian affect the asymptotic behavior of dynamical processes on graphs. We have already seen one example of these in the [WL algorithm](#weisfeiler-lehman). Another example of graph computation can be found in [Valiant (1975)](http://theory.stanford.edu/~virgi/cs367/papers/valiantcfg.pdf), who shows a CFL parsing algorithm which is equivalent to matrix multiplication.
+The Krylov methods have important applications for studying [dynamical systems](https://en.wikipedia.org/wiki/Graph_dynamical_system) and [graph signal processing](https://arxiv.org/pdf/1712.00468.pdf). Researchers are just beginning to understand how eigenvalues of the graph Laplacian affect the asymptotics of dynamical processes on graphs. We have already seen one example of these in the [WL algorithm](#weisfeiler-lehman). Another example of graph computation can be found in [Valiant (1975)](http://theory.stanford.edu/~virgi/cs367/papers/valiantcfg.pdf), who shows a CFL parsing algorithm which is equivalent to matrix multiplication.
 
 <!--Three steps of Barabási's [preferential attachment algorithm](https://en.wikipedia.org/wiki/Preferential_attachment):-->
 
@@ -1105,7 +1104,7 @@ b │ 0  0  0  0
 
 # [Graphs, efficiently](#efficiently)
 
-Due to their well-studied algebraic properties, graphs are suitable data structures for a wide variety of problems. Finding a reduction to a known graph problem can save years of effort, but many graph algorithms can be challenging to implement efficiently. Suboptimal graph algorithms have been reimplemented in dozens of libraries and compiler frameworks. Why have efficient graph-based algorithms remained out of reach for so long, and what has changed?
+Due to their well-studied algebraic properties, graphs are suitable data structures for a wide variety of problems. Finding a reduction to a known graph problem can save years of effort, but many graph algorithms can be challenging to implement efficiently. Suboptimal graph algorithms have been reimplemented in dozens of libraries and compiler frameworks. Why have efficient graph algorithms remained out of reach for so long, and what changed?
 
 One issue with efficient representation of graphs is their space complexity. Suppose we have a graph with $$10^5=100,000$$ nodes, but only a single edge. We will need $$10^{5\times 2}$$ bits, or about 1 GB to store its adjacency matrix, where an equivalent adjacency list would only consume $$\lceil 2\log_2 10^5 \rceil = 34$$ bits. Most graphs are similarly sparse. But how do you multiply adjacency lists? One solution is to use [sparse matrix](https://en.wikipedia.org/wiki/Sparse_matrix) representations, which are more compact and can be exponentially faster on parallel computing architectures.
 
@@ -1113,7 +1112,7 @@ One issue with efficient representation of graphs is their space complexity. Sup
 
 Perhaps the more significant barrier to widespread adoption of graph algorithms is their time complexity. Many interesting problems on graphs are NP-complete, including [Hamiltonian path](https://en.wikipedia.org/wiki/Hamiltonian_path) detection, [TSP](https://en.wikipedia.org/wiki/Travelling_salesman_problem) and [subgraph isomorphism](https://en.wikipedia.org/wiki/Subgraph_isomorphism_problem). However many of those problems have approximate solutions which are often good enough. But even if correctness is a hard constraint, CS theory is primarily concerned with worst case complexity, which seldom or rarely occurs in practice. Natural instances can often be solved quickly using SAT or SMT solvers.
 
-Most graph algorithms are implemented using object oriented programming or algebraic data types as we [saw previously](#inductive). While conceptually simple, this approach is frequently computationally inefficient. Ideally, we would like to have high level API, backed by a pure BLAS implementation for optimized execution on GPUs or SIMD-capable hardware. For example, all of the following automata can be greatly accelerated using matrix arithmetic on modern hardware:
+Most graph algorithms are implemented using object oriented programming or algebraic data types as we [saw previously](#inductive). While conceptually simple, this approach is computationally inefficient. We would prefer a high level API, backed by a pure BLAS implementation for optimized execution on GPUs or SIMD-capable hardware. For example, all of the following automata can be greatly accelerated using matrix arithmetic on modern hardware:
 
 - [Pushdown automata](https://en.wikipedia.org/wiki/Pushdown_automaton)
 - [Buchi automata](https://en.wikipedia.org/wiki/B%C3%BCchi_automaton)
@@ -1139,10 +1138,10 @@ Graphs are not only useful as data structures for representing programs, but we 
 [Futamura (1983)](https://repository.kulib.kyoto-u.ac.jp/dspace/bitstream/2433/103401/1/0482-14.pdf) shows us that programs can be decomposed into two inputs: static and dynamic. While long considered a theoretical distinction, [partial evaluation](https://en.wikipedia.org/wiki/Partial_evaluation) has been successfully operationalized in several [general purpose](https://dl.acm.org/doi/10.1145/3062341.3062381) and [domain-specific](https://compilers.cs.uni-saarland.de/papers/gpce15.pdf) languages. 
 
 $$
-P: I_{\text{static}} \times I_{\text{dynamic}} \rightarrow O
+\mathbf P: I_{\text{static}} \times I_{\text{dynamic}} \rightarrow O
 $$
 
-Programs can be viewed as simply functions mapping inputs to output, and executing the program amounts to running a matrix dynamical system to completion. Consider the static case, in which we have all the information available at compile time, we just need to multiply the state $$\mathcal P: \mathbb B^{\lvert S\rvert \times \lvert S\rvert}$$ by the vector $$\mathcal S$$ until termination:
+Programs can be viewed as simply functions mapping inputs to output, and executing the program amounts to running a matrix dynamical system to completion. Consider the static case, in which we have all the information available at compile time, we just need to multiply the state $$\mathbf P: \mathbb B^{\lvert S\rvert \times \lvert S\rvert}$$ by the vector $$S$$ until termination:
 
 ```
     [P]────────────────────────────────           } Program
@@ -1150,7 +1149,7 @@ Programs can be viewed as simply functions mapping inputs to output, and executi
 [S₀]───*───[S₁]───*───[S₂]───*───[..]───*───[Sₜ]  } TM tape
 ```
 
-Now consider the dynamic case, where the matrix $$P$$ at each time step might be governed by another program:
+Now consider the dynamic case, where the matrix $$\mathbf P$$ at each time step might be governed by another program:
 
 ```
         [Q]─────────────────────                  } Dynamics
@@ -1175,7 +1174,7 @@ We might also imagine the dynamic inputs as being generated by successively high
 
 What about programs of varying length? It may be the case we want to learn programs where t varies. The key is, we can choose an upper bound on t, and search for a fixpoint. That is, we halt whenever $$S_t = S_{t+1}$$.
 
-There will always be some program, at the interface of the machine and the real world, which must be approximated. One question worth asking is how large does k need to be in order to do so? If it is very large, this procedure might well be intractable. Time complexity appears to be at worst $$\mathcal{O}(tn^2)$$, using Strassen, although considerably better if S is sparse.
+There will always be some program, at the interface of the machine and the real world, which must be approximated. One question worth asking is how large does k need to be in order to do so? If it is very large, this procedure might well be intractable. Time complexity appears to be at worst $$\mathcal{O}(tn^2)$$, using Strassen, although considerably better if $$\mathbb P$$ is sparse.
 
 # [Program synthesis](#synthesis)
 
@@ -1199,7 +1198,7 @@ One issue with this formulation is we must rely on a loss over $$S_t$$, which is
 
 Some, including [Gaunt et al., (2016)](https://arxiv.org/pdf/1608.04428.pdf), have shown gradient is not very effective, as the space of boolean circuits is littered with islands which have zero gradient. However their representation is also relatively complex -- effectively, they are trying to learn a recursively enumerable language using something like a [Neural Turing Machine](https://arxiv.org/pdf/1410.5401.pdf) (Graves et al., 2014).
 
-More recent work, including that of [Lample et al., (2019)](https://arxiv.org/pdf/1912.01412.pdf), demonstrated gradient is effective for learning programs belonging to the class of context-free languages. This space is often much more tractable to search through and generate synthetic training data. Furthermore, this appears to be well within the reach of modern language models, such as [pointer networks](https://arxiv.org/abs/1506.03134) and [transformers](https://arxiv.org/pdf/1706.03762.pdf).
+More recent work, including that of [Lample et al., (2019)](https://arxiv.org/pdf/1912.01412.pdf), demonstrated gradient is effective for learning programs belonging to the class of context-free languages. This space is often much more tractable to search through and generate synthetic training data. Furthermore, this appears to be well within the reach of modern language models, i.e. [pointer networks](https://arxiv.org/abs/1506.03134) and [transformers](https://arxiv.org/pdf/1706.03762.pdf).
 
 <center><img src="https://raw.githubusercontent.com/quark0/darts/master/img/darts.png" width="60%"/></center>
 
@@ -1219,7 +1218,7 @@ A less charitable interpretation is that Goodfellow is simply using a metaphor t
 
 Much work lies ahead for the interested reader. Before we can claim to have a unification of graph linear algebra and computer science, at least three technical hurdles will need to be cleared. First is theoretical: we will need show that binary matrix arithmetic is universal. Second is practical: we will need to show a proof-of-concept via binary recompilation. Third is usable: we must develop a robust toolchain for compiling and introspecting a wide variety of graph programs.
 
-While a naïve proof is a trivial extension of the Church-Turing thesis, a constructive proof taking physics into consideration is needed. Given some universal language $$\mathcal L$$, and a program implementing a boolean vector function $$\mathcal V: \mathbb B^i \rightarrow \mathbb B^o \in \mathcal L$$, we must derive a transformation $$\mathcal T_\mathcal L: \mathcal V \rightarrow \mathcal M$$, which maps $$\mathcal P$$ to a boolean matrix function $$\mathcal M: \mathbb B^{j \times k} \times \mathbb B^{l\times m}$$, while preserving asymptotic complexity $$\mathcal O(\mathcal M) \lt \mathcal O(\mathcal V)$$, i.e. which is no worse than a constant factor in space or time. Clearly, the identity function $$\mathcal I(\mathcal V)$$ is a valid candidate for $$\mathcal T_{\mathcal L}$$. But as recent GPGPU research has shown, we can do much better.
+While a naïve proof is a trivial extension of the Church-Turing thesis, a constructive proof taking physics into consideration is needed. Given some universal language $$\mathcal L$$, and a program implementing a boolean vector function $$\mathcal V: \mathbb B^i \rightarrow \mathbb B^o \in \mathcal L$$, we must derive a transformation $$\mathcal T_\mathcal L: \mathcal V \rightarrow \mathcal M$$, which maps $$\mathcal V$$ to a boolean matrix function $$\mathcal M: \mathbb B^{j \times k} \times \mathbb B^{l\times m}$$, while preserving asymptotic complexity $$\mathcal O(\mathcal M) \lt \mathcal O(\mathcal V)$$, i.e. which is no worse than a constant factor in space or time. Clearly, the identity function $$\mathcal I(\mathcal V)$$ is a valid candidate for $$\mathcal T_{\mathcal L}$$. But as recent GPGPU research has shown, we can do much better.
 
 <center>
 <blockquote class="twitter-tweet"><p lang="en" dir="ltr">n.b. Not saying anything about the workload, just the architecture - Software 1.0 may still be the dominant paradigm. I&#39;m saying there is a binary translation from load/store/jump/branch instructions to sparse BLAS primitives which imposes no constraints on the programming model.</p>&mdash; breandan (@breandan) <a href="https://twitter.com/breandan/status/1278156002240716800?ref_src=twsrc%5Etfw">July 1, 2020</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script> 
@@ -1227,7 +1226,7 @@ While a naïve proof is a trivial extension of the Church-Turing thesis, a const
 
 The second major hurdle to graph computation is developing a binary recompiler which translates programs into optimized BLAS instructions. The resulting program will eventually need to demonstrate performant execution across a variety of heterogenously-typed programs, e.g. `Int`, `Float16`, `Float32`, and physical SIMD devices. Developing the infrastructure for such a recompiler will be a major engineering undertaking in the next two decades as the world transitions to graph computing. Program induction will likely be a key step to accelerating these graphs on physical hardware.
 
-The third and final hurdle is to develop a robust compiler toolchain for graph computation. At some point, users will be able to feed a short program into a source-to-source transpiler and have the program slightly rewritten with semantics preserving guarantees. This will require fundamental progress in abstract interpretation, programming tools, runtime instrumentation, as well as shape-safe libraries and frameworks. Ultimately, we hypothesize users will opt for a more declarative programming style with resource-aware and type-directed constraints. This final step will require fundamental progress in program induction and consume the better half of the next century to gain wider adoption.
+The third and final hurdle is to develop a robust compiler toolchain for graph computation. At some point, users will be able to feed a short program into a source-to-source transpiler and have the program slightly rewritten with semantics preserving guarantees. This will require abstract interpretation, programming tools, runtime instrumentation, as well as shape-safe libraries and frameworks. Ultimately, we hypothesize users will adopt a more declarative programming style with resource-aware and type-directed constraints. This step will require fundamental progress in program induction and consume the better half of the next century to fully realize.
 
 # References
 
