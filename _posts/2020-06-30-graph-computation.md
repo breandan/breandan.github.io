@@ -131,7 +131,7 @@ We have two sets of productions, those which can be expanded, called "nontermina
 |:------:|:------:|
 |<center><img align="center" width="200%" src="../images/fsm_bell.svg"/></center>| <br/><center><img align="center" width="50%" src="../images/bell.png"/></center><br/>Please ring the bell **once**<br/> and wait for assistance. |
 
-Imagine a library desk: you can wait quietly and eventually you will be served. You can ring the bell once, and wait quietly to be served. Should no one arrive after some time, you may press the bell again and continue waiting. Though you must never ring the bell twice, lest you disturb the patrons and be tossed out.
+Imagine a library desk: you can wait quietly and eventually you will be served. You can ring the bell once, and wait quietly to be served. Should no one arrive after a while, you may press the bell again and continue waiting. Though you must never ring the bell twice, lest you disturb the patrons and be tossed out.
 
 Regular languages can also model nested repetition. Consider a slightly more complicated language, given by the regular expression `(0(01)*)*(10)*`. The `*`, or [Kleene star](https://en.wikipedia.org/wiki/Kleene_star), means, "accept zero or more of the previous token".
 
@@ -172,13 +172,13 @@ term → 1 | 0 | x | y
 expr → term | op expr | expr op expr
 ```
 
-This is known as a context-free language (CFL). We can represent strings in this language using a special kind of graph, called a syntax tree. Each time we expand an `expr` with a production rule, this generates a rooted subtree on `op`, whose branch(es) are `expr`s. Typically, syntax trees are inverted, with branches extending downwards, like so:
+This is an example of a [context-free language](https://en.wikipedia.org/wiki/Context-free_language) (CFL). We can represent strings in this language using a special kind of graph, called a syntax tree. Each time we expand an `expr` with a production rule, this generates a rooted subtree on `op`, whose branch(es) are `expr`s. Typically, syntax trees are inverted, with branches extending downwards, like so:
 
 |Syntax Tree| Peach Tree|
 |:---:|:---:|
 |<center><img align="center" width="80%" src="../images/tree_syntax.svg"/></center>|<center><img align="center" width="75%" src="../images/tree_peach.png"/></center>|
 
-While syntax trees can be interpreted computationally, they do not actually perform computation unless evaluated. To (partially) evaluate a syntax tree, we will now introduce some pattern matching rules. Instead of just allowing terminals to occur on the right-hand side of a production, suppose we also allow terminals on the left, and applying a rule can shrink a string in our language. Here, we use capital letters on the same line to indicate an exact match, e.g. a rule `U + V → V + U` would replace `x + y` with `y + x`:
+While syntax trees can be interpreted computationally, they do not actually perform computation unless evaluated. To [partially] evaluate a syntax tree, we will now introduce some pattern matching rules. Instead of just allowing terminals to occur on the right-hand side of a production, suppose we also allow terminals on the left, and applying a rule can shrink a string in our language. Here, we use capital letters on the same line to indicate an exact match, e.g. a rule `U + V → V + U` would replace `x + y` with `y + x`:
 
 ```
                                          E + E → +E
@@ -188,7 +188,7 @@ While syntax trees can be interpreted computationally, they do not actually perf
   E - E | E · 0 | 0 · E | 0 - E | +0 | -1 | ·0 → 0
 ```
 
-If we must add two identical expressions, why evaluate them twice? If we need to multiply an expression by `0`, why evaluate it at all? Instead, we will try to simplify these patterns, whenever we encounter them. This is known as a context sensitive language, or string rewrite system, which we can think of this as grafting or pruning the branches of a tree. Some say, "all trees are DAGs, but not all DAGs are trees". I prefer to think of a DAG as a tree with a [gemel](https://en.wikipedia.org/wiki/Inosculation):
+If we must add two identical expressions, why evaluate them twice? If we need to multiply an expression by `0`, why evaluate it at all? Instead, we will try to simplify these patterns, whenever we encounter them. This is known as a [rewrite system](https://en.wikipedia.org/wiki/Rewriting), which we can think of as grafting or pruning the branches of a tree. Some say, "all trees are DAGs, but not all DAGs are trees". I prefer to think of a DAG as a tree with a [gemel](https://en.wikipedia.org/wiki/Inosculation):
 
 |Rewrite Rule|Deformed Tree|
 |---|----|
@@ -220,7 +220,7 @@ This feature, called [confluence](https://en.wikipedia.org/wiki/Confluence_(abst
 
 ## [λ-calculus](#λ-calculus)
 
-So far, the languages we have seen are capable of generating and simplifying arithmetic expressions, but cannot by themselves perform arithmetic, since they cannot encode arbitrary numbers. We will now consider a language which can:
+So far, the languages we have seen are capable of generating and simplifying arithmetic expressions, but are by themselves incapable of performing arithmetic, since they cannot evaluate arbitrary arithmetic expressions. We will now consider a language which can encode and evaluate any arithmetic expression:
 
 ```
 expr → var | func | appl
@@ -234,7 +234,7 @@ To evaluate a `expr` in this language, we need a single substitution rule. The n
 (λ var.expr) val → (expr[var → val])
 ```
 
-For example, applying the above rule to the expression `(λy.y z) 1` yields `(λy.1 z)`. With this seemingly trivial addition, our language is now powerful enough to encode any computable function! Known as the pure λ-calculus, this system is equivalent to an idealized computer with infinite memory.
+For example, applying the above rule to the expression `(λy.y z) a` yields `a z`. With this seemingly trivial addition, our language is now powerful enough to encode any computable function! Known as the pure λ-calculus, this system is equivalent to an idealized computer with infinite memory.
 
 While grammatically compact, computation in the λ-calculus is not particularly terse. In order to perform any computation, we will need a way to encode values. For example, we can encode the boolean algebra like so:
 
@@ -263,13 +263,14 @@ We have reached a terminal, and can recurse no further. This particular program 
 
 ```
 (λg.(λx.g (x x)) (λx.g (x x))) f
-    (λx.f (x x)) (λx.f (x x))                  [g → f]
-        f (λx.f (x x))(λx.f (x x))             [f → λx.f(x x)]
-        f     f (λx.f (x x))(λx.f (x x))       [f → λx.f(x x)]
-        f     f     f (λx.f (x x))(λx.f (x x)) [f → λx.f(x x)]
+    (λx.f (x x)) (λx.f (x x))                        [g → f]
+        f (λx.f (x x))(λx.f (x x))                   [f → λx.f(x x)]
+        f     f (λx.f (x x))(λx.f (x x))             [f → λx.f(x x)]
+        f     f     f (λx.f (x x))(λx.f (x x))       [f → λx.f(x x)]
+        ...                 (λx.f (x x))(λx.f (x x)) [f → λx.f(x x)]
 ```
 
-This pattern is [Curry's (1930)](https://doi.org/10.2307%2F2370619) famous fixed point combinator and the cornerstone of recursion, called Y. Unlike its typed cousin, the untyped λ-calculus is *not* strongly normalizing and thus not guaranteed to converge. Were it convergent, it would not be Turing-complete. This [hard choice](http://www.cts.cuni.cz/~kurka/decid1.pdf) between decidability and universality is one which no computational language can escape.
+This pattern is [Curry's (1930)](https://doi.org/10.2307%2F2370619) famous fixed point combinator and the cornerstone of recursion, called Y. Unlike its typed cousin, the untyped λ-calculus is *not* strongly normalizing and thus not guaranteed to converge. Were it convergent, it would not be Turing-complete. This [hard choice](http://www.cts.cuni.cz/~kurka/decid1.pdf) between decidability and universality is one which no computational language can avoid.
 
 <center>
 <a href="http://bntr.planet.ee/lambda/work/visual_lambda.pdf"><img align="center" width="75%" src="../images/graphical_lambda_calculus.png"/></a>
@@ -284,7 +285,7 @@ The λ-calculus, can also be interpreted graphically. I refer the curious reader
 
 ## Cellular automata
 
-The [elementary cellular automata](https://en.wikipedia.org/wiki/Elementary_cellular_automaton) is another string rewrite system consisting of a one dimensional binary array, and a 3-cell grammar. Note there are $$2^{2^3} = 256$$ possible rules for rewriting the tape. It turns out even in this tiny space, there exist remarkable automata. Consider the following rewrite system:
+The [elementary cellular automaton](https://en.wikipedia.org/wiki/Elementary_cellular_automaton) is another string rewrite system consisting of a one dimensional binary array, and a 3-cell grammar. Note there are $$2^{2^3} = 256$$ possible rules for rewriting the tape. It turns out even in this tiny space, there exist remarkable automata. Consider the following rewrite system:
 
 <center>
 <img align="center" src="../images/ca_rule%20110.png"/>
@@ -957,7 +958,7 @@ We encode the accept state as a self cycle in order to detect the fixpoint $$S_{
 
 ## Dataflow graphs
 
-Suppose we have the function `f(a, b) = (a + b) * b` and want to compute `f(2, 3)`. For operator indices, we will need two tricks. First, all operators will retain their state, i.e. `1`s along all operator diagonals. Second, when applying the operator, we will combine values using the operator instead of performing a sum.
+Suppose we have the function `f(a, b) = (a + b) * b` and want to compute `f(2, 3)`. For operators, we will need two tricks. First, all operators will retain their state, i.e. `1`s along all operator diagonals. Second, when applying the operator, we will combine values using the operator instead of performing a sum.
 
 <table>
 <tr>
@@ -1106,7 +1107,7 @@ b │ 0  0  0  0
 
 # [Graphs, efficiently](#efficiently)
 
-Due to their well-studied algebraic properties, graphs are suitable data structures for a wide variety of problems. Finding a reduction to a known graph problem can save years of effort, but many graph algorithms can be challenging to implement efficiently. Suboptimal graph algorithms have been reimplemented in dozens of libraries and compiler frameworks. Why have efficient graph algorithms remained out of reach for so long, and what changed?
+Due to their well-studied algebraic properties, graphs are suitable data structures for a wide variety of applications. Finding a reduction to a known graph problem can save years of effort, but graph algorithms can be challenging to implement efficiently, as dozens of libraries and compiler frameworks have found. Why has implementing efficient graph algorithms been so difficult, and what has changed?
 
 One issue with efficient representation of graphs is their space complexity. Suppose we have a graph with $$10^5=100,000$$ nodes, but only a single edge. We will need $$10^{5\times 2}$$ bits, or about 1 GB to store its adjacency matrix, where an equivalent adjacency list would only consume $$\lceil 2\log_2 10^5 \rceil = 34$$ bits. Most graphs are similarly sparse. But how do you multiply adjacency lists? One solution is to use [sparse matrix](https://en.wikipedia.org/wiki/Sparse_matrix) representations, which are more compact and can be exponentially faster on parallel computing architectures.
 
@@ -1114,18 +1115,18 @@ One issue with efficient representation of graphs is their space complexity. Sup
 
 Perhaps the more significant barrier to widespread adoption of graph algorithms is their time complexity. Many interesting problems on graphs are NP-complete, including [Hamiltonian path](https://en.wikipedia.org/wiki/Hamiltonian_path) detection, [TSP](https://en.wikipedia.org/wiki/Travelling_salesman_problem) and [subgraph isomorphism](https://en.wikipedia.org/wiki/Subgraph_isomorphism_problem). However many of those problems have approximate solutions which are often good enough. But even if correctness is a hard constraint, CS theory is primarily concerned with worst case complexity, which seldom or rarely occurs in practice. Natural instances can often be solved quickly using SAT or SMT solvers.
 
-Most graph algorithms are implemented using object oriented programming or algebraic data types as we [saw previously](#inductive). While conceptually simple, this approach is computationally inefficient. We would prefer a high level API, backed by a pure BLAS implementation for optimized execution on GPUs or SIMD-capable hardware. For example, all of the following automata can be greatly accelerated using matrix arithmetic on modern hardware:
+Most graph algorithms are currently implemented using object oriented or algebraic data types as we [saw previously](#inductive). While conceptually simple to grasp, this approach is computationally inefficient. We would instead prefer a high level API backed by a pure BLAS implementation. As numerous papers have shown, finding an efficient matrix representation opens the path to optimized execution on GPUs or SIMD-capable hardware. For example, all of the following automata can be greatly accelerated using sparse matrix arithmetic on modern hardware:
 
-- [Pushdown automata](https://en.wikipedia.org/wiki/Pushdown_automaton)
-- [Buchi automata](https://en.wikipedia.org/wiki/B%C3%BCchi_automaton)
-- [Mealy machines](https://en.wikipedia.org/wiki/Mealy_machine)
-- [Petri nets](https://en.wikipedia.org/wiki/Petri_net)
+- [Pushdown automata](https://doi.org/10.1007/978-3-030-38961-1_26)
+- [Büchi automata](http://people.na.infn.it/~murano/COMP1314/8.pdf)
+- [Mealy machines](https://doi.org/10.1109/APSEC.2018.00025)
+- [Finite state transducers](https://arxiv.org/pdf/1701.03038.pdf)
 
-Suppose we want to access the computation graph of a program from within the program itself. How could we accomplish that? We need a way to "reify" the graph (i.e. make it available at runtime), so that given any variable `y`, we have some method `y.graph()` which programmatically returns its [transitive closure](https://en.wikipedia.org/wiki/Transitive_closure), including upstream and downstream nodes. Depending on scope and granularity, this graph can expand very quickly, so efficiency is key.
+Suppose we want to access the computation graph of a program from within the program itself. How could we accomplish that? We need a way to "reify" the graph (i.e. make it available at runtime), so that given any variable `y`, we have some method `y.graph()` which programmatically returns its [transitive closure](https://en.wikipedia.org/wiki/Transitive_closure), including upstream dependencies and downstream dependents. Depending on scope and granularity, this graph can expand very quickly, so efficiency is key.
 
 <center><a href="https://github.com/breandan/kotlingrad#dataflow-graphs"><img src="https://raw.githubusercontent.com/breandan/kotlingrad/master/samples/src/main/resources/lr_batch_loss_graph.svg" width="60%"/></a></center>
 
-With the advent of metaprogramming in domain specific languages like [TensorFlow](https://www.tensorflow.org/api_docs/python/tf/Graph) and [MetaOCaml](https://en.wikipedia.org/wiki/OCaml#MetaOCaml), such graphs are available to introspect at runtime. By tracing all operations (e.g. using operator overloading) on an intermediate data structure (e.g. stack, AST, or DAG), these DSLs are able to embed a programming language in another language. At periodic intervals, they may perform certain optimizations (e.g. constant propagation, common subexpression elimination) and emit an intermediate language (e.g. CUDA, webasm) for optimized execution on special hardware, such as a GPU.
+With the advent of staged metaprogramming in domain specific languages like [TensorFlow](https://www.tensorflow.org/api_docs/python/tf/Graph) and [MetaOCaml](https://en.wikipedia.org/wiki/OCaml#MetaOCaml), such graphs are available to introspect at runtime. By tracing all operations (e.g. using operator overloading) on an intermediate data structure (e.g. stack, AST, or DAG), these DSLs are able to embed a programming language in another language. At periodic intervals, they may perform certain optimizations (e.g. constant propagation, common subexpression elimination) and emit an intermediate language (e.g. CUDA, webasm) for optimized execution on special hardware, such as a GPU.
 
 <center><blockquote class="twitter-tweet"><p lang="en" dir="ltr">This <a href="https://twitter.com/hashtag/GraphBLAS?src=hash&amp;ref_src=twsrc%5Etfw">#GraphBLAS</a> stuff is super exciting. Most graph algorithms can be expressed as linear algebra. Sparse matrix SIMD-backed graph algorithms lets us process orders-of-magnitude larger graphs. Similar to AD tools like Theano et al., this will give a huge boost to network science.</p>&mdash; breandan (@breandan) <a href="https://twitter.com/breandan/status/1277505360127983618?ref_src=twsrc%5Etfw">June 29, 2020</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script></center>
 
@@ -1196,7 +1197,7 @@ $$
 \underset{P}{\text{argmin}}\sum_{i \sim I_{static}}\mathcal L(P^t S^i_0, S_t)
 $$
 
-One issue with this formulation is we must rely on a loss over $$S_t$$, which is often too sparse and generalizes poorly. It may be the case that many interesting program synthesis problems have [optimal substructure](https://en.wikipedia.org/wiki/Optimal_substructure), so we should be making "progress" towards a goal state, and can define a loss over intermediate states. This needs to be explored in more depth.
+One issue with this formulation is we must rely on a loss over $$S_t$$, which is often too sparse and generalizes poorly. It may be the case that many interesting program synthesis problems have [optimal substructure](https://en.wikipedia.org/wiki/Optimal_substructure), so we should be making "progress" towards a goal state, and can define a cross entropy loss over intermediate states. This needs to be explored in more depth.
 
 Some, including [Gaunt et al., (2016)](https://arxiv.org/pdf/1608.04428.pdf), have shown gradient is not very effective, as the space of boolean circuits is littered with islands which have zero gradient. However their representation is also relatively complex -- effectively, they are trying to learn a recursively enumerable language using something like a [Neural Turing Machine](https://arxiv.org/pdf/1410.5401.pdf) (Graves et al., 2014).
 
@@ -1208,17 +1209,17 @@ In the last year, a number of interesting reults in differentiable architecture 
 
 <center><a href="https://youtu.be/rwBbYhOAnPo?t=28272"><img src="../images/solar_lezma.png" width="70%"/></a></center>
 
-Solar-Lezma calls this latter approach, "program extraction", where the network implicitly or explicitly parameterizes a function, which after training, can be decoded into a symbolic expression. This also aligns with Goodfellow's notion of deep networks as programs, where each step performs a certain "step" of computation.
+Solar-Lezma calls this latter approach, "program extraction", where a network implicitly or explicitly parameterizes a function, which after training, can be decoded into a symbolic expression. This perspective also aligns with Ian Goodfellow's notion of deep networks as performing computation, where each layer represents a residual step in parallel program:
 
 <center>
 <blockquote class="twitter-tweet"><p lang="en" dir="ltr">&quot;Can neural networks be made to reason?&quot; Conversation with Ian Goodfellow (<a href="https://twitter.com/goodfellow_ian?ref_src=twsrc%5Etfw">@goodfellow_ian</a>). Full version: <a href="https://t.co/3MYC8jWjwl">https://t.co/3MYC8jWjwl</a> <a href="https://t.co/tGcDwgZPA1">pic.twitter.com/tGcDwgZPA1</a></p>&mdash; Lex Fridman (@lexfridman) <a href="https://twitter.com/lexfridman/status/1130501145548513280?ref_src=twsrc%5Etfw">May 20, 2019</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script> 
 </center>
 
-A less charitable interpretation is that Goodfellow is simply using a metaphor to explain deep learning to lay audience, but I prefer to think he is communicating something deeper about the role of recurrent nonlinear function approximators as computational primitives for logical reasoning.
+A less charitable interpretation is that Goodfellow is simply using a metaphor to explain deep learning to lay audience, but I prefer to think he is communicating something deeper about the role of recurrent nonlinear function approximators as computational primitives, where adding depth effectively increases to serial complexity and layer width increases bandwidth.
 
 # [Roadmap to graph computation](#roadmap)
 
-Much work lies ahead for the interested reader. Before we can claim to have a unification of graph linear algebra and computer science, at least three technical hurdles will need to be cleared. First is theoretical: we will need show that binary matrix arithmetic is universal. Second is practical: we will need to show a proof-of-concept via binary recompilation. Third is usable: we must develop a robust toolchain for compiling and introspecting a wide variety of graph programs.
+Much work lies ahead for the interested reader. Before we can claim to have a unification of graph linear algebra and computer science, at least three technical hurdles will need to be cleared. First is theoretical: we will need show that binary matrix arithmetic is a universal language. Second, we will need to show a proof-of-concept via binary recompilation. Third, we must develop a robust toolchain for compiling and introspecting a wide variety of graph programs.
 
 While a naïve proof is a trivial extension of the Church-Turing thesis, a constructive proof taking physics into consideration is needed. Given some universal language $$\mathcal L$$, and a program implementing a boolean vector function $$\mathcal V: \mathbb B^i \rightarrow \mathbb B^o \in \mathcal L$$, we must derive a transformation $$\mathcal T_\mathcal L: \mathcal V \rightarrow \mathcal M$$, which maps $$\mathcal V$$ to a boolean matrix function $$\mathcal M: \mathbb B^{j \times k} \times \mathbb B^{l\times m}$$, while preserving asymptotic complexity $$\mathcal O(\mathcal M) \lt \mathcal O(\mathcal V)$$, i.e. which is no worse than a constant factor in space or time. Clearly, the identity function $$\mathcal I(\mathcal V)$$ is a valid candidate for $$\mathcal T_{\mathcal L}$$. But as recent GPGPU research has shown, we can do much better.
 
@@ -1228,7 +1229,7 @@ While a naïve proof is a trivial extension of the Church-Turing thesis, a const
 
 The second major hurdle to graph computation is developing a binary recompiler which translates programs into optimized BLAS instructions. The resulting program will eventually need to demonstrate performant execution across a variety of heterogenously-typed programs, e.g. `Int`, `Float16`, `Float32`, and physical SIMD devices. Developing the infrastructure for such a recompiler will be a major engineering undertaking in the next two decades as the world transitions to graph computing. Program induction will likely be a key step to accelerating these graphs on physical hardware.
 
-The third and final hurdle is to develop a robust compiler toolchain for graph computation. At some point, users will be able to feed a short program into a source-to-source transpiler and have the program slightly rewritten with semantics preserving guarantees. This will require abstract interpretation, programming tools, runtime instrumentation, as well as shape-safe libraries and frameworks. Ultimately, we hypothesize users will adopt a more declarative programming style with resource-aware and type-directed constraints. This step will require fundamental progress in program induction and consume the better half of the next century to fully realize.
+The third and final hurdle is to develop a robust compiler toolchain for graph computation. At some point, users will be able to feed a short program into a source-to-source transpiler and have the program slightly rewritten with semantics preserving guarantees. This will require progress in abstract interpretation, programming tools, runtime instrumentation, as well as shape-safe libraries and frameworks. Ultimately, we hypothesize users will adopt a more declarative programming style with resource-aware and type-directed constraints. This step will require fundamental progress in program induction and consume the better half of the next century to fully realize.
 
 # References
 
