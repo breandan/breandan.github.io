@@ -160,7 +160,7 @@ Regular languages can also model nested repetition. Consider a slightly more com
 </tr>
 </table>
 
-Here, a single state may have multiple transitions on the same symbol. Called a [nondeterminsic finite automaton](https://en.wikipedia.org/wiki/Nondeterministic_finite_automaton) (NFA), this machine can occupy multiple states simultaneously. While no more powerful than their determinstic cousins, NFAs often require far fewer states to recognize the same language. One way to implement an NFA is to simulate the superposition of all states, by cloning the machine whenever such a transition occurs. More on that [later](#nondeterminstic-finite-automata).
+Note here, a single symbol may have multiple transitions from the same state. Called a [nondeterminsic finite automaton](https://en.wikipedia.org/wiki/Nondeterministic_finite_automaton) (NFA), this machine can occupy multiple states simultaneously. While no more powerful than their determinstic cousins, NFAs often require far fewer states to recognize the same language. One way to implement an NFA is to simulate the superposition of all states, by cloning the machine whenever such a transition occurs. More on that [later](#nondeterminstic-finite-automata).
 
 ## Arithmetic
 
@@ -375,7 +375,8 @@ Note the coinductive definition, which creates problems right off the bat. Since
 ```kotlin
 class Graph(val vertices: Set<Vertex>) { ... }
 class Vertex(map: (Vertex) -> Set<Vertex>) {
-    val neighbors = map(this).toSet()
+  constructor(neighbors: Set<Vertex>) : this({ neighbors })
+  val neighbors = map(this).toSet()
 }
 ```
 
