@@ -17,13 +17,13 @@ Over the last decade, I bet on some strange ideas. A lot of people I looked up t
 In 2012, I was in Austin sitting next to an ex-poker player named [Amir](https://twitter.com/amirpc) who was singing Hinton's praises. Hypnotized by his technicolor slides, I quit my job in a hurry and started an educational project using speech recognition and restricted Boltzmann machines. It never panned out, but I learned a lot about ASR and Android audio. Still love [that idea](http://breandan.net/2014/02/09/the-end-of-illiteracy/).
 
 <center>
-<a href="https://www.cs.toronto.edu/~hinton/csc2535/notes/lec4new.pdf"><img align="center" width="75%" src="../images/rbm.png"/></a>
+<a href="https://www.cs.toronto.edu/~hinton/csc2535/notes/lec4new.pdf"><img align="center" width="75%" src="/images/rbm.png"/></a>
 </center>
 
 In 2017, I started writing a book on the ethics of automation and [predicted](http://breandan.net/2017/02/02/trust-in-automation/) mass unemployment and social unrest. Although I got the causes wrong (pandemic, go figure), the information economy and confirmation bias takes were all dead right. Sadly, this is now driving the world completely insane. Don't say I warned you, go out and fix our broken systems. The world needs more engineers who care.
 
 <center>
-<a href="https://colah.github.io/posts/2015-09-NN-Types-FP/"><img align="center" width="75%" src="../images/diff_prog.png"/></a>
+<a href="https://colah.github.io/posts/2015-09-NN-Types-FP/"><img align="center" width="75%" src="/images/diff_prog.png"/></a>
 </center>
 
 In 2017, I witnessed the birth of [differentiable programming](https://colah.github.io/posts/2015-09-NN-Types-FP/), which I stole from Chris Olah and turned into a [master's thesis](https://github.com/breandan/kotlingrad/blob/master/latex/thesis/thesis.pdf). Had a lot of trouble convincing people that classical programs could be made differentiable, but look at the proceedings of any machine learning conference today and you'll find dozens of papers on differentiable sorting and rendering and simulation. Don't thank me, thank Chris and the Theano guys.
@@ -34,7 +34,7 @@ In 2018, I correctly predicted Microsoft would acquire GitHub to mine code. Why 
 <blockquote class="twitter-tweet"><p lang="en" dir="ltr">Prediction: MS will acquire GH within five years. If the <a href="https://twitter.com/hashtag/ML4Code?src=hash&amp;ref_src=twsrc%5Etfw">#ML4Code</a> stuff delivers for MS, acquisition is highly likely. Although it would have been cheaper a few years ago. <a href="https://t.co/5ZMtiRtifD">https://t.co/5ZMtiRtifD</a> <a href="https://t.co/TaxkArm5ps">https://t.co/TaxkArm5ps</a></p>&mdash; breandan (@breandan) <a href="https://twitter.com/breandan/status/993553301927936001?ref_src=twsrc%5Etfw">May 7, 2018</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 
 <a href="https://blogs.microsoft.com/blog/2018/10/26/microsoft-completes-github-acquisition/">
-<img align="center" width="75%" src="../images/microsoft_github_aquisition.png"/></a>
+<img align="center" width="75%" src="/images/microsoft_github_aquisition.png"/></a>
 </center>
 
 But to heck with everything I've said! If I had just one idea to share with these ML people, it would be types. Beat that drum as loud as I could. Types are the best tool we know for synthetic reasoning. If you want to build provably correct systems that scale on real-world applications, use types. Not everyone is convinced yet, but mark my words, [types](https://github.com/tensorflow/tensorflow/issues/12345) are [coming](https://docs.python.org/3.9/whatsnew/3.9.html#pep-585-builtin-generic-types). Whoever figures out how to connect types and learning will be the next Barbara Liskov or Frances Allen.
@@ -46,19 +46,19 @@ This year, I predicted the pandemic weeks before the lockdown, exited the market
 As a kid, I was given a book on the history of mathematics. I remember it had some interesting puzzles, including one with [some bridges](https://en.wikipedia.org/wiki/Seven_Bridges_of_K%C3%B6nigsberg) in a town divided by rivers, once inhabited by a man called Euler. Was there a tour crossing each bridge exactly once? Was it possible to tell without checking every path? I remember spending days trying to figure out the answer.
 
 <center>
-<a href="https://en.wikipedia.org/wiki/Seven_Bridges_of_K%C3%B6nigsberg"><img align="center" width="60%" src="../images/konigsberg_bridges.png"/></a>
+<a href="https://en.wikipedia.org/wiki/Seven_Bridges_of_K%C3%B6nigsberg"><img align="center" width="60%" src="/images/konigsberg_bridges.png"/></a>
 </center>
 
 In the late 90s, my mom and I went to Ireland. I remember visiting Trinity College, and learning about a mathematician called [Hamilton](https://en.wikipedia.org/wiki/William_Rowan_Hamilton) who discovered a famous formula connecting algebra and geometry, and carved it onto a [bridge](https://en.wikipedia.org/wiki/Broom_Bridge). We later visited the bridge, and the tour guide pointed out the stone, which we touched for good luck. The Irish have a [thing](https://en.wikipedia.org/wiki/Poulnabrone_dolmen) for [stones](https://en.wikipedia.org/wiki/Newgrange).
 
 <center>
-<a href="http://www.kurims.kyoto-u.ac.jp/EMIS/classics/Hamilton/PRIAIcos.pdf"><img align="center" width="40%" src="../images/quaternions.jpg"/></a>
+<a href="http://www.kurims.kyoto-u.ac.jp/EMIS/classics/Hamilton/PRIAIcos.pdf"><img align="center" width="40%" src="/images/quaternions.jpg"/></a>
 </center>
 
-In 2007, I was applying to college and took the train from Boston to South Bend, Indiana, home of the Fighting Irish. Wandering about, I picked up a magazine article by a Hungarian mathematician called [Barabási](https://en.wikipedia.org/wiki/Albert-L%C3%A1szl%C3%B3_Barab%C3%A1si) then at Notre Dame, who had some interesting things to say about [complex networks](https://en.wikipedia.org/wiki/Complex_network). Later in 2009, while studying in Rochester, I [carpooled](../images/complex_network_seminar.png) with a [nice professor](https://avesis.medeniyet.edu.tr/hasan.guclu), and learned complex networks are found in brains, languages and many marvelous places.
+In 2007, I was applying to college and took the train from Boston to South Bend, Indiana, home of the Fighting Irish. Wandering about, I picked up a magazine article by a Hungarian mathematician called [Barabási](https://en.wikipedia.org/wiki/Albert-L%C3%A1szl%C3%B3_Barab%C3%A1si) then at Notre Dame, who had some interesting things to say about [complex networks](https://en.wikipedia.org/wiki/Complex_network). Later in 2009, while studying in Rochester, I [carpooled](/images/complex_network_seminar.png) with a [nice professor](https://avesis.medeniyet.edu.tr/hasan.guclu), and learned complex networks are found in brains, languages and many marvelous places.
 
 <center>
-<a href="https://barabasi.com/f/226.pdf"><img align="center" width="75%" src="../images/complex_networks.png"/></a>
+<a href="https://barabasi.com/f/226.pdf"><img align="center" width="75%" src="/images/complex_networks.png"/></a>
 </center>
 
 Fast forward to 2017. I was lured by the siren song of algorithmic differentiation. Olivier Breleux presented [Myia](https://github.com/mila-iqia/myia) and [Buche](https://github.com/breuleux/buche). Matt Johnson gave a talk on [Autograd](https://github.com/HIPS/autograd). I met Chris Olah in Long Beach, who gave me the idea to study [differentiable programming](https://colah.github.io/posts/2015-09-NN-Types-FP/). I stole his idea, dressed it up in Kotlin and traded it for a POPL workshop paper and later a [Master's thesis](https://github.com/breandan/kotlingrad/blob/master/latex/thesis/thesis.pdf). Our contributions were using algebra, shape inference and presenting AD as term rewriting.
@@ -104,9 +104,9 @@ The field of natural language processing has also developed a rich set of graph-
 
 Using coreference resolution and entity alignment techniques, we can reconstruct internally consistent relations between entities, which capture cross-corpus consensus in natural language datasets. When stored in [knowledge graphs](https://arxiv.org/pdf/2003.02320.pdf), these relations can be used for information retrieval and question answering, e.g. on wikis and other content management systems. Recent techniques have shown promise in automatic knowledge base construction (cf. [Reddy et al.](https://www.mitpressjournals.org/doi/pdf/10.1162/tacl_a_00088), 2016).
 
-<!--![logical_forms](../images/logical_forms.png) -->
+<!--![logical_forms](/images/logical_forms.png) -->
 <center>
-<a href="https://arxiv.org/pdf/2003.02320.pdf"><img align="center" width="75%" src="../images/knowledge_graph.png"/></a>
+<a href="https://arxiv.org/pdf/2003.02320.pdf"><img align="center" width="75%" src="/images/knowledge_graph.png"/></a>
 </center>
 
 Lo and behold, the key idea behind knowledge graphs is our old friend, types. Knowledge graphs are multi-relational graphs whose nodes and edges possess a type. Two entities can be related by multiple types, and each type can relate many pairs of entities. We can index an entity based on its type for knowledge retrieval, and use types to reason about compound queries, e.g. "Which `company` has a direct `flight` from a `port city` to a `capital city`?", which would otherwise be difficult to answer without a type system.
@@ -129,7 +129,7 @@ We have two sets of productions, those which can be expanded, called "nontermina
 
 |Finite Automaton | Library Courtesy Bell |
 |:------:|:------:|
-|<center><img align="center" width="200%" src="../images/fsm_bell.svg"/></center>| <br/><center><img align="center" width="50%" src="../images/bell.png"/></center><br/>Please ring the bell **once**<br/> and wait for assistance. |
+|<center><img align="center" width="200%" src="/images/fsm_bell.svg"/></center>| <br/><center><img align="center" width="50%" src="/images/bell.png"/></center><br/>Please ring the bell **once**<br/> and wait for assistance. |
 
 Imagine a library desk: you can wait quietly and eventually you will be served. Or, you can ring the bell once and wait quietly to be served. Should no one arrive after a while, you may press the bell again and continue waiting. Though you must never ring the bell twice, lest you disturb the patrons and be tossed out.
 
@@ -154,7 +154,7 @@ Regular languages can also model nested repetition. Consider a slightly more com
 </td>
 <td>
 <div markdown="1">
-<center><img src="../images/nfa.svg" width="80%"/></center>
+<center><img src="/images/nfa.svg" width="80%"/></center>
 </div>
 </td>
 </tr>
@@ -176,7 +176,7 @@ This is an example of a [context-free language](https://en.wikipedia.org/wiki/Co
 
 |Syntax Tree| Peach Tree|
 |:---:|:---:|
-|<center><img align="center" width="80%" src="../images/tree_syntax.svg"/></center>|<center><img align="center" width="75%" src="../images/tree_peach.png"/></center>|
+|<center><img align="center" width="80%" src="/images/tree_syntax.svg"/></center>|<center><img align="center" width="75%" src="/images/tree_peach.png"/></center>|
 
 While syntax trees can be interpreted computationally, they do not actually perform computation unless evaluated. To [partially] evaluate a syntax tree, we will now introduce some pattern matching rules. Instead of just allowing terminals to occur on the right-hand side of a production, suppose we also allow terminals on the left, and applying a rule can shrink a string in our language. Here, we use capital letters on the same line to indicate an exact match, e.g. a rule `U + V → V + U` would replace `x + y` with `y + x`:
 
@@ -192,8 +192,8 @@ If we must add two identical expressions, why evaluate them twice? If we need to
 
 |Rewrite Rule|Deformed Tree|
 |---|----|
-|<center><img align="center" width="100%" src="../images/tree_dag.svg"/></center>|<br/><center><img align="center" width="50%" src="../images/tree_gemel.png"/></center>|
-|<center><img align="center" width="100%" src="../images/tree_dag_minus.svg"/></center>|<br/><br/><center><img align="center" width="50%" src="../images/stump.png"/></center>|
+|<center><img align="center" width="100%" src="/images/tree_dag.svg"/></center>|<br/><center><img align="center" width="50%" src="/images/tree_gemel.png"/></center>|
+|<center><img align="center" width="100%" src="/images/tree_dag_minus.svg"/></center>|<br/><br/><center><img align="center" width="50%" src="/images/stump.png"/></center>|
 
 Let us now introduce a new operator, `Dₓ`, and some corresponding rules. In effect, these rules will push `Dₓ` as far towards the leaves as possible, while rewriting terms along the way. We will also introduce some terminal rewrites:
 
@@ -214,7 +214,7 @@ Although we assign an ordering `R0`-`R9` for notational convenience, an initial 
 
 |Term Confluence|Ottawa-St. Lawrence Confluence|
 |:---:|:---:|
-|<br/><center><img align="center" width="100%" src="../images/confluence_term.svg"/></center>|<br/><center><img align="center" width="75%" src="../images/confluence_river.png"/></center>|
+|<br/><center><img align="center" width="100%" src="/images/confluence_term.svg"/></center>|<br/><center><img align="center" width="75%" src="/images/confluence_river.png"/></center>|
 
 This feature, called [confluence](https://en.wikipedia.org/wiki/Confluence_(abstract_rewriting)), is an important property of some rewrite systems: regardless of the substitution order, we will eventually arrive at the same result. If all strings in a language reduce to a form which can be simplified no further, we call such systems *strongly normalizing*, or *terminating*. If a rewriting system is both confluent and terminating it is said to be *convergent*.
 
@@ -273,7 +273,7 @@ We have reached a terminal, and can recurse no further. This particular program 
 This pattern is [Curry's (1930)](https://doi.org/10.2307%2F2370619) famous fixed point combinator and the cornerstone of recursion, called Y. Unlike its typed cousin, the untyped λ-calculus is *not* strongly normalizing and thus not guaranteed to converge. Were it convergent, it would not be Turing-complete. This [hard choice](http://www.cts.cuni.cz/~kurka/decid1.pdf) between decidability and universality is one which no computational language can avoid.
 
 <center>
-<a href="http://bntr.planet.ee/lambda/work/visual_lambda.pdf"><img align="center" width="75%" src="../images/graphical_lambda_calculus.png"/></a>
+<a href="http://bntr.planet.ee/lambda/work/visual_lambda.pdf"><img align="center" width="75%" src="/images/graphical_lambda_calculus.png"/></a>
 </center>
 
 
@@ -288,14 +288,14 @@ The λ-calculus, can also be interpreted graphically. I refer the curious reader
 The [elementary cellular automaton](https://en.wikipedia.org/wiki/Elementary_cellular_automaton) is another string rewrite system consisting of a one dimensional binary array, and a 3-cell grammar. Note there are $$2^{2^3} = 256$$ possible rules for rewriting the tape. It turns out even in this tiny space, there exist remarkable automata. Consider the following rewrite system:
 
 <center>
-<img align="center" src="../images/ca_rule%20110.png"/>
+<img align="center" src="/images/ca_rule%20110.png"/>
 </center>
 
 <!--![](https://en.wikipedia.org/wiki/Cellular_automaton#/media/File:One-d-cellular-automate-rule-30.gif)-->
 
 <!--We can represent this using graphs:-->
 
-<!--![image](../images/ca_rule30.png)-->
+<!--![image](/images/ca_rule30.png)-->
 
 | current pattern           | `111` | `110` | `101` | `100` | `011` | `010` | `001` | `000` |
 |:-------------------------:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:----:|
@@ -317,7 +317,7 @@ $$
 Here $$f$$ is our state and $$g$$ is called a "kernel". Similar to the λ-calculus, this language also is [known to be universal](https://wpmedia.wolfram.com/uploads/sites/13/2018/02/15-1-1.pdf). Disregarding efficiency, we could encode any computable function as an initial state and mechanically apply [Rule 110](https://en.wikipedia.org/wiki/Rule_110) to simulate a TM, λ-calculus, or any other TC system for that matter.
 
 <center>
-<a href="https://www.wolframphysics.org/technical-introduction/equivalence-and-computation-in-our-models/correspondence-with-other-systems/#p-385"><img align="center" width="75%" src="../images/graph_ca.png"/></a>
+<a href="https://www.wolframphysics.org/technical-introduction/equivalence-and-computation-in-our-models/correspondence-with-other-systems/#p-385"><img align="center" width="75%" src="/images/graph_ca.png"/></a>
 </center>
 
 Cellular automata can also be [interpreted](https://www.wolframphysics.org/technical-introduction/equivalence-and-computation-in-our-models/correspondence-with-other-systems/#p-385) as a [graph rewriting system](https://en.wikipedia.org/wiki/Graph_rewriting), although the benefits of this perspective are not as clear. Unlike string rewriting, graph substitution is much more difficult to implement efficiently, as pattern matching amounts to [subgraph isomorphism](https://en.wikipedia.org/wiki/Subgraph_isomorphism_problem), which is NP-complete. While there are [some optimizations](https://arxiv.org/pdf/1906.05170.pdf) to mitigate this problem, graph grammars do not appear to confer any additional computational benefits. Nevertheless, it is conceptually interesting.
@@ -355,7 +355,7 @@ Erwig defines a `graph` in four parts. First, we have a `vertex`, which is simpl
 </td>
 <td>
 <div markdown="1">
-<center><img src="../images/erwig.svg" width="60%"/></center>
+<center><img src="/images/erwig.svg" width="60%"/></center>
 </div>
 </td>
 </tr>
@@ -499,12 +499,12 @@ $$
 <tr>
 <td>
 <div markdown="1">
-<center><img src="../images/ld_graph_dot.svg" width="50%"/></center>
+<center><img src="/images/ld_graph_dot.svg" width="50%"/></center>
 </div>
 </td>
 <td>
 <div markdown="1">
-<center><img src="../images/ld_graph_mat.png" /></center>
+<center><img src="/images/ld_graph_mat.png" /></center>
 </div>
 </td>
 </tr>
@@ -516,7 +516,7 @@ Both the geometric and matrix representations impose an extrinsic perspective on
 
 Matrices are problematic for some reasons. Primarily, treating a graph as a matrix imposes an ordering over all vertices which is often arbitrary. Note also its sparsity, and consider the size of the matrix required to store even small graphs. While problematic, this can be overcome with [certain optimizations](https://en.wikipedia.org/wiki/Sparse_matrix). Despite these issues, matrices and are a natural representation choice for many graph algorithms, particularly on modern parallel processing hardware.
 
-<center><a href="https://epubs.siam.org/doi/book/10.1137/1.9780898719918"><img src="../images/graph_linear_algebra.png" width="60%"/></a></center>
+<center><a href="https://epubs.siam.org/doi/book/10.1137/1.9780898719918"><img src="/images/graph_linear_algebra.png" width="60%"/></a></center>
 
 Just like matrices, we can also think of a graph as a function, or [transition system](https://en.wikipedia.org/wiki/Transition_system), which carries information from one state to the next - given a state or set of states, the graph tells us which other states are reachable. Recent work in graph theory has revealed a fascinating duality between [graphs and linear algebra](https://epubs.siam.org/doi/book/10.1137/1.9780898719918), holding many important insights for dynamical processes on graphs.
 
@@ -535,7 +535,7 @@ f(x, y) = \begin{bmatrix}
 $$
 
 <!--https://www.wolframalpha.com/input/?i=%7B%7Bcos%28x%2B2*y%29%2Fx%7D%2C+0%7D%2C+%7B0%2C%7Bsin%28x-2*y%29%2Fy%7D%7D+eigenvalues-->
-<center><img src="../images/vector_field.png" width="63%"/></center>
+<center><img src="/images/vector_field.png" width="63%"/></center>
 
 Locating a fixed point where $$f(x, y) = f\circ f(x, y)$$, indicates the trajectory has terminated. Such points describe the asymptotic behavior of our function.
 
@@ -557,7 +557,7 @@ We can think of the Krylov method as either a matrix-matrix or matrix-vector pro
   <summary>Krylov Method</summary>
 <center><img src="http://krylov-centre.ru/rus/images/exp_base/base-doccamers/base-doccamers-big-eng.jpg" width="50%"/></center>
 <p align="justify"> There exists in St. Petersburg a naval research facility, known as the Krylov Shipbuilding Research Institute, which houses the world's largest <a href="https://krylov-centre.ru/en/experimental/base-doccamers/">full ocean depth hydraulic pressure tank</a>. Capable of simulating in excess of 20,000 PSI, the DK-1000 is used to test deepwater submersible vessels. At such pressure, even water itself undergoes ~5% compression. Before inserting your <a href="https://fivedeeps.com/home/technology/sub/">personal submarine</a>, you may wish to perform a finite element analysis to check hull integrity. Instabilities in the stiffness matrix may produce disappointing results.</p>
-<center><a href="https://www.wolframalpha.com/input/?i=water+density+vs+pressure+at+20+deg+c"><img src="../images/water_density.svg"/></a></center>
+<center><a href="https://www.wolframalpha.com/input/?i=water+density+vs+pressure+at+20+deg+c"><img src="/images/water_density.svg"/></a></center>
 </details>
 
 <table>
@@ -628,9 +628,9 @@ The Krylov methods have important applications for studying [dynamical systems](
 
 <!--|DOT Graph|Matrix|-->
 <!--|:-------:|:----:|-->
-<!--|<center><img src="../images/pref_graph0.svg"/></center>|<center><img src="../images/pref_mat0.png"/></center>|-->
-<!--|<center><img src="../images/pref_graph1.svg"/></center>|<center><img src="../images/pref_mat1.png"/></center>|-->
-<!--|<center><img src="../images/pref_graph2.svg"/></center>|<center><img src="../images/pref_mat2.png"/></center>|-->
+<!--|<center><img src="/images/pref_graph0.svg"/></center>|<center><img src="/images/pref_mat0.png"/></center>|-->
+<!--|<center><img src="/images/pref_graph1.svg"/></center>|<center><img src="/images/pref_mat1.png"/></center>|-->
+<!--|<center><img src="/images/pref_graph2.svg"/></center>|<center><img src="/images/pref_mat2.png"/></center>|-->
 
 
 <center>
@@ -672,7 +672,7 @@ Let's iterate through a linked list. We will initialize the pointer to the head 
 <td>
 
 <div markdown="1">
-<center><img src="../images/lin0.svg"/></center>
+<center><img src="/images/lin0.svg"/></center>
 </div>
 
 </td>
@@ -716,7 +716,7 @@ c │ 0  1  1
 <tr>
 <td> 
 <div markdown="1">
-<center><img src="../images/lin1.svg"/></center>
+<center><img src="/images/lin1.svg"/></center>
 </div>
 </td>
 <td>
@@ -759,7 +759,7 @@ c │ 0  1  1
 <tr>
 <td> 
 <div markdown="1">
-<center><img src="../images/lin2.svg"/></center>
+<center><img src="/images/lin2.svg"/></center>
 </div>
 </td>
 <td>
@@ -816,7 +816,7 @@ Typical implementations require cloning the NFA when multiple transitions are va
 <tr>
 <td> 
 <div markdown="1">
-<center><img src="../images/dag0.svg"/></center>
+<center><img src="/images/dag0.svg"/></center>
 </div>
 </td>
 <td>
@@ -862,7 +862,7 @@ d │ 0  1  1  1
 <tr>
 <td> 
 <div markdown="1">
-<center><img src="../images/dag1.svg"/></center>
+<center><img src="/images/dag1.svg"/></center>
 </div>
 </td>
 <td>
@@ -908,7 +908,7 @@ d │ 0  1  1  1
 <tr>
 <td> 
 <div markdown="1">
-<center><img src="../images/dag2.svg"/></center>
+<center><img src="/images/dag2.svg"/></center>
 </div>
 </td>
 <td>
@@ -967,7 +967,7 @@ Suppose we have the function `f(a, b) = (a + b) * b` and want to evaluate `f(2, 
 <tr>
 <td> 
 <div markdown="1">
-<center><img src="../images/dfg0.svg"/></center>
+<center><img src="/images/dfg0.svg"/></center>
 </div>
 </td>
 <td>
@@ -1013,7 +1013,7 @@ b │ 0  0  0  0
 <tr>
 <td> 
 <div markdown="1">
-<center><img src="../images/dfg1.svg"/></center>
+<center><img src="/images/dfg1.svg"/></center>
 </div>
 </td>
 <td>
@@ -1059,7 +1059,7 @@ b │ 0  0  0  0
 <tr>
 <td> 
 <div markdown="1">
-<center><img src="../images/dfg2.svg"/></center>
+<center><img src="/images/dfg2.svg"/></center>
 </div>
 </td>
 <td>
@@ -1210,7 +1210,7 @@ More recent work, including that of [Lample et al., (2019)](https://arxiv.org/pd
 
 In the last year, a number of interesting reults in differentiable architecture search started to emerge. [DARTS](https://arxiv.org/pdf/1806.09055.pdf) (Liu et al., 2019) proposes to use gradient to search through the space of directed graphs. The authors first perform a continuous relaxation of the discrete graph, by reweighting the output of each each potential edge by a hyperparameter, optimizing over the space of edges using gradient descent, then taking a softmax to discretize the output graph.
 
-<center><a href="https://youtu.be/rwBbYhOAnPo?t=28272"><img src="../images/solar_lezma.png" width="70%"/></a></center>
+<center><a href="https://youtu.be/rwBbYhOAnPo?t=28272"><img src="/images/solar_lezma.png" width="70%"/></a></center>
 
 Solar-Lezma calls this latter approach, "program extraction", where a network implicitly or explicitly parameterizes a function, which after training, can be decoded into a symbolic expression. This perspective also aligns with Ian Goodfellow's notion of deep networks as performing computation, where each layer represents a residual step in parallel program:
 
