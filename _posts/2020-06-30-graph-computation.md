@@ -374,9 +374,9 @@ Note the coinductive definition, which creates problems right off the bat. Since
 
 ```kotlin
 class Graph(val vertices: Set<Vertex>) { ... }
-class Vertex(map: (Vertex) -> Set<Vertex>) {
-  constructor(neighbors: Set<Vertex>) : this({ neighbors })
-  val neighbors = map(this).toSet()
+class Vertex(adjacencyMap: (Vertex) -> Set<Vertex>) {
+  constructor(neighbors: Set<Vertex> = setOf()) : this({ neighbors })
+  val neighbors = adjacencyMap(this).toSet()
 }
 ```
 
@@ -411,7 +411,7 @@ val Graph.degree = Mat(vertices.size, vertices.size).also { deg ->
 val Graph.laplacian = degree - adjacency
 ```
 
-We will have more to stay about these matrices and their applications [later](#graphs-computationally), but these structures have important applications in [algebraic](https://en.wikipedia.org/wiki/Algebraic_graph_theory) and [spectral](https://en.wikipedia.org/wiki/Spectral_graph_theory) graph theory.
+These matrices have some important applications in [algebraic](https://en.wikipedia.org/wiki/Algebraic_graph_theory) and [spectral](https://en.wikipedia.org/wiki/Spectral_graph_theory) graph theory, which we will have more to stay about [later](#graphs-computationally).
 
 ## Weisfeiler-Lehman
 
@@ -474,7 +474,7 @@ Approximately 20% of the human cerebral cortex is devoted to [visual processing]
 <!--| [Petri networks](https://en.wikipedia.org/wiki/Petri_net) | <br/><center><img align="center" width="50%" src="https://upload.wikimedia.org/wikipedia/commons/d/d7/Animated_Petri_net_commons.gif"/></center> |-->
 <!--| [Proof networks](https://en.wikipedia.org/wiki/Proof_net) | <br/><center><img align="center" width="50%" src="https://www.researchgate.net/profile/Marco_Solieri/publication/311737880/figure/fig7/AS:501886778576905@1496670540685/Example-a-mMELL-proof-net-left-and-two-simple-mixed-nets-that-belong-to-its-expansion.png"/></center> |-->
 
-As Tae Danae Bradley [vividly portrays](https://www.math3ma.com/blog/matrices-probability-graphs) in her writing, we can think of a matrix as not just a two-dimensional array, but a *function on a vector space*. This perspective can be depicted using a bipartite graph:
+As [Bradley (2019)](https://www.math3ma.com/blog/matrices-probability-graphs) vividly portrays in her writing, we can think of a matrix as not just a two-dimensional array, but a *function on a vector space*. This perspective can be depicted using a bipartite graph:
 
 <center>
 <a href="https://www.math3ma.com/blog/matrices-probability-graphs"><img align="center" width="75%" src="https://uploads-ssl.webflow.com/5b1d427ae0c922e912eda447/5c7ed4bcea0c9faeafe61466_pic1.jpg"/></a>
@@ -513,7 +513,7 @@ $$
 
 Note the lower triangular structure of the adjacency matrix, indicating it contains no cycles, a property which is not immediately obvious from the naïve geometric layout. Any graph whose adjacency matrix can be reordered into triangular form is a [directed acyclic graph](https://en.wikipedia.org/wiki/Directed_acyclic_graph). Called a topological ordering, this algorithm can be implemented by [repeatedly squaring](https://en.wikipedia.org/wiki/Topological_sorting#Parallel_algorithms) the adjacency matrix.
 
-Both the geometric and matrix representations impose an extrinsic perspective on graphs, each with their own advantages and drawbacks. 2D renderings can be visually compelling, but require solving a [minimal crossing number](https://en.wikipedia.org/wiki/Crossing_number_(graph_theory)) or similar optimization to make connectivity plain to the naked eye. While graph drawing is an active [field of research](http://www.graphdrawing.org/), matrices can often reveal symmetries that are not obvious from a naïve graph layout (and vis versa)
+Both the geometric and matrix representations impose an extrinsic perspective on graphs, each with their own advantages and drawbacks. 2D renderings can be visually compelling, but require solving a [minimal crossing number](https://en.wikipedia.org/wiki/Crossing_number_(graph_theory)) or similar optimization to make connectivity plain to the naked eye. While graph drawing is an active [field of research](http://www.graphdrawing.org/), matrices can often reveal symmetries that are not obvious from a naïve graph layout (and vis versa).
 
 Matrices are problematic for some reasons. Primarily, treating a graph as a matrix imposes an ordering over all vertices which is often arbitrary. Note also its sparsity, and consider the size of the matrix required to store even small graphs. While problematic, this can be overcome with [certain optimizations](https://en.wikipedia.org/wiki/Sparse_matrix). Despite these issues, matrices and are a natural representation choice for many graph algorithms, particularly on modern parallel processing hardware.
 
@@ -577,7 +577,7 @@ mvp → (mmp) * vec
 </td>
 <td>
 <div markdown="1">
-$$(MM)v, (MMM)v, \ldots$$
+$$(\mathbf{M}\mathbf{M})\mathbf{v}, (\mathbf{M}\mathbf{M}\mathbf{M})\mathbf{v}, \ldots$$
 </div>
 </td>
 </tr>
@@ -593,7 +593,7 @@ mvp → mat * vec | (mvp) * mat
 </td>
 <td>
 <div markdown="1">
-$$M(Mv), M(M(Mv)), \ldots$$
+$$\mathbf{M}(\mathbf{M}\mathbf{v}), \mathbf{M}(\mathbf{M}(\mathbf{M}\mathbf{v})), \ldots$$
 </div>
 </td>
 </tr>
@@ -609,7 +609,7 @@ rec → fun vec | (rec vec)
 </td>
 <td>
 <div markdown="1">
-$$\frac{Mv}{\|Mv\|}, \frac{M\frac{Mv}{\|Mv\|}}{\|M\frac{Mv}{\|Mv\|}\|}, \frac{M\frac{M\frac{Mv}{\|Mv\|}}{\|M\frac{Mv}{\|Mv\|}\|}}{\|M\frac{M\frac{Mv}{\|Mv\|}}{\|M\frac{Mv}{\|Mv\|}\|}\|}, \ldots$$
+$$\frac{\mathbf{M}\mathbf{v}}{\|\mathbf{M}\mathbf{v}\|}, \frac{\mathbf{M}\frac{\mathbf{M}\mathbf{v}}{\|\mathbf{M}\mathbf{v}\|}}{\|\mathbf{M}\frac{\mathbf{M}\mathbf{v}}{\|\mathbf{M}\mathbf{v}\|}\|}, \frac{\mathbf{M}\frac{\mathbf{M}\frac{\mathbf{M}\mathbf{v}}{\|\mathbf{M}\mathbf{v}\|}}{\|\mathbf{M}\frac{\mathbf{M}\mathbf{v}}{\|\mathbf{M}\mathbf{v}\|}\|}}{\|\mathbf{M}\frac{\mathbf{M}\frac{\mathbf{M}\mathbf{v}}{\|\mathbf{M}\mathbf{v}\|}}{\|\mathbf{M}\frac{\mathbf{M}\mathbf{v}}{\|\mathbf{M}\mathbf{v}\|}\|}\|}, \ldots$$
 </div>
 </td>
 </tr>
@@ -618,12 +618,12 @@ $$\frac{Mv}{\|Mv\|}, \frac{M\frac{Mv}{\|Mv\|}}{\|M\frac{Mv}{\|Mv\|}\|}, \frac{M\
 Regrouping the order of matrix multiplication offers various computational benefits, and adding normalization prevents singularities from emerging. [Alternate normalization schemes](https://cs.mcgill.ca/~wlh/comp766/files/chapter2_draft_mar29.pdf) have been developed for various applications in graphs. This sequence forms the so-called [Krylov matrix](http://www.mathnet.ru/links/701af3446efa9590ab957fb2d9b5ddd5/im5215.pdf) (Krylov, 1931):
 
 $$
-K_{i} = \begin{bmatrix}v & Mv & M^{2}v & \cdots & M^{i-1}v \end{bmatrix}
+\mathbf{K}_{i} = \begin{bmatrix}\mathbf{v} & \mathbf{M}\mathbf{v} & \mathbf{M}^{2}\mathbf{v} & \cdots & \mathbf{M}^{i-1}\mathbf{v} \end{bmatrix}
 $$
 
-Such methods are not just applicable to real matrices, but can be used to analyze boolean and integer matrices, and by extension, directed graphs. These are sometimes called [transition](https://ieeexplore.ieee.org/document/1086510), [stochastic or Markov](https://en.wikipedia.org/wiki/Stochastic_matrix) matrices. We are primarily interested in the deterministic version, whose variables inhabit $$\mathbb{B}^{n\times n}$$.
+There exists a famous theorem known as the [Perron-Frobenius theorem](https://en.wikipedia.org/wiki/Perron–Frobenius_theorem), which states that if $$\mathbf M \in \mathcal T^{n \times  n}$$, then $$\mathbf M$$ has a unique largest eigenvalue $$\lambda \in \mathcal T$$ and dominant eigenvector $$\mathbf{q} \in \mathcal T^{n}$$. It has long been known that under some weak assumptions, $$\lim_{i\rightarrow \infty} \mathbf{M}^i \mathbf{v} = c\mathbf{q}$$ where $$c$$ is some constant. We are primarily interested in determinstic transition systems, where $$\mathcal T \in \{\mathbb B, \mathbb N\}$$.
 
-The Krylov methods have important applications for studying [dynamical systems](https://en.wikipedia.org/wiki/Graph_dynamical_system) and [graph signal processing](https://arxiv.org/pdf/1712.00468.pdf). Researchers are just beginning to understand how eigenvalues of the graph Laplacian affect the asymptotics of dynamical processes on graphs. We have already seen one example of these in the [WL algorithm](#weisfeiler-lehman). Another example of graph computation can be found in [Valiant (1975)](http://theory.stanford.edu/~virgi/cs367/papers/valiantcfg.pdf), who shows a CFL parsing algorithm which is equivalent to matrix multiplication.
+The Krylov methods have important applications for studying [dynamical systems](https://en.wikipedia.org/wiki/Graph_dynamical_system) and [graph signal processing](https://arxiv.org/pdf/1712.00468.pdf). Researchers are just beginning to understand how eigenvalues of the [graph Laplacian](https://en.wikipedia.org/wiki/Laplacian_matrix#Laplacian_matrix_for_simple_graphs) affect the asymptotics of dynamical processes on graphs. We have already seen one example of these in the [WL algorithm](#weisfeiler-lehman). Another example of graph computation can be found in [Valiant (1975)](http://theory.stanford.edu/~virgi/cs367/papers/valiantcfg.pdf), who shows a CFL parsing algorithm which is equivalent to matrix multiplication.
 
 <!--Three steps of Barabási's [preferential attachment algorithm](https://en.wikipedia.org/wiki/Preferential_attachment):-->
 
