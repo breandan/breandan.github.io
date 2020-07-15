@@ -73,7 +73,7 @@ In 2019, I joined a lab with a [nice professor](https://www.cs.mcgill.ca/~jguo/)
 <a href="https://structurizr.com/"><img align="center" width="45%" src="https://raw.githubusercontent.com/cecuesta/structurizr-java/master/docs/images/graphviz-spring-petclinic-components.png"/></a>
 </center>
 
-This Spring, I took a fascinating seminar on [Graph Representation Learning](https://cs.mcgill.ca/~wlh/comp766/index.html). A lot of delightful graph theory has been worked out over the last decade. [PageRank](https://en.wikipedia.org/wiki/PageRank) turned into power iteration. People have discovered many interesting connections to linear algebra, including Weisfeiler-Lehman graph kernels, graph Laplacians, Krylov methods, and spectral graph theory. These ideas have deepened our understanding of graph signal processing and its applications for learning and program analysis. More on that [later](#synthesis).
+This Spring, I took a fascinating seminar on [Graph Representation Learning](https://cs.mcgill.ca/~wlh/comp766/index.html). A lot of delightful graph theory has been worked out over the last decade. [PageRank](https://en.wikipedia.org/wiki/PageRank) turned into power iteration. People have discovered many interesting connections to linear algebra, including Weisfeiler-Lehman graph kernels, graph Laplacians, Krylov methods, and spectral graph theory. These ideas have deepened our understanding of graph signal processing and its applications for learning and program analysis. More on that [later](#graphs-computationally).
 
 # What are graphs?
 
@@ -115,7 +115,7 @@ Lo and behold, the key idea behind knowledge graphs is our old friend, types. Kn
 
 In this section, we will review some important concepts from [Chomskyan linguistics](https://en.wikipedia.org/wiki/Chomsky_hierarchy), including structural induction, finite automata, string rewrite systems, and λ-calculus. We will see how each of these ideas shares an interesting connection to graphs. If you are already familiar with these ideas, feel free to skim them or skip to the next section.
 
-## [Regular languages](#regular-languages)
+## Regular languages
 
 One thing that always fascinated me is the idea of inductively defined languages, also known as recursive, or structural induction. Consider a very simple language which accepts strings of the form `0`, `1`, `100`, `101`, `1001`, `1010`, et cetera, but rejects `011`, `110`, `1011`, or any string containing `11`. The `→` symbol denotes a "production". The `|` symbol, which we read as "or", is just shorthand for defining multiple productions on a single line:
 
@@ -160,7 +160,7 @@ Regular languages can also model nested repetition. Consider a slightly more com
 </tr>
 </table>
 
-Here, a single state may have multiple transitions on the same symbol. Called a [nondeterminsic finite automaton](https://en.wikipedia.org/wiki/Nondeterministic_finite_automaton) (NFA), this machine can occupy multiple states simultaneously. While no more powerful than their determinstic cousins, NFAs often require far fewer states to recognize the same language. One way to implement an NFA is to simulate the superposition of all states, by cloning the machine whenever such a transition occurs. More on that [later](#directed-acyclic-graphs).
+Here, a single state may have multiple transitions on the same symbol. Called a [nondeterminsic finite automaton](https://en.wikipedia.org/wiki/Nondeterministic_finite_automaton) (NFA), this machine can occupy multiple states simultaneously. While no more powerful than their determinstic cousins, NFAs often require far fewer states to recognize the same language. One way to implement an NFA is to simulate the superposition of all states, by cloning the machine whenever such a transition occurs. More on that [later](#nondeterminstic-finite-automata).
 
 ## Arithmetic
 
@@ -322,7 +322,7 @@ Here $$f$$ is our state and $$g$$ is called a "kernel". Similar to the λ-calcul
 
 Cellular automata can also be [interpreted](https://www.wolframphysics.org/technical-introduction/equivalence-and-computation-in-our-models/correspondence-with-other-systems/#p-385) as a [graph rewriting system](https://en.wikipedia.org/wiki/Graph_rewriting), although the benefits of this perspective are not as clear. Unlike string rewriting, graph substitution is much more difficult to implement efficiently, as pattern matching amounts to [subgraph isomorphism](https://en.wikipedia.org/wiki/Subgraph_isomorphism_problem), which is NP-complete. While there are [some optimizations](https://arxiv.org/pdf/1906.05170.pdf) to mitigate this problem, graph grammars do not appear to confer any additional computational benefits. Nevertheless, it is conceptually interesting.
 
-# [Graphs, inductively](#inductive)
+# Graphs, inductively
 
 Just like grammars, we can define graphs themselves inductively. As many graph algorithms are recursive, this choice considerably simplifies their implementation. Take one definition of an unlabeled directed graph, proposed by [Erwig (2001)](https://web.engr.oregonstate.edu/~erwig/papers/InductiveGraphs_JFP01.pdf). Here, the notation `list → [item]` is shorthand for `list → item list`, where `item` is some terminal, and `list` is just a list of `item`s:
 
@@ -637,7 +637,7 @@ The Krylov methods have important applications for studying [dynamical systems](
 <blockquote class="twitter-tweet"><p lang="en" dir="ltr">TIL: CFL parsing can be reduced to boolean matrix multiplication (Valiant, 1975), known to be subcubic (Strassen, 1969), and later proven an asymptotic lower bound (Lee, 1997). This admits efficient GPGPU implementation (Azimov, 2017) in <a href="https://twitter.com/YaccConstructor?ref_src=twsrc%5Etfw">@YaccConstructor</a> <a href="https://t.co/3Vbml0v6b9">https://t.co/3Vbml0v6b9</a></p>&mdash; breandan (@breandan) <a href="https://twitter.com/breandan/status/1277136195118600192?ref_src=twsrc%5Etfw">June 28, 2020</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 </center>
 
-Yet another example of graph computation can be found in [Reps et al. (2016)](https://research.cs.wisc.edu/wpis/papers/popl16.pdf), who show that boolean matrix algebra can be used for [abstract interpretation](https://en.wikipedia.org/wiki/Abstract_interpretation). By representing control flow graphs as boolean matrix expressions, they show we can apply root-finding methods like [Newton's method](https://en.wikipedia.org/wiki/Newton%27s_method) (first observed by [Esparza et al. (2010)](https://www7.in.tum.de/um/bibdb/luttenbe/newtProgAn.pdf)) to dataflow analysis, e.g. to determine which states are reachable from some starting configuration by computing their transitive closure:
+Yet another example of graph computation can be found in [Reps et al. (2016)](https://research.cs.wisc.edu/wpis/papers/popl16.pdf), who show that boolean matrix algebra can be used for [abstract interpretation](https://en.wikipedia.org/wiki/Abstract_interpretation). By representing control flow graphs as boolean matrix expressions, they show how to apply root-finding methods like [Newton's method](https://en.wikipedia.org/wiki/Newton%27s_method) (first observed by [Esparza et al. (2010)](https://www7.in.tum.de/um/bibdb/luttenbe/newtProgAn.pdf)) to dataflow analysis, e.g. for determining which states are reachable from some starting configuration by computing their transitive closure:
 
 <center><blockquote class="twitter-tweet"><p lang="en" dir="ltr">Newton&#39;s method has some amazing applications for program analysis. Reps et al. (2016) show a mapping between control flow graphs and boolean matrix expressions. Graph reachability amounts to finding fixed points of a semiring equation. What a goldmine! <a href="https://t.co/BFCZiJ1b6n">https://t.co/BFCZiJ1b6n</a> <a href="https://t.co/Jd86bEXiIu">pic.twitter.com/Jd86bEXiIu</a></p>&mdash; breandan (@breandan) <a href="https://twitter.com/breandan/status/1282160392228286466?ref_src=twsrc%5Etfw">July 12, 2020</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script></center>
 
@@ -801,7 +801,7 @@ c │ 0  1  1
 </tr>
 </table>
 
-## [Nondeterminstic finite automata](#nfa)
+## Nondeterminstic finite automata
 
 Simulating a DFA using a matrix can be inefficient, since we only ever inhabit one state at a time. The real benefit of using matrices comes when simulating nondeterminstic finite automata, [seen earlier](#regular-languages). 
 
@@ -1106,9 +1106,9 @@ b │ 0  0  0  0
 
 <center><blockquote class="twitter-tweet"><p lang="en" dir="ltr">Did you know? Arithmetic expressions can be efficiently parallelized using matrix arithmetic (Miller et al., 1987): <a href="https://t.co/9Tr9hImPFA">https://t.co/9Tr9hImPFA</a> <a href="https://t.co/8vBv9phssk">pic.twitter.com/8vBv9phssk</a></p>&mdash; breandan (@breandan) <a href="https://twitter.com/breandan/status/1283191471223517185?ref_src=twsrc%5Etfw">July 15, 2020</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script></center>
 
-The author was very excited to discover this technique while playing with matrices one day, and only later to discover it was written up 33 years before by [Miller et al. (1987)](http://www.cs.toronto.edu/~bor/Papers/fast-parallel-matrix-GCD.pdf). Miller was inspired by [Valiant et al.'s (1983)](http://www.cs.tau.ac.il/~amnon/Classes/2015-PRG/Papers/VSBR83.pdf) work in [arithmetic circuit complexity](Arithmetic circuit complexity), who was in turn inspired by [Borodin et al.'s (1982)](http://www.cs.toronto.edu/~bor/Papers/fast-parallel-matrix-GCD.pdf) work on matrix computation. This line of research has recently been revisited by [Nisan and Wigderson (1997)](https://www.math.ias.edu/~avi/PUBLICATIONS/MYPAPERS/NW96/final.pdf) and later [Klivans and Shpilka (2003)](https://www.cs.tau.ac.il/~shpilka/publications/KlivansShpilka_Learning_via_partial_derivatives.pdf) in the context of learning arithmetic circuits using partial derivatives.
+The author was very excited to discover this technique while playing with matrices one day, only later to discover it was described 33 years before by [Miller et al. (1987)](http://www.cs.toronto.edu/~bor/Papers/fast-parallel-matrix-GCD.pdf). Miller was inspired by [Valiant et al.'s (1983)](http://www.cs.tau.ac.il/~amnon/Classes/2015-PRG/Papers/VSBR83.pdf) work in [arithmetic circuit complexity](Arithmetic circuit complexity), who was in turn inspired by [Borodin et al.'s (1982)](http://www.cs.toronto.edu/~bor/Papers/fast-parallel-matrix-GCD.pdf) work on matrix computation. This line of research has recently been revisited by [Nisan and Wigderson (1997)](https://www.math.ias.edu/~avi/PUBLICATIONS/MYPAPERS/NW96/final.pdf) and later [Klivans and Shpilka (2003)](https://www.cs.tau.ac.il/~shpilka/publications/KlivansShpilka_Learning_via_partial_derivatives.pdf) in the context of learning arithmetic circuits using partial derivatives.
 
-# [Graphs, efficiently](#efficiently)
+# Graphs, efficiently
 
 Due to their well-studied algebraic properties, graphs are suitable data structures for a wide variety of applications. Finding a reduction to a known graph problem can save years of effort, but graph algorithms can be challenging to implement efficiently, as dozens of libraries and compiler frameworks have found. Why has implementing efficient graph algorithms been so difficult, and what has changed?
 
@@ -1116,9 +1116,9 @@ One issue with efficient representation of graphs is their space complexity. Sup
 
 <center><a href="http://faculty.cse.tamu.edu/davis/suitesparse.html"><img src="http://faculty.cse.tamu.edu/davis/suitesparse_files/SuiteSparse_logo.jpg" width="60%"></a></center>
 
-Perhaps the more significant barrier to widespread adoption of graph algorithms is their time complexity. Many interesting problems on graphs are NP-complete, including [Hamiltonian path](https://en.wikipedia.org/wiki/Hamiltonian_path) detection, [TSP](https://en.wikipedia.org/wiki/Travelling_salesman_problem) and [subgraph isomorphism](https://en.wikipedia.org/wiki/Subgraph_isomorphism_problem). However many of those problems have approximate solutions which are often good enough. But even if correctness is a hard constraint, CS theory is primarily concerned with worst case complexity, which seldom or rarely occurs in practice. Natural instances can often be solved quickly using SAT or SMT solvers.
+Perhaps the more significant barrier to widespread adoption of graph algorithms is their time complexity. Many interesting problems on graphs are NP-complete, including [Hamiltonian path](https://en.wikipedia.org/wiki/Hamiltonian_path) detection, [TSP](https://en.wikipedia.org/wiki/Travelling_salesman_problem) and [subgraph isomorphism](https://en.wikipedia.org/wiki/Subgraph_isomorphism_problem). Many of those problems have approximations which are often good enough, but even if exact solutions are needed, CS theory is primarily concerned with worst case complexity, which seldom or rarely occurs in practice. Natural instances can often be solved quickly using heuristic-guided search, such as SAT or SMT solvers.
 
-Most graph algorithms are currently implemented using object oriented or algebraic data types as we [saw previously](#inductive). While conceptually simple to grasp, this approach is computationally inefficient. We would instead prefer a high level API backed by a pure BLAS implementation. As numerous papers have shown, finding an efficient matrix representation opens the path to optimized execution on GPUs or SIMD-capable hardware. For example, all of the following automata can be greatly accelerated using sparse matrix arithmetic on modern hardware:
+Most graph algorithms are currently implemented using object oriented or algebraic data types as we [saw previously](#graphs-inductively). While conceptually simple to grasp, this approach is computationally inefficient. We would instead prefer a high level API backed by a pure BLAS implementation. As numerous papers have shown, finding an efficient matrix representation opens the path to optimized execution on GPUs or SIMD-capable hardware. For example, all of the following automata can be greatly accelerated using sparse matrix arithmetic on modern hardware:
 
 - [Pushdown automata](https://doi.org/10.1007/978-3-030-38961-1_26)
 - [Büchi automata](http://people.na.infn.it/~murano/COMP1314/8.pdf)
@@ -1129,7 +1129,7 @@ Suppose we want to access the computation graph of a program from within the pro
 
 <center><a href="https://github.com/breandan/kotlingrad#dataflow-graphs"><img src="https://raw.githubusercontent.com/breandan/kotlingrad/master/samples/src/main/resources/lr_batch_loss_graph.svg" width="60%"/></a></center>
 
-With the advent of staged metaprogramming in domain specific languages like [TensorFlow](https://www.tensorflow.org/api_docs/python/tf/Graph) and [MetaOCaml](https://en.wikipedia.org/wiki/OCaml#MetaOCaml), such graphs are available to introspect at runtime. By tracing all operations (e.g. using operator overloading) on an intermediate data structure (e.g. stack, AST, or DAG), these DSLs are able to embed a programming language in another language. At periodic intervals, they may perform certain optimizations (e.g. constant propagation, common subexpression elimination) and emit an intermediate language (e.g. CUDA, webasm) for optimized execution on special hardware, such as a GPU.
+With the advent of staged metaprogramming in domain specific languages like [TensorFlow](https://www.tensorflow.org/api_docs/python/tf/Graph) and [MetaOCaml](https://en.wikipedia.org/wiki/OCaml#MetaOCaml), such graphs are available to introspect at runtime. By tracing all operations (e.g. using operator overloading) on an intermediate data structure (e.g. stack, AST, or DAG), these DSLs are able to embed a programming language in another language. At periodic intervals, they may perform certain optimizations (e.g. constant propagation, common subexpression elimination) and emit an intermediate language (e.g. CUDA, webasm) for optimized execution on special hardware, such as a GPU or TPU.
 
 <center><blockquote class="twitter-tweet"><p lang="en" dir="ltr">This <a href="https://twitter.com/hashtag/GraphBLAS?src=hash&amp;ref_src=twsrc%5Etfw">#GraphBLAS</a> stuff is super exciting. Most graph algorithms can be expressed as linear algebra. Sparse matrix SIMD-backed graph algorithms lets us process orders-of-magnitude larger graphs. Similar to AD tools like Theano et al., this will give a huge boost to network science.</p>&mdash; breandan (@breandan) <a href="https://twitter.com/breandan/status/1277505360127983618?ref_src=twsrc%5Etfw">June 29, 2020</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script></center>
 
@@ -1182,7 +1182,7 @@ What about programs of varying length? It may be the case we want to learn progr
 
 There will always be some program, at the interface of the machine and the real world, which must be approximated. One question worth asking is how large does $$\lvert S\rvert$$ need to be in order to do so? If it is very large, this procedure might well be intractable. Time complexity appears to be at worst $$\mathcal{O}(tn^2.37)$$, using [CW matmuls](https://en.wikipedia.org/wiki/Coppersmith%E2%80%93Winograd_algorithm), although considerably better if $$\mathbf P$$ is sparse.
 
-# [Program synthesis](#synthesis)
+# Program synthesis
 
 Many people have asked me, "Why should developers care about automatic differentiation?" Yes, we can use it for building machine learning systems. Yes, it has specialized applications in robotics and physical simulation. But does it really matter for software engineers?
 
@@ -1220,7 +1220,7 @@ Solar-Lezma calls this latter approach, "program extraction", where a network im
 
 A less charitable interpretation is that Goodfellow is simply using a metaphor to explain deep learning to lay audience, but I prefer to think he is communicating something deeper about the role of recurrent nonlinear function approximators as computational primitives, where adding depth effectively increases to serial complexity and layer width increases bandwidth.
 
-# [Roadmap to graph computation](#roadmap)
+# Roadmap
 
 Much work lies ahead for the interested reader. Before we can claim to have a unification of graph linear algebra and computer science, at least three technical hurdles will need to be cleared. First is theoretical: we will need show that binary matrix arithmetic is a universal language. Second, we will need to show a proof-of-concept via binary recompilation. Third, we must develop a robust toolchain for compiling and introspecting a wide variety of graph programs.
 
