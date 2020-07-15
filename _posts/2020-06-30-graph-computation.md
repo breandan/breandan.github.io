@@ -37,7 +37,7 @@ In 2018, I correctly predicted Microsoft would acquire GitHub to mine code. Why 
 <img align="center" width="75%" src="../images/microsoft_github_aquisition.png"/></a>
 </center>
 
-But to heck with everything I've said! If I had just one idea to share with these ML people, it would be types. Beat that drum as loud as I could. Types are the best tool we know for synthetic reasoning. If you want to build provably correct systems that scale on real-world applications, types are the answer. Not everyone is convinced yet, but mark my words, [types](https://github.com/tensorflow/tensorflow/issues/12345) are [coming](https://docs.python.org/3.9/whatsnew/3.9.html#pep-585-builtin-generic-types). Whoever figures out how to connect types and learning will be the next Barbara Liskov or Frances Allen.
+But to heck with everything I've said! If I had just one idea to share with these ML people, it would be types. Beat that drum as loud as I could. Types are the best tool we know for synthetic reasoning. If you want to build provably correct systems that scale on real-world applications, use types. Not everyone is convinced yet, but mark my words, [types](https://github.com/tensorflow/tensorflow/issues/12345) are [coming](https://docs.python.org/3.9/whatsnew/3.9.html#pep-585-builtin-generic-types). Whoever figures out how to connect types and learning will be the next Barbara Liskov or Frances Allen.
 
 This year, I predicted the pandemic weeks before the lockdown, exited the market, and turned down a job at Google. Some people called me crazy. Now I'm going all-in on some new ideas (none of which are mine). I'm making some big bets and some will be wrong, but I see the very same spark of genius in them.
 
@@ -131,7 +131,7 @@ We have two sets of productions, those which can be expanded, called "nontermina
 |:------:|:------:|
 |<center><img align="center" width="200%" src="../images/fsm_bell.svg"/></center>| <br/><center><img align="center" width="50%" src="../images/bell.png"/></center><br/>Please ring the bell **once**<br/> and wait for assistance. |
 
-Imagine a library desk: you can wait quietly and eventually you will be served. You can ring the bell once, and wait quietly to be served. Should no one arrive after a while, you may press the bell again and continue waiting. Though you must never ring the bell twice, lest you disturb the patrons and be tossed out.
+Imagine a library desk: you can wait quietly and eventually you will be served. Or, you can ring the bell once and wait quietly to be served. Should no one arrive after a while, you may press the bell again and continue waiting. Though you must never ring the bell twice, lest you disturb the patrons and be tossed out.
 
 Regular languages can also model nested repetition. Consider a slightly more complicated language, given by the regular expression `(0(01)*)*(10)*`. The `*`, or [Kleene star](https://en.wikipedia.org/wiki/Kleene_star), means, "accept zero or more of the previous token".
 
@@ -958,7 +958,7 @@ We encode the accept state as a self cycle in order to detect the fixpoint $$S_{
 
 ## Dataflow graphs
 
-Suppose we have the function `f(a, b) = (a + b) * b` and want to compute `f(2, 3)`. For operators, we will need two tricks. First, all operators will retain their state, i.e. `1`s along all operator diagonals. Second, when applying the operator, we will combine values using the operator instead of performing a sum.
+Suppose we have the function `f(a, b) = (a + b) * b` and want to evaluate `f(2, 3)`. For operators, we will need two tricks. First, all operators will retain their state, i.e. `1`s along all operator diagonals. Second, when applying the operator, we will combine values using the operator instead of performing a sum.
 
 <table>
 <tr>
@@ -1102,8 +1102,11 @@ b │ 0  0  0  0
 </div>
 </td>
 </tr>
-
 </table>
+
+<center><blockquote class="twitter-tweet"><p lang="en" dir="ltr">Did you know? Arithmetic expressions can be efficiently parallelized using matrix arithmetic (Miller et al., 1987): <a href="https://t.co/9Tr9hImPFA">https://t.co/9Tr9hImPFA</a> <a href="https://t.co/8vBv9phssk">pic.twitter.com/8vBv9phssk</a></p>&mdash; breandan (@breandan) <a href="https://twitter.com/breandan/status/1283191471223517185?ref_src=twsrc%5Etfw">July 15, 2020</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script></center>
+
+The author was very excited to discover this technique while playing with matrices one day, and only later to discover it was written up 33 years before by [Miller et al. (1987)](http://www.cs.toronto.edu/~bor/Papers/fast-parallel-matrix-GCD.pdf). Miller was inspired by [Valiant et al.'s (1983)](http://www.cs.tau.ac.il/~amnon/Classes/2015-PRG/Papers/VSBR83.pdf) work in [arithmetic circuit complexity](Arithmetic circuit complexity), who was in turn inspired by [Borodin et al.'s (1982)](http://www.cs.toronto.edu/~bor/Papers/fast-parallel-matrix-GCD.pdf) work on matrix computation. This line of research has recently been revisited by [Nisan and Wigderson (1997)](https://www.math.ias.edu/~avi/PUBLICATIONS/MYPAPERS/NW96/final.pdf) and later [Klivans and Shpilka (2003)](https://www.cs.tau.ac.il/~shpilka/publications/KlivansShpilka_Learning_via_partial_derivatives.pdf) in the context of learning arithmetic circuits using partial derivatives.
 
 # [Graphs, efficiently](#efficiently)
 
