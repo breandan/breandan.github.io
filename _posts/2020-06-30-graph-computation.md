@@ -218,7 +218,7 @@ Although we assign an ordering `R0`-`R9` for notational convenience, an initial 
 
 This feature, called [confluence](https://en.wikipedia.org/wiki/Confluence_(abstract_rewriting)), is an important property of some rewrite systems: regardless of the substitution order, we will eventually arrive at the same result. If all strings in a language reduce to a form which can be simplified no further, we call such systems *strongly normalizing*, or *terminating*. If a rewriting system is both confluent and terminating it is said to be *convergent*.
 
-## [λ-calculus](#λ-calculus)
+## λ-calculus
 
 So far, the languages we have seen are capable of generating and simplifying arithmetic expressions, but are by themselves incapable of performing arithmetic, since they cannot evaluate arbitrary arithmetic expressions. We will now consider a language which can encode and evaluate any arithmetic expression:
 
@@ -234,7 +234,7 @@ To evaluate a `expr` in this language, we need a single substitution rule. The n
 (λ var.expr) val → (expr[var → val])
 ```
 
-For example, applying the above rule to the expression `(λy.y z) a` yields `a z`. With this seemingly trivial addition, our language is now powerful enough to encode any computable function! Known as the pure λ-calculus, this system is equivalent to an idealized computer with infinite memory.
+For example, applying the above rule to the expression `(λy.y z) a` yields `a z`. With this seemingly trivial addition, our language is now powerful enough to encode any computable function! Known as the pure untyped λ-calculus, this system is equivalent to an idealized computer with infinite memory.
 
 While grammatically compact, computation in the λ-calculus is not particularly terse. In order to perform any computation, we will need a way to encode values. For example, we can encode the boolean algebra like so:
 
@@ -465,7 +465,7 @@ Approximately 20% of the human cerebral cortex is devoted to [visual processing]
 |Language|Example|
 |:------------------:|:-----:|
 | [Finite automata](https://en.wikipedia.org/wiki/Finite-state_machine) | <br/><center><img align="center" width="50%" src="https://upload.wikimedia.org/wikipedia/commons/9/94/DFA_example_multiplies_of_3.svg"/></center> |
-|  [Tensor network](https://www.mscs.dal.ca/%7Eselinger/papers/graphical-bib/public/Penrose-applications-of-negative-dimensional-tensors.pdf) | <br/><center><img align="center" width="50%" src="https://tensornetwork.org/diagrams/tensor_diagrams.png"/></center>|
+|  [Tensor networks](https://www.mscs.dal.ca/%7Eselinger/papers/graphical-bib/public/Penrose-applications-of-negative-dimensional-tensors.pdf) | <br/><center><img align="center" width="50%" src="https://tensornetwork.org/diagrams/tensor_diagrams.png"/></center>|
 | [Causal graphs](https://en.wikipedia.org/wiki/Causal_graph) | <br/><center><img align="center" width="50%" src="https://upload.wikimedia.org/wikipedia/commons/e/ea/College_notID.png"/></center> |
 | [Category theory](https://www.cs.mcgill.ca/~prakash/Pubs/category_theory_notes.pdf) |<br/><center><img align="center" width="50%" src="https://upload.wikimedia.org/wikipedia/commons/e/ef/Commutative_diagram_for_morphism.svg"/></center>|
 | [Penrose notation](https://www.mscs.dal.ca/%7Eselinger/papers/graphical-bib/public/Penrose-applications-of-negative-dimensional-tensors.pdf) |<br/><center><img align="center" width="50%" src="https://enacademic.com/pictures/enwiki/80/Penrose_covariant_derivate.svg"/></center>|
@@ -523,7 +523,7 @@ Just like matrices, we can also think of a graph as a function, or [transition s
 
 # Graphs, computationally
 
-What happens when we take a square matrix $$\mathbb{R}^{n\times n}$$ and raise it to a power? Which kinds of matrices converge and what are their asymptotics? This is a very fertile line of inquiry which has occupied engineers for the better part of the last century, with important applications in control theory, physical simulation and deep learning (RNNs). Linear algebra gives us many tricks for designing the matrix and normalizing the product to promote convergence, as systems which explode or vanish are not very interesting.
+What happens when we take a square matrix $$\mathbb{R}^{n\times n}$$ and raise it to a power? Which kinds of matrices converge and what are their asymptotics? This is a very fertile line of inquiry which has occupied engineers for the better part of the last century, with important applications in [statistical phyics](https://books.google.ca/books/about/Works_on_the_Foundations_of_Statistical.html?id=Nbz_AwAAQBAJ), [control theory](https://link.springer.com/content/pdf/10.1007/BF02523124.pdf), and [deep learning](http://proceedings.mlr.press/v22/vinyals12/vinyals12.pdf). Linear algebra gives us many tricks for designing the matrix and normalizing the product to promote convergence.
 
 One way to interpret this is as follows: each time we multiply a matrix by a vector $$\mathbb{R}^{n}$$, we are effectively simulating a dynamical system at discrete time steps. This method is known as [power iteration](https://cs.mcgill.ca/~wlh/comp766/files/chapter1_draft_mar29.pdf#page=11) or the Krylov method in linear algebra. In the limit, we are seeking fixpoints, or eigenvectors, which are these islands of stability in our dynamical system. If we initialize our state at such a point, the transition matrix will send us straight back to where we started.
 
@@ -808,7 +808,7 @@ Simulating a DFA using a matrix can be inefficient since we only ever inhabit on
 
 Formally, an NFA is a 5-tuple $$\langle Q, \Sigma, \Delta, q_0, F \rangle$$, where $$Q$$ is a finite set of states, $$\Sigma$$ is the alphabet, $$\Delta :Q\times (\Sigma \cup \{\epsilon \})\rightarrow P(Q)$$ is the transition function, $$q_0 \in Q$$ is the initial state and $$F \subseteq Q$$ are the terminal states. An NFA can be represented as a [labeled transition system](https://www.cs.mcgill.ca/~prakash/Talks/lecture1.pdf), or directed graph whose adjacency matrix is defined by the transition function, with edge labels representing symbols from the alphabet and self-loops for each terminal state, both omitted for brevity.
 
-Typical implementations require cloning the NFA when multiple transitions are valid. Instead of cloning the machine, we can simulate the superposition of all states using a single vector:
+Typical [implementations](https://en.wikipedia.org/wiki/Nondeterministic_finite_automaton#Implementation) often require cloning the NFA when multiple transitions are valid, which can be inefficient. Instead of cloning the machine, we can simulate the superposition of all states using a single data structure:
 
 <table>
 <tr>
@@ -955,7 +955,7 @@ d │ 0  1  1  1
 
 </table>
 
-We encode the accept state as a self cycle in order to detect the fixpoint $$S_{t+1} = S_{t}$$, after which we halt execution.
+We encode the accept state as a self cycle in order to detect the fixpoint criterion $$S_{t+1} = S_{t}$$, after which we halt execution.
 
 ## Dataflow graphs
 
@@ -1148,7 +1148,7 @@ $$
 \mathbf P: I_{\text{static}} \times I_{\text{dynamic}} \rightarrow O
 $$
 
-Programs can be viewed as simply functions mapping inputs to output, and executing the program amounts to running a matrix dynamical system to completion. Consider the static case, in which we have all the information available at compile-time, we just need to multiply the state $$\mathbf P: \mathbb B^{\lvert S\rvert \times \lvert S\rvert}$$ by the vector $$S$$ until termination:
+Programs can be viewed as simply functions mapping inputs to output, and executing the program amounts to running a matrix dynamical system to completion. Consider the static case, in which we have all the information available at compile-time. In order to evaluate the program, we can just multiply the state $$\mathbf P: \mathbb B^{\lvert S\rvert \times \lvert S\rvert}$$ by the vector $$S$$ until termination:
 
 ```
     [P]────────────────────────────────           } Program
@@ -1179,15 +1179,15 @@ We might also imagine the dynamic inputs as being generated by successively high
 [S₀]───*───[S₁]───*───[S₂]───*───[..]───*───[Sₜ]  } TM tape
 ```
 
-What about programs of varying length? It may be the case we want to learn programs where $$t$$ varies. The key is, we can choose an upper bound on $$t$$, and search for fixed points, whenever $$S_t = S_{t+1}$$.
+What about programs of varying length? It may be the case we want to learn programs where $$t$$ varies. The key is, we can choose an upper bound on $$t$$, and search for fixed points, i.e. halt whenever $$S_t = S_{t+1}$$.
 
-There will always be some program, at the interface of the machine and the real world, which must be approximated. One question worth asking is how large does $$\lvert S\rvert$$ need to be in order to do so? If it is very large, this procedure might well be intractable. Time complexity appears to be at worst $$\mathcal{O}(tn^2.37)$$, using [CW matmuls](https://en.wikipedia.org/wiki/Coppersmith%E2%80%93Winograd_algorithm), although considerably better if $$\mathbf P$$ is sparse.
+There will always be some program, at the interface of the machine and the real world, which must be approximated. One question worth asking is how large does $$\lvert S\rvert$$ need to be in order to do so? If it is very large, this procedure might well be intractable. Time complexity appears to be at worst $$\mathcal{O}(tn^{2.37})$$, using [CW matmuls](https://en.wikipedia.org/wiki/Coppersmith%E2%80%93Winograd_algorithm), although considerably better if $$\mathbf P$$ is sparse.
 
 # Program synthesis
 
-Many people have asked me, "Why should developers care about automatic differentiation?" Yes, we can use it for building machine learning systems. Yes, it has specialized applications in robotics and physical simulation. But does it really matter for software engineers?
+Many people have asked me, "Why should developers care about automatic differentiation?" Yes, we can use it to build machine learning systems. Yes, it has specialized applications in [robotics](https://arxiv.org/abs/1911.05063), [space travel](https://doi.org/10.1145/363831.364886), and [physical simulation](https://arxiv.org/pdf/1910.00935.pdf). But does it really matter for software engineers?
 
-I have been thinking carefully about this question, and although it is not clear to me yet, I am starting to see how some pieces fit together. A more complete picture will require more research, engineering and rethinking the role of software, compilers and machine learning.
+I have been thinking carefully about this question, and although it is not yet fully clear to me, I am starting to see how some pieces fit together. A more complete picture will require more research, engineering and rethinking the role of software, compilers and machine learning.
 
 ```
     [P]────────────────────────────────           } Program
@@ -1213,13 +1213,13 @@ In the last year, a number of interesting reults in differentiable architecture 
 
 <center><a href="https://youtu.be/rwBbYhOAnPo?t=28272"><img src="/images/solar_lezma.png" width="70%"/></a></center>
 
-Solar-Lezma calls this latter approach, "program extraction", where a network implicitly or explicitly parameterizes a function, which after training, can be decoded into a symbolic expression. This perspective also aligns with Ian Goodfellow's notion of deep networks as performing computation, where each layer represents a residual step in a parallel program:
+[Solar-Lezma (2020)](https://youtu.be/rwBbYhOAnPo?t=28272) calls this latter approach, "program extraction", where a network implicitly or explicitly parameterizes a function, which after training, can be decoded into a symbolic expression. This perspective also aligns with Ian Goodfellow's notion of deep networks as performing computation, where each layer represents a residual step in a parallel program:
 
 <center>
 <blockquote class="twitter-tweet"><p lang="en" dir="ltr">&quot;Can neural networks be made to reason?&quot; Conversation with Ian Goodfellow (<a href="https://twitter.com/goodfellow_ian?ref_src=twsrc%5Etfw">@goodfellow_ian</a>). Full version: <a href="https://t.co/3MYC8jWjwl">https://t.co/3MYC8jWjwl</a> <a href="https://t.co/tGcDwgZPA1">pic.twitter.com/tGcDwgZPA1</a></p>&mdash; Lex Fridman (@lexfridman) <a href="https://twitter.com/lexfridman/status/1130501145548513280?ref_src=twsrc%5Etfw">May 20, 2019</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script> 
 </center>
 
-A less charitable interpretation is that Goodfellow is simply using a metaphor to explain deep learning to lay audience, but I prefer to think he is communicating something deeper about the role of recurrent nonlinear function approximators as computational primitives, where adding depth effectively increases to serial complexity and layer width increases bandwidth.
+A less charitable interpretation is that Goodfellow is simply using a metaphor to explain deep learning to lay audience, but I prefer to think he is communicating something deeper about the role of recurrent nonlinear function approximators as computational primitives, where adding depth effectively increases serial processing capacity and layer width increases bandwidth.
 
 # Roadmap
 
