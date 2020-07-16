@@ -1241,6 +1241,7 @@ The third and final hurdle is to develop a robust compiler toolchain for graph c
 - [Graph Algorithms in the Language of Linear Algebra](https://epubs.siam.org/doi/book/10.1137/1.9780898719918) (Kepner & Gilbert, 2011)
 - [Analysis of Boolean Functions](http://www.contrib.andrew.cmu.edu/~ryanod/) (O'Donnell, 2014)
 - [Spectral and Algebraic Graph Theory](https://www.cs.yale.edu/homes/spielman/sagt/sagt.pdf) (Spielman, 2019)
+- [GraphBLAS Mathematics](http://www.mit.edu/~kepner/GraphBLAS/GraphBLAS-Math-release.pdf) (Kepner, 2017)
 - [Term Rewriting and All That](https://doi.org/10.1017/CBO9781139172752) (Baader & Nipkow, 1998)
 - [Representation of Events in Nerve Nets and Finite Automata](https://www.rand.org/content/dam/rand/pubs/research_memoranda/2008/RM704.pdf) (Kleene, 1951)
 - [A Class of Models with the Potential to Represent Fundamental Physics](https://www.wolframphysics.org/technical-introduction/) (Wolfram, 2020)
