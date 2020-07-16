@@ -12,7 +12,7 @@ In this essay, I explore the virtues of graphs, algebra, types, and show how the
 
 # New decade, new delusions
 
-Over the last decade, I bet on some strange ideas. A lot of people I looked up to at the time laughed at me. I'll bet they aren't laughing anymore. I ought to thank them one day, because their laughter gave me a lot of motivation. I've said some idiotic things to be sure, but I've also made some laughable predictions which were correct. Lesson learned: aim straighter.
+Over the last decade, I bet on some strange ideas. A lot of people I looked up to at the time laughed at me. I'll bet they aren't laughing anymore. I ought to thank them one day, because their laughter gave me a lot of motivation. I've said some idiotic things to be sure, but I've also made some laughable predictions that were correct. Lesson learned: aim straighter.
 
 In 2012, I was in Austin sitting next to an ex-poker player named [Amir](https://twitter.com/amirpc) who was singing Hinton's praises. Hypnotized by his technicolor slides, I quit my job in a hurry and started an educational project using speech recognition and restricted Boltzmann machines. It never panned out, but I learned a lot about ASR and Android audio. Still love [that idea](http://breandan.net/2014/02/09/the-end-of-illiteracy/).
 
@@ -67,7 +67,7 @@ Fast forward to 2017. I was lured by the siren song of algorithmic differentiati
 <a href="https://github.com/breandan/kotlingrad#dataflow-graphs"><img align="center" width="75%" src="https://github.com/breandan/kotlingrad/raw/master/samples/src/main/resources/dataflow.svg"/></a>
 </center>
 
-In 2019, I joined a lab with a [nice professor](https://www.cs.mcgill.ca/~jguo/) at McGill applying knowledge graphs to software engineering. Like logical reasoning, knowledge graphs are an idea from the first wave of AI in the 1960s and 70s which have been revived and studied in light of recent progress in the field. I believe this is an important area of research with a lot of potential. Knowledge and traceability plays an big role in software engineering, and it's the bread-and-butter of a good IDE. The world needs better IDEs if we're ever going to untangle this mess we're in.
+In 2019, I joined a lab with a [nice professor](https://www.cs.mcgill.ca/~jguo/) at McGill applying knowledge graphs to software engineering. Like logical reasoning, knowledge graphs are an idea from the first wave of AI in the 1960s and 70s which have been revived and studied in light of recent progress in the field. I believe this is an important area of research with a lot of potential. Knowledge and traceability plays a big role in software engineering, and it's the bread-and-butter of a good IDE. The world needs better IDEs if we're ever going to untangle this mess we're in.
 
 <center>
 <a href="https://structurizr.com/"><img align="center" width="45%" src="https://raw.githubusercontent.com/cecuesta/structurizr-java/master/docs/images/graphviz-spring-petclinic-components.png"/></a>
@@ -113,11 +113,11 @@ Lo and behold, the key idea behind knowledge graphs is our old friend, types. Kn
 
 # Induction introduction!
 
-In this section, we will review some important concepts from [Chomskyan linguistics](https://en.wikipedia.org/wiki/Chomsky_hierarchy), including structural induction, finite automata, string rewrite systems, and λ-calculus. We will see how each of these ideas shares an interesting connection to graphs. If you are already familiar with these ideas, feel free to skim them or skip to the next section.
+In this section, we will review some important concepts from [Chomskyan linguistics](https://en.wikipedia.org/wiki/Chomsky_hierarchy), including finite automata, abstract rewriting systems, and λ-calculus. Readers already familiar with these concepts will gain a newfound appreciation for how each one shares a common thread and can be modeled using the same underlying abstractions.
 
 ## Regular languages
 
-One thing that always fascinated me is the idea of inductively defined languages, also known as recursive, or structural induction. Consider a very simple language which accepts strings of the form `0`, `1`, `100`, `101`, `1001`, `1010`, et cetera, but rejects `011`, `110`, `1011`, or any string containing `11`. The `→` symbol denotes a "production". The `|` symbol, which we read as "or", is just shorthand for defining multiple productions on a single line:
+One thing that always fascinated me is the idea of inductively defined languages, also known as recursive, or structural induction. Consider a very simple language that accepts strings of the form `0`, `1`, `100`, `101`, `1001`, `1010`, et cetera, but rejects `011`, `110`, `1011`, or any string containing `11`. The `→` symbol denotes a "production". The `|` symbol, which we read as "or", is just shorthand for defining multiple productions on a single line:
 
 ```
 true → 1
@@ -164,7 +164,7 @@ Note here, a single symbol may have multiple transitions from the same state. Ca
 
 ## Arithmetic
 
-Now suppose we have a slightly more expressive language which accepts well-formed arithmetic expressions with up to two variables, in either infix or unary prefix form. In this language, a non-terminal may occur twice inside a single production -- an `expr` can be composed of two sub`expr`s:
+Now suppose we have a slightly more expressive language that accepts well-formed arithmetic expressions with up to two variables, in either infix or unary prefix form. In this language, a non-terminal may occur twice inside a single production -- an `expr` can be composed of two sub`expr`s:
 
 ```
 term → 1 | 0 | x | y
@@ -199,9 +199,9 @@ Let us now introduce a new operator, `Dₓ`, and some corresponding rules. In ef
 
 ```
 [R0]       term → Dₓ(term)
-[R1]      Dₓ(x) → 1                  
-[R2]      Dₓ(y) → 0                  
-[R3]    Dₓ(U+V) → Dₓ(U) + Dₓ(V)      
+[R1]      Dₓ(x) → 1  
+[R2]      Dₓ(y) → 0  
+[R3]    Dₓ(U+V) → Dₓ(U) + Dₓ(V)  
 [R4]    Dₓ(U·V) → U·Dₓ(V) + Dₓ(U)·V  
 [R5]     Dₓ(+U) → +Dₓ(U)
 [R6]     Dₓ(-U) → -Dₓ(U)
@@ -302,7 +302,7 @@ The [elementary cellular automaton](https://en.wikipedia.org/wiki/Elementary_cel
 | next pattern | ` 0 `  | ` 1 `  | ` 1 `  | ` 0 `  | ` 1 ` | ` 1 `  | ` 1 `  | ` 0 `  |
 
 
-We can think of this machine as sliding over the tape, and replacing the centermost cell in each matching substring with the second value. Depending on the initial state the rewrite pattern, these machines can produce many visually interesting patterns, and some have spent a great deal of effort [cataloguing](https://en.wikipedia.org/wiki/A_New_Kind_of_Science) families of CA and their behavior. Following [Robinson (1987)](http://wpmedia.wolfram.com/uploads/sites/13/2018/02/01-1-15.pdf), we can also define an ECA inductively, using a recurrence relation:
+We can think of this machine as sliding over the tape, and replacing the centermost cell in each matching substring with the second value. Depending on the initial state and rewrite pattern, cellular autoamta can produce many visually interesting patterns. Some have spent a great deal of effort [cataloguing](https://en.wikipedia.org/wiki/A_New_Kind_of_Science) families of CA and their behavior. Following [Robinson (1987)](http://wpmedia.wolfram.com/uploads/sites/13/2018/02/01-1-15.pdf), we can also define an ECA inductively, using a recurrence relation:
 
 $$
 a_i^{(t)} = \sum_j s(j)a_{i-j}^{(i-j)} \mod 2
@@ -436,7 +436,7 @@ tailrec fun wl(k: Int, labels: Map<Vertex, Int>): Map<Vertex, Int> =
   else wl(k - 1, poolBy { map { labels[it]!! }.sorted().hashCode() })
 ```
 
-We compute the hashcode of the entire graph by hashing the multiset of WL labels. With one round, we're just comparing the degree histogram. The more rounds we add, the more likely we are to detect a symmetry breaker:
+We compute the hashcode of the entire graph by hashing the multiset of WL labels. With one round, we're just comparing the degree histogram. The more rounds we add, the more likely we are to detect a symmetry-breaker:
 
 ```kotlin
 override fun Graph.hashCode(rounds: Int = 10) = 
@@ -511,11 +511,11 @@ $$
 </tr>
 </table>
 
-Note the lower triangular structure of the adjacency matrix, indicating it contains no cycles, a property which is not immediately obvious from the naïve geometric layout. Any graph whose adjacency matrix can be reordered into triangular form is a [directed acyclic graph](https://en.wikipedia.org/wiki/Directed_acyclic_graph). Called a topological ordering, this algorithm can be implemented by [repeatedly squaring](https://en.wikipedia.org/wiki/Topological_sorting#Parallel_algorithms) the adjacency matrix.
+Note the lower triangular structure of the adjacency matrix, indicating it contains no cycles, a property that is not immediately obvious from the naïve geometric layout. Any graph whose adjacency matrix can be reordered into triangular form is a [directed acyclic graph](https://en.wikipedia.org/wiki/Directed_acyclic_graph). Called a topological ordering, this algorithm can be implemented by [repeatedly squaring](https://en.wikipedia.org/wiki/Topological_sorting#Parallel_algorithms) the adjacency matrix.
 
 Both the geometric and matrix representations impose an extrinsic perspective on graphs, each with their own advantages and drawbacks. 2D renderings can be visually compelling, but require solving a [minimal crossing number](https://en.wikipedia.org/wiki/Crossing_number_(graph_theory)) or similar optimization to make connectivity plain to the naked eye. While graph drawing is an active [field of research](http://www.graphdrawing.org/), matrices can often reveal symmetries that are not obvious from a naïve graph layout (and vis versa).
 
-Matrices are problematic for some reasons. Primarily, treating a graph as a matrix imposes an ordering over all vertices which is often arbitrary. Note also its sparsity, and consider the size of the matrix required to store even small graphs. While problematic, this can be overcome with [certain optimizations](https://en.wikipedia.org/wiki/Sparse_matrix). Despite these issues, matrices and are a natural representation choice for many graph algorithms, particularly on modern parallel processing hardware.
+Matrices are problematic for some reasons. Primarily, by treating a graph as a matrix, we impose an ordering over all vertices which is often arbitrary. Note also its sparsity, and consider the size of the matrix required to store even small graphs. While problematic, this can be overcome with [certain optimizations](https://en.wikipedia.org/wiki/Sparse_matrix). Despite these issues, matrices and are a natural representation choice for many graph algorithms, particularly on modern parallel processing hardware.
 
 <center><a href="https://epubs.siam.org/doi/book/10.1137/1.9780898719918"><img src="/images/graph_linear_algebra.png" width="60%"/></a></center>
 
@@ -523,7 +523,7 @@ Just like matrices, we can also think of a graph as a function, or [transition s
 
 # Graphs, computationally
 
-What happens when we take a square matrix $$\mathbb{R}^{n\times n}$$ and raise it to a power? Which kinds of matrices converge and what are their asymptotics? This is a very fertile line of inquiry which has occupied engineers for the better part of the last century, with important applications in control theory, physical simulation and deep learning (RNNs). Linear algebra gives us a number of tricks for designing the matrix and normalizing the product to promote convergence, as systems which explode or vanish are not very interesting.
+What happens when we take a square matrix $$\mathbb{R}^{n\times n}$$ and raise it to a power? Which kinds of matrices converge and what are their asymptotics? This is a very fertile line of inquiry which has occupied engineers for the better part of the last century, with important applications in control theory, physical simulation and deep learning (RNNs). Linear algebra gives us many tricks for designing the matrix and normalizing the product to promote convergence, as systems which explode or vanish are not very interesting.
 
 One way to interpret this is as follows: each time we multiply a matrix by a vector $$\mathbb{R}^{n}$$, we are effectively simulating a dynamical system at discrete time steps. This method is known as [power iteration](https://cs.mcgill.ca/~wlh/comp766/files/chapter1_draft_mar29.pdf#page=11) or the Krylov method in linear algebra. In the limit, we are seeking fixpoints, or eigenvectors, which are these islands of stability in our dynamical system. If we initialize our state at such a point, the transition matrix will send us straight back to where we started.
 
@@ -663,7 +663,7 @@ We will now show a few examples simulating a state machine using the Krylov meth
 
 ## Linear chains
 
-Let's iterate through a linked list. We will initialize the pointer to the head of the list, and use multiplication to advance the pointer by a single element. We add an implicit self loop to the final element, and halt whenever we detect a fixpoint.
+Let's iterate through a linked list. We will initialize the pointer to the head of the list, and use multiplication to advance the pointer by a single element. We add an implicit self-loop to the final node, and halt whenever we detect a fixpoint.
 
 <table>
 <tr>
@@ -804,7 +804,7 @@ c │ 0  1  1
 
 ## Nondeterminstic finite automata
 
-Simulating a DFA using a matrix can be inefficient, since we only ever inhabit one state at a time. The real benefit of using matrices comes when simulating nondeterminstic finite automata, [seen earlier](#regular-languages). 
+Simulating a DFA using a matrix can be inefficient since we only ever inhabit one state at a time. The real benefit of using matrices comes when simulating nondeterminstic finite automata, [seen earlier](#regular-languages). 
 
 Formally, an NFA is a 5-tuple $$\langle Q, \Sigma, \Delta, q_0, F \rangle$$, where $$Q$$ is a finite set of states, $$\Sigma$$ is the alphabet, $$\Delta :Q\times (\Sigma \cup \{\epsilon \})\rightarrow P(Q)$$ is the transition function, $$q_0 \in Q$$ is the initial state and $$F \subseteq Q$$ are the terminal states. An NFA can be represented as a [labeled transition system](https://www.cs.mcgill.ca/~prakash/Talks/lecture1.pdf), or directed graph whose adjacency matrix is defined by the transition function, with edge labels representing symbols from the alphabet and self-loops for each terminal state, both omitted for brevity.
 
@@ -1113,7 +1113,7 @@ The author was very excited to discover this technique while playing with matric
 
 Due to their well-studied algebraic properties, graphs are suitable data structures for a wide variety of applications. Finding a reduction to a known graph problem can save years of effort, but graph algorithms can be challenging to implement efficiently, as dozens of libraries and compiler frameworks have found. Why has implementing efficient graph algorithms been so difficult, and what has changed?
 
-One issue with efficient representation of graphs is their space complexity. Suppose we have a graph with $$10^5=100,000$$ nodes, but only a single edge. We will need $$10^{5\times 2}$$ bits, or about 1 GB to store its adjacency matrix, where an equivalent adjacency list would only consume $$\lceil 2\log_2 10^5 \rceil = 34$$ bits. Most graphs are similarly sparse. But how do you multiply adjacency lists? One solution is to use [sparse matrix](https://en.wikipedia.org/wiki/Sparse_matrix) representations, which are more compact and can be exponentially faster on parallel computing architectures.
+One issue with efficient graph representation is their space complexity. Suppose we have a graph with $$10^5=100,000$$ nodes, but only a single edge. We will need $$10^{5\times 2}$$ bits, or about 1 GB to store its adjacency matrix, where an equivalent adjacency list would only consume $$\lceil 2\log_2 10^5 \rceil = 34$$ bits. Most graphs are similarly sparse. But how do you multiply adjacency lists? One solution is to use [sparse matrix](https://en.wikipedia.org/wiki/Sparse_matrix) representations, which are more compact and can be exponentially faster on parallel computing architectures.
 
 <center><a href="http://faculty.cse.tamu.edu/davis/suitesparse.html"><img src="http://faculty.cse.tamu.edu/davis/suitesparse_files/SuiteSparse_logo.jpg" width="60%"></a></center>
 
@@ -1130,7 +1130,7 @@ Suppose we want to access the computation graph of a program from within the pro
 
 <center><a href="https://github.com/breandan/kotlingrad#dataflow-graphs"><img src="https://raw.githubusercontent.com/breandan/kotlingrad/master/samples/src/main/resources/lr_batch_loss_graph.svg" width="60%"/></a></center>
 
-With the advent of staged metaprogramming in domain specific languages like [TensorFlow](https://www.tensorflow.org/api_docs/python/tf/Graph) and [MetaOCaml](https://en.wikipedia.org/wiki/OCaml#MetaOCaml), such graphs are available to introspect at runtime. By tracing all operations (e.g. using operator overloading) on an intermediate data structure (e.g. stack, AST, or DAG), these DSLs are able to embed a programming language in another language. At periodic intervals, they may perform certain optimizations (e.g. constant propagation, common subexpression elimination) and emit an intermediate language (e.g. CUDA, webasm) for optimized execution on special hardware, such as a GPU or TPU.
+With the advent of staged metaprogramming in domain-specific languages like [TensorFlow](https://www.tensorflow.org/api_docs/python/tf/Graph) and [MetaOCaml](https://en.wikipedia.org/wiki/OCaml#MetaOCaml), such graphs are available to introspect at runtime. By tracing all operations (e.g. using operator overloading) on an intermediate data structure (e.g. stack, AST, or DAG), these DSLs are able to embed a programming language in another language. At periodic intervals, they may perform certain optimizations (e.g. constant propagation, common subexpression elimination) and emit an intermediate language (e.g. CUDA, webasm) for optimized execution on special hardware, such as a GPU or TPU.
 
 <center><blockquote class="twitter-tweet"><p lang="en" dir="ltr">This <a href="https://twitter.com/hashtag/GraphBLAS?src=hash&amp;ref_src=twsrc%5Etfw">#GraphBLAS</a> stuff is super exciting. Most graph algorithms can be expressed as linear algebra. Sparse matrix SIMD-backed graph algorithms lets us process orders-of-magnitude larger graphs. Similar to AD tools like Theano et al., this will give a huge boost to network science.</p>&mdash; breandan (@breandan) <a href="https://twitter.com/breandan/status/1277505360127983618?ref_src=twsrc%5Etfw">June 29, 2020</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script></center>
 
@@ -1148,7 +1148,7 @@ $$
 \mathbf P: I_{\text{static}} \times I_{\text{dynamic}} \rightarrow O
 $$
 
-Programs can be viewed as simply functions mapping inputs to output, and executing the program amounts to running a matrix dynamical system to completion. Consider the static case, in which we have all the information available at compile time, we just need to multiply the state $$\mathbf P: \mathbb B^{\lvert S\rvert \times \lvert S\rvert}$$ by the vector $$S$$ until termination:
+Programs can be viewed as simply functions mapping inputs to output, and executing the program amounts to running a matrix dynamical system to completion. Consider the static case, in which we have all the information available at compile-time, we just need to multiply the state $$\mathbf P: \mathbb B^{\lvert S\rvert \times \lvert S\rvert}$$ by the vector $$S$$ until termination:
 
 ```
     [P]────────────────────────────────           } Program
@@ -1201,7 +1201,7 @@ $$
 \underset{P}{\text{argmin}}\sum_{i \sim I_{static}}\mathcal L(P^t S^i_0, S_t)
 $$
 
-One issue with this formulation is we must rely on a loss over $$S_t$$, which is often too sparse and generalizes poorly. It may be the case that many interesting program synthesis problems have [optimal substructure](https://en.wikipedia.org/wiki/Optimal_substructure), so we should be making "progress" towards a goal state, and can define a cross entropy loss over intermediate states. This needs to be explored in more depth.
+One issue with this formulation is we must rely on a loss over $$S_t$$, which is often too sparse and generalizes poorly. It may be the case that many interesting program synthesis problems have [optimal substructure](https://en.wikipedia.org/wiki/Optimal_substructure), so we should be making "progress" towards a goal state, and can define a cross-entropy loss over intermediate states. This needs to be explored in more depth.
 
 Some, including [Gaunt et al., (2016)](https://arxiv.org/pdf/1608.04428.pdf), have shown gradient is not very effective, as the space of boolean circuits is littered with islands which have zero gradient. However their representation is also relatively complex -- effectively, they are trying to learn a recursively enumerable language using something like a [Neural Turing Machine](https://arxiv.org/pdf/1410.5401.pdf) (Graves et al., 2014).
 
@@ -1209,7 +1209,7 @@ More recent work, including that of [Lample et al., (2019)](https://arxiv.org/pd
 
 <center><img src="https://raw.githubusercontent.com/quark0/darts/master/img/darts.png" width="60%"/></center>
 
-In the last year, a number of interesting reults in differentiable architecture search started to emerge. [DARTS](https://arxiv.org/pdf/1806.09055.pdf) (Liu et al., 2019) proposes to use gradient to search through the space of directed graphs. The authors first perform a continuous relaxation of the discrete graph, by reweighting the output of each each potential edge by a hyperparameter, optimizing over the space of edges using gradient descent, then taking a softmax to discretize the output graph.
+In the last year, a number of interesting reults in differentiable architecture search started to emerge. [DARTS](https://arxiv.org/pdf/1806.09055.pdf) (Liu et al., 2019) proposes to use gradient to search through the space of directed graphs. The authors first perform a continuous relaxation of the discrete graph, by reweighting the output of each potential edge by a hyperparameter, optimizing over the space of edges using gradient descent, then taking a softmax to discretize the output graph.
 
 <center><a href="https://youtu.be/rwBbYhOAnPo?t=28272"><img src="/images/solar_lezma.png" width="70%"/></a></center>
 
@@ -1223,7 +1223,7 @@ A less charitable interpretation is that Goodfellow is simply using a metaphor t
 
 # Roadmap
 
-Much work lies ahead for the interested reader. Before we can claim to have a unification of graph linear algebra and computer science, at least three technical hurdles will need to be cleared. First is theoretical: we will need show that binary matrix arithmetic is a universal language. Second, we will need to show a proof-of-concept via binary recompilation. Third, we must develop a robust toolchain for compiling and introspecting a wide variety of graph programs.
+Much work lies ahead for the interested reader. Before we can claim to have a unification of graph linear algebra and computer science, at least three technical hurdles will need to be cleared. First is theoretical: we must show that binary matrix arithmetic is a universal language. Second, we must show a proof-of-concept via binary recompilation. Third, we must develop a robust toolchain for compiling and introspecting a wide variety of graph programs.
 
 While a naïve proof is a trivial extension of the Church-Turing thesis, a constructive proof taking physics into consideration is needed. Given some universal language $$\mathcal L$$, and a program implementing a boolean vector function $$\mathcal V: \mathbb B^i \rightarrow \mathbb B^o \in \mathcal L$$, we must derive a transformation $$\mathcal T_\mathcal L: \mathcal V \rightarrow \mathcal M$$, which maps $$\mathcal V$$ to a boolean matrix function $$\mathcal M: \mathbb B^{j \times k} \times \mathbb B^{l\times m}$$, while preserving asymptotic complexity $$\mathcal O(\mathcal M) \lt \mathcal O(\mathcal V)$$, i.e. which is no worse than a constant factor in space or time. Clearly, the identity function $$\mathcal I(\mathcal V)$$ is a valid candidate for $$\mathcal T_{\mathcal L}$$. But as recent GPGPU research has shown, we can do much better.
 
