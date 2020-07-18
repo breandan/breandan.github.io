@@ -228,7 +228,7 @@ func → (λ var.expr)
 appl → (expr expr)
 ```
 
-To evaluate a `expr` in this language, we need a single substitution rule. The notation `expr[var → val]`, [we read as](https://groups.csail.mit.edu/mac/users/gjs/6.945/readings/Steele-MIT-April-2017.pdf#page=44), "within `expr`, `var` becomes `val`":
+To evaluate an `expr` in this language, we need a single substitution rule. The notation `expr[var → val]`, [we read as](https://groups.csail.mit.edu/mac/users/gjs/6.945/readings/Steele-MIT-April-2017.pdf#page=44), "within `expr`, `var` becomes `val`":
 
 ```
 (λ var.expr) val → (expr[var → val])
