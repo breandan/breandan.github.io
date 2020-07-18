@@ -1,0 +1,1436 @@
+<!DOCTYPE html>
+<html xmlns="https://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+  <head>
+  <link href="https://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+    <!-- Enable responsiveness on mobile devices-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <title>
+    
+      Computation graphs and graph computation &middot; Breandan's Blog
+    
+  </title>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="/public/css/poole.css">
+  <link rel="stylesheet" href="/public/css/syntax.css">
+  <link rel="stylesheet" href="/public/css/pullquote.css">
+  <style type="text/css">
+	p {
+	    text-align: justify;
+	}
+
+    div.footnotes {
+        text-align: left;
+    }
+
+    .quote {
+        text-align:right;
+    }
+
+    .span{float:right;}
+
+    .leftquote {
+        /* Reset metrics. */
+        padding: 0;
+        border: none;
+
+        /* Pull out to the right, modular scale based margins. */
+        float: left;
+        width: 50%;
+        margin: 1em 1.5em 1em 0;
+
+        /* Baseline correction */
+        position: relative;
+        top: 6px;
+    }
+
+    .mathquote {
+        /* Reset metrics. */
+        padding: 0;
+        border: none;
+
+        /* Pull out to the right, modular scale based margins. */
+        float: right;
+        margin: 0 0 1em 1.5em;
+
+        /* Baseline correction */
+        position: relative;
+        top: 6px;
+    }
+
+    blockquote {
+        padding:20px 30px;
+        border-left:3px solid #ccc;
+        display:inline-block;
+        color:#666;
+        background:#eee;
+        text-align:left;
+    }
+  </style>
+
+	
+
+	
+
+  <!-- Icons -->
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/public/apple-touch-icon-144-precomposed.png">
+                                 <link rel="shortcut icon" href="/public/favicon.gif">
+</head>
+
+  <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('require', 'displayfeatures');
+  ga('create', 'UA-49839115-1', 'breandan.net');
+  ga('send', 'pageview');
+</script>
+
+  <body>
+
+    <div class="container content">
+      <div class="masthead">
+        <h3 class="masthead-title">
+          <a href="/" title="Home">Breandan's Blog</a>
+          <small></small>
+        </h3>
+      </div>
+
+      <div class="post">
+  <h1 class="post-title">Computation graphs and graph computation</h1>
+  <span class="post-date">30 Jun 2020</span>
+  <p>Research has begun to reveal many algorithms can be expressed as matrix multiplication, suggesting an unrealized connection between linear algebra and computer science. I speculate graphs are the missing piece of the puzzle. Graphs are not only useful as cognitive aides, but are suitable data structures for a wide variety of tasks, particularly on modern parallel processing hardware.</p>
+
+<p>In this essay, I explore the virtues of graphs, algebra, types, and show how these concepts can help us reason about programs. I propose a computational primitive based on graph signal processing, linking software engineering, graphs, and linear algebra. Finally, I share my predictions for the path ahead, which I consider to be the start of an exciting new chapter in computing history.</p>
+
+<p><em>n.b.: None of these ideas are mine alone. Shoulders of giants. Follow the links and use landscape mode for optimal reading experience.</em></p>
+
+<h1 id="new-decade-new-delusions">New decade, new delusions</h1>
+
+<p>Over the last decade, I bet on some strange ideas. A lot of people I looked up to at the time laughed at me. I’ll bet they aren’t laughing anymore. I ought to thank them one day, because their laughter gave me a lot of motivation. I’ve said some idiotic things to be sure, but I’ve also made some laughable predictions that were correct. Lesson learned: aim straighter.</p>
+
+<p>In 2012, I was in Austin sitting next to an ex-poker player named <a href="https://twitter.com/amirpc">Amir</a> who was singing Hinton’s praises. Hypnotized by his technicolor slides, I quit my job in a hurry and started an educational project using speech recognition and restricted Boltzmann machines. It never panned out, but I learned a lot about ASR and Android audio. Still love <a href="http://breandan.net/2014/02/09/the-end-of-illiteracy/">that idea</a>.</p>
+
+<center>
+<a href="https://www.cs.toronto.edu/~hinton/csc2535/notes/lec4new.pdf"><img align="center" width="75%" src="/images/rbm.png" /></a>
+</center>
+
+<p>In 2017, I started writing a book on the ethics of automation and <a href="http://breandan.net/2017/02/02/trust-in-automation/">predicted</a> mass unemployment and social unrest. Although I got the causes wrong (pandemic, go figure), the information economy and confirmation bias takes were all dead right. Sadly, this is now driving the world completely insane. Don’t say I warned you, go out and fix our broken systems. The world needs more engineers who care.</p>
+
+<center>
+<a href="https://colah.github.io/posts/2015-09-NN-Types-FP/"><img align="center" width="75%" src="/images/diff_prog.png" /></a>
+</center>
+
+<p>In 2017, I witnessed the birth of <a href="https://colah.github.io/posts/2015-09-NN-Types-FP/">differentiable programming</a>, which I stole from Chris Olah and turned into a <a href="https://github.com/breandan/kotlingrad/blob/master/latex/thesis/thesis.pdf">master’s thesis</a>. Had a lot of trouble convincing people that classical programs could be made differentiable, but look at the proceedings of any machine learning conference today and you’ll find dozens of papers on differentiable sorting and rendering and simulation. Don’t thank me, thank Chris and the Theano guys.</p>
+
+<p>In 2018, I correctly predicted Microsoft would acquire GitHub to mine code. Why MS and not Google? I’ll bet they tried, but Google’s leadership had fantasies of AGI and besides JetBrains, MS were the only ones who gave a damn about developers. Now ML4SE is a thriving <a href="https://ml4se.github.io/">research area</a> and showing up in <a href="https://github.com/JetBrains-Research/DeepBugsPlugin">real</a> <a href="https://devblogs.microsoft.com/visualstudio/ai-assisted-intellisense-for-your-teams-codebase/">products</a>, much to the chagrin of those who believed ML was a fad. I suspect their hype filter blinded them to the value those tools provide.</p>
+
+<center>
+<blockquote class="twitter-tweet"><p lang="en" dir="ltr">Prediction: MS will acquire GH within five years. If the <a href="https://twitter.com/hashtag/ML4Code?src=hash&amp;ref_src=twsrc%5Etfw">#ML4Code</a> stuff delivers for MS, acquisition is highly likely. Although it would have been cheaper a few years ago. <a href="https://t.co/5ZMtiRtifD">https://t.co/5ZMtiRtifD</a> <a href="https://t.co/TaxkArm5ps">https://t.co/TaxkArm5ps</a></p>&mdash; breandan (@breandan) <a href="https://twitter.com/breandan/status/993553301927936001?ref_src=twsrc%5Etfw">May 7, 2018</a></blockquote> <script async="" src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+<a href="https://blogs.microsoft.com/blog/2018/10/26/microsoft-completes-github-acquisition/">
+<img align="center" width="75%" src="/images/microsoft_github_aquisition.png" /></a>
+</center>
+
+<p>But to heck with everything I’ve said! If I had just one idea to share with these ML people, it would be types. Beat that drum as loud as I could. Types are the best tool we know for synthetic reasoning. If you want to build provably correct systems that scale on real-world applications, use types. Not everyone is convinced yet, but mark my words, <a href="https://github.com/tensorflow/tensorflow/issues/12345">types</a> are <a href="https://docs.python.org/3.9/whatsnew/3.9.html#pep-585-builtin-generic-types">coming</a>. Whoever figures out how to connect types and learning will be the next Barbara Liskov or Frances Allen.</p>
+
+<p>This year, I predicted the pandemic weeks before the lockdown, exited the market, and turned down a job at Google. Some people called me crazy. Now I’m going all-in on some new ideas (none of which are mine). I’m making some big bets and some will be wrong, but I see the very same spark of genius in them.</p>
+
+<h1 id="everything-old-is-new-again">Everything old is new again</h1>
+
+<p>As a kid, I was given a book on the history of mathematics. I remember it had some interesting puzzles, including one with <a href="https://en.wikipedia.org/wiki/Seven_Bridges_of_K%C3%B6nigsberg">some bridges</a> in a town divided by rivers, once inhabited by a man called Euler. Was there a tour crossing each bridge exactly once? Was it possible to tell without checking every path? I remember spending days trying to figure out the answer.</p>
+
+<center>
+<a href="https://en.wikipedia.org/wiki/Seven_Bridges_of_K%C3%B6nigsberg"><img align="center" width="60%" src="/images/konigsberg_bridges.png" /></a>
+</center>
+
+<p>In the late 90s, my mom and I went to Ireland. I remember visiting Trinity College, and learning about a mathematician called <a href="https://en.wikipedia.org/wiki/William_Rowan_Hamilton">Hamilton</a> who discovered a famous formula connecting algebra and geometry, and carved it onto a <a href="https://en.wikipedia.org/wiki/Broom_Bridge">bridge</a>. We later visited the bridge, and the tour guide pointed out the stone, which we touched for good luck. The Irish have a <a href="https://en.wikipedia.org/wiki/Poulnabrone_dolmen">thing</a> for <a href="https://en.wikipedia.org/wiki/Newgrange">stones</a>.</p>
+
+<center>
+<a href="http://www.kurims.kyoto-u.ac.jp/EMIS/classics/Hamilton/PRIAIcos.pdf"><img align="center" width="40%" src="/images/quaternions.jpg" /></a>
+</center>
+
+<p>In 2007, I was applying to college and took the train from Boston to South Bend, Indiana, home of the Fighting Irish. Wandering about, I picked up a magazine article by a Hungarian mathematician called <a href="https://en.wikipedia.org/wiki/Albert-L%C3%A1szl%C3%B3_Barab%C3%A1si">Barabási</a> then at Notre Dame, who had some interesting things to say about <a href="https://en.wikipedia.org/wiki/Complex_network">complex networks</a>. Later in 2009, while studying in Rochester, I <a href="/images/complex_network_seminar.png">carpooled</a> with a <a href="https://avesis.medeniyet.edu.tr/hasan.guclu">nice professor</a>, and learned complex networks are found in brains, languages and many marvelous places.</p>
+
+<center>
+<a href="https://barabasi.com/f/226.pdf"><img align="center" width="75%" src="/images/complex_networks.png" /></a>
+</center>
+
+<p>Fast forward to 2017. I was lured by the siren song of algorithmic differentiation. Olivier Breleux presented <a href="https://github.com/mila-iqia/myia">Myia</a> and <a href="https://github.com/breuleux/buche">Buche</a>. Matt Johnson gave a talk on <a href="https://github.com/HIPS/autograd">Autograd</a>. I met Chris Olah in Long Beach, who gave me the idea to study <a href="https://colah.github.io/posts/2015-09-NN-Types-FP/">differentiable programming</a>. I stole his idea, dressed it up in Kotlin and traded it for a POPL workshop paper and later a <a href="https://github.com/breandan/kotlingrad/blob/master/latex/thesis/thesis.pdf">Master’s thesis</a>. Our contributions were using algebra, shape inference and presenting AD as term rewriting.</p>
+
+<center>
+<a href="https://github.com/breandan/kotlingrad#dataflow-graphs"><img align="center" width="75%" src="https://github.com/breandan/kotlingrad/raw/master/samples/src/main/resources/dataflow.svg" /></a>
+</center>
+
+<p>In 2019, I joined a lab with a <a href="https://www.cs.mcgill.ca/~jguo/">nice professor</a> at McGill applying knowledge graphs to software engineering. Like logical reasoning, knowledge graphs are an idea from the first wave of AI in the 1960s and 70s which have been revived and studied in light of recent progress in the field. I believe this is an important area of research with a lot of potential. Knowledge and traceability plays a big role in software engineering, and it’s the bread-and-butter of a good IDE. The world needs better IDEs if we’re ever going to untangle this mess we’re in.</p>
+
+<center>
+<a href="https://structurizr.com/"><img align="center" width="45%" src="https://raw.githubusercontent.com/cecuesta/structurizr-java/master/docs/images/graphviz-spring-petclinic-components.png" /></a>
+</center>
+
+<p>This Spring, I took a fascinating seminar on <a href="https://cs.mcgill.ca/~wlh/comp766/index.html">Graph Representation Learning</a>. A lot of delightful graph theory has been worked out over the last decade. <a href="https://en.wikipedia.org/wiki/PageRank">PageRank</a> turned into power iteration. People have discovered many interesting connections to linear algebra, including Weisfeiler-Lehman graph kernels, graph Laplacians, Krylov methods, and spectral graph theory. These ideas have deepened our understanding of graph signal processing and its applications for learning and program analysis. More on that <a href="#graphs-computationally">later</a>.</p>
+
+<h1 id="what-are-graphs">What are graphs?</h1>
+
+<p>Graphs are general-purpose data structures used to represent a variety of data types and procedural phenomena. Unlike most sequential languages, graphs are capable of expressing a much richer family of relations between entities, and are a natural fit for many problems in computer science, physics, biology and mathematics. Consider the following hierarchy of data structures, all of which are graphs with increasing expressive power:</p>
+
+<ul>
+  <li><strong>Sets</strong>: datasets, multisets, posets, alphabets</li>
+  <li><strong>Sequences</strong>: Lists, strings, arrays, linear function composition</li>
+  <li><strong>Trees</strong>: <a href="https://en.wikipedia.org/wiki/Abstract_syntax_tree">Abstract syntax</a>, <a href="https://en.wikipedia.org/wiki/Document_Object_Model">XML</a>, <a href="https://en.wikipedia.org/wiki/Phylogenetic_tree">phylogeny</a>, <a href="https://en.wikipedia.org/wiki/Decision_tree">decision trees</a></li>
+  <li><strong>DAGs</strong>: <a href="https://eagain.net/articles/git-for-computer-scientists/">Git</a>, <a href="https://en.wikipedia.org/wiki/Citation_network">citations</a>, <a href="https://en.wikipedia.org/wiki/Dependency_graph">dependency graphs</a>, <a href="https://en.wikipedia.org/wiki/Workflow_management_system">workflows</a>, <a href="https://en.wikipedia.org/wiki/Control-flow_graph">control flow</a>, <a href="https://en.wikipedia.org/wiki/Multilayer_perceptron">MLPs</a></li>
+  <li><strong>Directed graphs</strong>: <a href="https://en.wikipedia.org/wiki/Finite-state_machine">State machines</a>, <a href="http://dkeenan.com/Lambda/">λ-calculus</a>, <a href="https://computersciencewiki.org/index.php/The_web_as_a_directed_graph">the web</a>, <a href="https://en.wikipedia.org/wiki/Call_graph">call graphs</a>, <a href="https://en.wikipedia.org/wiki/Recurrent_neural_network">RNNs</a></li>
+  <li><strong>Hypergraphs</strong>: <a href="https://arxiv.org/pdf/2003.02320.pdf">Knowledge</a>, <a href="https://zettelkasten.de/">Zettelkasten</a>, <a href="https://en.wikipedia.org/wiki/Category_theory">categories</a>, <a href="https://writings.stephenwolfram.com/2020/04/finally-we-may-have-a-path-to-the-fundamental-theory-of-physics-and-its-beautiful/">physics</a>, <a href="https://openreview.net/pdf?id=rkpACe1lx">hypernetworks</a></li>
+</ul>
+
+<p>As we realized in <a href="https://github.com/breandan/kotlingrad">Kotlin∇</a>, directed graphs can be used to model mathematical expressions, as well as other formal languages, including source code, intermediate representations and binary artifacts. Not only can graphs be used to describe extant human knowledge, many recent examples have shown that machines can “grow” trees and graphs for various applications, such as program synthesis, mathematical deduction and physical simulation. Recent neuro-symbolic applications have shown promising early results in graph synthesis:</p>
+
+<ul>
+  <li><a href="https://arxiv.org/pdf/1711.00740.pdf">Learning to Represent Programs with Graphs</a>, Allamanis et al., 2018</li>
+  <li><a href="https://arxiv.org/pdf/1912.01412.pdf">Deep Learning for Symbolic Mathematics</a>, Lample and Charton, 2019.</li>
+  <li><a href="https://arxiv.org/pdf/2006.11287.pdf">Discovering Symbolic Models from Deep Learning with Inductive Biases</a>, Cranmer et al., 2020.</li>
+  <li><a href="https://arxiv.org/pdf/2005.11212.pdf">Symbolic Pregression: Discovering Physical Laws from Raw Distorted Video</a> (Udrescu &amp; Tegmark, 2020).</li>
+  <li><a href="https://arxiv.org/pdf/2006.08381.pdf">DreamCoder: Growing generalizable, interpretable knowledge with wake-sleep Bayesian program learning</a>, Ellis et al., 2020.</li>
+  <li><a href="https://arxiv.org/abs/2007.03629">Strong Generalization and Efficiency in Neural Programs</a>, Li et al., 2020.</li>
+  <li><a href="https://arxiv.org/pdf/1910.10593.pdf">Neural Execution of Graph Algorithms</a>, Veličković et al. (2020)</li>
+</ul>
+
+<p>The field of natural language processing has also developed a rich set of graph-based representations, such as <a href="https://en.wikipedia.org/wiki/Phrase_structure_grammar">constituency</a>, <a href="https://en.wikipedia.org/wiki/Dependency_grammar">dependency</a>, <a href="https://en.wikipedia.org/wiki/Link_grammar">link</a> and other and other typed attribute grammars which can be used to reason about syntactic and semantic relations between natural language entities. Research has begun to show many practical applications for such grammars in the extraction and organization of human knowledge stored in large text corpora. Those graphs can be further processed into ontologies for logical reasoning.</p>
+
+<center>
+<img align="center" width="60%" src="https://upload.wikimedia.org/wikipedia/commons/8/8e/Thistreeisillustratingtherelation%28PSG%29.png" />
+</center>
+
+<p>Using coreference resolution and entity alignment techniques, we can reconstruct internally consistent relations between entities, which capture cross-corpus consensus in natural language datasets. When stored in <a href="https://arxiv.org/pdf/2003.02320.pdf">knowledge graphs</a>, these relations can be used for information retrieval and question answering, e.g. on wikis and other content management systems. Recent techniques have shown promise in automatic knowledge base construction (cf. <a href="https://www.mitpressjournals.org/doi/pdf/10.1162/tacl_a_00088">Reddy et al.</a>, 2016).</p>
+
+<!--![logical_forms](/images/logical_forms.png) -->
+<center>
+<a href="https://arxiv.org/pdf/2003.02320.pdf"><img align="center" width="75%" src="/images/knowledge_graph.png" /></a>
+</center>
+
+<p>Lo and behold, the key idea behind knowledge graphs is our old friend, types. Knowledge graphs are multi-relational graphs whose nodes and edges possess a type. Two entities can be related by multiple types, and each type can relate many pairs of entities. We can index an entity based on its type for knowledge retrieval, and use types to reason about compound queries, e.g. “Which <code class="highlighter-rouge">company</code> has a direct <code class="highlighter-rouge">flight</code> from a <code class="highlighter-rouge">port city</code> to a <code class="highlighter-rouge">capital city</code>?”, which would otherwise be difficult to answer without a type system.</p>
+
+<h1 id="induction-introduction">Induction introduction!</h1>
+
+<p>In this section, we will review some important concepts from <a href="https://en.wikipedia.org/wiki/Chomsky_hierarchy">Chomskyan linguistics</a>, including finite automata, abstract rewriting systems, and λ-calculus. Readers already familiar with these concepts will gain a newfound appreciation for how each one shares a common thread and can be modeled using the same underlying abstractions.</p>
+
+<h2 id="regular-languages">Regular languages</h2>
+
+<p>One thing that always fascinated me is the idea of inductively defined languages, also known as recursive, or structural induction. Consider a very simple language that accepts strings of the form <code class="highlighter-rouge">0</code>, <code class="highlighter-rouge">1</code>, <code class="highlighter-rouge">100</code>, <code class="highlighter-rouge">101</code>, <code class="highlighter-rouge">1001</code>, <code class="highlighter-rouge">1010</code>, et cetera, but rejects <code class="highlighter-rouge">011</code>, <code class="highlighter-rouge">110</code>, <code class="highlighter-rouge">1011</code>, or any string containing <code class="highlighter-rouge">11</code>. The <code class="highlighter-rouge">→</code> symbol denotes a “production”. The <code class="highlighter-rouge">|</code> symbol, which we read as “or”, is just shorthand for defining multiple productions on a single line:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>true → 1
+term → 0 | 10 | ε
+expr → term | expr term
+</code></pre></div></div>
+
+<p>We have two sets of productions, those which can be expanded, called “nonterminals”, and those which can be expanded no further, called “terminals”. Notice how each non-terminal occurs at most once in any single production. This property guarantees the language is recognizable by a special kind of graph, called a <a href="https://en.wikipedia.org/wiki/Finite-state_machine">finite state machine</a>. As their name suggests, FSMs contain a finite set of states, with labeled transitions between them:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center">Finite Automaton</th>
+      <th style="text-align: center">Library Courtesy Bell</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center"><center><img align="center" width="200%" src="/images/fsm_bell.svg" /></center></td>
+      <td style="text-align: center"><br /><center><img align="center" width="50%" src="/images/bell.png" /></center><br />Please ring the bell <strong>once</strong><br /> and wait for assistance.</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Imagine a library desk: you can wait quietly and eventually you will be served. Or, you can ring the bell once and wait quietly to be served. Should no one arrive after a while, you may press the bell again and continue waiting. Though you must never ring the bell twice, lest you disturb the patrons and be tossed out.</p>
+
+<p>Regular languages can also model nested repetition. Consider a slightly more complicated language, given by the regular expression <code class="highlighter-rouge">(0(01)*)*(10)*</code>. The <code class="highlighter-rouge">*</code>, or <a href="https://en.wikipedia.org/wiki/Kleene_star">Kleene star</a>, means, “accept zero or more of the previous token”.</p>
+
+<table>
+<tr>
+<td> <center><b>Backus-Naur Grammar</b></center> </td> <td><center><b><center>Nondeterminstic Finite Automaton</center></b></center></td>
+</tr>
+<tr>
+
+<td>
+<div>
+        <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+   t → ε | 0
+   a → 10 | a 10
+   b → 0 | b 01 | b 0 ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎
+
+</code></pre></div>        </div>
+      </div>
+</td>
+<td>
+<div>
+        <center><img src="/images/nfa.svg" width="80%" /></center>
+      </div>
+</td>
+</tr>
+</table>
+
+<p>Note here, a single symbol may have multiple transitions from the same state. Called a <a href="https://en.wikipedia.org/wiki/Nondeterministic_finite_automaton">nondeterminsic finite automaton</a> (NFA), this machine can occupy multiple states simultaneously. While no more powerful than their determinstic cousins, NFAs often require far fewer states to recognize the same language. One way to implement an NFA is to simulate the superposition of all states, by cloning the machine whenever such a transition occurs. More on that <a href="#nondeterminstic-finite-automata">later</a>.</p>
+
+<h2 id="arithmetic">Arithmetic</h2>
+
+<p>Now suppose we have a slightly more expressive language that accepts well-formed arithmetic expressions with up to two variables, in either infix or unary prefix form. In this language, a non-terminal may occur twice inside a single production – an <code class="highlighter-rouge">expr</code> can be composed of two sub<code class="highlighter-rouge">expr</code>s:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>term → 1 | 0 | x | y
+  op → + | - | ·
+expr → term | op expr | expr op expr
+</code></pre></div></div>
+
+<p>This is an example of a <a href="https://en.wikipedia.org/wiki/Context-free_language">context-free language</a> (CFL). We can represent strings in this language using a special kind of graph, called a syntax tree. Each time we expand an <code class="highlighter-rouge">expr</code> with a production rule, this generates a rooted subtree on <code class="highlighter-rouge">op</code>, whose branch(es) are <code class="highlighter-rouge">expr</code>s. Typically, syntax trees are inverted, with branches extending downwards, like so:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center">Syntax Tree</th>
+      <th style="text-align: center">Peach Tree</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center"><center><img align="center" width="80%" src="/images/tree_syntax.svg" /></center></td>
+      <td style="text-align: center"><center><img align="center" width="75%" src="/images/tree_peach.png" /></center></td>
+    </tr>
+  </tbody>
+</table>
+
+<p>While syntax trees can be interpreted computationally, they do not actually perform computation unless evaluated. To [partially] evaluate a syntax tree, we will now introduce some pattern matching rules. Instead of just allowing terminals to occur on the right-hand side of a production, suppose we also allow terminals on the left, and applying a rule can shrink a string in our language. Here, we use capital letters on the same line to indicate an exact match, e.g. a rule <code class="highlighter-rouge">U + V → V + U</code> would replace <code class="highlighter-rouge">x + y</code> with <code class="highlighter-rouge">y + x</code>:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>                                         E + E → +E
+                                         E · E → ·E
+                  E + 1 | 1 + E | +1 | -0 | ·1 → 1
+                         E + 0 | 0 + E | E - 0 → E
+  E - E | E · 0 | 0 · E | 0 - E | +0 | -1 | ·0 → 0
+</code></pre></div></div>
+
+<p>If we must add two identical expressions, why evaluate them twice? If we need to multiply an expression by <code class="highlighter-rouge">0</code>, why evaluate it at all? Instead, we will try to simplify these patterns, whenever we encounter them. This is known as a <a href="https://en.wikipedia.org/wiki/Rewriting">rewrite system</a>, which we can think of as grafting or pruning the branches of a tree. Some say, “all trees are DAGs, but not all DAGs are trees”. I prefer to think of a DAG as a tree with a <a href="https://en.wikipedia.org/wiki/Inosculation">gemel</a>:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Rewrite Rule</th>
+      <th>Deformed Tree</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><center><img align="center" width="100%" src="/images/tree_dag.svg" /></center></td>
+      <td><br /><center><img align="center" width="50%" src="/images/tree_gemel.png" /></center></td>
+    </tr>
+    <tr>
+      <td><center><img align="center" width="100%" src="/images/tree_dag_minus.svg" /></center></td>
+      <td><br /><br /><center><img align="center" width="50%" src="/images/stump.png" /></center></td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Let us now introduce a new operator, <code class="highlighter-rouge">Dₓ</code>, and some corresponding rules. In effect, these rules will push <code class="highlighter-rouge">Dₓ</code> as far towards the leaves as possible, while rewriting terms along the way. We will also introduce some terminal rewrites:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[R0]       term → Dₓ(term)
+[R1]      Dₓ(x) → 1  
+[R2]      Dₓ(y) → 0  
+[R3]    Dₓ(U+V) → Dₓ(U) + Dₓ(V)  
+[R4]    Dₓ(U·V) → U·Dₓ(V) + Dₓ(U)·V  
+[R5]     Dₓ(+U) → +Dₓ(U)
+[R6]     Dₓ(-U) → -Dₓ(U)
+[R7]     Dₓ(·U) → +U·Dₓ(U)
+[R8]      Dₓ(1) → 0
+[R9]      Dₓ(0) → 0
+</code></pre></div></div>
+
+<p>Although we assign an ordering <code class="highlighter-rouge">R0</code>-<code class="highlighter-rouge">R9</code> for notational convenience, an initial string, once given to this system, will always converge to the same result, no matter in which order we perform the substitutions (proof required):</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center">Term Confluence</th>
+      <th style="text-align: center">Ottawa-St. Lawrence Confluence</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center"><br /><center><img align="center" width="100%" src="/images/confluence_term.svg" /></center></td>
+      <td style="text-align: center"><br /><center><img align="center" width="75%" src="/images/confluence_river.png" /></center></td>
+    </tr>
+  </tbody>
+</table>
+
+<p>This feature, called <a href="https://en.wikipedia.org/wiki/Confluence_(abstract_rewriting)">confluence</a>, is an important property of some rewrite systems: regardless of the substitution order, we will eventually arrive at the same result. If all strings in a language reduce to a form which can be simplified no further, we call such systems <em>strongly normalizing</em>, or <em>terminating</em>. If a rewriting system is both confluent and terminating it is said to be <em>convergent</em>.</p>
+
+<h2 id="λ-calculus">λ-calculus</h2>
+
+<p>So far, the languages we have seen are capable of generating and simplifying arithmetic expressions, but are by themselves incapable of performing arithmetic, since they cannot evaluate arbitrary arithmetic expressions. We will now consider a language which can encode and evaluate any arithmetic expression:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>expr → var | func | appl
+func → (λ var.expr)
+appl → (expr expr)
+</code></pre></div></div>
+
+<p>To evaluate an <code class="highlighter-rouge">expr</code> in this language, we need a single substitution rule. The notation <code class="highlighter-rouge">expr[var → val]</code>, <a href="https://groups.csail.mit.edu/mac/users/gjs/6.945/readings/Steele-MIT-April-2017.pdf#page=44">we read as</a>, “within <code class="highlighter-rouge">expr</code>, <code class="highlighter-rouge">var</code> becomes <code class="highlighter-rouge">val</code>”:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>(λ var.expr) val → (expr[var → val])
+</code></pre></div></div>
+
+<p>For example, applying the above rule to the expression <code class="highlighter-rouge">(λy.y z) a</code> yields <code class="highlighter-rouge">a z</code>. With this seemingly trivial addition, our language is now powerful enough to encode any computable function! Known as the pure untyped λ-calculus, this system is equivalent to an idealized computer with infinite memory.</p>
+
+<p>While grammatically compact, computation in the λ-calculus is not particularly terse. In order to perform any computation, we will need a way to encode values. For example, we can encode the boolean algebra like so:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[D1]           λx.λy.x = T     "true"
+[D2]           λx.λy.y = F     "false"
+[D3]       λp.λq.p q p = &amp;     "and"
+[D4]       λp.λq.p p q = |     "or"
+[D5]    λp.λa.λb.p b a = !     "not"
+</code></pre></div></div>
+
+<p>To evaluate a boolean expression <code class="highlighter-rouge">!T</code>, we will first need to encode it as a λ-expression. We can then evaluate it using the λ-calculus as follows:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  (           !          ) T
+→ (λp.λa.λb.    p     b a) T   [D5]
+→ (   λa.λb.    T     b a)     [p → T]
+→ (   λa.λb.(λx.λy.x) b a)     [D1]
+→ (   λa.λb.(   λy.b)   a)     [x → b]
+→ (   λa.λb.(   λy.b)    )     [y → a]
+→ (   λa.λb.b            )     [y →  ]
+→ (   F                  )     [D2]
+</code></pre></div></div>
+
+<p>We have reached a terminal, and can recurse no further. This particular program is decidable. What about others? Let us consider an undecidable example:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>(λg.(λx.g (x x)) (λx.g (x x))) f
+    (λx.f (x x)) (λx.f (x x))                        [g → f]
+        f (λx.f (x x))(λx.f (x x))                   [f → λx.f(x x)]
+        f     f (λx.f (x x))(λx.f (x x))             [f → λx.f(x x)]
+        f     f     f (λx.f (x x))(λx.f (x x))       [f → λx.f(x x)]
+        ...                 (λx.f (x x))(λx.f (x x)) [f → λx.f(x x)]
+</code></pre></div></div>
+
+<p>This pattern is <a href="https://doi.org/10.2307%2F2370619">Curry’s (1930)</a> famous fixed point combinator and the cornerstone of recursion, called Y. Unlike its typed cousin, the untyped λ-calculus is <em>not</em> strongly normalizing and thus not guaranteed to converge. Were it convergent, it would not be Turing-complete. This <a href="http://www.cts.cuni.cz/~kurka/decid1.pdf">hard choice</a> between decidability and universality is one which no computational language can avoid.</p>
+
+<center>
+<a href="http://bntr.planet.ee/lambda/work/visual_lambda.pdf"><img align="center" width="75%" src="/images/graphical_lambda_calculus.png" /></a>
+</center>
+
+<p>The λ-calculus, can also be interpreted graphically. I refer the curious reader to some promising proposals which have attempted to formalize this perspective:</p>
+
+<ul>
+  <li><a href="http://bntr.planet.ee/lambda/work/visual_lambda.pdf">Visual lambda calculus</a> (Massalõgin, 2008)</li>
+  <li><a href="https://arxiv.org/pdf/1305.5786.pdf">Graphic lambda calculus</a> (Buliga, 2013)</li>
+  <li><a href="http://dkeenan.com/Lambda/">A Graphical Notation for the Lambda Calculus</a> (Kennan, 1996)</li>
+</ul>
+
+<h2 id="cellular-automata">Cellular automata</h2>
+
+<p>The <a href="https://en.wikipedia.org/wiki/Elementary_cellular_automaton">elementary cellular automaton</a> is another string rewrite system consisting of a one dimensional binary array, and a 3-cell grammar. Note there are <script type="math/tex">2^{2^3} = 256</script> possible rules for rewriting the tape. It turns out even in this tiny space, there exist remarkable automata. Consider the following rewrite system:</p>
+
+<center>
+<img align="center" src="/images/ca_rule%20110.png" />
+</center>
+
+<!--![](https://en.wikipedia.org/wiki/Cellular_automaton#/media/File:One-d-cellular-automate-rule-30.gif)-->
+
+<!--We can represent this using graphs:-->
+
+<!--![image](/images/ca_rule30.png)-->
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center">current pattern</th>
+      <th style="text-align: center"><code class="highlighter-rouge">111</code></th>
+      <th style="text-align: center"><code class="highlighter-rouge">110</code></th>
+      <th style="text-align: center"><code class="highlighter-rouge">101</code></th>
+      <th style="text-align: center"><code class="highlighter-rouge">100</code></th>
+      <th style="text-align: center"><code class="highlighter-rouge">011</code></th>
+      <th style="text-align: center"><code class="highlighter-rouge">010</code></th>
+      <th style="text-align: center"><code class="highlighter-rouge">001</code></th>
+      <th style="text-align: center"><code class="highlighter-rouge">000</code></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center">next pattern</td>
+      <td style="text-align: center"><code class="highlighter-rouge"> 0 </code></td>
+      <td style="text-align: center"><code class="highlighter-rouge"> 1 </code></td>
+      <td style="text-align: center"><code class="highlighter-rouge"> 1 </code></td>
+      <td style="text-align: center"><code class="highlighter-rouge"> 0 </code></td>
+      <td style="text-align: center"><code class="highlighter-rouge"> 1 </code></td>
+      <td style="text-align: center"><code class="highlighter-rouge"> 1 </code></td>
+      <td style="text-align: center"><code class="highlighter-rouge"> 1 </code></td>
+      <td style="text-align: center"><code class="highlighter-rouge"> 0 </code></td>
+    </tr>
+  </tbody>
+</table>
+
+<p>We can think of this machine as sliding over the tape, and replacing the centermost cell in each matching substring with the second value. Depending on the initial state and rewrite pattern, cellular autoamta can produce many visually interesting patterns. Some have spent a great deal of effort <a href="https://en.wikipedia.org/wiki/A_New_Kind_of_Science">cataloguing</a> families of CA and their behavior. Following <a href="http://wpmedia.wolfram.com/uploads/sites/13/2018/02/01-1-15.pdf">Robinson (1987)</a>, we can also define an ECA inductively, using a recurrence relation:</p>
+
+<script type="math/tex; mode=display">a_i^{(t)} = \sum_j s(j)a_{i-j}^{(i-j)} \mod 2</script>
+
+<p>This characterization might remind us of a certain operation from digital signal processing, called a <a href="https://en.wikipedia.org/wiki/Convolution#Discrete_convolution">discrete convolution</a>. We read <script type="math/tex">f * g</script> as “<script type="math/tex">f</script> convolved by <script type="math/tex">g</script>”:</p>
+
+<script type="math/tex; mode=display">(f * g)[n] = \sum_{m=-\infty}^{\infty} f[m]g[n-m]</script>
+
+<p>Here <script type="math/tex">f</script> is our state and <script type="math/tex">g</script> is called a “kernel”. Similar to the λ-calculus, this language also is <a href="https://wpmedia.wolfram.com/uploads/sites/13/2018/02/15-1-1.pdf">known to be universal</a>. Disregarding efficiency, we could encode any computable function as an initial state and mechanically apply <a href="https://en.wikipedia.org/wiki/Rule_110">Rule 110</a> to simulate a TM, λ-calculus, or any other TC system for that matter.</p>
+
+<center>
+<a href="https://www.wolframphysics.org/technical-introduction/equivalence-and-computation-in-our-models/correspondence-with-other-systems/#p-385"><img align="center" width="75%" src="/images/graph_ca.png" /></a>
+</center>
+
+<p>Cellular automata can also be <a href="https://www.wolframphysics.org/technical-introduction/equivalence-and-computation-in-our-models/correspondence-with-other-systems/#p-385">interpreted</a> as a <a href="https://en.wikipedia.org/wiki/Graph_rewriting">graph rewriting system</a>, although the benefits of this perspective are not as clear. Unlike string rewriting, graph substitution is much more difficult to implement efficiently, as pattern matching amounts to <a href="https://en.wikipedia.org/wiki/Subgraph_isomorphism_problem">subgraph isomorphism</a>, which is NP-complete. While there are <a href="https://arxiv.org/pdf/1906.05170.pdf">some optimizations</a> to mitigate this problem, graph grammars do not appear to confer any additional computational benefits. Nevertheless, it is conceptually interesting.</p>
+
+<h1 id="graphs-inductively">Graphs, inductively</h1>
+
+<p>Just like grammars, we can define graphs themselves inductively. As many graph algorithms are recursive, this choice considerably simplifies their implementation. Take one definition of an unlabeled directed graph, proposed by <a href="https://web.engr.oregonstate.edu/~erwig/papers/InductiveGraphs_JFP01.pdf">Erwig (2001)</a>. Here, the notation <code class="highlighter-rouge">list → [item]</code> is shorthand for <code class="highlighter-rouge">list → item list</code>, where <code class="highlighter-rouge">item</code> is some terminal, and <code class="highlighter-rouge">list</code> is just a list of <code class="highlighter-rouge">item</code>s:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>vertex  → int
+adj     → [vertex]
+context → (adj, vertex, adj)
+graph   → empty | context &amp; graph
+</code></pre></div></div>
+
+<p>Erwig defines a <code class="highlighter-rouge">graph</code> in four parts. First, we have a <code class="highlighter-rouge">vertex</code>, which is simply an integer. Next we have a list of vertices, <code class="highlighter-rouge">adj</code>, called an <a href="https://en.wikipedia.org/wiki/Adjacency_list">adjacency list</a>. The <code class="highlighter-rouge">context</code> is a 3-tuple containing a <code class="highlighter-rouge">vertex</code> and symmetric references to its inbound and outbound neighbors, respectively. Finally, we have the inductive case: a <code class="highlighter-rouge">graph</code> is either (1) <code class="highlighter-rouge">empty</code>, or (2) a <code class="highlighter-rouge">context</code> and a <code class="highlighter-rouge">graph</code>.</p>
+
+<table>
+<tr>
+<td> <center><b>String</b></center> </td> <td><center><b><center>Graph</center></b></center></td>
+</tr>
+<tr>
+
+<td>
+<div>
+        <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+    ([3],       4, [1, 3])  &amp;
+    ([1, 2, 4], 3, [4]   )  &amp;
+    ([1],       2, [1, 3])  &amp;
+    ([2, 4],    1, [2, 3])
+
+</code></pre></div>        </div>
+      </div>
+</td>
+<td>
+<div>
+        <center><img src="/images/erwig.svg" width="60%" /></center>
+      </div>
+</td>
+</tr>
+</table>
+
+<p>Let us consider a directed graph implementation in <a href="https://kotlinlang.org/">Kotlin</a>. We do not store inbound neighbors, and attempt to define a vertex as a <a href="https://en.wikipedia.org/wiki/Neighbourhood_(graph_theory)">closed neighborhood</a>:</p>
+
+<div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">open</span> <span class="kd">class</span> <span class="nc">Graph</span><span class="p">(</span><span class="kd">val</span> <span class="py">vertices</span><span class="p">:</span> <span class="n">Set</span><span class="p">&lt;</span><span class="n">Vertex</span><span class="p">&gt;)</span> <span class="p">{</span> <span class="o">..</span><span class="p">.</span> <span class="p">}</span>
+<span class="kd">data class</span> <span class="nc">Vertex</span><span class="p">(</span><span class="n">neighbors</span><span class="p">:</span> <span class="n">Set</span><span class="p">&lt;</span><span class="n">Vertex</span><span class="p">&gt;):</span> <span class="n">Graph</span><span class="p">(</span><span class="k">this</span> <span class="p">+</span> <span class="n">neighbors</span><span class="p">)</span>
+<span class="c1">//                                               ↳ Compile error!
+</span></code></pre></div></div>
+
+<p>Note the coinductive definition, which creates problems right off the bat. Since <code class="highlighter-rouge">this</code> is not accessible inside the constructor, we cannot have cycles or closed neighborhoods, unless we delay edge instantiation until after construction:</p>
+
+<div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">class</span> <span class="nc">Graph</span><span class="p">(</span><span class="kd">val</span> <span class="py">vertices</span><span class="p">:</span> <span class="n">Set</span><span class="p">&lt;</span><span class="n">Vertex</span><span class="p">&gt;)</span> <span class="p">{</span> <span class="o">..</span><span class="p">.</span> <span class="p">}</span>
+<span class="kd">class</span> <span class="nc">Vertex</span><span class="p">(</span><span class="n">adjacencyMap</span><span class="p">:</span> <span class="p">(</span><span class="n">Vertex</span><span class="p">)</span> <span class="p">-&gt;</span> <span class="n">Set</span><span class="p">&lt;</span><span class="n">Vertex</span><span class="p">&gt;)</span> <span class="p">{</span>
+  <span class="k">constructor</span><span class="p">(</span><span class="n">neighbors</span><span class="p">:</span> <span class="n">Set</span><span class="p">&lt;</span><span class="n">Vertex</span><span class="p">&gt;</span> <span class="p">=</span> <span class="n">setOf</span><span class="p">())</span> <span class="p">:</span> <span class="k">this</span><span class="p">({</span> <span class="n">neighbors</span> <span class="p">})</span>
+  <span class="kd">val</span> <span class="py">neighbors</span> <span class="p">=</span> <span class="n">adjacencyMap</span><span class="p">(</span><span class="k">this</span><span class="p">).</span><span class="n">toSet</span><span class="p">()</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>We can now call <code class="highlighter-rouge">Vertex() { setOf(it) }</code> to create loops and closed neighborhoods. This definition admits a nice k-nearest neighbors implementation, allowing us to compute the k-hop <a href="https://en.wikipedia.org/wiki/Transitive_closure">transitive closure</a> of a vertex or set of vertices:</p>
+
+<div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">tailrec</span> <span class="k">fun</span> <span class="nf">Vertex</span><span class="p">.</span><span class="n">neighbors</span><span class="p">(</span><span class="n">k</span><span class="p">:</span> <span class="n">Int</span> <span class="p">=</span> <span class="m">0</span><span class="p">,</span> <span class="n">vertices</span><span class="p">:</span> <span class="n">Set</span><span class="p">&lt;</span><span class="n">Vertex</span><span class="p">&gt;</span> <span class="p">=</span>
+                             <span class="n">neighbors</span> <span class="p">+</span> <span class="k">this</span><span class="p">):</span> <span class="n">Set</span><span class="p">&lt;</span><span class="n">Vertex</span><span class="p">&gt;</span> <span class="p">=</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">k</span> <span class="p">==</span> <span class="m">0</span> <span class="p">||</span> <span class="n">vertices</span><span class="p">.</span><span class="n">neighbors</span><span class="p">()</span> <span class="p">==</span> <span class="n">vertices</span><span class="p">)</span> <span class="n">vertices</span>
+  <span class="k">else</span> <span class="n">knn</span><span class="p">(</span><span class="n">k</span> <span class="p">-</span> <span class="m">1</span><span class="p">,</span> <span class="n">vertices</span> <span class="p">+</span> <span class="n">vertices</span><span class="p">.</span><span class="n">neighbors</span><span class="p">()</span> <span class="p">+</span> <span class="k">this</span><span class="p">)</span>
+
+<span class="k">fun</span> <span class="nf">Set</span><span class="p">&lt;</span><span class="n">Vertex</span><span class="p">&gt;.</span><span class="n">neighbors</span><span class="p">()</span> <span class="p">=</span> <span class="n">flatMap</span> <span class="p">{</span> <span class="n">it</span><span class="p">.</span><span class="n">neighbors</span><span class="p">()</span> <span class="p">}.</span><span class="n">toSet</span><span class="p">()</span>
+
+<span class="c1">// Removes all vertices outside the set
+</span><span class="k">fun</span> <span class="nf">Set</span><span class="p">&lt;</span><span class="n">Vertex</span><span class="p">&gt;.</span><span class="n">closure</span><span class="p">():</span> <span class="n">Set</span><span class="p">&lt;</span><span class="n">Vertex</span><span class="p">&gt;</span> <span class="p">=</span>
+  <span class="n">map</span> <span class="p">{</span> <span class="n">vertex</span> <span class="p">-&gt;</span> <span class="n">Vertex</span><span class="p">(</span><span class="n">neighbors</span><span class="p">.</span><span class="n">filter</span> <span class="p">{</span> <span class="n">it</span> <span class="k">in</span> <span class="k">this</span> <span class="p">})</span> <span class="p">}.</span><span class="n">toSet</span><span class="p">()</span>
+
+<span class="k">fun</span> <span class="nf">Vertex</span><span class="p">.</span><span class="n">neighborhood</span><span class="p">(</span><span class="n">k</span><span class="p">:</span> <span class="n">Int</span> <span class="p">=</span> <span class="m">0</span><span class="p">)</span> <span class="p">=</span> <span class="n">Graph</span><span class="p">(</span><span class="n">neighbors</span><span class="p">(</span><span class="n">k</span><span class="p">).</span><span class="n">closure</span><span class="p">())</span>
+</code></pre></div></div>
+
+<p>We can also define the <a href="https://en.wikipedia.org/wiki/Adjacency_matrix">adjacency</a>, <a href="https://en.wikipedia.org/wiki/Degree_matrix">degree</a>, and <a href="https://en.wikipedia.org/wiki/Laplacian_matrix">Laplacian</a> matrices like so:</p>
+
+<div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">val</span> <span class="py">Graph</span><span class="p">.</span><span class="n">adjacency</span> <span class="p">=</span> <span class="n">Mat</span><span class="p">(</span><span class="n">vertices</span><span class="p">.</span><span class="n">size</span><span class="p">,</span> <span class="n">vertices</span><span class="p">.</span><span class="n">size</span><span class="p">).</span><span class="n">also</span> <span class="p">{</span> <span class="n">adj</span> <span class="p">-&gt;</span>
+  <span class="n">vertices</span><span class="p">.</span><span class="n">forEach</span> <span class="p">{</span> <span class="n">v</span> <span class="p">-&gt;</span> <span class="n">v</span><span class="p">.</span><span class="n">neighbors</span><span class="p">.</span><span class="n">forEach</span> <span class="p">{</span> <span class="n">n</span> <span class="p">-&gt;</span> <span class="n">adj</span><span class="p">[</span><span class="n">v</span><span class="p">,</span> <span class="n">n</span><span class="p">]</span> <span class="p">=</span> <span class="m">1</span> <span class="p">}</span> <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kd">val</span> <span class="py">Graph</span><span class="p">.</span><span class="n">degree</span> <span class="p">=</span> <span class="n">Mat</span><span class="p">(</span><span class="n">vertices</span><span class="p">.</span><span class="n">size</span><span class="p">,</span> <span class="n">vertices</span><span class="p">.</span><span class="n">size</span><span class="p">).</span><span class="n">also</span> <span class="p">{</span> <span class="n">deg</span> <span class="p">-&gt;</span>
+  <span class="n">V</span><span class="p">.</span><span class="n">forEach</span> <span class="p">{</span> <span class="n">v</span> <span class="p">-&gt;</span> <span class="n">deg</span><span class="p">[</span><span class="n">v</span><span class="p">,</span> <span class="n">v</span><span class="p">]</span> <span class="p">=</span> <span class="n">v</span><span class="p">.</span><span class="n">neighbors</span><span class="p">.</span><span class="n">size</span> <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kd">val</span> <span class="py">Graph</span><span class="p">.</span><span class="n">laplacian</span> <span class="p">=</span> <span class="n">degree</span> <span class="p">-</span> <span class="n">adjacency</span>
+</code></pre></div></div>
+
+<p>These matrices have some important applications in <a href="https://en.wikipedia.org/wiki/Algebraic_graph_theory">algebraic</a> and <a href="https://en.wikipedia.org/wiki/Spectral_graph_theory">spectral</a> graph theory, which we will have more to stay about <a href="#graphs-computationally">later</a>.</p>
+
+<h2 id="weisfeiler-lehman">Weisfeiler-Lehman</h2>
+
+<p>Let us consider an algorithm called the Weisfeiler-Lehman isomorphism test, on which my colleague David Bieber has written a <a href="https://davidbieber.com/post/2019-05-10-weisfeiler-lehman-isomorphism-test/">nice piece</a>. I’ll focus on its implementation. First, we need a pooling operator, which will aggregate all neighbors in a node’s neighborhood using some summary statistic:</p>
+
+<div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">fun</span> <span class="nf">Graph</span><span class="p">.</span><span class="n">poolBy</span><span class="p">(</span><span class="n">statistic</span><span class="p">:</span> <span class="n">Set</span><span class="p">&lt;</span><span class="n">Vertex</span><span class="p">&gt;.()</span> <span class="p">-&gt;</span> <span class="n">Int</span><span class="p">):</span> <span class="n">Map</span><span class="p">&lt;</span><span class="n">Vertex</span><span class="p">,</span> <span class="n">Int</span><span class="p">&gt;</span> <span class="p">=</span>
+  <span class="n">nodes</span><span class="p">.</span><span class="n">map</span> <span class="p">{</span> <span class="n">it</span> <span class="n">to</span> <span class="n">statistic</span><span class="p">(</span><span class="n">it</span><span class="p">.</span><span class="n">neighbors</span><span class="p">())</span> <span class="p">}.</span><span class="n">toMap</span><span class="p">()</span>
+</code></pre></div></div>
+
+<p>Next, we’ll define a <code class="highlighter-rouge">histogram</code>, which just counts each node’s neighborhood:</p>
+
+<div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">val</span> <span class="py">histogram</span><span class="p">:</span> <span class="n">Map</span><span class="p">&lt;</span><span class="n">Vertex</span><span class="p">,</span> <span class="n">Int</span><span class="p">&gt;</span> <span class="k">by</span> <span class="n">lazy</span> <span class="p">{</span> <span class="n">poolBy</span> <span class="p">{</span> <span class="n">size</span> <span class="p">}</span> <span class="p">}</span>
+</code></pre></div></div>
+
+<p>Now we’re ready to define the <a href="http://www.jmlr.org/papers/volume12/shervashidze11a/shervashidze11a.pdf#page=6">Weisfeiler-Lehman operator</a>, which recursively computes a hash on the histogram for <code class="highlighter-rouge">k</code> rounds.</p>
+
+<div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">tailrec</span> <span class="k">fun</span> <span class="nf">wl</span><span class="p">(</span><span class="n">k</span><span class="p">:</span> <span class="n">Int</span><span class="p">,</span> <span class="n">labels</span><span class="p">:</span> <span class="n">Map</span><span class="p">&lt;</span><span class="n">Vertex</span><span class="p">,</span> <span class="n">Int</span><span class="p">&gt;):</span> <span class="n">Map</span><span class="p">&lt;</span><span class="n">Vertex</span><span class="p">,</span> <span class="n">Int</span><span class="p">&gt;</span> <span class="p">=</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">k</span> <span class="p">&lt;=</span> <span class="m">0</span><span class="p">)</span> <span class="n">labels</span>
+  <span class="k">else</span> <span class="n">wl</span><span class="p">(</span><span class="n">k</span> <span class="p">-</span> <span class="m">1</span><span class="p">,</span> <span class="n">poolBy</span> <span class="p">{</span> <span class="n">map</span> <span class="p">{</span> <span class="n">labels</span><span class="p">[</span><span class="n">it</span><span class="p">]</span><span class="o">!!</span> <span class="p">}.</span><span class="n">sorted</span><span class="p">().</span><span class="n">hashCode</span><span class="p">()</span> <span class="p">})</span>
+</code></pre></div></div>
+
+<p>We compute the hashcode of the entire graph by hashing the multiset of WL labels. With one round, we’re just comparing the degree histogram. The more rounds we add, the more likely we are to detect a symmetry-breaker:</p>
+
+<div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">override</span> <span class="k">fun</span> <span class="nf">Graph</span><span class="p">.</span><span class="n">hashCode</span><span class="p">(</span><span class="n">rounds</span><span class="p">:</span> <span class="n">Int</span> <span class="p">=</span> <span class="m">10</span><span class="p">)</span> <span class="p">=</span> 
+    <span class="n">wl</span><span class="p">(</span><span class="n">rounds</span><span class="p">,</span> <span class="n">histogram</span><span class="p">).</span><span class="n">values</span><span class="p">.</span><span class="n">sorted</span><span class="p">().</span><span class="n">hashCode</span><span class="p">()</span>
+</code></pre></div></div>
+
+<p>Finally, we can define a test to detect if one graph is isomorphic to another:</p>
+
+<div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">fun</span> <span class="nf">Graph</span><span class="p">.</span><span class="n">isIsomorphicTo</span><span class="p">(</span><span class="n">that</span><span class="p">:</span> <span class="n">Graph</span><span class="p">)</span> <span class="p">=</span>
+  <span class="k">this</span><span class="p">.</span><span class="n">nodes</span><span class="p">.</span><span class="n">size</span> <span class="p">==</span> <span class="n">that</span><span class="p">.</span><span class="n">nodes</span><span class="p">.</span><span class="n">size</span> <span class="p">&amp;&amp;</span> 
+  <span class="k">this</span><span class="p">.</span><span class="n">numOfEdges</span> <span class="p">==</span> <span class="n">that</span><span class="p">.</span><span class="n">numOfEdges</span> <span class="p">&amp;&amp;</span> 
+  <span class="k">this</span><span class="p">.</span><span class="n">hashCode</span><span class="p">()</span> <span class="p">==</span> <span class="n">that</span><span class="p">.</span><span class="n">hashCode</span><span class="p">()</span>
+</code></pre></div></div>
+
+<p>This algorithm works on most every graph you will ever encounter in the wild. For a complete implementation of <code class="highlighter-rouge">Graph</code> and other inductive graph algorithms, such as Barabási’s <a href="https://en.wikipedia.org/wiki/Preferential_attachment">preferential attachment algorithm</a>, check out <a href="https://github.com/breandan/kaliningraph">Kaliningraph</a>.</p>
+
+<!--TODO: Graph grammars are grammars on graphs.-->
+
+<!--TODO: Single/Double pushout-->
+
+<h1 id="graph-languages">Graph languages</h1>
+
+<p>Approximately 20% of the human cerebral cortex is devoted to <a href="https://en.wikipedia.org/wiki/Occipital_lobe">visual processing</a>. By using visual representations, language designers can tap into powerful pattern matching abilities which are often underutilized by linear symbolic writing systems. Graphs are one such example which have found many applications as reasoning and communication devices in various <a href="https://web.engr.oregonstate.edu/~erwig/papers/VLSemantics_JVLC98.pdf">domain-specific languages</a>:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center">Language</th>
+      <th style="text-align: center">Example</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center"><a href="https://en.wikipedia.org/wiki/Finite-state_machine">Finite automata</a></td>
+      <td style="text-align: center"><br /><center><img align="center" width="50%" src="https://upload.wikimedia.org/wikipedia/commons/9/94/DFA_example_multiplies_of_3.svg" /></center></td>
+    </tr>
+    <tr>
+      <td style="text-align: center"><a href="https://www.mscs.dal.ca/%7Eselinger/papers/graphical-bib/public/Penrose-applications-of-negative-dimensional-tensors.pdf">Tensor networks</a></td>
+      <td style="text-align: center"><br /><center><img align="center" width="50%" src="https://tensornetwork.org/diagrams/tensor_diagrams.png" /></center></td>
+    </tr>
+    <tr>
+      <td style="text-align: center"><a href="https://en.wikipedia.org/wiki/Causal_graph">Causal graphs</a></td>
+      <td style="text-align: center"><br /><center><img align="center" width="50%" src="https://upload.wikimedia.org/wikipedia/commons/e/ea/College_notID.png" /></center></td>
+    </tr>
+    <tr>
+      <td style="text-align: center"><a href="https://www.cs.mcgill.ca/~prakash/Pubs/category_theory_notes.pdf">Category theory</a></td>
+      <td style="text-align: center"><br /><center><img align="center" width="50%" src="https://upload.wikimedia.org/wikipedia/commons/e/ef/Commutative_diagram_for_morphism.svg" /></center></td>
+    </tr>
+    <tr>
+      <td style="text-align: center"><a href="https://www.mscs.dal.ca/%7Eselinger/papers/graphical-bib/public/Penrose-applications-of-negative-dimensional-tensors.pdf">Penrose notation</a></td>
+      <td style="text-align: center"><br /><center><img align="center" width="50%" src="https://enacademic.com/pictures/enwiki/80/Penrose_covariant_derivate.svg" /></center></td>
+    </tr>
+    <tr>
+      <td style="text-align: center"><a href="http://www-pnp.physics.ox.ac.uk/~barra/teaching/feynman.pdf">Feynman diagrams</a></td>
+      <td style="text-align: center"><br /><center><img align="center" width="50%" src="https://upload.wikimedia.org/wikipedia/commons/1/1f/Feynmann_Diagram_Gluon_Radiation.svg" /></center></td>
+    </tr>
+  </tbody>
+</table>
+
+<!--| [Petri networks](https://en.wikipedia.org/wiki/Petri_net) | <br/><center><img align="center" width="50%" src="https://upload.wikimedia.org/wikipedia/commons/d/d7/Animated_Petri_net_commons.gif"/></center> |-->
+<!--| [Proof networks](https://en.wikipedia.org/wiki/Proof_net) | <br/><center><img align="center" width="50%" src="https://www.researchgate.net/profile/Marco_Solieri/publication/311737880/figure/fig7/AS:501886778576905@1496670540685/Example-a-mMELL-proof-net-left-and-two-simple-mixed-nets-that-belong-to-its-expansion.png"/></center> |-->
+
+<p>As <a href="https://www.math3ma.com/blog/matrices-probability-graphs">Bradley (2019)</a> vividly portrays in her writing, we can think of a matrix as not just a two-dimensional array, but a <em>function on a vector space</em>. This perspective can be depicted using a bipartite graph:</p>
+
+<center>
+<a href="https://www.math3ma.com/blog/matrices-probability-graphs"><img align="center" width="75%" src="https://uploads-ssl.webflow.com/5b1d427ae0c922e912eda447/5c7ed4bcea0c9faeafe61466_pic1.jpg" /></a>
+</center>
+
+<p>Not only do matrices correspond to graphs, graphs also correspond to matrices. One way to think of a graph is just a boolean matrix, or real matrix for weighted graphs. Consider an adjacency matrix containing nodes V, and edges E, where:</p>
+
+<script type="math/tex; mode=display">% <![CDATA[
+\begin{align*}
+\mathbf A \in \mathbb B^{|V|\times|V|} \text{ where } \mathbf A[u, v] =
+    \begin{cases}
+       1,& \text{if } u, v \in E \\
+       0,& \text{otherwise}
+    \end{cases}
+\end{align*} %]]></script>
+
+<table>
+<tr>
+<td> <center><b>Geometric</b></center> </td> <td><center><b><center>Matrix</center></b></center></td>
+</tr>
+<tr>
+<td>
+<div>
+        <center><img src="/images/ld_graph_dot.svg" width="50%" /></center>
+      </div>
+</td>
+<td>
+<div>
+        <center><img src="/images/ld_graph_mat.png" /></center>
+      </div>
+</td>
+</tr>
+</table>
+
+<p>Note the lower triangular structure of the adjacency matrix, indicating it contains no cycles, a property that is not immediately obvious from the naïve geometric layout. Any graph whose adjacency matrix can be reordered into triangular form is a <a href="https://en.wikipedia.org/wiki/Directed_acyclic_graph">directed acyclic graph</a>. Called a topological ordering, this algorithm can be implemented by <a href="https://en.wikipedia.org/wiki/Topological_sorting#Parallel_algorithms">repeatedly squaring</a> the adjacency matrix.</p>
+
+<p>Both the geometric and matrix representations impose an extrinsic perspective on graphs, each with their own advantages and drawbacks. 2D renderings can be visually compelling, but require solving a <a href="https://en.wikipedia.org/wiki/Crossing_number_(graph_theory)">minimal crossing number</a> or similar optimization to make connectivity plain to the naked eye. While graph drawing is an active <a href="http://www.graphdrawing.org/">field of research</a>, matrices can often reveal symmetries that are not obvious from a naïve graph layout (and vis versa).</p>
+
+<p>Matrices are problematic for some reasons. Primarily, by treating a graph as a matrix, we impose an ordering over all vertices which is often arbitrary. Note also its sparsity, and consider the size of the matrix required to store even small graphs. While problematic, this can be overcome with <a href="https://en.wikipedia.org/wiki/Sparse_matrix">certain optimizations</a>. Despite these issues, matrices and are a natural representation choice for many graph algorithms, particularly on modern parallel processing hardware.</p>
+
+<center><a href="https://epubs.siam.org/doi/book/10.1137/1.9780898719918"><img src="/images/graph_linear_algebra.png" width="60%" /></a></center>
+
+<p>Just like matrices, we can also think of a graph as a function, or <a href="https://en.wikipedia.org/wiki/Transition_system">transition system</a>, which carries information from one state to the next - given a state or set of states, the graph tells us which other states are reachable. Recent work in graph theory has revealed a fascinating duality between <a href="https://epubs.siam.org/doi/book/10.1137/1.9780898719918">graphs and linear algebra</a>, holding many important insights for dynamical processes on graphs.</p>
+
+<h1 id="graphs-computationally">Graphs, computationally</h1>
+
+<p>What happens when we take a square matrix <script type="math/tex">\mathbb{R}^{n\times n}</script> and raise it to a power? Which kinds of matrices converge and what are their asymptotics? This is a very fertile line of inquiry which has occupied engineers for the better part of the last century, with important applications in <a href="https://books.google.ca/books/about/Works_on_the_Foundations_of_Statistical.html?id=Nbz_AwAAQBAJ">statistical phyics</a>, <a href="https://link.springer.com/content/pdf/10.1007/BF02523124.pdf">control theory</a>, and <a href="http://proceedings.mlr.press/v22/vinyals12/vinyals12.pdf">deep learning</a>. Linear algebra gives us many tricks for designing the matrix and normalizing the product to promote convergence.</p>
+
+<p>One way to interpret this is as follows: each time we multiply a matrix by a vector <script type="math/tex">\mathbb{R}^{n}</script>, we are effectively simulating a dynamical system at discrete time steps. This method is known as <a href="https://cs.mcgill.ca/~wlh/comp766/files/chapter1_draft_mar29.pdf#page=11">power iteration</a> or the Krylov method in linear algebra. In the limit, we are seeking fixpoints, or eigenvectors, which are these islands of stability in our dynamical system. If we initialize our state at such a point, the transition matrix will send us straight back to where we started.</p>
+
+<script type="math/tex; mode=display">% <![CDATA[
+f(x, y) = \begin{bmatrix}
+\frac{cos(x+2y)}{x} & 0 \\ 0 & \frac{sin(x-2y)}{y}
+\end{bmatrix} *
+\begin{bmatrix}x\\y\end{bmatrix} =
+\begin{bmatrix}cos(x+2y)\\sin(x-2y)\end{bmatrix} %]]></script>
+
+<!--https://www.wolframalpha.com/input/?i=%7B%7Bcos%28x%2B2*y%29%2Fx%7D%2C+0%7D%2C+%7B0%2C%7Bsin%28x-2*y%29%2Fy%7D%7D+eigenvalues-->
+<center><img src="/images/vector_field.png" width="63%" /></center>
+
+<p>Locating a fixed point where <script type="math/tex">f(x, y) = f\circ f(x, y)</script>, indicates the trajectory has terminated. Such points describe the asymptotic behavior of our function.</p>
+
+<p>First, let’s get some definitions out of the way.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  𝔹 → True | False
+  ℕ → 0 | ... | 9
+  ℤ → ℕ | ℕℤ | -ℤ
+  ℝ → ℤ.ℤ
+  T → 𝔹 | ℕ | ℤ | ℝ
+vec → [Tⁿ]
+mat → [[Tⁿ]ⁿ]
+</code></pre></div></div>
+
+<p>We can think of the Krylov method as either a matrix-matrix or matrix-vector product, or a recurrence relation with some normalization:</p>
+
+<details>
+  <summary>Krylov Method</summary>
+<center><img src="http://krylov-centre.ru/rus/images/exp_base/base-doccamers/base-doccamers-big-eng.jpg" width="50%" /></center>
+<p align="justify"> There exists in St. Petersburg a naval research facility, known as the Krylov Shipbuilding Research Institute, which houses the world's largest <a href="https://krylov-centre.ru/en/experimental/base-doccamers/">full ocean depth hydraulic pressure tank</a>. Capable of simulating in excess of 20,000 PSI, the DK-1000 is used to test deepwater submersible vessels. At such pressure, even water itself undergoes ~5% compression. Before inserting your <a href="https://fivedeeps.com/home/technology/sub/">personal submarine</a>, you may wish to perform a finite element analysis to check hull integrity. Instabilities in the stiffness matrix may produce disappointing results.</p>
+<center><a href="https://www.wolframalpha.com/input/?i=water+density+vs+pressure+at+20+deg+c"><img src="/images/water_density.svg" /></a></center>
+</details>
+
+<table>
+<tr>
+<td> <center><b>Grammar</b></center> </td> <td><center><b><center>Example</center></b></center></td>
+</tr>
+<tr>
+
+<td>
+<div>
+        <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>mmp → mat | mat * mat
+mvp → (mmp) * vec
+</code></pre></div>        </div>
+      </div>
+</td>
+<td>
+<div>
+        <p><script type="math/tex">(\mathbf{M}\mathbf{M})\mathbf{v}, (\mathbf{M}\mathbf{M}\mathbf{M})\mathbf{v}, \ldots</script></p>
+      </div>
+</td>
+</tr>
+<tr>
+
+<td>
+<div>
+        <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+mvp → mat * vec | (mvp) * mat
+</code></pre></div>        </div>
+      </div>
+</td>
+<td>
+<div>
+        <p><script type="math/tex">\mathbf{M}(\mathbf{M}\mathbf{v}), \mathbf{M}(\mathbf{M}(\mathbf{M}\mathbf{v})), \ldots</script></p>
+      </div>
+</td>
+</tr>
+<tr>
+
+<td>
+<div>
+        <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>fun → (mat * vec) / ‖ mat * vec ‖
+rec → fun vec | (rec vec)
+</code></pre></div>        </div>
+      </div>
+</td>
+<td>
+<div>
+        <p><script type="math/tex">\frac{\mathbf{M}\mathbf{v}}{\|\mathbf{M}\mathbf{v}\|}, \frac{\mathbf{M}\frac{\mathbf{M}\mathbf{v}}{\|\mathbf{M}\mathbf{v}\|}}{\|\mathbf{M}\frac{\mathbf{M}\mathbf{v}}{\|\mathbf{M}\mathbf{v}\|}\|}, \frac{\mathbf{M}\frac{\mathbf{M}\frac{\mathbf{M}\mathbf{v}}{\|\mathbf{M}\mathbf{v}\|}}{\|\mathbf{M}\frac{\mathbf{M}\mathbf{v}}{\|\mathbf{M}\mathbf{v}\|}\|}}{\|\mathbf{M}\frac{\mathbf{M}\frac{\mathbf{M}\mathbf{v}}{\|\mathbf{M}\mathbf{v}\|}}{\|\mathbf{M}\frac{\mathbf{M}\mathbf{v}}{\|\mathbf{M}\mathbf{v}\|}\|}\|}, \ldots</script></p>
+      </div>
+</td>
+</tr>
+</table>
+
+<p>Regrouping the order of matrix multiplication offers various computational benefits, and adding normalization prevents singularities from emerging. <a href="https://cs.mcgill.ca/~wlh/comp766/files/chapter2_draft_mar29.pdf">Alternate normalization schemes</a> have been developed for various applications in graphs. This sequence forms the so-called <a href="http://www.mathnet.ru/links/701af3446efa9590ab957fb2d9b5ddd5/im5215.pdf">Krylov matrix</a> (Krylov, 1931):</p>
+
+<script type="math/tex; mode=display">% <![CDATA[
+\mathbf{K}_{i} = \begin{bmatrix}\mathbf{v} & \mathbf{M}\mathbf{v} & \mathbf{M}^{2}\mathbf{v} & \cdots & \mathbf{M}^{i-1}\mathbf{v} \end{bmatrix} %]]></script>
+
+<p>There exists a famous theorem known as the <a href="https://en.wikipedia.org/wiki/Perron–Frobenius_theorem">Perron-Frobenius theorem</a>, which states that if <script type="math/tex">\mathbf M \in \mathcal T^{n \times  n}</script>, then <script type="math/tex">\mathbf M</script> has a unique largest eigenvalue <script type="math/tex">\lambda \in \mathcal T</script> and dominant eigenvector <script type="math/tex">\mathbf{q} \in \mathcal T^{n}</script>. It has long been known that under some weak assumptions, <script type="math/tex">\lim_{i\rightarrow \infty} \mathbf{M}^i \mathbf{v} = c\mathbf{q}</script> where <script type="math/tex">c</script> is some constant. We are primarily interested in determinstic transition systems, where <script type="math/tex">\mathcal T \in \{\mathbb B, \mathbb N\}</script>.</p>
+
+<p>The Krylov methods have important applications for studying <a href="https://en.wikipedia.org/wiki/Graph_dynamical_system">dynamical systems</a> and <a href="https://arxiv.org/pdf/1712.00468.pdf">graph signal processing</a>. Researchers are just beginning to understand how eigenvalues of the <a href="https://en.wikipedia.org/wiki/Laplacian_matrix#Laplacian_matrix_for_simple_graphs">graph Laplacian</a> affect the asymptotics of dynamical processes on graphs. We have already seen one example of these in the <a href="#weisfeiler-lehman">WL algorithm</a>. Another example of graph computation can be found in <a href="http://theory.stanford.edu/~virgi/cs367/papers/valiantcfg.pdf">Valiant (1975)</a>, who shows a CFL parsing algorithm which is equivalent to matrix multiplication.</p>
+
+<!--Three steps of Barabási's [preferential attachment algorithm](https://en.wikipedia.org/wiki/Preferential_attachment):-->
+
+<!--|DOT Graph|Matrix|-->
+<!--|:-------:|:----:|-->
+<!--|<center><img src="/images/pref_graph0.svg"/></center>|<center><img src="/images/pref_mat0.png"/></center>|-->
+<!--|<center><img src="/images/pref_graph1.svg"/></center>|<center><img src="/images/pref_mat1.png"/></center>|-->
+<!--|<center><img src="/images/pref_graph2.svg"/></center>|<center><img src="/images/pref_mat2.png"/></center>|-->
+
+<center>
+<blockquote class="twitter-tweet"><p lang="en" dir="ltr">TIL: CFL parsing can be reduced to boolean matrix multiplication (Valiant, 1975), known to be subcubic (Strassen, 1969), and later proven an asymptotic lower bound (Lee, 1997). This admits efficient GPGPU implementation (Azimov, 2017) in <a href="https://twitter.com/YaccConstructor?ref_src=twsrc%5Etfw">@YaccConstructor</a> <a href="https://t.co/3Vbml0v6b9">https://t.co/3Vbml0v6b9</a></p>&mdash; breandan (@breandan) <a href="https://twitter.com/breandan/status/1277136195118600192?ref_src=twsrc%5Etfw">June 28, 2020</a></blockquote> <script async="" src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+</center>
+
+<p>Yet another example of graph computation can be found in <a href="https://research.cs.wisc.edu/wpis/papers/popl16.pdf">Reps et al. (2016)</a>, who show that boolean matrix algebra can be used for <a href="https://en.wikipedia.org/wiki/Abstract_interpretation">abstract interpretation</a>. By representing control flow graphs as boolean matrix expressions, they show how to apply root-finding methods like <a href="https://en.wikipedia.org/wiki/Newton%27s_method">Newton’s method</a> (first observed by <a href="https://www7.in.tum.de/um/bibdb/luttenbe/newtProgAn.pdf">Esparza et al. (2010)</a>) to dataflow analysis, e.g. for determining which states are reachable from some starting configuration by computing their transitive closure:</p>
+
+<center><blockquote class="twitter-tweet"><p lang="en" dir="ltr">Newton&#39;s method has some amazing applications for program analysis. Reps et al. (2016) show a mapping between control flow graphs and boolean matrix expressions. Graph reachability amounts to finding fixed points of a semiring equation. What a goldmine! <a href="https://t.co/BFCZiJ1b6n">https://t.co/BFCZiJ1b6n</a> <a href="https://t.co/Jd86bEXiIu">pic.twitter.com/Jd86bEXiIu</a></p>&mdash; breandan (@breandan) <a href="https://twitter.com/breandan/status/1282160392228286466?ref_src=twsrc%5Etfw">July 12, 2020</a></blockquote> <script async="" src="https://platform.twitter.com/widgets.js" charset="utf-8"></script></center>
+
+<p>We could spend all day listing various matrix algorithms for graph computation. Certainly, far better writers have done them justice. Instead, let’s just give some simple examples of dynamical processes on graphs.</p>
+
+<h1 id="examples">Examples</h1>
+
+<p>What happens if we define arithmetic operations on graphs? How could we define these operations in a way that allows us to perform computation? As we <a href="#graph-languages">already saw</a>, one way to represent a directed graph is just a square matrix whose non-zero entries indicate edges between nodes. Just like real matrices in linear algebra, we can add, subtract, multiply and exponentiate them.</p>
+
+<p>We will now show a few examples simulating a state machine using the Krylov method. For illustrative purposes, the state simply holds a vector of binary or integer values, although we can imagine it carrying other “messages” around the graph in a similar manner, using another algebra. Here, we will use the boolean algebra for matrix multiplication, where <code class="highlighter-rouge">+</code> corresponds to logical disjunction (<code class="highlighter-rouge">∨</code>), and <code class="highlighter-rouge">*</code> corresponds to logical conjunction (<code class="highlighter-rouge">∧</code>):</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>┌───┬───┬─────┬─────┐
+│ x │ y │ x*y │ x+y │        Boolean Matrix Multiplication
+├───┼───┼─────┼─────┤ ┌─       ─┐ ┌─ ─┐ ┌─                     ─┐
+│ 0 │ 0 │  0  │  0  │ │ a  b  c │ │ j │ │ a * j + b * k + c * l │
+│ 0 │ 1 │  0  │  1  │ │ d  e  f │*│ k │=│ d * j + e * k + f * l │
+│ 1 │ 0 │  0  │  1  │ │ g  h  i │ │ l │ │ g * j + h * k + i * l │
+│ 1 │ 1 │  1  │  1  │ └─       ─┘ └─ ─┘ └─                     ─┘
+└───┴───┴─────┴─────┘
+</code></pre></div></div>
+
+<h2 id="linear-chains">Linear chains</h2>
+
+<p>Let’s iterate through a linked list. We will initialize the pointer to the head of the list, and use multiplication to advance the pointer by a single element. We add an implicit self-loop to the final node, and halt whenever we detect a fixpoint.</p>
+
+<table>
+<tr>
+<td><center><b>Graph</b></center></td> <td><center><b>Matrix</b></center></td> <td><center><b>S</b></center></td><td><center><b>S'</b></center></td>
+</tr>
+<tr>
+<td>
+
+<div>
+        <center><img src="/images/lin0.svg" /></center>
+      </div>
+
+</td>
+<td>
+<div>
+        <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    a  b  c
+  ┌────────
+a │ 0  0  0
+b │ 1  0  0
+c │ 0  1  1
+
+</code></pre></div>        </div>
+      </div>
+</td>
+<td>
+<div>
+        <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+
+1
+0
+0
+
+</code></pre></div>        </div>
+      </div>
+</td>
+<td>
+<div>
+        <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+
+0
+1
+0
+
+</code></pre></div>        </div>
+      </div>
+</td>
+</tr>
+<tr>
+<td> 
+<div>
+        <center><img src="/images/lin1.svg" /></center>
+      </div>
+</td>
+<td>
+<div>
+        <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    a  b  c
+  ┌────────
+a │ 0  0  0
+b │ 1  0  0
+c │ 0  1  1
+
+</code></pre></div>        </div>
+      </div>
+</td>
+<td>
+<div>
+        <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+
+0
+1
+0
+
+</code></pre></div>        </div>
+      </div>
+</td>
+<td>
+<div>
+        <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+
+0
+0
+1
+
+</code></pre></div>        </div>
+      </div>
+</td>
+</tr>
+<tr>
+<td> 
+<div>
+        <center><img src="/images/lin2.svg" /></center>
+      </div>
+</td>
+<td>
+<div>
+        <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    a  b  c
+  ┌────────
+a │ 0  0  0
+b │ 1  0  0
+c │ 0  1  1
+
+</code></pre></div>        </div>
+      </div>
+</td>
+<td>
+<div>
+        <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+
+0
+0
+1
+
+</code></pre></div>        </div>
+      </div>
+</td>
+<td>
+<div>
+        <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+
+0
+0
+1
+
+</code></pre></div>        </div>
+      </div>
+</td>
+</tr>
+</table>
+
+<h2 id="nondeterminstic-finite-automata">Nondeterminstic finite automata</h2>
+
+<p>Simulating a DFA using a matrix can be inefficient since we only ever inhabit one state at a time. The real benefit of using matrices comes when simulating nondeterminstic finite automata, <a href="#regular-languages">seen earlier</a>.</p>
+
+<p>Formally, an NFA is a 5-tuple <script type="math/tex">\langle Q, \Sigma, \Delta, q_0, F \rangle</script>, where <script type="math/tex">Q</script> is a finite set of states, <script type="math/tex">\Sigma</script> is the alphabet, <script type="math/tex">\Delta :Q\times (\Sigma \cup \{\epsilon \})\rightarrow P(Q)</script> is the transition function, <script type="math/tex">q_0 \in Q</script> is the initial state and <script type="math/tex">F \subseteq Q</script> are the terminal states. An NFA can be represented as a <a href="https://www.cs.mcgill.ca/~prakash/Talks/lecture1.pdf">labeled transition system</a>, or directed graph whose adjacency matrix is defined by the transition function, with edge labels representing symbols from the alphabet and self-loops for each terminal state, both omitted for brevity.</p>
+
+<p>Typical <a href="https://en.wikipedia.org/wiki/Nondeterministic_finite_automaton#Implementation">implementations</a> often require cloning the NFA when multiple transitions are valid, which can be inefficient. Instead of cloning the machine, we can simulate the superposition of all states using a single data structure:</p>
+
+<table>
+<tr>
+<td><center><b>Graph</b></center></td> <td><center><b>Matrix</b></center></td> <td><center><b>S</b></center></td><td><center><b>S'</b></center></td>
+</tr>
+<tr>
+<td> 
+<div>
+        <center><img src="/images/dag0.svg" /></center>
+      </div>
+</td>
+<td>
+<div>
+        <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    a  b  c  d
+  ┌───────────
+a │ 0  0  0  0
+b │ 1  0  0  0
+c │ 1  0  0  0
+d │ 0  1  1  1
+
+</code></pre></div>        </div>
+      </div>
+</td>
+<td>
+<div>
+        <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+
+1
+0
+0
+0
+
+</code></pre></div>        </div>
+      </div>
+</td>
+<td>
+<div>
+        <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+
+0
+1
+1
+0
+
+</code></pre></div>        </div>
+      </div>
+</td>
+</tr>
+<tr>
+<td> 
+<div>
+        <center><img src="/images/dag1.svg" /></center>
+      </div>
+</td>
+<td>
+<div>
+        <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    a  b  c  d
+  ┌───────────
+a │ 0  0  0  0
+b │ 1  0  0  0
+c │ 1  0  0  0
+d │ 0  1  1  1
+
+</code></pre></div>        </div>
+      </div>
+</td>
+<td>
+<div>
+        <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+
+0
+1
+1
+0
+
+</code></pre></div>        </div>
+      </div>
+</td>
+<td>
+<div>
+        <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+
+0
+0
+0
+1
+
+</code></pre></div>        </div>
+      </div>
+</td>
+</tr>
+<tr>
+<td> 
+<div>
+        <center><img src="/images/dag2.svg" /></center>
+      </div>
+</td>
+<td>
+<div>
+        <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    a  b  c  d
+  ┌───────────
+a │ 0  0  0  0
+b │ 1  0  0  0
+c │ 1  0  0  0
+d │ 0  1  1  1
+
+</code></pre></div>        </div>
+      </div>
+</td>
+<td>
+<div>
+        <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+
+0
+0
+0
+1
+
+</code></pre></div>        </div>
+      </div>
+</td>
+<td>
+<div>
+        <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+
+0
+0
+0
+1
+
+</code></pre></div>        </div>
+      </div>
+</td>
+</tr>
+
+</table>
+
+<p>We encode the accept state as a self cycle in order to detect the fixpoint criterion <script type="math/tex">S_{t+1} = S_{t}</script>, after which we halt execution.</p>
+
+<h2 id="dataflow-graphs">Dataflow graphs</h2>
+
+<p>Suppose we have the function <code class="highlighter-rouge">f(a, b) = (a + b) * b</code> and want to evaluate <code class="highlighter-rouge">f(2, 3)</code>. For operators, we will need two tricks. First, all operators will retain their state, i.e. <code class="highlighter-rouge">1</code>s along all operator diagonals. Second, when applying the operator, we will combine values using the operator instead of performing a sum.</p>
+
+<table>
+<tr>
+<td><center><b>Graph</b></center></td> <td><center><b>Matrix</b></center></td> <td><center><b>S</b></center></td><td><center><b>S'</b></center></td>
+</tr>
+<tr>
+<td> 
+<div>
+        <center><img src="/images/dfg0.svg" /></center>
+      </div>
+</td>
+<td>
+<div>
+        <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    a  b  +  *
+  ┌───────────
+a │ 0  0  0  0
+b │ 0  0  0  0
++ │ 1  1  1  0
+* │ 0  1  1  1
+
+</code></pre></div>        </div>
+      </div>
+</td>
+<td>
+<div>
+        <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+
+2
+3
+0
+0
+
+</code></pre></div>        </div>
+      </div>
+</td>
+<td>
+<div>
+        <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+
+0
+0
+5
+3
+
+</code></pre></div>        </div>
+      </div>
+</td>
+</tr>
+<tr>
+<td> 
+<div>
+        <center><img src="/images/dfg1.svg" /></center>
+      </div>
+</td>
+<td>
+<div>
+        <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    a  b  +  *
+  ┌───────────
+a │ 0  0  0  0
+b │ 0  0  0  0
++ │ 1  1  1  0
+* │ 0  1  1  1
+
+</code></pre></div>        </div>
+      </div>
+</td>
+<td>
+<div>
+        <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+
+0
+0
+5
+3
+
+</code></pre></div>        </div>
+      </div>
+</td>
+<td>
+<div>
+        <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+
+0
+0
+0
+15
+
+</code></pre></div>        </div>
+      </div>
+</td>
+</tr>
+<tr>
+<td> 
+<div>
+        <center><img src="/images/dfg2.svg" /></center>
+      </div>
+</td>
+<td>
+<div>
+        <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    a  b  +  *
+  ┌───────────
+a │ 0  0  0  0
+b │ 0  0  0  0
++ │ 1  1  1  0
+* │ 0  1  1  1
+
+</code></pre></div>        </div>
+      </div>
+</td>
+<td>
+<div>
+        <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+
+0
+0
+0
+15
+
+</code></pre></div>        </div>
+      </div>
+</td>
+<td>
+<div>
+        <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+
+0
+0
+0
+15
+
+</code></pre></div>        </div>
+      </div>
+</td>
+</tr>
+</table>
+
+<center><blockquote class="twitter-tweet"><p lang="en" dir="ltr">Did you know? Arithmetic expressions can be efficiently parallelized using matrix arithmetic (Miller et al., 1987): <a href="https://t.co/9Tr9hImPFA">https://t.co/9Tr9hImPFA</a> <a href="https://t.co/8vBv9phssk">pic.twitter.com/8vBv9phssk</a></p>&mdash; breandan (@breandan) <a href="https://twitter.com/breandan/status/1283191471223517185?ref_src=twsrc%5Etfw">July 15, 2020</a></blockquote> <script async="" src="https://platform.twitter.com/widgets.js" charset="utf-8"></script></center>
+
+<p>The author was very excited to discover this technique while playing with matrices one day, only later to discover it was described 33 years earlier by <a href="http://www.cs.toronto.edu/~bor/Papers/fast-parallel-matrix-GCD.pdf">Miller et al. (1987)</a>. Miller was inspired by <a href="http://www.cs.tau.ac.il/~amnon/Classes/2015-PRG/Papers/VSBR83.pdf">Valiant et al.’s (1983)</a> work in <a href="Arithmetic circuit complexity">arithmetic circuit complexity</a>, who was in turn inspired by <a href="http://www.cs.toronto.edu/~bor/Papers/fast-parallel-matrix-GCD.pdf">Borodin et al.’s (1982)</a> work on matrix computation. This line of research has recently been revisited by <a href="https://www.math.ias.edu/~avi/PUBLICATIONS/MYPAPERS/NW96/final.pdf">Nisan and Wigderson (1997)</a> and later <a href="https://www.cs.tau.ac.il/~shpilka/publications/KlivansShpilka_Learning_via_partial_derivatives.pdf">Klivans and Shpilka (2003)</a> in the context of learning arithmetic circuits using partial derivatives.</p>
+
+<h1 id="graphs-efficiently">Graphs, efficiently</h1>
+
+<p>Due to their well-studied algebraic properties, graphs are suitable data structures for a wide variety of applications. Finding a reduction to a known graph problem can save years of effort, but graph algorithms can be challenging to implement efficiently, as dozens of libraries and compiler frameworks have found. Why have efficient implementations proven so difficult, and what has changed?</p>
+
+<p>One issue with efficient graph representation is their space complexity. Suppose we have a graph with <script type="math/tex">10^5=100,000</script> nodes, but only a single edge. We will need <script type="math/tex">10^{5\times 2}</script> bits, or about 1 GB to store its adjacency matrix, where an equivalent adjacency list would only consume <script type="math/tex">\lceil 2\log_2 10^5 \rceil = 34</script> bits. Most graphs are similarly sparse. But how do you multiply adjacency lists? One solution is to use <a href="https://en.wikipedia.org/wiki/Sparse_matrix">sparse matrix</a> representations, which are more compact and can be linearly faster on parallel computing architectures.</p>
+
+<center><a href="http://faculty.cse.tamu.edu/davis/suitesparse.html"><img src="http://faculty.cse.tamu.edu/davis/suitesparse_files/SuiteSparse_logo.jpg" width="60%" /></a></center>
+
+<p>Perhaps the more significant barrier to widespread adoption of graph algorithms is their time complexity. Many interesting problems on graphs are NP-complete, including <a href="https://en.wikipedia.org/wiki/Hamiltonian_path">Hamiltonian path</a> detection, <a href="https://en.wikipedia.org/wiki/Travelling_salesman_problem">TSP</a> and <a href="https://en.wikipedia.org/wiki/Subgraph_isomorphism_problem">subgraph isomorphism</a>. Many of those problems have approximations which are often good enough, but even if exact solutions are needed, CS theory is primarily concerned with worst case complexity, which seldom or rarely occurs in practice. Natural instances can often be solved quickly using heuristic-guided search, such as SAT or SMT solvers.</p>
+
+<p>Most graph algorithms are currently implemented using object oriented or algebraic data types as we <a href="#graphs-inductively">saw previously</a>. While conceptually simple to grasp, this approach is computationally inefficient. We would instead prefer a high level API backed by a pure BLAS implementation. As numerous papers have shown, finding an efficient matrix representation opens the path to optimized execution on GPUs or SIMD-capable hardware. For example, all of the following automata can be greatly accelerated using sparse matrix arithmetic on modern hardware:</p>
+
+<ul>
+  <li><a href="https://doi.org/10.1007/978-3-030-38961-1_26">Pushdown automata</a></li>
+  <li><a href="http://people.na.infn.it/~murano/COMP1314/8.pdf">Büchi automata</a></li>
+  <li><a href="https://doi.org/10.1109/APSEC.2018.00025">Mealy machines</a></li>
+  <li><a href="https://arxiv.org/pdf/1701.03038.pdf">Finite state transducers</a></li>
+</ul>
+
+<p>Suppose we want to access the computation graph of a program from within the program itself. How could we accomplish that? We need a way to “reify” the graph (i.e. make it available at runtime), so that given any variable <code class="highlighter-rouge">y</code>, we have some method <code class="highlighter-rouge">y.graph()</code> which programmatically returns its <a href="https://en.wikipedia.org/wiki/Transitive_closure">transitive closure</a>, including upstream dependencies and downstream dependents. Depending on scope and granularity, this graph can expand very quickly, so efficiency is key.</p>
+
+<center><a href="https://github.com/breandan/kotlingrad#dataflow-graphs"><img src="https://raw.githubusercontent.com/breandan/kotlingrad/master/samples/src/main/resources/lr_batch_loss_graph.svg" width="60%" /></a></center>
+
+<p>With the advent of staged metaprogramming in domain-specific languages like <a href="https://www.tensorflow.org/api_docs/python/tf/Graph">TensorFlow</a> and <a href="https://en.wikipedia.org/wiki/OCaml#MetaOCaml">MetaOCaml</a>, such graphs are available to introspect at runtime. By tracing all operations (e.g. using operator overloading) on an intermediate data structure (e.g. stack, AST, or DAG), these DSLs are able to embed a programming language in another language. At periodic intervals, they may perform certain optimizations (e.g. constant propagation, common subexpression elimination) and emit an intermediate language (e.g. CUDA, webasm) for optimized execution on special hardware, such as a GPU or TPU.</p>
+
+<center><blockquote class="twitter-tweet"><p lang="en" dir="ltr">This <a href="https://twitter.com/hashtag/GraphBLAS?src=hash&amp;ref_src=twsrc%5Etfw">#GraphBLAS</a> stuff is super exciting. Most graph algorithms can be expressed as linear algebra. Sparse matrix SIMD-backed graph algorithms lets us process orders-of-magnitude larger graphs. Similar to AD tools like Theano et al., this will give a huge boost to network science.</p>&mdash; breandan (@breandan) <a href="https://twitter.com/breandan/status/1277505360127983618?ref_src=twsrc%5Etfw">June 29, 2020</a></blockquote> <script async="" src="https://platform.twitter.com/widgets.js" charset="utf-8"></script></center>
+
+<p>Recent work in linear algebra and sparse matrix representations for graphs <a href="https://doi.org/10.1137/1.9780898719918.ch5">shows us</a> how to treat many recursive graph algorithms as pure matrix arithmetic, thus benefiting from SIMD acceleration. Researchers are just beginning to explore how these techniques can be used to <a href="https://en.wikipedia.org/wiki/General-purpose_computing_on_graphics_processing_units">transform general-purpose programs</a> into graphs. We <a href="#roadmap">anticipate</a> this effort will require further engineering to develop an efficient encoder, but see no fundamental obstacle for a common graph-based execution scheme.</p>
+
+<!--A lot of the stuff in Graph Representation Learning is motivated by computational constraints. You can't instantiate the adjacency matrix, because it's too large, so you need all kinds of mathematical tricks to sum over or approximate it. But most graphs are sparse and have all kinds of symmetries. Finding the right graph embedding can get you real far...-->
+
+<h1 id="programs-as-graphs">Programs as graphs</h1>
+
+<p>Graphs are not only useful as data structures for representing programs, but we can think of the act of computation itself as traversing a graph on a binary configuration space. Each tick of the clock corresponds to one matrix multiplication on a boolean tape.</p>
+
+<p><a href="https://repository.kulib.kyoto-u.ac.jp/dspace/bitstream/2433/103401/1/0482-14.pdf">Futamura (1983)</a> shows us that programs can be decomposed into two inputs: static and dynamic. While long considered a theoretical distinction, <a href="https://en.wikipedia.org/wiki/Partial_evaluation">partial evaluation</a> has been successfully operationalized in several <a href="https://dl.acm.org/doi/10.1145/3062341.3062381">general purpose</a> and <a href="https://compilers.cs.uni-saarland.de/papers/gpce15.pdf">domain-specific</a> languages.</p>
+
+<script type="math/tex; mode=display">\mathbf P: I_{\text{static}} \times I_{\text{dynamic}} \rightarrow O</script>
+
+<p>Programs can be viewed as simply functions mapping inputs to output, and executing the program amounts to running a matrix dynamical system to completion. Consider the static case, in which we have all the information available at compile-time. In order to evaluate the program, we can just multiply the state <script type="math/tex">\mathbf P: \mathbb B^{\lvert S\rvert \times \lvert S\rvert}</script> by the vector <script type="math/tex">S</script> until termination:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    [P]────────────────────────────────           } Program
+      ╲          ╲          ╲          ╲
+[S₀]───*───[S₁]───*───[S₂]───*───[..]───*───[Sₜ]  } TM tape
+</code></pre></div></div>
+
+<p>Now consider the dynamic case, where the matrix <script type="math/tex">\mathbf P</script> at each time step might be governed by another program:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>        [Q]─────────────────────                  } Dynamics
+          ╲          ╲          ╲
+    [P₀]───*───[P₁]───*───[..]───*───[Pₜ₋₁]       } Program
+      ╲          ╲          ╲          ╲
+[S₀]───*───[S₁]───*───[S₂]───*───[..]───*───[Sₜ]  } TM tape
+</code></pre></div></div>
+
+<p>We might also imagine the dynamic inputs as being generated by successively higher order programs. Parts of these may be stored elsewhere in memory.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>                     ⋮
+            [R₀]─────────                         } World model
+              ╲          ╲
+        [Q₀]───*───[..]───*───[Pₜ₋₂]              } Dynamics
+          ╲          ╲          ╲
+    [P₀]───*───[P₁]───*───[..]───*───[Pₜ₋₁]       } Program
+      ╲          ╲          ╲          ╲
+[S₀]───*───[S₁]───*───[S₂]───*───[..]───*───[Sₜ]  } TM tape
+</code></pre></div></div>
+
+<p>What about programs of varying length? It may be the case we want to learn programs where <script type="math/tex">t</script> varies. The key is, we can choose an upper bound on <script type="math/tex">t</script>, and search for fixed points, i.e. halt whenever <script type="math/tex">S_t = S_{t+1}</script>.</p>
+
+<p>There will always be some program, at the interface of the machine and the real world, which must be approximated. One question worth asking is how large does <script type="math/tex">\lvert S\rvert</script> need to be in order to do so? If it is very large, this procedure might well be intractable. Time complexity appears to be at worst <script type="math/tex">\mathcal{O}(tn^{2.37})</script>, using <a href="https://en.wikipedia.org/wiki/Coppersmith%E2%80%93Winograd_algorithm">CW matmuls</a>, although considerably better if <script type="math/tex">\mathbf P</script> is sparse.</p>
+
+<h1 id="program-synthesis">Program synthesis</h1>
+
+<p>Many people have asked me, “Why should developers care about automatic differentiation?” Yes, we can use it to build machine learning systems. Yes, it has specialized applications in <a href="https://arxiv.org/abs/1911.05063">robotics</a>, <a href="https://doi.org/10.1145/363831.364886">space travel</a>, and <a href="https://arxiv.org/pdf/1910.00935.pdf">physical simulation</a>. But does it really matter for software engineers?</p>
+
+<p>I have been thinking carefully about this question, and although it is not yet fully clear to me, I am starting to see how some pieces fit together. A more complete picture will require more research, engineering and rethinking the role of software, compilers and machine learning.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    [P]────────────────────────────────           } Program
+      ╲          ╲          ╲          ╲
+[S₀]───*───[S₁]───*───[S₂]───*───[..]───*───[Sₜ]  } TM tape
+</code></pre></div></div>
+
+<p>Consider the static case seen above. Since the matrix <script type="math/tex">\mathbf P</script> is fixed throughout execution, to learn <script type="math/tex">\mathbf P</script>, we need to solve the following minimization problem:</p>
+
+<script type="math/tex; mode=display">\underset{P}{\text{argmin}}\sum_{i \sim I_{static}}\mathcal L(P^t S^i_0, S_t)</script>
+
+<p>One issue with this formulation is we must rely on a loss over <script type="math/tex">S_t</script>, which is often too sparse and generalizes poorly. It may be the case that many interesting program synthesis problems have <a href="https://en.wikipedia.org/wiki/Optimal_substructure">optimal substructure</a>, so we should be making “progress” towards a goal state, and might be able to define a cross-entropy loss over intermediate states to guide the search process. This intuition stems from RL and needs to be explored in further depth.</p>
+
+<p>Some, including <a href="https://arxiv.org/pdf/1608.04428.pdf">Gaunt et al., (2016)</a>, have shown gradient is not very effective, as the space of boolean circuits is littered with islands which have zero gradient (some results have suggested the TerpreT problem is <a href="https://luxxxlucy.github.io/projects/2020_terpret/terpret.html">surmountable</a> by applying various smoothing tricks). However Gaunt’s representation is also relatively complex – effectively, they are trying to learn a recursively enumerable language using something like a <a href="https://arxiv.org/pdf/1410.5401.pdf">Neural Turing Machine</a> (Graves et al., 2014).</p>
+
+<p>More recent work, including that of <a href="https://arxiv.org/pdf/1912.01412.pdf">Lample et al., (2019)</a>, demonstrated gradient is effective for learning programs belonging to the class of context-free languages. This space is often much more tractable to search through and generate synthetic training data. Furthermore, this appears to be well within the reach of modern language models, i.e. <a href="https://arxiv.org/abs/1506.03134">pointer networks</a> and <a href="https://arxiv.org/pdf/1706.03762.pdf">transformers</a>.</p>
+
+<center><img src="https://raw.githubusercontent.com/quark0/darts/master/img/darts.png" width="60%" /></center>
+
+<p>In the last year, a number of interesting reults in differentiable architecture search started to emerge. <a href="https://arxiv.org/pdf/1806.09055.pdf">DARTS</a> (Liu et al., 2019) proposes to use gradient to search through the space of directed graphs. The authors first perform a continuous relaxation of the discrete graph, by reweighting the output of each potential edge by a hyperparameter, optimizing over the space of edges using gradient descent, then taking a softmax to discretize the output graph.</p>
+
+<center><a href="https://youtu.be/rwBbYhOAnPo?t=28272"><img src="/images/solar_lezma.png" width="70%" /></a></center>
+
+<p><a href="https://youtu.be/rwBbYhOAnPo?t=28272">Solar-Lezma (2020)</a> calls this latter approach, “program extraction”, where a network implicitly or explicitly parameterizes a function, which after training, can be decoded into a symbolic expression. This perspective also aligns with Ian Goodfellow’s notion of deep networks as performing computation, where each layer represents a residual step in a parallel program:</p>
+
+<center>
+<blockquote class="twitter-tweet"><p lang="en" dir="ltr">&quot;Can neural networks be made to reason?&quot; Conversation with Ian Goodfellow (<a href="https://twitter.com/goodfellow_ian?ref_src=twsrc%5Etfw">@goodfellow_ian</a>). Full version: <a href="https://t.co/3MYC8jWjwl">https://t.co/3MYC8jWjwl</a> <a href="https://t.co/tGcDwgZPA1">pic.twitter.com/tGcDwgZPA1</a></p>&mdash; Lex Fridman (@lexfridman) <a href="https://twitter.com/lexfridman/status/1130501145548513280?ref_src=twsrc%5Etfw">May 20, 2019</a></blockquote> <script async="" src="https://platform.twitter.com/widgets.js" charset="utf-8"></script> 
+</center>
+
+<p>A less charitable interpretation is that Goodfellow is simply using a metaphor to explain deep learning to lay audience, but I prefer to think he is communicating something deeper about the role of recurrent nonlinear function approximators as computational primitives, where adding depth effectively increases serial processing capacity and layer width increases bandwidth.</p>
+
+<h1 id="roadmap">Roadmap</h1>
+
+<p>Much work lies ahead for the interested reader. Before we can claim to have a unification of graph linear algebra and computer science, at least three technical hurdles will need to be cleared. First is theoretical: we must show that binary matrix arithmetic is a universal language. Second, we must show a proof-of-concept via binary recompilation. Third, we must develop a robust toolchain for compiling and introspecting a wide variety of graph programs.</p>
+
+<p>While a naïve proof is a trivial extension of the Church-Turing thesis, a constructive proof taking physics into consideration is needed. Given some universal language <script type="math/tex">\mathcal L</script>, and a program implementing a boolean vector function <script type="math/tex">\mathcal V: \mathbb B^i \rightarrow \mathbb B^o \in \mathcal L</script>, we must derive a transformation <script type="math/tex">\mathcal T_\mathcal L: \mathcal V \rightarrow \mathcal M</script>, which maps <script type="math/tex">\mathcal V</script> to a boolean matrix function <script type="math/tex">\mathcal M: \mathbb B^{j \times k} \times \mathbb B^{l\times m}</script>, while preserving asymptotic complexity <script type="math/tex">\mathcal O(\mathcal M) \lt \mathcal O(\mathcal V)</script>, i.e. which is no worse than a constant factor in space or time. Clearly, the identity function <script type="math/tex">\mathcal I(\mathcal V)</script> is a valid candidate for <script type="math/tex">\mathcal T_{\mathcal L}</script>. But as recent GPGPU research has shown, we can do much better.</p>
+
+<center>
+<blockquote class="twitter-tweet"><p lang="en" dir="ltr">n.b. Not saying anything about the workload, just the architecture - Software 1.0 may still be the dominant paradigm. I&#39;m saying there is a binary translation from load/store/jump/branch instructions to sparse BLAS primitives which imposes no constraints on the programming model.</p>&mdash; breandan (@breandan) <a href="https://twitter.com/breandan/status/1278156002240716800?ref_src=twsrc%5Etfw">July 1, 2020</a></blockquote> <script async="" src="https://platform.twitter.com/widgets.js" charset="utf-8"></script> 
+</center>
+
+<p>The second major hurdle to graph computation is developing a binary recompiler which translates programs into optimized BLAS instructions. The resulting program will eventually need to demonstrate performant execution across a variety of heterogenously-typed programs, e.g. <code class="highlighter-rouge">Int</code>, <code class="highlighter-rouge">Float16</code>, <code class="highlighter-rouge">Float32</code>, and physical SIMD devices. Developing the infrastructure for such a recompiler will be a major engineering undertaking in the next two decades as the world transitions to graph computing. Program induction will likely be a key step to accelerating these graphs on physical hardware.</p>
+
+<p>The third and final hurdle is to develop a robust compiler toolchain for graph computation. At some point, users will be able to feed a short program into a source-to-source transpiler and have the program slightly rewritten with semantics preserving guarantees. This will require progress in abstract interpretation, programming tools, runtime instrumentation, as well as shape-safe libraries and frameworks. Ultimately, we hypothesize users will adopt a more declarative programming style with resource-aware and type-directed constraints. This step will require fundamental progress in program induction and consume the better half of the next century to fully realize.</p>
+
+<h1 id="references">References</h1>
+
+<ul>
+  <li><a href="https://cs.mcgill.ca/~wlh/comp766/notes.html">Graph Representation Learning</a> (Hamilton, 2020)</li>
+  <li><a href="https://epubs.siam.org/doi/book/10.1137/1.9780898719918">Graph Algorithms in the Language of Linear Algebra</a> (Kepner &amp; Gilbert, 2011)</li>
+  <li><a href="http://www.contrib.andrew.cmu.edu/~ryanod/">Analysis of Boolean Functions</a> (O’Donnell, 2014)</li>
+  <li><a href="https://www.cs.yale.edu/homes/spielman/sagt/sagt.pdf">Spectral and Algebraic Graph Theory</a> (Spielman, 2019)</li>
+  <li><a href="http://www.mit.edu/~kepner/GraphBLAS/GraphBLAS-Math-release.pdf">GraphBLAS Mathematics</a> (Kepner, 2017)</li>
+  <li><a href="https://doi.org/10.1017/CBO9781139172752">Term Rewriting and All That</a> (Baader &amp; Nipkow, 1998)</li>
+  <li><a href="https://www.rand.org/content/dam/rand/pubs/research_memoranda/2008/RM704.pdf">Representation of Events in Nerve Nets and Finite Automata</a> (Kleene, 1951)</li>
+  <li><a href="https://www.wolframphysics.org/technical-introduction/">A Class of Models with the Potential to Represent Fundamental Physics</a> (Wolfram, 2020)</li>
+</ul>
+
+</div>
+
+<div class="related">
+  <h2>Related Posts</h2>
+  <ul class="related-posts">
+    
+      <li>
+        <h3>
+          <a href="/2017/02/02/trust-in-automation/">
+            Trust in Automation
+            <small>02 Feb 2017</small>
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <h3>
+          <a href="/2016/12/27/traveling-tales/">
+            Tales of a Traveling Twentysomething
+            <small>27 Dec 2016</small>
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <h3>
+          <a href="/2016/04/13/equal-education-in-china/">
+            Democratizing Education in China
+            <small>13 Apr 2016</small>
+          </a>
+        </h3>
+      </li>
+    
+  </ul>
+</div>
+
+
+      <div class="footer">
+        <p>
+          &copy; 2020. All rights reserved.
+        </p>
+      </div>
+    </div>
+
+    <!-- KaTeX -->
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.css">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.js"></script>
+
+   <script type="text/javascript"
+      src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+   </script>
+  </body>
+</html>
