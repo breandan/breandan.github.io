@@ -10,6 +10,16 @@ In this essay, I explore the virtues of graphs, algebra, types, and show how the
 
 *n.b.: None of these ideas are mine alone. Shoulders of giants. Follow the links and use landscape mode for optimal reading experience.*
 
+* [Biographical details](#new-decade-new-delusions)
+* [Graph applications](#what-are-graphs)
+* [Inductive languages](#induction-introduction)
+* [Inductive graphs](#graphs-inductively)
+* [Graph languages](#graph-computation/#graph-languages)
+* [Dynamical systems on graphs](#graphs-computationally)
+* [Efficient implementations](#graphs-efficiently)
+* [Partial evaluation and program synthesis](#programs-as-graphs)
+* [Future roadmap](#roadmap)
+
 # New decade, new delusions
 
 Over the last decade, I bet on some strange ideas. A lot of people I looked up to at the time laughed at me. I'll bet they aren't laughing anymore. I ought to thank them one day, because their laughter gave me a lot of motivation. I've said some idiotic things to be sure, but I've also made some laughable predictions that were correct. Lesson learned: aim straighter.
