@@ -415,7 +415,7 @@ These matrices have some important applications in [algebraic](https://en.wikipe
 
 ## Weisfeiler-Lehman
 
-Let us consider an algorithm called the Weisfeiler-Lehman isomorphism test, on which my colleague David Bieber has written a [nice piece](https://davidbieber.com/post/2019-05-10-weisfeiler-lehman-isomorphism-test/). I'll focus on its implementation. First, we need a pooling operator, which will aggregate all neighbors in a node's neighborhood using some summary statistic:
+Let us consider an algorithm called the [Weisfeiler-Lehman](http://www.jmlr.org/papers/volume12/shervashidze11a/shervashidze11a.pdf) isomorphism test, on which my colleague David Bieber has written a [nice piece](https://davidbieber.com/post/2019-05-10-weisfeiler-lehman-isomorphism-test/). I'll focus on its implementation. First, we need a pooling operator, which will aggregate all neighbors in a node's neighborhood using some summary statistic:
 
 ```kotlin
 fun Graph.poolBy(statistic: Set<Vertex>.() -> Int): Map<Vertex, Int> =
@@ -555,7 +555,7 @@ mat → [[Tⁿ]ⁿ]
 We can think of the Krylov method as either a matrix-matrix or matrix-vector product, or a recurrence relation with some normalization:
 
 <details>
-  <summary>Krylov Method</summary>
+<summary>Krylov Method</summary>
 <center><img src="http://krylov-centre.ru/rus/images/exp_base/base-doccamers/base-doccamers-big-eng.jpg" width="50%"/></center>
 <p align="justify"> There exists in St. Petersburg a naval research facility, known as the Krylov Shipbuilding Research Institute, which houses the world's largest <a href="https://krylov-centre.ru/en/experimental/base-doccamers/">full ocean depth hydraulic pressure tank</a>. Capable of simulating in excess of 20,000 PSI, the DK-1000 is used to test deepwater submersible vessels. At such pressure, even water itself undergoes ~5% compression. Before inserting your <a href="https://fivedeeps.com/home/technology/sub/">personal submarine</a>, you may wish to perform a finite element analysis to check hull integrity. Instabilities in the stiffness matrix may produce disappointing results.</p>
 <center><a href="https://www.wolframalpha.com/input/?i=water+density+vs+pressure+at+20+deg+c"><img src="/images/water_density.svg"/></a></center>
@@ -646,7 +646,7 @@ We could spend all day listing various matrix algorithms for graph computation. 
 
 # Examples
 
-What happens if we define arithmetic operations on graphs? How could we define these operations in a way that allows us to perform computation? As we [already saw](#graph-languages), one way to represent a directed graph is just a square matrix whose non-zero entries indicate edges between nodes. Just like real matrices in linear algebra, we can add, subtract, multiply and exponentiate them.
+What happens if we define arithmetic operations on graphs? How could we define these operations in a way that allows us to perform computation? As we [already saw](#graph-languages), one way to represent a directed graph is just a square matrix whose non-zero entries indicate edges between nodes. Just like real matrices in linear algebra, we can add, subtract, multiply and exponentiate them. [Other composable operations](http://www.mit.edu/~kepner/GraphBLAS/GraphBLAS-Math-release.pdf#section.1.4) are also possible.
 
 We will now show a few examples simulating a state machine using the Krylov method. For illustrative purposes, the state simply holds a vector of binary or integer values, although we can imagine it carrying other "messages" around the graph in a similar manner, using another algebra. Here, we will use the boolean algebra for matrix multiplication, where `+` corresponds to logical disjunction (`∨`), and `*` corresponds to logical conjunction (`∧`):
 
@@ -663,7 +663,7 @@ We will now show a few examples simulating a state machine using the Krylov meth
 
 ## Linear chains
 
-Let's iterate through a linked list. We will initialize the pointer to the head of the list, and use multiplication to advance the pointer by a single element. We add an implicit self-loop to the final node, and halt whenever we detect a fixpoint.
+Let's iterate through a linked list. To do so, we will initialize the pointer to the head of the list, and use multiplication to advance the pointer by a single element. We add an implicit self-loop to the final node, and halt whenever a fixpoint is detected. This structure is known as an [absorbing Markov chain](https://en.wikipedia.org/wiki/Absorbing_Markov_chain).
 
 <table>
 <tr>
@@ -1107,17 +1107,17 @@ b │ 0  0  0  0
 
 <center><blockquote class="twitter-tweet"><p lang="en" dir="ltr">Did you know? Arithmetic expressions can be efficiently parallelized using matrix arithmetic (Miller et al., 1987): <a href="https://t.co/9Tr9hImPFA">https://t.co/9Tr9hImPFA</a> <a href="https://t.co/8vBv9phssk">pic.twitter.com/8vBv9phssk</a></p>&mdash; breandan (@breandan) <a href="https://twitter.com/breandan/status/1283191471223517185?ref_src=twsrc%5Etfw">July 15, 2020</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script></center>
 
-The author was very excited to discover this technique while playing with matrices one day, only later to discover it was described 33 years earlier by [Miller et al. (1987)](http://www.cs.toronto.edu/~bor/Papers/fast-parallel-matrix-GCD.pdf). Miller was inspired by [Valiant et al.'s (1983)](http://www.cs.tau.ac.il/~amnon/Classes/2015-PRG/Papers/VSBR83.pdf) work in [arithmetic circuit complexity](Arithmetic circuit complexity), who was in turn inspired by [Borodin et al.'s (1982)](http://www.cs.toronto.edu/~bor/Papers/fast-parallel-matrix-GCD.pdf) work on matrix computation. This line of research has recently been revisited by [Nisan and Wigderson (1997)](https://www.math.ias.edu/~avi/PUBLICATIONS/MYPAPERS/NW96/final.pdf) and later [Klivans and Shpilka (2003)](https://www.cs.tau.ac.il/~shpilka/publications/KlivansShpilka_Learning_via_partial_derivatives.pdf) in the context of learning arithmetic circuits using partial derivatives.
+The author was very excited to discover this technique while playing with matrices one day, only later to discover it was described 33 years earlier by [Miller et al. (1987)](http://www.cs.toronto.edu/~bor/Papers/fast-parallel-matrix-GCD.pdf). Miller was inspired by [Valiant et al.'s (1983)](http://www.cs.tau.ac.il/~amnon/Classes/2015-PRG/Papers/VSBR83.pdf) work in [arithmetic circuit complexity](Arithmetic circuit complexity), who was in turn inspired by [Borodin et al.'s (1982)](http://www.cs.toronto.edu/~bor/Papers/fast-parallel-matrix-GCD.pdf) work on matrix computation. This line of research has recently been revisited by [Nisan and Wigderson (1997)](https://www.math.ias.edu/~avi/PUBLICATIONS/MYPAPERS/NW96/final.pdf) and later [Klivans and Shpilka (2003)](https://www.cs.tau.ac.il/~shpilka/publications/KlivansShpilka_Learning_via_partial_derivatives.pdf) which seeks to understand how circuit size and depth affects learning complexity.
 
 # Graphs, efficiently
 
 Due to their well-studied algebraic properties, graphs are suitable data structures for a wide variety of applications. Finding a reduction to a known graph problem can save years of effort, but graph algorithms can be challenging to implement efficiently, as dozens of libraries and compiler frameworks have found. Why have efficient implementations proven so difficult, and what has changed?
 
-One issue with efficient graph representation is their space complexity. Suppose we have a graph with $$10^5=100,000$$ nodes, but only a single edge. We will need $$10^{5\times 2}$$ bits, or about 1 GB to store its adjacency matrix, where an equivalent adjacency list would only consume $$\lceil 2\log_2 10^5 \rceil = 34$$ bits. Most graphs are similarly sparse. But how do you multiply adjacency lists? One solution is to use [sparse matrix](https://en.wikipedia.org/wiki/Sparse_matrix) representations, which are more compact and can be linearly faster on parallel computing architectures.
+One issue hindering efficient graph representation is their space complexity. Suppose we have a graph with $$10^5=100,000$$ nodes, but only a single edge. We will need $$10^{5\times 2}$$ bits, or about 1 GB to store its adjacency matrix, where an equivalent adjacency list would only consume $$\lceil 2\log_2 10^5 \rceil = 34$$ bits. Most graphs are similarly sparse. But how do you multiply adjacency lists? One solution is to use  a [sparse matrix](https://en.wikipedia.org/wiki/Sparse_matrix), which is spatially denser proportional to its sparsity and can be linearly faster on parallel computing architectures.
 
 <center><a href="http://faculty.cse.tamu.edu/davis/suitesparse.html"><img src="http://faculty.cse.tamu.edu/davis/suitesparse_files/SuiteSparse_logo.jpg" width="60%"></a></center>
 
-Perhaps the more significant barrier to widespread adoption of graph algorithms is their time complexity. Many interesting problems on graphs are NP-complete, including [Hamiltonian path](https://en.wikipedia.org/wiki/Hamiltonian_path) detection, [TSP](https://en.wikipedia.org/wiki/Travelling_salesman_problem) and [subgraph isomorphism](https://en.wikipedia.org/wiki/Subgraph_isomorphism_problem). Many of those problems have approximations which are often good enough, but even if exact solutions are needed, CS theory is primarily concerned with worst case complexity, which seldom or rarely occurs in practice. Natural instances can often be solved quickly using heuristic-guided search, such as SAT or SMT solvers.
+Perhaps the more significant barrier to widespread adoption of graph algorithms is their time complexity. Many interesting problems on graphs are NP-complete, including [Hamiltonian path](https://en.wikipedia.org/wiki/Hamiltonian_path) detection, [TSP](https://en.wikipedia.org/wiki/Travelling_salesman_problem) and [subgraph isomorphism](https://en.wikipedia.org/wiki/Subgraph_isomorphism_problem). Many of those problems have approximations which are often tolerable, but even if exact solutions are needed, CS theory is primarily concerned with worst-case complexity, which seldom or rarely occurs in practice. Natural instances can often be solved quickly using heuristic-guided search, such as SAT or SMT solvers.
 
 Most graph algorithms are currently implemented using object oriented or algebraic data types as we [saw previously](#graphs-inductively). While conceptually simple to grasp, this approach is computationally inefficient. We would instead prefer a high level API backed by a pure BLAS implementation. As numerous papers have shown, finding an efficient matrix representation opens the path to optimized execution on GPUs or SIMD-capable hardware. For example, all of the following automata can be greatly accelerated using sparse matrix arithmetic on modern hardware:
 
@@ -1134,7 +1134,7 @@ With the advent of staged metaprogramming in domain-specific languages like [Ten
 
 <center><blockquote class="twitter-tweet"><p lang="en" dir="ltr">This <a href="https://twitter.com/hashtag/GraphBLAS?src=hash&amp;ref_src=twsrc%5Etfw">#GraphBLAS</a> stuff is super exciting. Most graph algorithms can be expressed as linear algebra. Sparse matrix SIMD-backed graph algorithms lets us process orders-of-magnitude larger graphs. Similar to AD tools like Theano et al., this will give a huge boost to network science.</p>&mdash; breandan (@breandan) <a href="https://twitter.com/breandan/status/1277505360127983618?ref_src=twsrc%5Etfw">June 29, 2020</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script></center>
 
-Recent work in linear algebra and sparse matrix representations for graphs [shows us](https://doi.org/10.1137/1.9780898719918.ch5) how to treat many recursive graph algorithms as pure matrix arithmetic, thus benefiting from SIMD acceleration. Researchers are just beginning to explore how these techniques can be used to [transform general-purpose programs](https://en.wikipedia.org/wiki/General-purpose_computing_on_graphics_processing_units) into graphs. We [anticipate](#roadmap) this effort will require further engineering to develop an efficient encoder, but see no fundamental obstacle for a common graph-based execution scheme.
+Recent work in linear algebra and sparse matrix representations for graphs [shows us](https://doi.org/10.1137/1.9780898719918.ch5) how to treat many recursive graph algorithms as pure matrix arithmetic, thus benefiting from SIMD acceleration. Researchers are just beginning to explore how these techniques can be used to [transform general-purpose programs](https://en.wikipedia.org/wiki/General-purpose_computing_on_graphics_processing_units) into graphs. We [anticipate](#roadmap) this effort will require further engineering to develop an efficient encoder, but see no fundamental obstacle for a common analysis framework or graph-based execution scheme.
 
 <!--A lot of the stuff in Graph Representation Learning is motivated by computational constraints. You can't instantiate the adjacency matrix, because it's too large, so you need all kinds of mathematical tricks to sum over or approximate it. But most graphs are sparse and have all kinds of symmetries. Finding the right graph embedding can get you real far...-->
 
@@ -1142,13 +1142,13 @@ Recent work in linear algebra and sparse matrix representations for graphs [show
 
 Graphs are not only useful as data structures for representing programs, but we can think of the act of computation itself as traversing a graph on a binary configuration space. Each tick of the clock corresponds to one matrix multiplication on a boolean tape.
 
-[Futamura (1983)](https://repository.kulib.kyoto-u.ac.jp/dspace/bitstream/2433/103401/1/0482-14.pdf) shows us that programs can be decomposed into two inputs: static and dynamic. While long considered a theoretical distinction, [partial evaluation](https://en.wikipedia.org/wiki/Partial_evaluation) has been successfully operationalized in several [general purpose](https://dl.acm.org/doi/10.1145/3062341.3062381) and [domain-specific](https://compilers.cs.uni-saarland.de/papers/gpce15.pdf) languages. 
+[Futamura (1983)](https://repository.kulib.kyoto-u.ac.jp/dspace/bitstream/2433/103401/1/0482-14.pdf) shows us that programs can be decomposed into two inputs: static and dynamic. While long considered a theoretical distinction, [partial evaluation](https://en.wikipedia.org/wiki/Partial_evaluation) has been successfully operationalized in several [general purpose](https://dl.acm.org/doi/10.1145/3062341.3062381) and [domain-specific](https://compilers.cs.uni-saarland.de/papers/gpce15.pdf) languages using this observation.
 
 $$
 \mathbf P: I_{\text{static}} \times I_{\text{dynamic}} \rightarrow O
 $$
 
-Programs can be viewed as simply functions mapping inputs to output, and executing the program amounts to running a matrix dynamical system to completion. Consider the static case, in which we have all the information available at compile-time. In order to evaluate the program, we can just multiply the state $$\mathbf P: \mathbb B^{\lvert S\rvert \times \lvert S\rvert}$$ by the vector $$S$$ until termination:
+Programs can be viewed as simply functions mapping inputs to output, and executing the program amounts to running a matrix dynamical system to completion. Consider the static case, in which we have all information available at compile-time. In order to evaluate the program, we can just multiply the program $$\mathbf P: \mathbb B^{\lvert S\rvert \times \lvert S\rvert}$$ by the state $$S$$ until termination:
 
 ```
     [P]────────────────────────────────           } Program
@@ -1209,7 +1209,7 @@ More recent work, including that of [Lample et al., (2019)](https://arxiv.org/pd
 
 <center><img src="https://raw.githubusercontent.com/quark0/darts/master/img/darts.png" width="60%"/></center>
 
-In the last year, a number of interesting reults in differentiable architecture search started to emerge. [DARTS](https://arxiv.org/pdf/1806.09055.pdf) (Liu et al., 2019) proposes to use gradient to search through the space of directed graphs. The authors first perform a continuous relaxation of the discrete graph, by reweighting the output of each potential edge by a hyperparameter, optimizing over the space of edges using gradient descent, then taking a softmax to discretize the output graph.
+In the last year, a number of interesting results in differentiable architecture search started to emerge. [DARTS](https://arxiv.org/pdf/1806.09055.pdf) (Liu et al., 2019) proposes to use gradient to search through the space of directed graphs. The authors first perform a continuous relaxation of the discrete graph, by reweighting the output of each potential edge by a hyperparameter, optimizing over the space of edges using gradient descent, then taking a softmax to discretize the output graph.
 
 <center><a href="https://youtu.be/rwBbYhOAnPo?t=28272"><img src="/images/solar_lezma.png" width="70%"/></a></center>
 
@@ -1219,11 +1219,11 @@ In the last year, a number of interesting reults in differentiable architecture 
 <blockquote class="twitter-tweet"><p lang="en" dir="ltr">&quot;Can neural networks be made to reason?&quot; Conversation with Ian Goodfellow (<a href="https://twitter.com/goodfellow_ian?ref_src=twsrc%5Etfw">@goodfellow_ian</a>). Full version: <a href="https://t.co/3MYC8jWjwl">https://t.co/3MYC8jWjwl</a> <a href="https://t.co/tGcDwgZPA1">pic.twitter.com/tGcDwgZPA1</a></p>&mdash; Lex Fridman (@lexfridman) <a href="https://twitter.com/lexfridman/status/1130501145548513280?ref_src=twsrc%5Etfw">May 20, 2019</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script> 
 </center>
 
-A less charitable interpretation is that Goodfellow is simply using a metaphor to explain deep learning to lay audience, but I prefer to think he is communicating something deeper about the role of recurrent nonlinear function approximators as computational primitives, where adding depth effectively increases serial processing capacity and layer width increases bandwidth.
+A less charitable interpretation is that Goodfellow is simply using a metaphor to explain deep learning to lay audience, but I prefer to think he is communicating something deeper about the role of recurrent nonlinear function approximators as computational primitives, where adding depth effectively increases serial processing capacity and layer width increases bandwidth. There may be an interesting connection between this idea and [arithmetic circuit complexity](https://www.cs.tau.ac.il/~shpilka/publications/KlivansShpilka_Learning_via_partial_derivatives.pdf) (Klivans and Shpilka, 2003).
 
 # Roadmap
 
-Much work lies ahead for the interested reader. Before we can claim to have a unification of graph linear algebra and computer science, at least three technical hurdles will need to be cleared. First is theoretical: we must show that binary matrix arithmetic is a universal language. Second, we must show a proof-of-concept via binary recompilation. Third, we must develop a robust toolchain for compiling and introspecting a wide variety of graph programs.
+Much work lies ahead for the interested reader. Before we can claim to have a unification of graph linear algebra and computer science, at least three technical hurdles will need to be cleared. First is theoretical: we must show that binary matrix arithmetic is Turing-reducible. Second, we must show a proof-of-concept via binary recompilation. Third, we must develop a robust toolchain for compiling and introspecting a wide variety of graph programs.
 
 While a naïve proof is a trivial extension of the Church-Turing thesis, a constructive proof taking physics into consideration is needed. Given some universal language $$\mathcal L$$, and a program implementing a boolean vector function $$\mathcal V: \mathbb B^i \rightarrow \mathbb B^o \in \mathcal L$$, we must derive a transformation $$\mathcal T_\mathcal L: \mathcal V \rightarrow \mathcal M$$, which maps $$\mathcal V$$ to a boolean matrix function $$\mathcal M: \mathbb B^{j \times k} \times \mathbb B^{l\times m}$$, while preserving asymptotic complexity $$\mathcal O(\mathcal M) \lt \mathcal O(\mathcal V)$$, i.e. which is no worse than a constant factor in space or time. Clearly, the identity function $$\mathcal I(\mathcal V)$$ is a valid candidate for $$\mathcal T_{\mathcal L}$$. But as recent GPGPU research has shown, we can do much better.
 
