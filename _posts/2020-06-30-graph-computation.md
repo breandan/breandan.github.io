@@ -286,12 +286,11 @@ This pattern is [Curry's (1930)](https://doi.org/10.2307%2F2370619) famous fixed
 <a href="http://bntr.planet.ee/lambda/work/visual_lambda.pdf"><img align="center" width="75%" src="/images/graphical_lambda_calculus.png"/></a>
 </center>
 
-
 The λ-calculus, can also be interpreted graphically. I refer the curious reader to some promising proposals which have attempted to formalize this perspective:
 
 * [Visual lambda calculus](http://bntr.planet.ee/lambda/work/visual_lambda.pdf) (Massalõgin, 2008)
 * [Graphic lambda calculus](https://arxiv.org/pdf/1305.5786.pdf) (Buliga, 2013)
-* [A Graphical Notation for the Lambda Calculus](http://dkeenan.com/Lambda/) (Kennan, 1996)
+* [A Graphical Notation for the Lambda Calculus](http://dkeenan.com/Lambda/) (Keenan, 1996)
 
 ## Cellular automata
 
