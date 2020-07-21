@@ -291,6 +291,7 @@ The λ-calculus, can also be interpreted graphically. I refer the curious reader
 * [Visual lambda calculus](http://bntr.planet.ee/lambda/work/visual_lambda.pdf) (Massalõgin, 2008)
 * [Graphic lambda calculus](https://arxiv.org/pdf/1305.5786.pdf) (Buliga, 2013)
 * [A Graphical Notation for the Lambda Calculus](http://dkeenan.com/Lambda/) (Keenan, 1996)
+* [Lambda Diagrams](https://tromp.github.io/cl/diagrams.html) (Tromp, 2014)
 
 ## Cellular automata
 
@@ -478,7 +479,7 @@ Approximately 20% of the human cerebral cortex is devoted to [visual processing]
 | [Causal graphs](https://en.wikipedia.org/wiki/Causal_graph) | <br/><center><img align="center" width="50%" src="https://upload.wikimedia.org/wikipedia/commons/e/ea/College_notID.png"/></center> |
 | [Category theory](https://www.cs.mcgill.ca/~prakash/Pubs/category_theory_notes.pdf) |<br/><center><img align="center" width="50%" src="https://upload.wikimedia.org/wikipedia/commons/e/ef/Commutative_diagram_for_morphism.svg"/></center>|
 | [Penrose notation](https://www.mscs.dal.ca/%7Eselinger/papers/graphical-bib/public/Penrose-applications-of-negative-dimensional-tensors.pdf) |<br/><center><img align="center" width="50%" src="https://enacademic.com/pictures/enwiki/80/Penrose_covariant_derivate.svg"/></center>|
-|[Feynman diagrams](http://www-pnp.physics.ox.ac.uk/~barra/teaching/feynman.pdf)|<br/><center><img align="center" width="50%" src="https://upload.wikimedia.org/wikipedia/commons/1/1f/Feynmann_Diagram_Gluon_Radiation.svg"/></center>|
+| [Feynman diagrams](http://www-pnp.physics.ox.ac.uk/~barra/teaching/feynman.pdf)|<br/><center><img align="center" width="50%" src="https://upload.wikimedia.org/wikipedia/commons/1/1f/Feynmann_Diagram_Gluon_Radiation.svg"/></center>|
 
 <!--| [Petri networks](https://en.wikipedia.org/wiki/Petri_net) | <br/><center><img align="center" width="50%" src="https://upload.wikimedia.org/wikipedia/commons/d/d7/Animated_Petri_net_commons.gif"/></center> |-->
 <!--| [Proof networks](https://en.wikipedia.org/wiki/Proof_net) | <br/><center><img align="center" width="50%" src="https://www.researchgate.net/profile/Marco_Solieri/publication/311737880/figure/fig7/AS:501886778576905@1496670540685/Example-a-mMELL-proof-net-left-and-two-simple-mixed-nets-that-belong-to-its-expansion.png"/></center> |-->
