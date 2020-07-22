@@ -444,7 +444,7 @@ Now we're ready to define the [Weisfeiler-Lehman operator](http://www.jmlr.org/p
 ```kotlin
 tailrec fun Graph.wl(labels: Map<Vertex, Int>): Map<Vertex, Int> {
   val next = poolingBy { map { labels[it]!! }.sorted().hashCode() }
-  return if (labels == next) labels else wl(k - 1, next)
+  return if (labels == next) labels else wl(next)
 }
 ```
 
