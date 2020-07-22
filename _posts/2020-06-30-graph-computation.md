@@ -288,9 +288,10 @@ This pattern is [Curry's (1930)](https://doi.org/10.2307%2F2370619) famous fixed
 
 The λ-calculus, can also be interpreted graphically. I refer the curious reader to some promising proposals which have attempted to formalize this perspective:
 
+* [An Algorithm for Optimal Lambda Calculus Reduction](https://doi.org/10.1145/96709.96711), (Lample 1990)
+* [A Graphical Notation for the Lambda Calculus](http://dkeenan.com/Lambda/) (Keenan, 1996)
 * [Visual lambda calculus](http://bntr.planet.ee/lambda/work/visual_lambda.pdf) (Massalõgin, 2008)
 * [Graphic lambda calculus](https://arxiv.org/pdf/1305.5786.pdf) (Buliga, 2013)
-* [A Graphical Notation for the Lambda Calculus](http://dkeenan.com/Lambda/) (Keenan, 1996)
 * [Lambda Diagrams](https://tromp.github.io/cl/diagrams.html) (Tromp, 2014)
 
 ## Cellular automata
