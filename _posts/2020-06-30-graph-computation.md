@@ -436,22 +436,22 @@ fun Graph.poolBy(statistic: Set<Vertex>.() -> Int): Map<Vertex, Int> =
 Next, we'll define a `histogram`, which just counts each node's neighborhood:
 
 ```kotlin
-val histogram: Map<Vertex, Int> by lazy { poolBy { size } }
+val Graph.histogram: Map<Vertex, Int> = poolBy { size }
 ```
 
-Now we're ready to define the [Weisfeiler-Lehman operator](http://www.jmlr.org/papers/volume12/shervashidze11a/shervashidze11a.pdf#page=6), which recursively computes a hash on the histogram for `k` rounds.
+Now we're ready to define the [Weisfeiler-Lehman operator](http://www.jmlr.org/papers/volume12/shervashidze11a/shervashidze11a.pdf#page=6), which recursively hashes the labels until fixpoint termination:
 
 ```kotlin
-tailrec fun wl(k: Int, labels: Map<Vertex, Int>): Map<Vertex, Int> =
-  if (k <= 0) labels
-  else wl(k - 1, poolBy { map { labels[it]!! }.sorted().hashCode() })
+tailrec fun Graph.wl(labels: Map<Vertex, Int>): Map<Vertex, Int> {
+  val next = poolingBy { map { labels[it]!! }.sorted().hashCode() }
+  return if (labels == next) labels else wl(k - 1, next)
+}
 ```
 
-We compute the hashcode of the entire graph by hashing the multiset of WL labels. With one round, we're just comparing the degree histogram. The more rounds we add, the more likely we are to detect a symmetry-breaker:
+With one round, we're just comparing the degree histogram. We compute the hash of the entire graph by hashing the multiset of WL labels:
 
 ```kotlin
-override fun Graph.hashCode(rounds: Int = 10) = 
-    wl(rounds, histogram).values.sorted().hashCode()
+fun Graph.hash() = wl(histogram).values.sorted().hash()
 ```
 
 Finally, we can define a test to detect if one graph is isomorphic to another:
@@ -463,7 +463,7 @@ fun Graph.isIsomorphicTo(that: Graph) =
   this.hashCode() == that.hashCode()
 ```
 
-This algorithm works on most every graph you will ever encounter in the wild. For a complete implementation of `Graph` and other inductive graph algorithms, such as Barabási's [preferential attachment algorithm](https://en.wikipedia.org/wiki/Preferential_attachment), check out [Kaliningraph](https://github.com/breandan/kaliningraph).
+This algorithm works on many graphs encountered in the wild, however it cannot distinguish two [regular graphs](https://en.wikipedia.org/wiki/Regular_graph) with an identical number of vertices and edges. Nevertheless, it is appealing for its simplicity and exemplifies a simple "message passing" algorithm, which we will revisit [later](#examples). For a complete implementation and other inductive graph algorithms, such as Barabási's [preferential attachment algorithm](https://en.wikipedia.org/wiki/Preferential_attachment), check out [Kaliningraph](https://github.com/breandan/kaliningraph).
 
 <!--TODO: Graph grammars are grammars on graphs.-->
 
