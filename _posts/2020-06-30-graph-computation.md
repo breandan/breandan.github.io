@@ -14,7 +14,7 @@ In this essay, I explore the virtues of graphs, algebra, types, and show how the
 * [Graph applications](#what-are-graphs)
 * [Inductive languages](#induction-introduction)
 * [Inductive graphs](#graphs-inductively)
-* [Graph languages](#graph-computation/#graph-languages)
+* [Graph languages](#graph-languages)
 * [Dynamical systems on graphs](#graphs-computationally)
 * [Efficient implementations](#graphs-efficiently)
 * [Partial evaluation and program synthesis](#programs-as-graphs)
@@ -649,7 +649,7 @@ The Krylov methods have important applications for studying [dynamical systems](
 <blockquote class="twitter-tweet"><p lang="en" dir="ltr">TIL: CFL parsing can be reduced to boolean matrix multiplication (Valiant, 1975), known to be subcubic (Strassen, 1969), and later proven an asymptotic lower bound (Lee, 1997). This admits efficient GPGPU implementation (Azimov, 2017) in <a href="https://twitter.com/YaccConstructor?ref_src=twsrc%5Etfw">@YaccConstructor</a> <a href="https://t.co/3Vbml0v6b9">https://t.co/3Vbml0v6b9</a></p>&mdash; breandan (@breandan) <a href="https://twitter.com/breandan/status/1277136195118600192?ref_src=twsrc%5Etfw">June 28, 2020</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 </center>
 
-Yet another example of graph computation can be found in [Reps et al. (2016)](https://research.cs.wisc.edu/wpis/papers/popl16.pdf), who show that boolean matrix algebra can be used for [abstract interpretation](https://en.wikipedia.org/wiki/Abstract_interpretation). By representing control flow graphs as boolean matrix expressions, they show how to apply root-finding methods like [Newton's method](https://en.wikipedia.org/wiki/Newton%27s_method) (first observed by [Esparza et al. (2010)](https://www7.in.tum.de/um/bibdb/luttenbe/newtProgAn.pdf)) to dataflow analysis, e.g. for determining which states are reachable from some starting configuration by computing their transitive closure:
+Yet another example of graph computation can be found in [Reps et al. (2016)](https://research.cs.wisc.edu/wpis/papers/popl16.pdf), who show that boolean matrix algebra can be used for [abstract interpretation](https://en.wikipedia.org/wiki/Abstract_interpretation). By representing control flow graphs as boolean matrix expressions, they show how to apply root-finding techniques like [Newton's method](https://en.wikipedia.org/wiki/Newton%27s_method) (first observed by [Esparza et al. (2010)](https://www7.in.tum.de/um/bibdb/luttenbe/newtProgAn.pdf)) to dataflow analysis, e.g. for determining which states are reachable from some starting configuration by computing their transitive closure:
 
 <center><blockquote class="twitter-tweet"><p lang="en" dir="ltr">Newton&#39;s method has some amazing applications for program analysis. Reps et al. (2016) show a mapping between control flow graphs and boolean matrix expressions. Graph reachability amounts to finding fixed points of a semiring equation. What a goldmine! <a href="https://t.co/BFCZiJ1b6n">https://t.co/BFCZiJ1b6n</a> <a href="https://t.co/Jd86bEXiIu">pic.twitter.com/Jd86bEXiIu</a></p>&mdash; breandan (@breandan) <a href="https://twitter.com/breandan/status/1282160392228286466?ref_src=twsrc%5Etfw">July 12, 2020</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script></center>
 
