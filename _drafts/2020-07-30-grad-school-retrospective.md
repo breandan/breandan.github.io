@@ -57,7 +57,7 @@ Duckietown: Software Infrastructure for Autonomous Robotics Development
 In the Fall, I went to Madrid to present my containerization work at [ROSCon](https://vimeo.com/293296939) and the Automating Robotics Experiments workshop at IROS 2018. I got to attend IROS, explore Madrid and see some great demos and talks, including one from the king of Spain, who made a surprise appearance.
 
 <figure>
-<img src="../images/aido1.jpeg"/>
+<img src="../images/aido1.png"/>
 <figcaption><p><small>The first AI driving competition at NeurIPS.</small></p></figcaption>
 </figure>
 
