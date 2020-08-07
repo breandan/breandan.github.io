@@ -84,6 +84,8 @@ OPLSS in Eugene, OR.
 
 ICFP in Berlin.
 
+RLDM in Montreal.
+
 After a summer of conferences and workshops, I returned to Montréal with a bunch of new ideas. I submitted my thesis and participated in a hackathon, I co-wrote an [Gym simulator](https://github.com/breandan/gym-pc) with some colleagues working on protein folding. I started working on an [augmented reality app](https://github.com/breandan/tracelink) for trace link generation.
 
 Fall 2019 hit like a tornado. I decided to take two seminars in software engineering and topology. Polish spaces, Kantorovich-Rubenstein duality, σ-algebras. This was all way above my head. Then, disaster struck - my thesis went into major revisions, and would need another chapter to finish. It would take another few months to sort this all out and I ended up failing the topology class. What a nightmare!
