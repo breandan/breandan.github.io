@@ -581,7 +581,7 @@ We can think of the Krylov method as either a matrix-matrix or matrix-vector pro
 <td>
 <div markdown="1">
 ```
-mmp → mat | mat * mat
+mmp → mat | mat * mmp
 mvp → (mmp) * vec
 ```
 </div>
@@ -598,7 +598,7 @@ $$(\mathbf{M}\mathbf{M})\mathbf{v}, (\mathbf{M}\mathbf{M}\mathbf{M})\mathbf{v}, 
 <div markdown="1">
 ```
 
-mvp → mat * vec | (mvp) * mat
+mvp → mat * vec | mat * (mvp)
 ```
 </div>
 </td>
@@ -613,8 +613,8 @@ $$\mathbf{M}(\mathbf{M}\mathbf{v}), \mathbf{M}(\mathbf{M}(\mathbf{M}\mathbf{v}))
 <td>
 <div markdown="1">
 ```
-fun → (mat * vec) / ‖ mat * vec ‖
-rec → fun vec | (rec vec)
+fun → mat * vec / ‖ mat * vec ‖
+rec → fun | mat * rec / ‖ mat * rec ‖
 ```
 </div>
 </td>
