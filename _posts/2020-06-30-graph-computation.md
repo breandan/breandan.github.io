@@ -313,7 +313,7 @@ The [elementary cellular automaton](https://en.wikipedia.org/wiki/Elementary_cel
 | next pattern | ` 0 `  | ` 1 `  | ` 1 `  | ` 0 `  | ` 1 ` | ` 1 `  | ` 1 `  | ` 0 `  |
 
 
-We can think of this machine as sliding over the tape, and replacing the centermost cell in each matching substring with the second value. Depending on the initial state and rewrite pattern, cellular autoamta can produce many visually interesting patterns. Some have spent a great deal of effort [cataloguing](https://en.wikipedia.org/wiki/A_New_Kind_of_Science) families of CA and their behavior. Following [Robinson (1987)](http://wpmedia.wolfram.com/uploads/sites/13/2018/02/01-1-15.pdf), we can also define an ECA inductively, using a recurrence relation:
+We can think of this machine as sliding over the tape, and replacing the centermost cell in each matching substring with the second value. Depending on the initial state and rewrite pattern, cellular autoamta can produce many visually interesting patterns. Some have spent a great deal of effort [cataloguing](https://en.wikipedia.org/wiki/A_New_Kind_of_Science) families of CA and their behavior. Following [Robinson (1987)](http://wpmedia.wolfram.com/uploads/sites/13/2018/02/01-1-15.pdf), we can also define an ECA inductively, using the following recurrence relation:
 
 $$
 a_i^{(t)} = \sum_j s(j)a_{i-j}^{(i-j)} \mod 2
@@ -322,7 +322,7 @@ $$
 This characterization might remind us of a certain operation from digital signal processing, called a [discrete convolution](https://en.wikipedia.org/wiki/Convolution#Discrete_convolution). We read $$f * g$$ as "$$f$$ convolved by $$g$$":
 
 $$
-(f * g)[n] = \sum_{m=-\infty}^{\infty} f[m]g[n-m]
+(f * g)[n] = \sum_m f[m]g[n-m]
 $$
 
 Here $$f$$ is our state and $$g$$ is called a "kernel". Similar to the λ-calculus, this language also is [known to be universal](https://wpmedia.wolfram.com/uploads/sites/13/2018/02/15-1-1.pdf). Disregarding efficiency, we could encode any computable function as an initial state and mechanically apply [Rule 110](https://en.wikipedia.org/wiki/Rule_110) to simulate a TM, λ-calculus, or any other TC system for that matter.
@@ -489,19 +489,19 @@ tailrec fun Graph.slowDiameter(i: Int = 1, walks: Mat = A_AUG): Int =
   if (walks.isFull) d else diameter(i = i + 1, walks = walks * A_AUG)
 ```
 
-If we consider the complexity of this procedure, we note it takes $$\mathcal O(\mid G\mid M)$$ time, where $$M$$ is the complexity of matrix multiplication, and $$\mathcal O(Q\mid G \mid^2)$$ space, where $$Q$$ is the number of bits required for a single entry in `A_AUG`. Since we only care whether or not the entries are zero, we can instead cast `A_AUG` to $$\mathbb B^{n\times n}$$ and run binary search for the smallest `i` such that `walks` contains no zeros:
+If we consider the complexity of this procedure, we note it takes $$\mathcal O(M \mid G\mid)$$ time, where $$M$$ is the complexity of matrix multiplication, and $$\mathcal O(Q\mid G \mid^2)$$ space, where $$Q$$ is the number of bits required for a single entry in `A_AUG`. Since we only care whether or not the entries are zero, we can instead cast `A_AUG` to $$\mathbb B^{n\times n}$$ and run binary search for the smallest `i` yielding a matrix with no zeros:
 
 ```kotlin
 tailrec fun Graph.fastDiameter(i: Int, prev: BMat, next: BMat): Int =
-  if (walks.isFull || i <= ceil(log2(size))) slowDiameter(i, prev)
-  else diameter(i = i + 1, prev = next, next = next * next)
+  if (walks.isFull || i <= ceil(log2(size))) slowDiameter(i / 2, prev)
+  else slowDiameter(i = 2 * i, prev = next, next = next * next)
 ```
 
-Our improved procedure `fastDiameter` runs in $$\mathcal O(2^{\mid G\mid^2})$$ space. An iterative version of this procedure may be found in [Booth and Lipton (1981)](https://link.springer.com/content/pdf/10.1007/BF00264532.pdf).
+Our improved procedure `fastDiameter` runs in $$\mathcal O(M\ln \mid G\mid)$$ time. An iterative version of this procedure may be found in [Booth and Lipton (1981)](https://link.springer.com/content/pdf/10.1007/BF00264532.pdf).
 
 ## Graph Neural Networks
 
-A graph neural network is like a graph, but whose edges are neural networks. More formally, following [Hamilton (2020)](https://www.cs.mcgill.ca/~wlh/grl_book/files/GRL_Book-Chapter_5-GNNs.pdf#page=18), the inference step can be defined as a matrix recurrence relation $$\mathbf H^t := σ(\mathbf A \mathbf H^{t-1} \mathbf W^t + \mathbf H^{t-1} \mathbf W^t)$$:
+A graph neural network is like a graph, but whose edges are neural networks. More formally, following [Hamilton (2020)](https://www.cs.mcgill.ca/~wlh/grl_book/files/GRL_Book-Chapter_5-GNNs.pdf#page=18), the inference step can be defined as a matrix recurrence relation $$\mathbf H^t := σ(\mathbf A \mathbf H^{t-1} \mathbf W^t + \mathbf H^{t-1} \mathbf W^t)$$ as follows:
 
 ```kotlin
 tailrec fun gnn(
