@@ -198,7 +198,7 @@ While syntax trees can be interpreted computationally, they do not actually perf
   E - E | E · 0 | 0 · E | 0 - E | +0 | -1 | ·0 → 0
 ```
 
-If we must add two identical expressions, why evaluate them twice? If we need to multiply an expression by `0`, why evaluate it at all? Instead, we will try to simplify these patterns, whenever we encounter them. This is known as a [rewrite system](https://en.wikipedia.org/wiki/Rewriting), which we can think of as grafting or pruning the branches of a tree. Some say, "all trees are DAGs, but not all DAGs are trees". I prefer to think of a DAG as a tree with a [gemel](https://en.wikipedia.org/wiki/Inosculation):
+If we must add two identical expressions, why evaluate them twice? If we need to multiply an expression by `0`, why evaluate it at all? Instead, we will try to simplify these patterns whenever we encounter them. This is known as a [rewrite system](https://en.wikipedia.org/wiki/Rewriting), which we can think of as grafting or pruning the branches of a tree. Some say, "all trees are DAGs, but not all DAGs are trees". I prefer to think of a DAG as a tree with a [gemel](https://en.wikipedia.org/wiki/Inosculation):
 
 |Rewrite Rule|Deformed Tree|
 |---|----|
@@ -408,7 +408,7 @@ fun Set<Vertex>.closure(): Set<Vertex> =
 fun Vertex.neighborhood(k: Int = 0) = Graph(neighbors(k).closure())
 ```
 
-We can also define the [adjacency](https://en.wikipedia.org/wiki/Adjacency_matrix), [degree](https://en.wikipedia.org/wiki/Degree_matrix), and [Laplacian](https://en.wikipedia.org/wiki/Laplacian_matrix) matrices like so:
+Another useful representation for a graph, which we will describe in further detail [below](#graph-languages), is a matrix. We can define the [adjacency](https://en.wikipedia.org/wiki/Adjacency_matrix), [degree](https://en.wikipedia.org/wiki/Degree_matrix), and [Laplacian](https://en.wikipedia.org/wiki/Laplacian_matrix) matrices like so:
 
 ```kotlin
 val Graph.adjacency = Mat(vertices.size, vertices.size).also { adj ->
@@ -416,7 +416,7 @@ val Graph.adjacency = Mat(vertices.size, vertices.size).also { adj ->
 }
 
 val Graph.degree = Mat(vertices.size, vertices.size).also { deg ->
-  V.forEach { v -> deg[v, v] = v.neighbors.size }
+  vertices.forEach { v -> deg[v, v] = v.neighbors.size }
 }
 
 val Graph.laplacian = degree - adjacency
@@ -468,6 +468,61 @@ This algorithm works on many graphs encountered in the wild, however it cannot d
 <!--TODO: Graph grammars are grammars on graphs.-->
 
 <!--TODO: Single/Double pushout-->
+
+## Graph Diameter
+
+A graph's diameter is defined as the length of the longest shortest path between any two of its vertices. Let us define the augmented adjacency matrix as:
+
+```kotlin
+val A_AUG: Mat by lazy { A + I }
+```
+
+To compute this diameter for a connected graph $$G$$, we can simply power the augmented adjacency matrix until it contains no zeros:
+
+```kotlin
+/* (𝟙 + A)ⁿ[a, b] counts the number of walks between vertices a, b of
+ * length n. Let i be the smallest natural number such that (𝟙 + A)ⁱ
+ * has no zeros. i is the length of the longest shortest path in G.
+ */
+
+tailrec fun Graph.diameter(i: Int = 1, walks: Mat = A_AUG): Int =
+  if (walks.isFull) d else diameter(i = i + 1, walks = walks * A_AUG)
+```
+
+However if we consider the complexity of this procedure, we note it takes $$\mathcal O(|G|M)$$ time, where $$M$$ is the complexity of matrix multiplication, and $$\mathcal O(Q^|G^2|)$$ space, where $$Q$$ is the number of bits required to store a single entry in `A_AUG`. Since we only care about whether the entries are zero or not, we can cast `A_AUG` to $$\mathbb B^{n\times n}$$ and run binary search for the smallest value of i such that `walks` contains no zeros:
+
+```kotlin
+tailrec fun Graph.fastDiameter(i: Int, p: BMat, n: BMat): Int =
+  if (walks.isFull || i == ceil(log2(size))) diameter(i, p)
+  else diameter(i = i + 1, prev = walks, next = * walks)
+```
+
+Unlike `diameter`, `fastDiameter` runs in $$\mathcal O(2^|G^2|)$$ space and $$\mathcal O(2^|G^2|)$$ time. An iterative version of this procedure can be found in [Booth and Lipton (1981)](https://link.springer.com/content/pdf/10.1007/BF00264532.pdf).
+
+## Graph Neural Networks
+
+A graph neural network is like a graph, but whose edges are neural networks. More formally, following [Hamilton (2020)](https://www.cs.mcgill.ca/~wlh/grl_book/files/GRL_Book-Chapter_5-GNNs.pdf#page=18), the inference step can be defined as a matrix recurrence relation $$H^t := σ(\mathbf A \mathbf H^{t-1} \mathbf W^t + \mathbf H^{t-1} \mathbf W^t)$$:
+
+```kotlin
+tailrec fun gnn(
+  // Number of message passing rounds
+  t: Int = diameter(),
+  // Matrix of node representations ℝ^{|V|xd}
+  H: Mat,
+  // (Trainable) weight matrix ℝ^{dxd}
+  W: Mat = randomMatrix(H.numCols),
+  // Bias term ℝ^{dxd}
+  b: Mat = randomMatrix(size, H.numCols),
+  // Nonlinearity ℝ^{*} -> ℝ^{*}
+  σ: (SpsMat) -> SpsMat = { it.elwise { tanh(it) } },
+  // Layer normalization ℝ^{*} -> ℝ^{*}
+  z: (Mat) -> SpsMat = { it.meanNorm() },
+  // Message ℝ^{*} -> ℝ^{*}
+  m: Graph<G, E, V>.(Mat) -> Mat = { σ(z(A * it * W + it * W + b)) }
+): SpsMat = if(t == 0) H else gnn(t = t - 1, H = m(H), W = W, b = b)
+```
+
+We will have more to say about matrix recurrence relations [later](#graphs-computationally).
 
 # Graph languages
 
