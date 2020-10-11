@@ -489,7 +489,7 @@ tailrec fun Graph.diameter(i: Int = 1, walks: Mat = A_AUG): Int =
   if (walks.isFull) d else diameter(i = i + 1, walks = walks * A_AUG)
 ```
 
-However if we consider the complexity of this procedure, we note it takes $$\mathcal O(|G|M)$$ time, where $$M$$ is the complexity of matrix multiplication, and $$\mathcal O(Q^|G^2|)$$ space, where $$Q$$ is the number of bits required to store a single entry in `A_AUG`. Since we only care about whether the entries are zero or not, we can cast `A_AUG` to $$\mathbb B^{n\times n}$$ and run binary search for the smallest value of i such that `walks` contains no zeros:
+If we consider the complexity of this procedure, we note it takes $$\mathcal O(\mid G\mid M)$$ time, where $$M$$ is the complexity of matrix multiplication, and $$\mathcal O(Q^{\mid G \mid^2})$$ space, where $$Q$$ is the number of bits required for a single entry in `A_AUG`. Since we only care whether or not the entries are zero, we can instead cast `A_AUG` to $$\mathbb B^{n\times n}$$ and run binary search for the smallest `i` such that `walks` contains no zeros:
 
 ```kotlin
 tailrec fun Graph.fastDiameter(i: Int, p: BMat, n: BMat): Int =
@@ -497,11 +497,11 @@ tailrec fun Graph.fastDiameter(i: Int, p: BMat, n: BMat): Int =
   else diameter(i = i + 1, prev = walks, next = * walks)
 ```
 
-Unlike `diameter`, `fastDiameter` runs in $$\mathcal O(2^|G^2|)$$ space and $$\mathcal O(2^|G^2|)$$ time. An iterative version of this procedure can be found in [Booth and Lipton (1981)](https://link.springer.com/content/pdf/10.1007/BF00264532.pdf).
+Our improved `fastDiameter` runs in $$\mathcal O(2^{\mid G\mid^2})$$ space and $$\mathcal O(2^{\mid G\mid^2})$$ time. An iterative version of this procedure can be found in [Booth and Lipton (1981)](https://link.springer.com/content/pdf/10.1007/BF00264532.pdf).
 
 ## Graph Neural Networks
 
-A graph neural network is like a graph, but whose edges are neural networks. More formally, following [Hamilton (2020)](https://www.cs.mcgill.ca/~wlh/grl_book/files/GRL_Book-Chapter_5-GNNs.pdf#page=18), the inference step can be defined as a matrix recurrence relation $$H^t := σ(\mathbf A \mathbf H^{t-1} \mathbf W^t + \mathbf H^{t-1} \mathbf W^t)$$:
+A graph neural network is like a graph, but whose edges are neural networks. More formally, following [Hamilton (2020)](https://www.cs.mcgill.ca/~wlh/grl_book/files/GRL_Book-Chapter_5-GNNs.pdf#page=18), the inference step can be defined as a matrix recurrence relation $$\mathbf H^t := σ(\mathbf A \mathbf H^{t-1} \mathbf W^t + \mathbf H^{t-1} \mathbf W^t)$$:
 
 ```kotlin
 tailrec fun gnn(
