@@ -485,19 +485,19 @@ To compute this diameter for a connected graph $$G$$, we can simply power the au
  * has no zeros. i is the length of the longest shortest path in G.
  */
 
-tailrec fun Graph.diameter(i: Int = 1, walks: Mat = A_AUG): Int =
+tailrec fun Graph.slowDiameter(i: Int = 1, walks: Mat = A_AUG): Int =
   if (walks.isFull) d else diameter(i = i + 1, walks = walks * A_AUG)
 ```
 
-If we consider the complexity of this procedure, we note it takes $$\mathcal O(\mid G\mid M)$$ time, where $$M$$ is the complexity of matrix multiplication, and $$\mathcal O(Q^{\mid G \mid^2})$$ space, where $$Q$$ is the number of bits required for a single entry in `A_AUG`. Since we only care whether or not the entries are zero, we can instead cast `A_AUG` to $$\mathbb B^{n\times n}$$ and run binary search for the smallest `i` such that `walks` contains no zeros:
+If we consider the complexity of this procedure, we note it takes $$\mathcal O(\mid G\mid M)$$ time, where $$M$$ is the complexity of matrix multiplication, and $$\mathcal O(Q\mid G \mid^2)$$ space, where $$Q$$ is the number of bits required for a single entry in `A_AUG`. Since we only care whether or not the entries are zero, we can instead cast `A_AUG` to $$\mathbb B^{n\times n}$$ and run binary search for the smallest `i` such that `walks` contains no zeros:
 
 ```kotlin
-tailrec fun Graph.fastDiameter(i: Int, p: BMat, n: BMat): Int =
-  if (walks.isFull || i == ceil(log2(size))) diameter(i, p)
-  else diameter(i = i + 1, prev = walks, next = * walks)
+tailrec fun Graph.fastDiameter(i: Int, prev: BMat, next: BMat): Int =
+  if (walks.isFull || i <= ceil(log2(size))) slowDiameter(i, prev)
+  else diameter(i = i + 1, prev = next, next = next * next)
 ```
 
-Our improved `fastDiameter` runs in $$\mathcal O(2^{\mid G\mid^2})$$ space and $$\mathcal O(2^{\mid G\mid^2})$$ time. An iterative version of this procedure can be found in [Booth and Lipton (1981)](https://link.springer.com/content/pdf/10.1007/BF00264532.pdf).
+Our improved procedure `fastDiameter` runs in $$\mathcal O(2^{\mid G\mid^2})$$ space. An iterative version of this procedure may be found in [Booth and Lipton (1981)](https://link.springer.com/content/pdf/10.1007/BF00264532.pdf).
 
 ## Graph Neural Networks
 
@@ -506,7 +506,7 @@ A graph neural network is like a graph, but whose edges are neural networks. Mor
 ```kotlin
 tailrec fun gnn(
   // Number of message passing rounds
-  t: Int = diameter(),
+  t: Int = fastDiameter(),
   // Matrix of node representations ℝ^{|V|xd}
   H: Mat,
   // (Trainable) weight matrix ℝ^{dxd}
@@ -522,7 +522,7 @@ tailrec fun gnn(
 ): SpsMat = if(t == 0) H else gnn(t = t - 1, H = m(H), W = W, b = b)
 ```
 
-We will have more to say about matrix recurrence relations [later](#graphs-computationally).
+We will have more to say about matrix recurrence relations [in a bit](#graphs-computationally).
 
 # Graph languages
 
