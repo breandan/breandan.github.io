@@ -316,7 +316,7 @@ The [elementary cellular automaton](https://en.wikipedia.org/wiki/Elementary_cel
 We can think of this machine as sliding over the tape, and replacing the centermost cell in each matching substring with the second value. Depending on the initial state and rewrite pattern, cellular autoamta can produce many visually interesting patterns. Some have spent a great deal of effort [cataloguing](https://en.wikipedia.org/wiki/A_New_Kind_of_Science) families of CA and their behavior. Following [Robinson (1987)](http://wpmedia.wolfram.com/uploads/sites/13/2018/02/01-1-15.pdf), we can also define an ECA inductively, using the following recurrence relation:
 
 $$
-a_i^{(t)} = \sum_j s(j)a_{i-j}^{(i-j)} \mod 2
+a_i^{(t)} = \sum_j s(j)a_{t-1}^{(i-j)} \mod 2
 $$
 
 This characterization might remind us of a certain operation from digital signal processing, called a [discrete convolution](https://en.wikipedia.org/wiki/Convolution#Discrete_convolution). We read $$f * g$$ as "$$f$$ convolved by $$g$$":
