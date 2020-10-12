@@ -494,7 +494,7 @@ If we consider the complexity of this procedure, we note it takes $$\mathcal O(M
 ```kotlin
 tailrec fun Graph.fastDiameter(i: Int, prev: BMat, next: BMat): Int =
   if (walks.isFull || i <= ceil(log2(size))) slowDiameter(i / 2, prev)
-  else slowDiameter(i = 2 * i, prev = next, next = next * next)
+  else fastDiameter(i = 2 * i, prev = next, next = next * next)
 ```
 
 Our improved procedure `fastDiameter` runs in $$\mathcal O(M\ln \mid G\mid)$$ time. An iterative version of this procedure may be found in [Booth and Lipton (1981)](https://link.springer.com/content/pdf/10.1007/BF00264532.pdf).
@@ -514,12 +514,12 @@ tailrec fun gnn(
   // Bias term ℝ^{dxd}
   b: Mat = randomMatrix(size, H.numCols),
   // Nonlinearity ℝ^{*} -> ℝ^{*}
-  σ: (SpsMat) -> SpsMat = { it.elwise { tanh(it) } },
+  σ: (Mat) -> Mat = { it.elwise { tanh(it) } },
   // Layer normalization ℝ^{*} -> ℝ^{*}
-  z: (Mat) -> SpsMat = { it.meanNorm() },
+  z: (Mat) -> Mat = { it.meanNorm() },
   // Message ℝ^{*} -> ℝ^{*}
   m: Graph<G, E, V>.(Mat) -> Mat = { σ(z(A * it * W + it * W + b)) }
-): SpsMat = if(t == 0) H else gnn(t = t - 1, H = m(H), W = W, b = b)
+): Mat = if(t == 0) H else gnn(t = t - 1, H = m(H), W = W, b = b)
 ```
 
 We will have more to say about matrix recurrence relations [in a bit](#graphs-computationally).
