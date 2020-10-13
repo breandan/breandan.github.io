@@ -443,7 +443,7 @@ Now we're ready to define the [Weisfeiler-Lehman operator](http://www.jmlr.org/p
 
 ```kotlin
 tailrec fun Graph.wl(labels: Map<Vertex, Int>): Map<Vertex, Int> {
-  val next = poolingBy { map { labels[it]!! }.sorted().hashCode() }
+  val next = poolingBy { map { labels[it]!! }.sorted().hash() }
   return if (labels == next) labels else wl(next)
 }
 ```
@@ -460,7 +460,7 @@ Finally, we can define a test to detect if one graph is isomorphic to another:
 fun Graph.isIsomorphicTo(that: Graph) =
   this.nodes.size == that.nodes.size && 
   this.numOfEdges == that.numOfEdges && 
-  this.hashCode() == that.hashCode()
+  this.hash() == that.hash()
 ```
 
 This algorithm works on many graphs encountered in the wild, however it cannot distinguish two [regular graphs](https://en.wikipedia.org/wiki/Regular_graph) with an identical number of vertices and edges. Nevertheless, it is appealing for its simplicity and exemplifies a simple "message passing" algorithm, which we will revisit [later](#examples). For a complete implementation and other inductive graph algorithms, such as Barabási's [preferential attachment algorithm](https://en.wikipedia.org/wiki/Preferential_attachment), check out [Kaliningraph](https://github.com/breandan/kaliningraph).
@@ -489,7 +489,7 @@ tailrec fun Graph.slowDiameter(i: Int = 1, walks: Mat = A_AUG): Int =
   if (walks.isFull) d else diameter(i = i + 1, walks = walks * A_AUG)
 ```
 
-If we consider the complexity of this procedure, we note it takes $$\mathcal O(M \mid G\mid)$$ time, where $$M$$ is the complexity of matrix multiplication, and $$\mathcal O(Q\mid G \mid^2)$$ space, where $$Q$$ is the number of bits required for a single entry in `A_AUG`. Since we only care whether or not the entries are zero, we can instead cast `A_AUG` to $$\mathbb B^{n\times n}$$ and run binary search for the smallest `i` yielding a matrix with no zeros:
+If we consider the complexity of this procedure, we note it takes $$\mathcal O(M \mid G\mid)$$ time, where $$M$$ is the [complexity of matrix multiplication](https://en.wikipedia.org/wiki/Matrix_multiplication_algorithm#Sub-cubic_algorithms), and $$\mathcal O(Q\mid G \mid^2)$$ space, where $$Q$$ is the number of bits required for a single entry in `A_AUG`. Since we only care whether or not the entries are zero, we can instead cast `A_AUG` to $$\mathbb B^{n\times n}$$ and run binary search for the smallest `i` yielding a matrix with no zeros:
 
 ```kotlin
 tailrec fun Graph.fastDiameter(i: Int, prev: BMat, next: BMat): Int =
@@ -497,11 +497,11 @@ tailrec fun Graph.fastDiameter(i: Int, prev: BMat, next: BMat): Int =
   else fastDiameter(i = 2 * i, prev = next, next = next * next)
 ```
 
-Our improved procedure `fastDiameter` runs in $$\mathcal O(M\ln \mid G\mid)$$ time. An iterative version of this procedure may be found in [Booth and Lipton (1981)](https://link.springer.com/content/pdf/10.1007/BF00264532.pdf).
+Our improved procedure `fastDiameter` runs in $$\mathcal O(M\log_2\mid G\mid)$$ time. An iterative version of this procedure may be found in [Booth and Lipton (1981)](https://link.springer.com/content/pdf/10.1007/BF00264532.pdf).
 
 ## Graph Neural Networks
 
-A graph neural network is like a graph, but whose edges are neural networks. More formally, following [Hamilton (2020)](https://www.cs.mcgill.ca/~wlh/grl_book/files/GRL_Book-Chapter_5-GNNs.pdf#page=18), the inference step can be defined as a matrix recurrence relation $$\mathbf H^t := σ(\mathbf A \mathbf H^{t-1} \mathbf W^t + \mathbf H^{t-1} \mathbf W^t)$$ as follows:
+A graph neural network is like a graph, but whose edges are neural networks. In its simplest form, the inference step can be defined as a matrix recurrence relation $$\mathbf H^t := σ(\mathbf A \mathbf H^{t-1} \mathbf W^t + \mathbf H^{t-1} \mathbf W^t)$$ following [Hamilton (2020)](https://www.cs.mcgill.ca/~wlh/grl_book/files/GRL_Book-Chapter_5-GNNs.pdf#page=18):
 
 ```kotlin
 tailrec fun gnn(
@@ -522,7 +522,7 @@ tailrec fun gnn(
 ): Mat = if(t == 0) H else gnn(t = t - 1, H = m(H), W = W, b = b)
 ```
 
-We will have more to say about matrix recurrence relations [in a bit](#graphs-computationally).
+The important thing to note here is that this message passing procedure is a recurrence relation, which like the graph grammar and WL algorithm seen earlier, can be defined inductively. [Hamilton et al. (2017)](https://cs.stanford.edu/people/jure/pubs/graphsage-nips17.pdf) also consider induction in the context of representation learning, although their definition is more closely related to the concept of generalization. It would be interesting to explore the connection between induction in these two settings, and we will have more to say about matrix recurrence relations [in a bit](#graphs-computationally).
 
 # Graph languages
 
