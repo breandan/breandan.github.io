@@ -471,17 +471,17 @@ This algorithm works on many graphs encountered in the wild, however it cannot d
 
 ## Graph Diameter
 
-A graph's diameter is defined as the length of the longest shortest path between any two of its vertices. Let us define the augmented adjacency matrix as:
+A graph's diameter is the length of the longest shortest path between any two of its vertices. Let us define the augmented adjacency matrix as $$A + A^\intercal + \mathbb{1}$$, or:
 
 ```kotlin
-val A_AUG: Mat by lazy { A + I }
+val Graph.A_AUG = adjacency.let { it + it.transpose() } + ONES
 ```
 
-To compute this diameter for a connected graph $$G$$, we can simply power the augmented adjacency matrix until it contains no zeros:
+To compute the diameter of a connected graph $$G$$, we can simply power the augmented adjacency matrix until it contains no zeros:
 
 ```kotlin
-/* (𝟙 + A)ⁿ[a, b] counts the number of walks between vertices a, b of
- * length n. Let i be the smallest natural number such that (𝟙 + A)ⁱ
+/* (A')ⁿ[a, b] counts the number of walks between vertices a, b of
+ * length n. Let i be the smallest natural number such that (A')ⁱ
  * has no zeros. i is the length of the longest shortest path in G.
  */
 
