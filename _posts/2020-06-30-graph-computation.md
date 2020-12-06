@@ -116,7 +116,7 @@ Using coreference resolution and entity alignment techniques, we can reconstruct
 
 <!--![logical_forms](/images/logical_forms.png) -->
 <center>
-<a href="https://arxiv.org/pdf/2003.02320.pdf"><img align="center" width="75%" src="/images/knowledge_graph.png"/></a>
+<a href="https://arxiv.org/pdf/2003.02320.pdf#page=8"><img align="center" width="75%" src="/images/knowledge_graph.png"/></a>
 </center>
 
 Lo and behold, the key idea behind knowledge graphs is our old friend, types. Knowledge graphs are multi-relational graphs whose nodes and edges possess a type. Two entities can be related by multiple types, and each type can relate many pairs of entities. We can index an entity based on its type for knowledge retrieval, and use types to reason about compound queries, e.g. "Which `company` has a direct `flight` from a `port city` to a `capital city`?", which would otherwise be difficult to answer without a type system.
@@ -486,15 +486,17 @@ To compute the diameter of a connected graph $$G$$, we can simply power the augm
  */
 
 tailrec fun Graph.slowDiameter(i: Int = 1, walks: Mat = A_AUG): Int =
-  if (walks.isFull) d else diameter(i = i + 1, walks = walks * A_AUG)
+  if (walks.data.all { 0 < it }) i 
+  else slowDiameter(i = i + 1, walks = walks * A_AUG)
 ```
 
 If we consider the complexity of this procedure, we note it takes $$\mathcal O(M \mid G\mid)$$ time, where $$M$$ is the [complexity of matrix multiplication](https://en.wikipedia.org/wiki/Matrix_multiplication_algorithm#Sub-cubic_algorithms), and $$\mathcal O(Q\mid G \mid^2)$$ space, where $$Q$$ is the number of bits required for a single entry in `A_AUG`. Since we only care whether or not the entries are zero, we can instead cast `A_AUG` to $$\mathbb B^{n\times n}$$ and run binary search for the smallest `i` yielding a matrix with no zeros:
 
 ```kotlin
-tailrec fun Graph.fastDiameter(i: Int, prev: BMat, next: BMat): Int =
-  if (walks.isFull || i <= ceil(log2(size))) slowDiameter(i / 2, prev)
-  else fastDiameter(i = 2 * i, prev = next, next = next * next)
+tailrec fun Graph.fastDiameter(i: Int = 1, 
+    prev: Mat = A_AUG, next: Mat = prev): Int =
+  if (next.isFull) slowDiameter(i / 2, prev)
+  else diameter(i = 2 * i, prev = next, next = next * next)
 ```
 
 Our improved procedure `fastDiameter` runs in $$\mathcal O(M\log_2\mid G\mid)$$ time. An iterative version of this procedure may be found in [Booth and Lipton (1981)](https://link.springer.com/content/pdf/10.1007/BF00264532.pdf).
