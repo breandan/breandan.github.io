@@ -1196,6 +1196,7 @@ Most graph algorithms are currently implemented using object oriented or algebra
 
 - [Pushdown automata](https://doi.org/10.1007/978-3-030-38961-1_26)
 - [Büchi automata](http://people.na.infn.it/~murano/COMP1314/8.pdf)
+- [Petri nets](http://web.cs.iastate.edu/~ciardo/pubs/1989PNPM-SPNP.pdf)
 - [Mealy machines](https://doi.org/10.1109/APSEC.2018.00025)
 - [Finite state transducers](https://arxiv.org/pdf/1701.03038.pdf)
 
