@@ -606,7 +606,7 @@ $$
 <!--https://www.wolframalpha.com/input/?i=%7B%7Bcos%28x%2B2*y%29%2Fx%7D%2C+0%7D%2C+%7B0%2C%7Bsin%28x-2*y%29%2Fy%7D%7D+eigenvalues-->
 <center><img src="/images/vector_field.png" width="63%"/></center>
 
-Locating a point where $$f(x, y) = f\circ f(x, y)$$, indicates the trajectory has terminated. There exists a [famous theorem](https://en.wikipedia.org/wiki/Brouwer_fixed-point_theorem) from Brouwer: given a set $$S$$ containing its limit points (i.e. *closed*), whose contents are all a finite distance apart (i.e. *bounded*), every continuous function from the set onto itself ($$f: S \rightarrow S$$) will map at least one point in the set $$x$$, called a fixpoint, onto itself ($$f: (x) \mapsto x$$). Such points describe the asymptotic behavior of our function.
+Locating a point where $$f(x, y) = f\circ f(x, y)$$, indicates the trajectory has terminated. There exists a [famous theorem](https://en.wikipedia.org/wiki/Brouwer_fixed-point_theorem) from Brouwer: given a set $$S$$ which contains its limits (i.e. *closed*), whose contents are all a finite distance apart (i.e. *bounded*), every continuous function from the set onto itself ($$f: S \rightarrow S$$) will map at least one of its members $$x: S$$, called a fixpoint, onto itself ($$f(x)=x$$). Such points describe the asymptotic behavior of our function.
 
 First, let's get some definitions out of the way.
 
