@@ -593,7 +593,7 @@ Just like matrices, we can also think of a graph as a function, or [transition s
 
 What happens when we take a square matrix $$\mathbb{R}^{n\times n}$$ and raise it to a power? Which kinds of matrices converge and what are their asymptotics? This is a very fertile line of inquiry which has occupied engineers for the better part of the last century, with important applications in [statistical phyics](https://books.google.ca/books/about/Works_on_the_Foundations_of_Statistical.html?id=Nbz_AwAAQBAJ), [control theory](https://link.springer.com/content/pdf/10.1007/BF02523124.pdf), and [deep learning](http://proceedings.mlr.press/v22/vinyals12/vinyals12.pdf). Linear algebra gives us many tricks for designing the matrix and normalizing the product to promote convergence.
 
-One way to interpret this is as follows: each time we multiply a matrix by a vector $$\mathbb{R}^{n}$$, we are effectively simulating a dynamical system at discrete time steps. This method is known as [power iteration](https://cs.mcgill.ca/~wlh/comp766/files/chapter1_draft_mar29.pdf#page=11) or the Krylov method in linear algebra. In the limit, we are seeking fixpoints, or eigenvectors, which are these islands of stability in our dynamical system. If we initialize our state at such a point, the transition matrix will send us straight back to where we started.
+One way to interpret this is as follows: each time we multiply a matrix by a vector $$\mathbb{R}^{n}$$, we are effectively simulating a dynamical system at discrete time steps. This method is known as [power iteration](https://cs.mcgill.ca/~wlh/comp766/files/chapter1_draft_mar29.pdf#page=11) or the Krylov method in linear algebra. In the limit, we are seeking *fixpoints*, or eigenvectors, which are these islands of stability in our dynamical system. If we initialize our state at such a point, the transition matrix will send us straight back to where we started.
 
 $$
 f(x, y) = \begin{bmatrix}
@@ -606,7 +606,7 @@ $$
 <!--https://www.wolframalpha.com/input/?i=%7B%7Bcos%28x%2B2*y%29%2Fx%7D%2C+0%7D%2C+%7B0%2C%7Bsin%28x-2*y%29%2Fy%7D%7D+eigenvalues-->
 <center><img src="/images/vector_field.png" width="63%"/></center>
 
-Locating a fixed point where $$f(x, y) = f\circ f(x, y)$$, indicates the trajectory has terminated. Such points describe the asymptotic behavior of our function.
+Locating a point where $$f(x, y) = f\circ f(x, y)$$, indicates the trajectory has terminated. There exists a [famous theorem](https://en.wikipedia.org/wiki/Brouwer_fixed-point_theorem) from Brouwer, which states that given a set containing its limits (i.e. *closed*), whose members are all a finite distance apart (i.e. *bounded*), for any continuous function $f$ that maps the set onto itself there exists at least one point in the set $x$, called a fixpoint, such that $f(x)=x$. Such points describe the asymptotic behavior of our function.
 
 First, let's get some definitions out of the way.
 
