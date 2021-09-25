@@ -496,7 +496,7 @@ If we consider the complexity of this procedure, we note it takes $$\mathcal O(M
 tailrec fun Graph.fastDiameter(i: Int = 1, 
     prev: Mat = A_AUG, next: Mat = prev): Int =
   if (next.isFull) slowDiameter(i / 2, prev)
-  else diameter(i = 2 * i, prev = next, next = next * next)
+  else fastDiameter(i = 2 * i, prev = next, next = next * next)
 ```
 
 Our improved procedure `fastDiameter` runs in $$\mathcal O(M\log_2\mid G\mid)$$ time. An iterative version of this procedure may be found in [Booth and Lipton (1981)](https://link.springer.com/content/pdf/10.1007/BF00264532.pdf).
