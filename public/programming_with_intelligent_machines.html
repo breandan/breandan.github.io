@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <meta name="author" content="Breandan Considine" />
+  <title>Programming in the Age of Intelligent Machines</title>
+  <style>
+    html {
+      line-height: 1.5;
+      font-family: Georgia, serif;
+      font-size: 20px;
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 1em;
+      }
+    }
+    @media print {
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, 'Lucida Console', Consolas, monospace;
+      font-size: 85%;
+      margin: 0;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+    div.csl-bib-body { }
+    div.csl-entry {
+      clear: both;
+    }
+    .hanging div.csl-entry {
+      margin-left:2em;
+      text-indent:-2em;
+    }
+    div.csl-left-margin {
+      min-width:2em;
+      float:left;
+    }
+    div.csl-right-inline {
+      margin-left:2em;
+      padding-left:1em;
+    }
+    div.csl-indent {
+      margin-left: 2em;
+    }
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title"><p>Programming in the<br />
+Age of Intelligent Machines</p></h1>
+<p class="author">Breandan Considine</p>
+</header>
+<h1 id="introduction">Introduction</h1>
+<p>Since the invention of modern computers in the mid 20th century, computer programming has undergone a number of paradigm shifts. From the rise of functional programming to dynamic and object-oriented programming, to the availability of myriad tools and frameworks – its practitioners have witnessed a veritable Renaissance in the art of computer programming. With each of these paradigm shifts, programmers have realized new conceptual frameworks for expressing their ideas more clearly and concisely.</p>
+<p>Over the last few years, a new paradigm shift has been set in motion, with significant implications for how we think about and write programs in the coming century. By most measures, computers have grown steadily more intelligent and capable of assisting programmers with mentally taxing chores. For example, intelligent programming tools (IPTs) powered by neural language models have this year helped over 10 million people program computers. As IPTs help digitally illiterate communities to discover their innate aptitude for programming, this population will continue to increase.</p>
+<p>Computer programming is a uniquely creative exercise among the range of human activities. It channels our innate linguistic, logical, imaginative, and social abilities to bring abstract ideas into reality, and ultimately, gives humans the freedom to create new realities of their own design. In collaboration with other humans and the increasing participation of IPTs, vast and elaborate virtual worlds are being manufactured, where the majority of humankind now chooses to spend their lives. With the expanding opportunities these new digital frontiers offer, their population too will continue to grow.</p>
+<p>Today IPTs share an equal role in shaping many aspects of computer programming, from knowledge discovery to API design, and program synthesis to validation and verification. However, this balance is shifting beneath our feet. Once its creators, programmers are now primarily consumers of information provided by an IPT, and increasingly rely on them to perform their daily work. <strong>With the unique opportunities and risks this partnership presents, what division of labor should exist between humans and our new coding collaborators?</strong> This is the question we have set out to understand in the following literature review.</p>
+<h1 id="sec:autocompletion">Code Completion and Program Synthesis</h1>
+<p>Programming researchers have long held an interest in using intelligent tools to help them write programs <span class="citation" data-cites="bras1993artificial">(Bras and Toussaint 1993)</span>. Due to fundamental limitations in data and processing power, many of these ambitions have come to pass only recently, thanks to the availability of <em>big code</em> <span class="citation" data-cites="allamanis2018survey">(Allamanis et al. 2018)</span>, the development of differentiable programming libraries for gradient-based learning <span class="citation" data-cites="baydin2018automatic">(Baydin et al. 2018)</span>, and attention-based language models <span class="citation" data-cites="vaswani2017attention">(Vaswani et al. 2017)</span>, among other technical achievements. Armed with this new repertoire, programming researchers have revisited their interest in IPTs. Naturally, one of the first applications considered was code completion.</p>
+<p>Following their initial success in natural language, rapid progress continues to be made in the application and specialization of transformers to source code, as well as industrial transfer where this technology is now trained and deployed on millions of programmers worldwide <span class="citation" data-cites="chen2021evaluating">(M. Chen et al. 2021)</span>. Given a natural language description of an incomplete method, these models are capable of inferring programmer intent and completing multiline code snippets.</p>
+<p>The problem comes down to a question of grammar induction. Based on empirical results, fixed-precision transformers (e.g. GPT-2, BERT) are thought capable of recognizing the class of counter languages <span class="citation" data-cites="bhattamishra2020ability">(Bhattamishra, Ahuja, and Goyal 2020)</span>, i.e., somewhere between context-free and context-sensitive, although this characterization requires a more careful theoretical analysis. For source code typically stored on GitHub, this class would appear to suffice – models trained on such datasets are currently capable of sketching rudimentary programs and boilerplate code, however more complex fragments require additional oversight.</p>
+<p>An important shortcoming of imitation learning is the question of data provenance: even if the training data is syntactically well-formed, constraints on the class of valid programs are ill-posed. As a result, a large fragment of languages generated may be syntactically valid but semantically unsound, i.e., may throw runtime errors, or appear to work at first, but are in fact broken in a subtle manner. Like most language models of its kind, errors in the training data are prone to be inherited and reproduced by an IPT.</p>
+<p>The vast majority of modern programming consists of writing ceremonial boilerplate, tasks for which neural language models are well-suited. A tremendous amount of human labor is spent on such chores, and redirecting attention towards more intellectually stimulating tasks may encourage a larger demographic to become programmers who would otherwise lack the patience or interest. By removing these barriers, programmers can more quickly arrive at the rewarding parts of program design and implementation.</p>
+<p>Nevertheless, imitation is a somewhat dissatisfying approximation to programming from a computer-scientific perspective – lacking in some essential aspect the qualities its practitioners aspire to fulfill. Helpful though it may be for tedious chores, the art of programming is not in reading gigabytes of code and minimizing a cross-entropy loss. Programming requires imagination, problem-solving – qualities which cannot be conferred by scaling existing models with more data and parameters. What could be missing?</p>
+<p>Computer scientists have long pondered the nature of search. Search is an indispensable tool in the programmer’s repertoire and goes to the heart of many fundamental problems in artificial intelligence, from classical to statistical optimization, and information retrieval to computational linguistics. Programming itself can be seen as a kind of search-based optimization problem <span class="citation" data-cites="alur2018search">(Alur et al. 2018)</span>, consistent with its original mathematical interpretation, e.g., linear or stochastic programming. Coupled with a grammatical template, one could imagine searching through the space of valid programs to produce a higher-order function satisfying some criteria. Indeed, this exact setup is studied in the annual syntax-guided synthesis (SyGuS) competition <span class="citation" data-cites="alur2016sygus">(Alur et al. 2016)</span>.</p>
+<p>Returning to our earlier question of, “What else could human programmers be doing besides imitation learning?”, one plausible answer could be trial and error. Given a program specification and a computational budget, a naïve strategy could be to simply evaluate as many programs from a dataset of candidate solutions as possible within the allotted budget. Many programmers do in fact practice this style of copy-paste programming as evidenced by duplicate code studies <span class="citation" data-cites="lopes2017dejavu">(Lopes et al. 2017)</span>, a problem known to adversely bias machine learning models, and which must be corrected for during data curation <span class="citation" data-cites="allamanis2019adverse">(Allamanis 2019)</span>.</p>
+<p>For most practical programming languages, the space of valid programs can hardly be enumerated, never mind evaluated in a reasonable amount of time. A more refined strategy is needed: for example, we could select a small set of reusable building blocks, then compose and evaluate partial programs using an execution-guided scheme <span class="citation" data-cites="chen2018execution wang2018execution">(X. Chen, Liu, and Song 2018; Wang et al. 2018)</span>. By interacting with an interpreter, we may be able to arrive at a solution via incremental improvement. As with most dynamic programming algorithms, the problem comes down to a question of substructure: unless the problem can be decomposed into overlapping subproblems, program search can be exponential or worse.</p>
+<p>For example, many useful programs belong to the class of context free languages. Sampling is possible using a probabilistic grammar, but at what cost? The number of distinct parse trees grows super-exponentially with height. Various strategies have been designed to inhibit this growth, but even with judicious pruning, the topology of many languages does not admit search, or the cost required may be prohibitive. Yet humans are able to solve many computationally hard search problems with deceptive ease. How?</p>
+<p>One possibility is that humans possess more computational resources than might we give them credit for, and a similarly-enriched neural-guided search would be equally capable. Another hypothesis is that we are not <em>searching</em> for programs per se: when painting a portrait or writing a novel, we do not call this search. Likewise, <strong>programming is not necessarily about searching for an answer, but finding the right question, of exploring a design space whose specification is a consequence, not a catalyst of the design process.</strong> The program’s source code could merely be an artifact of an ephemeral dialog between a human and a machine, not the final result. In the following section, we explore two contrasting models for this dialog, one where the human is the teacher and one where the IPT is the teacher.</p>
+<h1 id="sec:automatic-and-declarative-programming">Declarative and Automatic Programming</h1>
+<p>In The Art of Computer Programming <span class="citation" data-cites="knuth1997art">(Knuth 1997)</span>, Donald Knuth memorably writes, “Programs are meant to be read by humans and only incidentally for computers to execute.” Taking this perspective, one may be tempted to ask, “<strong>Why must programming languages be so difficult that we need IPTs to write down our ideas in the first place?</strong>” If we consider programming to be simply a matter of communicating human intent to machines, language designers should take great pains to simplify the language so that users may convey their intent in an effortless manner, then harness machine intelligence in the service of fulfilling that intent, rather than force the user to give precise instructions. Known as <em>declarative programming</em>, this approach can be found in languages like SQL, Prolog, and miniKanren.</p>
+<p>The essence of declarative programming can be traced back to the 1940s when researchers started applying tools from mathematical optimization to what is today known as operations research <span class="citation" data-cites="kantorovich1960mathematical">(Kantorovich 1960)</span>. In this early work, programmers would state their intent as a solution to a system of inequalities, e.g., for optimal transport or economic planning. More recently, it has found important applications for defining metrics on probability distributions, the construction of which are an essential aspect of machine learning. Metrics provide a way of biasing learning algorithms towards solutions of a certain form, and thus can be seen as an indirect form of programming.</p>
+<p>Not only can declarative programming be used to produce numerical solutions to systems of equations, but the same ideas can be applied to synthesize other kinds of data, such as programs. Given some existing program <span class="math inline">𝒫</span> and a set of declarative constraints in the form of program transformations, we could construct an <em>adjoint</em> program <span class="math inline">𝒫′</span> by applying the transformations recursively. For example, this might allow us to approximate a probability density function, or compute its derivative with respect to one or more inputs. These techniques are broadly known as <em>automatic programming</em>.</p>
+<p>Our interest in automatic programming is twofold: (1) as the basis for the first successful open-source implementation of gradient-based learning <span class="citation" data-cites="baydin2018automatic">(Baydin et al. 2018)</span>, and (2) as a practical framework for realizing the once-scorned <span class="citation" data-cites="dijkstra1979foolishness">(Dijkstra 1979)</span> but now increasingly plausible <span class="citation" data-cites="chen2021evaluating">(M. Chen et al. 2021)</span> idea of natural language programming. For example, consider the following natural language specification:</p>
+<pre data-basicstyle="\footnotesize\ttfamily"><code>fun transformStringIntoListOfUniqueWords(s: String) = TODO()</code></pre>
+<p>This is the completion provided by Codex <span class="citation" data-cites="chen2021evaluating">(M. Chen et al. 2021)</span>, a recent IPT from OpenAI:</p>
+<pre data-basicstyle="\footnotesize\ttfamily"><code>fun transformStringIntoListOfUniqueWords(s: String) =
+     s.toLowerCase().replace(Regex(&quot;[^a-zA-Z]&quot;), &quot; &quot;).trim()
+      .split(&quot;\\s+&quot;.toRegex()).filter { it.isNotBlank() }.toSet()</code></pre>
+<p>The problem with automatic programming is that it assumes the specification is (1) infallible and (2) faithfully represents its author’s intent. If either assumption is invalid, the resulting output could be nonsensical, or appear to work but actually contain a subtle error. How could we detect such an error and provide earlier feedback if the specification were ill-posed?</p>
+<p>As adept as human programmers are at certain tasks, they can be short-sighted. The larger a program grows, the more likely its author is to make a mistake due to combinatorial explosion – whenever a new feature is added, it has the potential to interact with every other feature in unpredictable ways. This is why language designers are often hesitant to add new features, a challenge which has come to be known as the feature-interaction problem <span class="citation" data-cites="apel2013exploring">(Apel et al. 2013)</span>. Taking this perspective, the programmer is not an all-knowing oracle, but actually a student who proposes ideas to the IPT, and in return, receives feedback about their consequences in the context of a <em>type system</em>.</p>
+<p><strong>When programmers ask for an intelligent programming tool, what they really want is not a subordinate who blindly follows orders, but a tutor who quickly gives feedback about the implications of their design choices.</strong> This is the advantage of having a type system: not only does it give relevant feedback, but allows us to constrain the space of semantically valid programs. The interaction model is bidirectional: the user provides a typed program sketch. If the program is valid, the type is witnessed by an inhabitant. And if the program is inconsistent, the type system provides feedback to the user as to where and how.</p>
+<p>For example, all procedures in a statically-typed programming language have a <em>type signature</em>, e.g., <code>getHomePhone: Person → PhoneNumber</code>. This represents a <em>contract</em> between the procedure and its caller: if the procedure <code>getHomePhone</code> is called with a <code>Person</code>, it will return a <code>PhoneNumber</code>. All other input and output types are forbidden by the type system.</p>
+<p>What if we could encode the type system constraints into our neural language model – how would we go about doing that? One way is to use neural guided search, where we do beam search over a generative language model and discard the programs which are not well-typed. The second way is more difficult, but morally proper: we learn a probability distribution on the space of semantically correct programs from the outset, so the resulting samples are always valid programs and rejection becomes unnecessary. Broadly speaking, this approach is known as type-safe probabilistic programming, and has been considered for various applications, for the analysis of cryptographic algorithms, to physical simulation, to Bayesian program learning <span class="citation" data-cites="murali2017bayesian">(Murali, Chaudhuri, and Jermaine 2017)</span>.</p>
+<h1 id="sec:knowledge-based-programming">Knowledge-based Programming</h1>
+<p>Historically, most knowledge was stored as natural language. A growing portion is now <em>code</em> <span class="citation" data-cites="allamanis2018survey">(Allamanis et al. 2018)</span>. The majority of code is procedural knowledge, written by a human and intended to operate a machine. Though it shares many statistical properties in common with natural language <span class="citation" data-cites="hindle2012naturalness">(Hindle et al. 2012)</span>, code has an unambiguous grammar and well-defined semantics <span class="citation" data-cites="pierce2010software">(Pierce et al. 2020)</span>. We can use these properties to construct graphical models and reason about their structure.</p>
+<p>Early work in program learning realized the importance of graph-based representations <span class="citation" data-cites="allamanis2017learning">(Allamanis, Brockschmidt, and Khademi 2017)</span>, however explicit graph construction requires extensive feature-engineering. More recent work in program synthesis has explored incorporating a terminal <span class="citation" data-cites="ellis2019write">(Ellis et al. 2019)</span>, graphical <span class="citation" data-cites="walke2020learning">(Walke, Jones, and Ritchie 2020)</span> or other user interface to explore the space of valid programs, however they do not consider the scope or variety of artifacts in a software project. Others have shown the feasibility of learning a local graph <span class="citation" data-cites="johnson2020learning">(Johnson, Larochelle, and Tarlow 2020)</span> from source code, but still require an explicit parser to form the initial graph. Moreover, adaption to settings where style, terminology and document structure vary remains a challenge.</p>
+<p>Application programming interfaces (APIs) are interfaces which describe available ways of structuring computation to achieve related programming tasks. We call the graph of all possible ways to compose an API the <em>API surface</em>. One traverses the API surface by composing accessible procedures in a <em>call graph</em>. Thus, we can view the API as a kind of <em>procedural knowledge base</em> representing common data transformations and how to compose them. In practice, how to achieve some desired goal is often far from obvious, requiring a large amount of documentation to explain.</p>
+<p>Many consumers of popular APIs publish code and documentation in open source repositories, a largely untapped source of knowledge for programming tools. New work seeks to find ways of linking knowledge contained in open source repositories to help users locate examples and compose programs. In the following section, we review three applications for document alignment (§ <a href="#subsec:tracelink" data-reference-type="ref" data-reference="subsec:tracelink">4.1</a>), code search (§ <a href="#subsec:code-search" data-reference-type="ref" data-reference="subsec:code-search">4.2</a>), and knowledge extraction (§ <a href="#subsec:knowledge-extraction" data-reference-type="ref" data-reference="subsec:knowledge-extraction">4.3</a>).</p>
+<h2 id="subsec:tracelink">Documentation alignment</h2>
+<p>Documentation is an indispensable resource for software developers learning to use a new API or programming language. Maintainers of popular software projects often publish web-based developer documents, typically in markup languages such as HTML or Markdown. These documents contain a mixture of natural language sentences, code snippets, and hyperlinks to related documents and source code files. All of these artifacts hold rich semantic information: the markup graph describes the text in relation to other entities in the document hierarchy, while the link graph describes relationships between relevant documents or artifacts in a software repository.</p>
+<p>Consider the typical workflow of a software developer who is seeking information about an unfamiliar API. To effectively locate relevant documentation, a specific fragment of text (e.g., a function name, error message, or identifier) must first be copied from a development environment into a search engine, providing relevant contextual information. The query must be descriptive enough to retrieve relevant documents with high probability, while omitting extraneous information (e.g., user-defined tokens) unlikely to occur outside the scope of the developer’s personal environment or project.</p>
+<p>Prior work in information retrieval for software development investigated recommending API documentation <span class="citation" data-cites="robillard2015recommending">(Robillard and Chhetri 2015)</span> and Q&amp;A content <span class="citation" data-cites="treude2016augmenting">(Treude and Robillard 2016)</span> to developers. Similar work in natural language processing has studied the relationship between comments and source code entities <span class="citation" data-cites="iyer2018mapping panthaplackel2020associating">(Iyer et al. 2018; Panthaplackel et al. 2020)</span> strictly within source code. Examples of cross-domain entity linking in the source-to-doc (S2D) and doc-to-source (D2S) setting are scarce, however these results indicate alignment between natural language and software artifacts may be feasible.</p>
+<p>More recent work seeks to facilitate procedural knowledge discovery by enriching lexical queries with semantic information extracted from a programming environment, and prioritizing semantically relevant software artifacts among a set of matching search results. Broadly, the tools in this literature review can be used to study both source code and documentation. Reasoning about relations between these artifacts will require developing new approaches to feature engineering, unsupervised learning and entity alignment in the low-data regime. Such an application would allow developers to more quickly and easily locate semantically or contextually relevant code samples in API documentation and open source repositories. These tools could also help authors maintain a consistent set of API documents and usage examples across a large codebase – a persistent obstacle for software maintenance.</p>
+<h2 id="subsec:code-search">Human-mediated code search</h2>
+<p>Given a learned similarity metric between procedures, one straightforward application is code search. Prior work has explored type-directed <span class="citation" data-cites="james2020digging">(James et al. 2020)</span>, learning-based <span class="citation" data-cites="gu2018deep">(Gu, Zhang, and Kim 2018)</span> and semantic <span class="citation" data-cites="premtoon2020semantic">(Premtoon, Koppel, and Solar-Lezama 2020)</span> code search. These techniques all use a fixed, or synthetic ordering over search results. For a given context, there are often many valid completions within an API or codebase. Given a corpus of procedures in their surrounding typing environment, is it possible to estimate a probability distribution on a shared embedding between contexts and results, and measure the likelihood that a given search result occurs in an empty location? This requires:</p>
+<ol type="1">
+<li><p>Efficiently searching a corpus for a well-typed pattern</p></li>
+<li><p>Ranking the matching search results by semantic alignment</p></li>
+<li><p>Incorporating information into user’s context (e.g., variable renaming)</p></li>
+</ol>
+<p>Given a cursor and the surrounding context (e.g., in an IDE or editor), such a tool would need to search a database for the most similar contexts, extract common snippets to estimate their <em>concordance</em> or <em>agreement</em> with the surrounding code context, then adapt the foreign code snippet into the user’s context. Public code samples, API-documentation or version control history, could help the user to fix some erroneous or outdated piece of code. Some open research questions include:</p>
+<ol type="1">
+<li><p><strong>Semantic segmentation</strong>: How do we slice or truncate context?</p></li>
+<li><p><strong>Graph search</strong>: What kernels enable fast subgraph detection?</p></li>
+<li><p><strong>Context ranking</strong>: What features best measure contextual similarity?</p></li>
+<li><p><strong>Refactoring</strong>: How to integrate a selected result into the user’s code?</p></li>
+</ol>
+<p>Other work in the code search literature explores the text-to-code <span class="citation" data-cites="husain2019codesearchnet">(Husain et al. 2019)</span> setting, where queries are typically considered to be a short sequence composed by the user, or code-to-code <span class="citation" data-cites="kim2018facoy">(K. Kim et al. 2018)</span> setting where the query takes the form of a code snippet. Model performance is typically evaluated using mean reciprocal rank (MRR), mean average precision (MAP), normalized discounted cumulative gain (NDCG), precision and recall at top N-results (P/R@N), or similar metrics. Although some <span class="citation" data-cites="asyrofi2020ausearch">(Asyrofi et al. 2020)</span> do incorporate other features from the local document, few consider the query in the context of a broader project. The ability to align contextual features from the surrounding project, we argue, is essential to delivering semantically relevant search results.</p>
+<h2 id="subsec:knowledge-extraction">Software knowledge extraction</h2>
+<p>What is a language model? Disregarding meaning, a language model is no more than a statistical description of symbolic information. Natural languages differ from mechanical languages in a few key ways. Natural languages are linear: almost all human languages have a fixed maximum recursion depth governed by biological and cognitive factors. Programming languages, by contrast, are more strongly nonlinear due to their metalinguistic properties. Thus, current natural language models cannot represent many programming languages without significantly constraining their expressiveness. Prior studies of source code have been undertaken <span class="citation" data-cites="weiss2018practical chirkova2020empirical chen2021evaluating">(Weiss, Goldberg, and Yahav 2018b; Chirkova and Troshin 2020; M. Chen et al. 2021)</span> to characterize the families of computational languages that neural language models can recognize. These studies rely on statistical analysis of code corpora, but do not provide tight bounds on the expressiveness of neural language models.</p>
+<p>One might argue – since natural language models are effectively linear – a language model with a large enough working memory, given enough data, should be able to model language fragments whose description lengths fit inside their working memory. Indeed, studies show that natural language models are surprisingly adept at modeling idioms in source code. However, we would expect such models to struggle with fragments whose complexity exceeds its working memory (e.g., whose average MDL stretch this limit).</p>
+<p>What is the difference between working memory, i.e., reasoning, and long-term memory, i.e., knowledge? Long term memory is information stored in the learned parameters, i.e., the topological structure of the network – as a model <em>learns</em>, this information is passively encoded in the topological structure. Long-term memories must be conserved by the data distribution: distributional shift tends to erase past memories, a phenomena known as catastrophic forgetting. In contrast, short-term or working memories are dynamical patterns of activity which allow a network to reason about incoming signals and adapt to previously unseen scenarios without memorization. To be propagated forward in time, working memories must be actively conserved by the network topology. <strong>Both learning and reasoning are a forms of message passing over a graphical structure: learning shapes the graph topology, and reasoning propagates signals through it.</strong></p>
+<p>Models which cannot fit a computational language into working memory must learn maximal-length fragments and use long-term memory to fill-in the gaps – i.e., by memorizing transitions between fragments in long-term memory. If this is the case, we would expect to find transitions that are locally consistent, but globally incoherent. For instance, can source code models learn balanced parentheses? Balanced intermingled parentheses? <code>{([])}</code> Other algebraic datastructures (e.g., bushes, imbalanced trees, etc.)? What are the limit languages that can be learned by natural language models of source code (e.g., transformers, RNNs) and their failure modes in practice?</p>
+<p>Finally, can we extract any useful knowledge from a trained language model? Two high-level strategies have been proposed in recent literature: we could either decode a useful representation, such as a finite <span class="citation" data-cites="weiss2018extracting">(Weiss, Goldberg, and Yahav 2018a)</span> or weighted finite automaton <span class="citation" data-cites="weiss2019learning">(Weiss, Goldberg, and Yahav 2019)</span> from a pretrained neural language model using queries and counterexamples a la Angluin <span class="citation" data-cites="angluin1987learning">(Angluin 1987)</span>, or we could train a model to directly synthesize a graph using a reinforcement learning based approach <span class="citation" data-cites="johnson2020learning">(Johnson, Larochelle, and Tarlow 2020)</span>. While early results appear promising, further investigation is required to understand the tradeoffs between these two approaches.</p>
+<h1 id="conclusion">Conclusion</h1>
+<p>The last few years have shown a variety of different interaction models between humans and IPTs. One potential future is that human beings will be eventually left behind in the race for higher forms of intelligence (computer scientists are largely divided over this topic). Regardless whether such a thing will come to pass, we will need new tools for humans to communicate their values and preferences effectively. How can we convince machines to use their intelligence in service of our mutual good, whilst giving them agency to explore solutions that we may not understand? This question is broadly known as the AI alignment problem <span class="citation" data-cites="kim2018mimetic christian2020alignment">(T. W. Kim, Donaldson, and Hooker 2018; Christian 2020)</span> and is attracting an interest from both the computing sciences and humanities.</p>
+<p><strong>Our position is that alignment will require a closer collaboration between computer science and humanities than historically practiced, and this partnership will be invigorating for both disciplines.</strong></p>
+<p>One way of ensuring that our values are faithfully encoded by machines is through <em>programming</em>. In this literature review, we give various examples of programming models that have been envisioned, e.g., from autocompletion and program synthesis (§<a href="#sec:autocompletion" data-reference-type="ref" data-reference="sec:autocompletion">2</a>), to autoprogramming and type inference (§<a href="#sec:automatic-and-declarative-programming" data-reference-type="ref" data-reference="sec:automatic-and-declarative-programming">3</a>). Another way to propagate human values is by teaching the humanities: arts, language, culture, history and philosophy. By keeping these traditions alive, we transmit our cultural heritage to future generations so that they, by studying the lessons of our past, may avoid repeating the same mistakes. Those generations may soon be enlisted to help share our values with computers.</p>
+<p>Given the clear and present risks associated with misuse, great care must be taken to ensure that intelligent systems do not bring harm into the world. For this reason, we encourage the careful study of programming language theory, which helps ensure the safety, security and energy efficiency of computer programs and statistical learning theory, which has developed tools like risk minimization and probabilistic programming to reason about uncertainty.</p>
+<h1 id="acknowledgements">Acknowledgements</h1>
+<p>The author wishes to thank his advisors Jin Guo and Xujie Si, for their feedback on this literature review, colleagues Disha Shrivastava and David Yu-Tung Hui, for sharing their ideas about natural language and philosophy, and Pratheeksha Nair and Ian Porada for helping prepare for his oral exam.</p>
+<div id="refs" class="references csl-bib-body hanging-indent" role="doc-bibliography">
+<div id="ref-allamanis2019adverse" class="csl-entry" role="doc-biblioentry">
+Allamanis, Miltiadis. 2019. <span>“The Adverse Effects of Code Duplication in Machine Learning Models of Code.”</span> In <em>Proceedings of the 2019 ACM SIGPLAN International Symposium on New Ideas, New Paradigms, and Reflections on Programming and Software</em>, 143–53. <a href="https://arxiv.org/pdf/1812.06469.pdf">https://arxiv.org/pdf/1812.06469.pdf</a>.
+</div>
+<div id="ref-allamanis2018survey" class="csl-entry" role="doc-biblioentry">
+Allamanis, Miltiadis, Earl T Barr, Premkumar Devanbu, and Charles Sutton. 2018. <span>“A Survey of Machine Learning for Big Code and Naturalness.”</span> <em>ACM Computing Surveys (CSUR)</em> 51 (4): 1–37. <a href="https://arxiv.org/pdf/1709.06182.pdf">https://arxiv.org/pdf/1709.06182.pdf</a>.
+</div>
+<div id="ref-allamanis2017learning" class="csl-entry" role="doc-biblioentry">
+Allamanis, Miltiadis, Marc Brockschmidt, and Mahmoud Khademi. 2017. <span>“Learning to Represent Programs with Graphs.”</span> <em>arXiv Preprint arXiv:1711.00740</em>. <a href="https://arxiv.org/pdf/1711.00740.pdf">https://arxiv.org/pdf/1711.00740.pdf</a>.
+</div>
+<div id="ref-alur2016sygus" class="csl-entry" role="doc-biblioentry">
+Alur, Rajeev, Dana Fisman, Rishabh Singh, and Armando Solar-Lezama. 2016. <span>“Sygus-Comp 2016: Results and Analysis.”</span> <em>arXiv Preprint arXiv:1611.07627</em>. <a href="https://arxiv.org/pdf/1611.07627.pdf">https://arxiv.org/pdf/1611.07627.pdf</a>.
+</div>
+<div id="ref-alur2018search" class="csl-entry" role="doc-biblioentry">
+Alur, Rajeev, Rishabh Singh, Dana Fisman, and Armando Solar-Lezama. 2018. <span>“Search-Based Program Synthesis.”</span> <em>Communications of the ACM</em> 61 (12): 84–93. <a href="https://cacm.acm.org/magazines/2018/12/232879-search-based-program-synthesis/fulltext">https://cacm.acm.org/magazines/2018/12/232879-search-based-program-synthesis/fulltext</a>.
+</div>
+<div id="ref-angluin1987learning" class="csl-entry" role="doc-biblioentry">
+Angluin, Dana. 1987. <span>“Learning Regular Sets from Queries and Counterexamples.”</span> <em>Information and Computation</em> 75 (2): 87–106.
+</div>
+<div id="ref-apel2013exploring" class="csl-entry" role="doc-biblioentry">
+Apel, Sven, Sergiy Kolesnikov, Norbert Siegmund, Christian Kästner, and Brady Garvin. 2013. <span>“Exploring Feature Interactions in the Wild: The New Feature-Interaction Challenge.”</span> In <em>Proceedings of the 5th International Workshop on Feature-Oriented Software Development</em>, 1–8. <a href="https://doi.org/10.1145/2528265.2528267">https://doi.org/10.1145/2528265.2528267</a>.
+</div>
+<div id="ref-asyrofi2020ausearch" class="csl-entry" role="doc-biblioentry">
+Asyrofi, M. H., F. Thung, D. Lo, and L. Jiang. 2020. <span>“AUSearch: Accurate API Usage Search in GitHub Repositories with Type Resolution.”</span> In <em>2020 IEEE 27th International Conference on Software Analysis, Evolution and Reengineering (SANER)</em>, 637–41. IEEE. <a href="https://doi.org/10.1109/SANER48275.2020.9054809">https://doi.org/10.1109/SANER48275.2020.9054809</a>.
+</div>
+<div id="ref-baydin2018automatic" class="csl-entry" role="doc-biblioentry">
+Baydin, Atilim Gunes, Barak A Pearlmutter, Alexey Andreyevich Radul, and Jeffrey Mark Siskind. 2018. <span>“Automatic Differentiation in Machine Learning: A Survey.”</span> <em>Journal of Machine Learning Research</em> 18. <a href="https://arxiv.org/pdf/1502.05767.pdf">https://arxiv.org/pdf/1502.05767.pdf</a>.
+</div>
+<div id="ref-bhattamishra2020ability" class="csl-entry" role="doc-biblioentry">
+Bhattamishra, Satwik, Kabir Ahuja, and Navin Goyal. 2020. <span>“On the Ability and Limitations of Transformers to Recognize Formal Languages.”</span> <em>arXiv Preprint arXiv:2009.11264</em>. <a href="https://arxiv.org/pdf/2009.11264.pdf">https://arxiv.org/pdf/2009.11264.pdf</a>.
+</div>
+<div id="ref-bras1993artificial" class="csl-entry" role="doc-biblioentry">
+Bras, M, and Y Toussaint. 1993. <span>“Artificial Intelligence Tools for Software Engineering: Processing Natural Language Requirements.”</span> <em>WIT Transactions on Information and Communication Technologies</em> 2.
+</div>
+<div id="ref-chen2021evaluating" class="csl-entry" role="doc-biblioentry">
+Chen, Mark, Jerry Tworek, Heewoo Jun, Qiming Yuan, Henrique Ponde, Jared Kaplan, Harri Edwards, et al. 2021. <span>“Evaluating Large Language Models Trained on Code.”</span> <em>arXiv Preprint arXiv:2107.03374</em>. <a href="https://arxiv.org/pdf/2107.03374.pdf">https://arxiv.org/pdf/2107.03374.pdf</a>.
+</div>
+<div id="ref-chen2018execution" class="csl-entry" role="doc-biblioentry">
+Chen, Xinyun, Chang Liu, and Dawn Song. 2018. <span>“Execution-Guided Neural Program Synthesis.”</span> In <em>International Conference on Learning Representations</em>. <a href="https://openreview.net/pdf?id=H1gfOiAqYm">https://openreview.net/pdf?id=H1gfOiAqYm</a>.
+</div>
+<div id="ref-chirkova2020empirical" class="csl-entry" role="doc-biblioentry">
+Chirkova, Nadezhda, and Sergey Troshin. 2020. <span>“Empirical Study of Transformers for Source Code.”</span> <em>CoRR</em> abs/2010.07987. <a href="https://arxiv.org/abs/2010.07987">https://arxiv.org/abs/2010.07987</a>.
+</div>
+<div id="ref-christian2020alignment" class="csl-entry" role="doc-biblioentry">
+Christian, Brian. 2020. <em>The Alignment Problem: Machine Learning and Human Values</em>. WW Norton &amp; Company.
+</div>
+<div id="ref-dijkstra1979foolishness" class="csl-entry" role="doc-biblioentry">
+Dijkstra, Edsger W. 1979. <span>“On the Foolishness of Natural Language Programming.”</span> In <em>Program Construction</em>, 51–53. Springer. <a href="https://www.cs.utexas.edu/users/EWD/transcriptions/EWD06xx/EWD667.html">https://www.cs.utexas.edu/users/EWD/transcriptions/EWD06xx/EWD667.html</a>.
+</div>
+<div id="ref-ellis2019write" class="csl-entry" role="doc-biblioentry">
+Ellis, Kevin, Maxwell Nye, Yewen Pu, Felix Sosa, Josh Tenenbaum, and Armando Solar-Lezama. 2019. <span>“Write, Execute, Assess: Program Synthesis with a <span>REPL</span>.”</span> <em>arXiv Preprint arXiv:1906.04604</em>.
+</div>
+<div id="ref-gu2018deep" class="csl-entry" role="doc-biblioentry">
+Gu, Xiaodong, Hongyu Zhang, and Sunghun Kim. 2018. <span>“Deep Code Search.”</span> In <em>2018 IEEE/ACM 40th International Conference on Software Engineering (ICSE)</em>, 933–44. IEEE. <a href="https://guxd.github.io/papers/deepcs.pdf">https://guxd.github.io/papers/deepcs.pdf</a>.
+</div>
+<div id="ref-hindle2012naturalness" class="csl-entry" role="doc-biblioentry">
+Hindle, Abram, Earl T Barr, Zhendong Su, Mark Gabel, and Premkumar Devanbu. 2012. <span>“On the Naturalness of Software.”</span> In <em>2012 34th International Conference on Software Engineering (ICSE)</em>, 837–47. IEEE. <a href="https://doi.org/10.1145/2902362">https://doi.org/10.1145/2902362</a>.
+</div>
+<div id="ref-husain2019codesearchnet" class="csl-entry" role="doc-biblioentry">
+Husain, Hamel, Ho-Hsiang Wu, Tiferet Gazit, Miltiadis Allamanis, and Marc Brockschmidt. 2019. <span>“CodeSearchNet Challenge: Evaluating the State of Semantic Code Search.”</span> <em>CoRR</em> abs/1909.09436. <a href="http://arxiv.org/abs/1909.09436">http://arxiv.org/abs/1909.09436</a>.
+</div>
+<div id="ref-iyer2018mapping" class="csl-entry" role="doc-biblioentry">
+Iyer, Srinivasan, Ioannis Konstas, Alvin Cheung, and Luke Zettlemoyer. 2018. <span>“Mapping Language to Code in Programmatic Context.”</span> <em>arXiv Preprint arXiv:1808.09588</em>. <a href="https://arxiv.org/pdf/1808.09588.pdf">https://arxiv.org/pdf/1808.09588.pdf</a>.
+</div>
+<div id="ref-james2020digging" class="csl-entry" role="doc-biblioentry">
+James, Michael B, Zheng Guo, Ziteng Wang, Shivani Doshi, Hila Peleg, Ranjit Jhala, and Nadia Polikarpova. 2020. <span>“Digging for Fold: Synthesis-Aided <span>API</span> Discovery for <span>H</span>askell.”</span> <em>Proceedings of the ACM on Programming Languages</em> 4 (OOPSLA): 1–27.
+</div>
+<div id="ref-johnson2020learning" class="csl-entry" role="doc-biblioentry">
+Johnson, Daniel D, Hugo Larochelle, and Daniel Tarlow. 2020. <span>“Learning Graph Structure with a Finite-State Automaton Layer.”</span> <em>arXiv Preprint arXiv:2007.04929</em>. <a href="https://arxiv.org/pdf/2007.04929.pdf">https://arxiv.org/pdf/2007.04929.pdf</a>.
+</div>
+<div id="ref-kantorovich1960mathematical" class="csl-entry" role="doc-biblioentry">
+Kantorovich, Leonid V. 1960. <span>“Mathematical Methods of Organizing and Planning Production.”</span> <em>Management Science</em> 6 (4): 366–422.
+</div>
+<div id="ref-kim2018facoy" class="csl-entry" role="doc-biblioentry">
+Kim, Kisub, Dongsun Kim, Tegawendé F. Bissyandé, Eunjong Choi, Li Li, Jacques Klein, and Yves Le Traon. 2018. <span>“FaCoY: A Code-to-Code Search Engine.”</span> In <em>Proceedings of the 40th International Conference on Software Engineering</em>, 946–57. ICSE ’18. New York, NY, USA: Association for Computing Machinery. <a href="https://doi.org/10.1145/3180155.3180187">https://doi.org/10.1145/3180155.3180187</a>.
+</div>
+<div id="ref-kim2018mimetic" class="csl-entry" role="doc-biblioentry">
+Kim, Tae Wan, Thomas Donaldson, and John Hooker. 2018. <span>“Mimetic Vs Anchored Value Alignment in Artificial Intelligence.”</span> <em>arXiv Preprint arXiv:1810.11116</em>.
+</div>
+<div id="ref-knuth1997art" class="csl-entry" role="doc-biblioentry">
+Knuth, Donald Ervin. 1997. <em>The Art of Computer Programming</em>. Vol. 3. Pearson Education.
+</div>
+<div id="ref-lopes2017dejavu" class="csl-entry" role="doc-biblioentry">
+Lopes, Cristina V, Petr Maj, Pedro Martins, Vaibhav Saini, Di Yang, Jakub Zitny, Hitesh Sajnani, and Jan Vitek. 2017. <span>“D<span>é</span>j<span>à</span>vu: A Map of Code Duplicates on GitHub.”</span> <em>Proceedings of the ACM on Programming Languages</em> 1 (OOPSLA): 1–28. <a href="http://janvitek.org/pubs/oopsla17b.pdf">http://janvitek.org/pubs/oopsla17b.pdf</a>.
+</div>
+<div id="ref-murali2017bayesian" class="csl-entry" role="doc-biblioentry">
+Murali, Vijayaraghavan, Swarat Chaudhuri, and Chris Jermaine. 2017. <span>“Bayesian Sketch Learning for Program Synthesis.”</span> <em>CoRR</em> abs/1703.05698. <a href="http://arxiv.org/abs/1703.05698">http://arxiv.org/abs/1703.05698</a>.
+</div>
+<div id="ref-panthaplackel2020associating" class="csl-entry" role="doc-biblioentry">
+Panthaplackel, Sheena, Milos Gligoric, Raymond J. Mooney, and Junyi Jessy Li. 2020. <span>“Associating Natural Language Comment and Source Code Entities.”</span> In <em>AAAI</em>. <a href="https://arxiv.org/pdf/1912.06728.pdf">https://arxiv.org/pdf/1912.06728.pdf</a>.
+</div>
+<div id="ref-pierce2010software" class="csl-entry" role="doc-biblioentry">
+Pierce, Benjamin C, Chris Casinghino, Marco Gaboardi, Michael Greenberg, Cătălin Hriţcu, Vilhelm Sjöberg, and Brent Yorgey. 2020. <span>“<span>Software Foundations</span>.”</span> <a href="https://softwarefoundations.cis.upenn.edu">https://softwarefoundations.cis.upenn.edu</a>.
+</div>
+<div id="ref-premtoon2020semantic" class="csl-entry" role="doc-biblioentry">
+Premtoon, Varot, James Koppel, and Armando Solar-Lezama. 2020. <span>“Semantic Code Search via Equational Reasoning.”</span> In <em>PLDI</em>, 1066–82.
+</div>
+<div id="ref-robillard2015recommending" class="csl-entry" role="doc-biblioentry">
+Robillard, Martin P, and Yam B Chhetri. 2015. <span>“Recommending Reference <span>API</span> Documentation.”</span> <em>Empirical Software Engineering</em> 20 (6): 1558–86. <a href="https://www.cs.mcgill.ca/~martin/papers/cr2014a.pdf">https://www.cs.mcgill.ca/~martin/papers/cr2014a.pdf</a>.
+</div>
+<div id="ref-treude2016augmenting" class="csl-entry" role="doc-biblioentry">
+Treude, Christoph, and Martin P. Robillard. 2016. <span>“Augmenting <span>API</span> Documentation with Insights from <span>Stack Overflow</span>.”</span> In <em>Proceedings of the 38th International Conference on Software Engineering</em>, 392–403. ICSE ’16. New York, NY, USA: Association for Computing Machinery. <a href="https://doi.org/10.1145/2884781.2884800">https://doi.org/10.1145/2884781.2884800</a>.
+</div>
+<div id="ref-vaswani2017attention" class="csl-entry" role="doc-biblioentry">
+Vaswani, Ashish, Noam Shazeer, Niki Parmar, Jakob Uszkoreit, Llion Jones, Aidan N Gomez, Łukasz Kaiser, and Illia Polosukhin. 2017. <span>“Attention Is All You Need.”</span> In <em>Advances in Neural Information Processing Systems</em>, 5998–6008. <a href="https://arxiv.org/pdf/1706.03762.pdf">https://arxiv.org/pdf/1706.03762.pdf</a>.
+</div>
+<div id="ref-walke2020learning" class="csl-entry" role="doc-biblioentry">
+Walke, Homer, R Kenny Jones, and Daniel Ritchie. 2020. <span>“Learning to Infer Shape Programs Using Latent Execution Self Training.”</span> <em>arXiv Preprint arXiv:2011.13045</em>. <a href="https://arxiv.org/pdf/2011.13045.pdf">https://arxiv.org/pdf/2011.13045.pdf</a>.
+</div>
+<div id="ref-wang2018execution" class="csl-entry" role="doc-biblioentry">
+Wang, Chenglong, Po-Sen Huang, Alex Polozov, Marc Brockschmidt, and Rishabh Singh. 2018. <span>“Execution-Guided Neural Program Decoding.”</span> In <em>ICML Workshop on Neural Abstract Machines and Program Induction V2 (NAMPI)</em>. <a href="https://www.microsoft.com/en-us/research/uploads/prod/2018/07/Execution-Guided-Neural-Program-Decoding.pdf">https://www.microsoft.com/en-us/research/uploads/prod/2018/07/Execution-Guided-Neural-Program-Decoding.pdf</a>.
+</div>
+<div id="ref-weiss2018extracting" class="csl-entry" role="doc-biblioentry">
+Weiss, Gail, Yoav Goldberg, and Eran Yahav. 2018a. <span>“Extracting Automata from Recurrent Neural Networks Using Queries and Counterexamples.”</span> In <em>International Conference on Machine Learning</em>, 5247–56. PMLR.
+</div>
+<div id="ref-weiss2018practical" class="csl-entry" role="doc-biblioentry">
+———. 2018b. <span>“On the Practical Computational Power of Finite Precision RNNs for Language Recognition.”</span> <em>CoRR</em> abs/1805.04908. <a href="http://arxiv.org/abs/1805.04908">http://arxiv.org/abs/1805.04908</a>.
+</div>
+<div id="ref-weiss2019learning" class="csl-entry" role="doc-biblioentry">
+———. 2019. <span>“Learning Deterministic Weighted Automata with Queries and Counterexamples.”</span> <em>arXiv Preprint arXiv:1910.13895</em>.
+</div>
+</div>
+</body>
+</html>
