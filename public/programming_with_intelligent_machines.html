@@ -48,6 +48,8 @@
     }
     p {
       margin: 1em 0;
+      text-align: justify;
+      text-justify: inter-word;
     }
     a {
       color: #1a1a1a;
@@ -171,15 +173,14 @@
 </head>
 <body>
 <header id="title-block-header">
-<h2 class="title"><p>Programming in the<br />
-Age of Intelligent Machines</p></h2>
-<p class="author">Breandan Considine</p>
+<h1 class="title">Programming in the Age of Intelligent Machines</h1>
+    <div style="text-align: center;">Breandan Considine</div>
 </header>
 <h2 id="introduction">Introduction</h2>
 <p>Since the invention of modern computers in the mid 20th century, computer programming has undergone a number of paradigm shifts. From the rise of functional programming to dynamic and object-oriented programming, to the availability of myriad tools and frameworks – its practitioners have witnessed a veritable Renaissance in the art of computer programming. With each of these paradigm shifts, programmers have realized new conceptual frameworks for expressing their ideas more clearly and concisely.</p>
 <p>Over the last few years, a new paradigm shift has been set in motion, with significant implications for how we think about and write programs in the coming century. By most measures, computers have grown steadily more intelligent and capable of assisting programmers with mentally taxing chores. For example, intelligent programming tools (IPTs) powered by neural language models have this year helped over 10 million people program computers. As IPTs help digitally illiterate communities to discover their innate aptitude for programming, this population will continue to increase.</p>
 <p>Computer programming is a uniquely creative exercise among the range of human activities. It channels our innate linguistic, logical, imaginative, and social abilities to bring abstract ideas into reality, and ultimately, gives humans the freedom to create new realities of their own design. In collaboration with other humans and the increasing participation of IPTs, vast and elaborate virtual worlds are being manufactured, where the majority of humankind now chooses to spend their lives. With the expanding opportunities these new digital frontiers offer, their population too will continue to grow.</p>
-<p>Today IPTs share an equal role in shaping many aspects of computer programming, from knowledge discovery to API design, and program synthesis to validation and verification. However, this balance is shifting beneath our feet. Once its creators, programmers are now primarily consumers of information provided by an IPT, and increasingly rely on them to perform their daily work. <strong>With the unique opportunities and risks this partnership presents, what division of labor should exist between humans and our new coding collaborators?</strong> This is the question we have set out to understand in the following literature review.</p>
+<p>Today IPTs share an equal role in shaping many aspects of computer programming, from knowledge discovery to API design, and program synthesis to validation and verification. However, this balance is shifting beneath our feet. Once its creators, programmers are now primarily consumers of information provided by an IPT, and increasingly rely on them to perform their daily work. <strong>With the unique opportunities and risks this partnership presents, what division of labor should exist between humans and our new coding collaborators?</strong> This is the question we have set out to understand.</p>
 <h2 id="sec:autocompletion">Code Completion and Program Synthesis</h2>
 <p>Programming researchers have long held an interest in using intelligent tools to help them write programs <span class="citation" data-cites="bras1993artificial">(Bras and Toussaint 1993)</span>. Due to fundamental limitations in data and processing power, many of these ambitions have come to pass only recently, thanks to the availability of <em>big code</em> <span class="citation" data-cites="allamanis2018survey">(Allamanis et al. 2018)</span>, the development of differentiable programming libraries for gradient-based learning <span class="citation" data-cites="baydin2018automatic">(Baydin et al. 2018)</span>, and attention-based language models <span class="citation" data-cites="vaswani2017attention">(Vaswani et al. 2017)</span>, among other technical achievements. Armed with this new repertoire, programming researchers have revisited their interest in IPTs. Naturally, one of the first applications considered was code completion.</p>
 <p>Following their initial success in natural language, rapid progress continues to be made in the application and specialization of transformers to source code, as well as industrial transfer where this technology is now trained and deployed on millions of programmers worldwide <span class="citation" data-cites="chen2021evaluating">(M. Chen et al. 2021)</span>. Given a natural language description of an incomplete method, these models are capable of inferring programmer intent and completing multiline code snippets.</p>
