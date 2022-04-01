@@ -24,7 +24,6 @@ BT(n+1)=(BT(n)+2)²−1
 There are generative random graph processes, e.g. Erdos-Renyi, Watts Strogats, et al. -- these are examples of a more general thing known as a graph rewrite system. Graph rewriting requires efficient subgraph isomorphism and is another Turing Tarpit. How can we sample uniformly from all possible graphs? In practice, the graphs people care about are more constrained. By incrementally constructing the graph and carefully constraining the rewrite rules, it may be feasible to sample a subspace, but step off the data manifold, and here be dragons.
 
 ![](../images/seamonsters.jpeg)
-Here lie dragons.jpeg
 
 Consider the space of representable functions: this is program synthesis! And the data type of functions is nonlinear.
 
@@ -34,7 +33,7 @@ b^a
 
 Clearly things can get out of control quickly, so what do we loose by sticking to linearity? Peano arithmetic. While possible to encode, it grows very inefficient. Most computers do not implement this correctly and true multiplication requires a nontrivial algorithm like Karatsuba or derivatives. The complexity of true multiplication is unknown.
 
-Most computer programmers would rather ignore this and pretend computers are some exotic species of capricious genie to whom we must supplicate ourselves for answers. If we ignore the fact this genie has some idiosyncrasies, we can maintain the illusion of control. But computers do not behave rationally if we look behind the curtain.
+Most computer programmers would rather ignore this and pretend computers are some exotic species of capricious genie to whom we must supplicate ourselves for answers. If we ignore the fact this genie has some idiosyncrasies, we can maintain the illusion of control. Computer programming has been carefully constructed to avoid these unpleasant scenarios. But computers do not behave rationally if we look behind the curtain.
 
 Linearity is nice: Linear types, linear logic, linear algebra. Everybody from politicians to programmers like linear systems. We have a lot of well-behaved control theory to describe them. The sort of thing that got us to the moon and raised electromagnetic empires out of ashes and dust. But beware the nonlinear, for this is where cybernetics has little to say. And if the singulartians are to be believed, we are living in nonlinear times.
 
@@ -65,9 +64,9 @@ There are surprisingly tiny Boolean circuits which can be found using constraint
     </tr>
 </table>
 
-Many stochastic processes exhibit some hidden structure when you look at them from a certain perspective. Projecting their dynamics onto a lower dimensional manifold with the right basis vectors reveals the mixture is heterogeneous! Look at a double pendulum. The same things can be seen: islands of stability surrounded by a great writing sea of chaos.  Can we predict the topography of these shores without visiting all its contours? Toy problems are possible to simulate using Monte Carlo. For others, galactic computation may be needed. Perhaps, if our pattern-matching abilities were sharper, their structure could be brought into focus. This visualization is called a [Poincaré map](https://en.wikipedia.org/wiki/Poincar%C3%A9_map).
+Many stochastic processes exhibit some hidden structure when you look at them from a certain perspective. Projecting their dynamics onto a lower dimensional manifold with the right basis vectors reveals the mixture is heterogeneous! Look at a double pendulum. The same things can be seen: islands of stability surrounded by a great writhing sea of chaos. Can we predict the topography of those islands without visiting all its contours? Toy problems are possible to simulate using Monte Carlo. For others, galactic computation may be needed. Perhaps, if our pattern-matching faculties were sharper, their structure could be brought into focus. This visualization is called a [Poincaré map](https://en.wikipedia.org/wiki/Poincar%C3%A9_map).
 
-Persistent homology allows us to recover the structure of higher dimensional things which we cannot fathom. A kind of map of sorts.
+Persistent homology allows us to recover the structure of higher dimensional shapes which we cannot picture. A kind of map of sorts, for lower dimensional voyagers.
 
 Computer scientists must do away with this folly that hardware scaling will solve all our problems. There are things that scale faster than any man-made singularity (e.g., Ackermann functions, busy beavers) which lurk in jungle that encircles the Turing Tarpit. If we are to tame these behemoths, we need a theory of possible worlds, otherwise we will be devoured by the problems that lurk within.
 
